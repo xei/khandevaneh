@@ -13,7 +13,7 @@ public class LaunchActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_launch);
 
-        //getStartupConfig (APP_ID:APP_SECRET)
+        //TODO: getStartupConfig (APP_ID:APP_SECRET)
         // getVersionCode
         StartupConfig startupConfig = new StartupConfig();
         startupConfig.setVersionState(1);

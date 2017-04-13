@@ -1,4 +1,4 @@
-package ir.tvnasim.khandevaneh.helper;
+package ir.tvnasim.khandevaneh.persistance;
 
 /**
  * Created by hamidreza on 4/14/17.
@@ -13,11 +13,11 @@ public class SharedPreferencesHelper {
         return "ACCESS-TOKEN";
     }
 
-    public static void storeRefreshToken() {
+    public static void storeRefreshToken(String refreshToken) {
 
     }
 
-    public static String retrieveRefreshToken(String refreshToken) {
+    public static String retrieveRefreshToken() {
         return "ACCESS-TOKEN";
     }
 }

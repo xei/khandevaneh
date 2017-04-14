@@ -13,7 +13,7 @@ import ir.tvnasim.khandevaneh.persistance.SharedPreferencesHelper;
 public class HomeActivity extends AppCompatActivity {
 
     public static void start(Context starter) {
-        Intent intent = new Intent();
+        Intent intent = new Intent(starter, HomeActivity.class);
         starter.startActivity(intent);
     }
 

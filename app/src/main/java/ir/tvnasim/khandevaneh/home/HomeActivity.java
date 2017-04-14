@@ -2,22 +2,16 @@ package ir.tvnasim.khandevaneh.home;
 
 import android.content.Context;
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.ImageButton;
 
 import ir.tvnasim.khandevaneh.R;
 import ir.tvnasim.khandevaneh.account.AuthHelper;
-import ir.tvnasim.khandevaneh.account.ProfileActivity;
 import ir.tvnasim.khandevaneh.account.User;
 import ir.tvnasim.khandevaneh.app.BaseActivity;
 import ir.tvnasim.khandevaneh.persistance.SharedPreferencesHelper;
-import ir.tvnasim.khandevaneh.util.LogHelper;
 
 public class HomeActivity extends BaseActivity {
-
-//    private ImageButton mProfileImageButton;
 
     public static void start(Context starter) {
         Intent intent = new Intent(starter, HomeActivity.class);
@@ -34,7 +28,6 @@ public class HomeActivity extends BaseActivity {
         findViews();
         setOnClickListeners();
 
-
     }
 
     private void autoLogin() {
@@ -48,21 +41,21 @@ public class HomeActivity extends BaseActivity {
             String refreshToken = SharedPreferencesHelper.retrieveRefreshToken();
             if (refreshToken != null) {
                 // We may could get a valid access token
-                // TODO: call auth with refresh token
-                SharedPreferencesHelper.storeAccessToken("");
-                SharedPreferencesHelper.storeRefreshToken("");
-                User.getInstance().setAccessToken("");
-                User.getInstance().setRefreshToken("");
+                // TODO: call auth with refresh token and if ok do the following
+                User.getInstance().setAccessToken("ACCESS-TOKEN");
+                User.getInstance().setRefreshToken("REFRESH-TOKEN");
+                SharedPreferencesHelper.storeAccessToken("ACCESS-TOKEN");
+                SharedPreferencesHelper.storeRefreshToken("REFRESH-TOKEN");
             }
         }
     }
 
     private void findViews() {
-//        mProfileImageButton = (ImageButton) findViewById(R.id.activityHome_imageButton_profile);
+
     }
 
     private void setOnClickListeners() {
-//        mProfileImageButton.setOnClickListener(this);
+
     }
 
     @Override

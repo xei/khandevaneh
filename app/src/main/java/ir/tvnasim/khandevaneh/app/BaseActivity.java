@@ -17,7 +17,6 @@ import android.widget.TextView;
 import ir.tvnasim.khandevaneh.R;
 import ir.tvnasim.khandevaneh.account.ProfileActivity;
 import ir.tvnasim.khandevaneh.account.User;
-import ir.tvnasim.khandevaneh.util.LogHelper;
 
 /**
  * Created by hamidreza on 4/14/17.
@@ -32,12 +31,6 @@ public class BaseActivity extends AppCompatActivity implements View.OnClickListe
     private TextView mMelonScoreTextView;
     private TextView mExperienceScoreTextView;
 
-
-    @Override
-    public void onCreate(@Nullable Bundle savedInstanceState, @Nullable PersistableBundle persistentState) {
-        super.onCreate(savedInstanceState, persistentState);
-
-    }
 
     @Override
     public void setContentView(@LayoutRes int layoutResID) {
@@ -69,6 +62,7 @@ public class BaseActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     protected void onResume() {
         super.onResume();
+
         showScoresForLoggedInUses();
     }
 

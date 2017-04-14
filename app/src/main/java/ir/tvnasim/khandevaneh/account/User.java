@@ -6,10 +6,15 @@ package ir.tvnasim.khandevaneh.account;
 
 public class User {
 
+    private static final int SCORE_NOT_SET = -1;
+
     private static User sUser;
 
     private String mAccessToken;
     private String mRefreshToken;
+
+    private int mMelonScore = SCORE_NOT_SET;
+    private int mExperienceScore = SCORE_NOT_SET;
 
 
     private User() {
@@ -37,5 +42,21 @@ public class User {
 
     public void setRefreshToken(String refreshToken) {
         this.mRefreshToken = refreshToken;
+    }
+
+    public int getMelonScore() {
+        return mMelonScore;
+    }
+
+    public void setMelonScore(int melonScore) {
+        this.mMelonScore = melonScore;
+    }
+
+    public int getExperienceScore() {
+        return mExperienceScore;
+    }
+
+    public void setExperienceScore(int experienceScore) {
+        this.mExperienceScore = experienceScore;
     }
 }

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<resources>
+
+    <!-- BaseActivity -->
+    <dimen name="height_statusbar">24dp</dimen>
+    <dimen name="height_toolbar">56dp</dimen>
+    <dimen name="dimen_toolbar_action">48dp</dimen>
+    <dimen name="dimen_toolbar_score">32dp</dimen>
+    <dimen name="margin_toolbar_action">4dp</dimen>
+    <dimen name="space_toolbar_score">8dp</dimen>
+    <dimen name="textSize_toolbar_score">17sp</dimen>
+
+</resources>

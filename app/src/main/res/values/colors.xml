@@ -1,9 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#119e17</color>
-    <color name="colorPrimaryDark">#303F9F</color>
+
+    <color name="materialGreen500">#4caf50</color>
+    <color name="materialGreen800">#2e7d32</color>
+
+    <color name="khandevanehGreen">#119e17</color>
+
+    <color name="colorPrimary">@color/materialGreen500</color>
+    <color name="colorPrimaryDark">@color/materialGreen800</color>
     <color name="colorAccent">#FF4081</color>
 
     <color name="colorSplash">@color/colorPrimary</color>
+    <color name="colorStatusBar">@color/colorPrimary</color>
     <color name="colorToolbar">@color/colorPrimary</color>
+    <color name="textColor_toolbar_score">#fff</color>
+
 </resources>

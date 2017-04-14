@@ -6,26 +6,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="ir.tvnasim.khandevaneh.home.HomeActivity">
-
-    <RelativeLayout
-    android:layout_width="match_parent"
-    android:layout_height="56dp"
-    android:layout_alignParentTop="true"
-    android:background="@color/colorToolbar">
-
-    <ImageButton
-        android:id="@+id/activityHome_imageButton_profile"
-        android:layout_width="48dp"
-        android:layout_height="48dp"
-        android:layout_alignParentLeft="true"
-        android:layout_centerVertical="true"
-        android:layout_marginLeft="4dp"
-        android:src="@drawable/ic_toolbar_profile"
-        android:scaleType="centerInside"
-        android:background="?attr/selectableItemBackgroundBorderless"
-        />
-
-    </RelativeLayout>
+    tools:context="ir.tvnasim.khandevaneh.home.HomeActivity" >
 
 </RelativeLayout>

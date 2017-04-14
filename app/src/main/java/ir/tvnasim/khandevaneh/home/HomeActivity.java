@@ -17,7 +17,7 @@ import ir.tvnasim.khandevaneh.util.LogHelper;
 
 public class HomeActivity extends BaseActivity {
 
-    private ImageButton mProfileImageButton;
+//    private ImageButton mProfileImageButton;
 
     public static void start(Context starter) {
         Intent intent = new Intent(starter, HomeActivity.class);
@@ -41,6 +41,9 @@ public class HomeActivity extends BaseActivity {
         String accessToken = SharedPreferencesHelper.retrieveAccessToken();
         if (accessToken != null && AuthHelper.isTokenValid(accessToken)) {
             User.getInstance().setAccessToken(accessToken);
+            //TODO: get Scores
+            User.getInstance().setMelonScore(120);
+            User.getInstance().setExperienceScore(350);
         } else {
             String refreshToken = SharedPreferencesHelper.retrieveRefreshToken();
             if (refreshToken != null) {
@@ -55,11 +58,11 @@ public class HomeActivity extends BaseActivity {
     }
 
     private void findViews() {
-        mProfileImageButton = (ImageButton) findViewById(R.id.activityHome_imageButton_profile);
+//        mProfileImageButton = (ImageButton) findViewById(R.id.activityHome_imageButton_profile);
     }
 
     private void setOnClickListeners() {
-        mProfileImageButton.setOnClickListener(this);
+//        mProfileImageButton.setOnClickListener(this);
     }
 
     @Override
@@ -67,11 +70,9 @@ public class HomeActivity extends BaseActivity {
         super.onClick(clickedView);
 
         switch (clickedView.getId()) {
-            case R.id.activityHome_imageButton_profile:
+            case R.id.activityBase_imageButton_profile:
                 ProfileActivity.start(this);
                 break;
-            default:
-                LogHelper.logError(TAG_DEBUG, "invalid clicked view...");
         }
     }
 }

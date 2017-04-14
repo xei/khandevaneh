@@ -15,6 +15,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import ir.tvnasim.khandevaneh.R;
+import ir.tvnasim.khandevaneh.account.ProfileActivity;
 import ir.tvnasim.khandevaneh.account.User;
 import ir.tvnasim.khandevaneh.util.LogHelper;
 
@@ -63,7 +64,6 @@ public class BaseActivity extends AppCompatActivity implements View.OnClickListe
         ImageView experienceScoreImageView = (ImageView) toolbar.findViewById(R.id.activityBase_linearLayout_experience).findViewById(R.id.layoutToolbarScore_imageView_icon);
         experienceScoreImageView.setImageResource(R.drawable.ic_toolbar_experience);
 
-
     }
 
     @Override
@@ -102,11 +102,9 @@ public class BaseActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     public void onClick(View clickedView) {
         switch (clickedView.getId()) {
-//            case R.id.activityHome_imageButton_profile:
-//                ProfileActivity.start(this);
-//                break;
-            default:
-                LogHelper.logError(TAG_DEBUG, "invalid clicked view...");
+            case R.id.activityBase_imageButton_profile:
+                ProfileActivity.start(this);
+                break;
         }
     }
 }

@@ -42,8 +42,8 @@ public class HomeActivity extends BaseActivity {
         if (accessToken != null && AuthHelper.isTokenValid(accessToken)) {
             User.getInstance().setAccessToken(accessToken);
             //TODO: get Scores
-            User.getInstance().setMelonScore(120);
-            User.getInstance().setExperienceScore(350);
+            User.getInstance().setMelonScore(200);
+            User.getInstance().setExperienceScore(300);
         } else {
             String refreshToken = SharedPreferencesHelper.retrieveRefreshToken();
             if (refreshToken != null) {
@@ -69,10 +69,5 @@ public class HomeActivity extends BaseActivity {
     public void onClick(View clickedView) {
         super.onClick(clickedView);
 
-        switch (clickedView.getId()) {
-            case R.id.activityBase_imageButton_profile:
-                ProfileActivity.start(this);
-                break;
-        }
     }
 }

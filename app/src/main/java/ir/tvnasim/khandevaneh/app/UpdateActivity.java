@@ -12,8 +12,7 @@ public class UpdateActivity extends BaseActivity {
     private static final String KEY_EXTRA_URL_APK = "URL_APK";
 
     public static void start(Context starter, String apkUrl) {
-        Intent intent = new Intent(starter, UpdateActivity.class
-        );
+        Intent intent = new Intent(starter, UpdateActivity.class);
         intent.putExtra(KEY_EXTRA_URL_APK, apkUrl);
         starter.startActivity(intent);
     }

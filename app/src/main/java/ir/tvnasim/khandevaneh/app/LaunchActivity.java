@@ -5,6 +5,7 @@ import android.util.Log;
 
 import ir.tvnasim.khandevaneh.home.HomeActivity;
 import ir.tvnasim.khandevaneh.R;
+import ir.tvnasim.khandevaneh.util.LogHelper;
 
 public class LaunchActivity extends BaseActivity {
 
@@ -28,7 +29,7 @@ public class LaunchActivity extends BaseActivity {
         } else if (startupConfig.getVersionState() == StartupConfig.VERSION_STATE_VALID_VERSION) {
             HomeActivity.start(this);
         } else {
-            Log.e(TAG_DEBUG, "invalid version state!");
+            LogHelper.logError(TAG_DEBUG, "invalid version state!");
         }
         finish();
     }

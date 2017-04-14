@@ -6,6 +6,11 @@
     android:layout_height="@dimen/dimen_toolbar_score"
     android:orientation="horizontal" >
 
+    <ImageView
+        android:id="@+id/layoutToolbarScore_imageView_icon"
+        android:layout_width="@dimen/dimen_toolbar_score"
+        android:layout_height="@dimen/dimen_toolbar_score" />
+
     <TextView
         android:id="@+id/layoutToolbarScore_textView_score"
         android:layout_width="wrap_content"
@@ -14,10 +19,5 @@
         android:textSize="@dimen/textSize_toolbar_score"
         android:textStyle="bold"
         android:textColor="@color/textColor_toolbar_score" />
-
-    <ImageView
-        android:id="@+id/layoutToolbarScore_imageView_icon"
-        android:layout_width="@dimen/dimen_toolbar_score"
-        android:layout_height="@dimen/dimen_toolbar_score" />
 
 </LinearLayout>

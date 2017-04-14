@@ -3,10 +3,9 @@ package ir.tvnasim.khandevaneh.app;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 
-import ir.tvnasim.khandevaneh.home.HomeActivity;
 import ir.tvnasim.khandevaneh.R;
+import ir.tvnasim.khandevaneh.home.HomeActivity;
 import ir.tvnasim.khandevaneh.util.LogHelper;
 
 public class LaunchActivity extends AppCompatActivity {

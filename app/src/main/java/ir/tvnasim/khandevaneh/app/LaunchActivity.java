@@ -25,11 +25,10 @@ public class LaunchActivity extends AppCompatActivity {
             public void run() {
                 StartupConfig startupConfig = new StartupConfig();
                 startupConfig.setVersionState(1);
+                startupConfig.setLatestApk("http://www.tvnasim.ir/khandevaneh/latest.apk");
                 openAppropriateActivity(startupConfig);
             }
         }, 2000);
-
-
 
     }
 

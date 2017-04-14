@@ -18,7 +18,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".home.HomeActivity" />
-        <activity android:name=".app.UpdateActivity"></activity>
+        <activity android:name=".app.UpdateActivity" />
+        <activity android:name=".account.ProfileActivity"></activity>
     </application>
 
 </manifest>

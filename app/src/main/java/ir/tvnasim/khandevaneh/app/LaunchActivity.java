@@ -1,6 +1,7 @@
 package ir.tvnasim.khandevaneh.app;
 
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 
 import ir.tvnasim.khandevaneh.home.HomeActivity;
@@ -16,9 +17,16 @@ public class LaunchActivity extends BaseActivity {
 
         //TODO: getStartupConfig (APP_ID:APP_SECRET)
         // getVersionCode
-        StartupConfig startupConfig = new StartupConfig();
-        startupConfig.setVersionState(1);
-        openAppropriateActivity(startupConfig);
+        Handler handler = new Handler();
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                StartupConfig startupConfig = new StartupConfig();
+                startupConfig.setVersionState(1);
+                openAppropriateActivity(startupConfig);
+            }
+        }, 2000);
+
 
 
     }

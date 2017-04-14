@@ -4,13 +4,20 @@ import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.ImageButton;
 
 import ir.tvnasim.khandevaneh.R;
 import ir.tvnasim.khandevaneh.account.AuthHelper;
+import ir.tvnasim.khandevaneh.account.ProfileActivity;
 import ir.tvnasim.khandevaneh.account.User;
+import ir.tvnasim.khandevaneh.app.BaseActivity;
 import ir.tvnasim.khandevaneh.persistance.SharedPreferencesHelper;
+import ir.tvnasim.khandevaneh.util.LogHelper;
 
-public class HomeActivity extends AppCompatActivity {
+public class HomeActivity extends BaseActivity {
+
+    private ImageButton mProfileImageButton;
 
     public static void start(Context starter) {
         Intent intent = new Intent(starter, HomeActivity.class);
@@ -20,9 +27,13 @@ public class HomeActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_home);
 
         autoLogin();
+
+        findViews();
+        setOnClickListeners();
+
 
     }
 
@@ -43,4 +54,24 @@ public class HomeActivity extends AppCompatActivity {
         }
     }
 
+    private void findViews() {
+        mProfileImageButton = (ImageButton) findViewById(R.id.activityHome_imageButton_profile);
+    }
+
+    private void setOnClickListeners() {
+        mProfileImageButton.setOnClickListener(this);
+    }
+
+    @Override
+    public void onClick(View clickedView) {
+        super.onClick(clickedView);
+
+        switch (clickedView.getId()) {
+            case R.id.activityHome_imageButton_profile:
+                ProfileActivity.start(this);
+                break;
+            default:
+                LogHelper.logError(TAG_DEBUG, "invalid clicked view...");
+        }
+    }
 }

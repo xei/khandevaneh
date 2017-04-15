@@ -15,4 +15,6 @@
     <color name="colorToolbar">@color/colorPrimary</color>
     <color name="textColor_toolbar_score">#fff</color>
 
+    <color name="textColor_LightText">#fff</color>
+
 </resources>

@@ -20,7 +20,7 @@
         <activity android:name=".home.HomeActivity" />
         <activity android:name=".app.UpdateActivity" />
         <activity android:name=".account.ProfileActivity" />
-        <activity android:name=".leaderboard.LeaderboardActivity" />
+        <activity android:name=".leaderboard.LeaderBoardActivity" />
         <activity android:name=".account.LoginActivity"></activity>
     </application>
 

@@ -1,9 +1,6 @@
 package ir.tvnasim.khandevaneh.app;
 
-import android.os.Bundle;
-import android.os.PersistableBundle;
 import android.support.annotation.LayoutRes;
-import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,7 +15,7 @@ import ir.tvnasim.khandevaneh.R;
 import ir.tvnasim.khandevaneh.account.LoginActivity;
 import ir.tvnasim.khandevaneh.account.ProfileActivity;
 import ir.tvnasim.khandevaneh.account.User;
-import ir.tvnasim.khandevaneh.leaderboard.LeaderboardActivity;
+import ir.tvnasim.khandevaneh.leaderboard.LeaderBoardActivity;
 
 /**
  * Created by hamidreza on 4/14/17.
@@ -113,7 +110,7 @@ public class BaseActivity extends AppCompatActivity implements View.OnClickListe
                     @Override
                     public void isLoggedIn(boolean isLoggedIn) {
                         if (isLoggedIn) {
-                            LeaderboardActivity.start(BaseActivity.this);
+                            LeaderBoardActivity.start(BaseActivity.this);
                         } else {
                             LoginActivity.start(BaseActivity.this);
                         }

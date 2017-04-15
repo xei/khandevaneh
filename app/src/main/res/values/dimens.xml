@@ -11,4 +11,18 @@
     <dimen name="space_toolbar_score">8dp</dimen>
     <dimen name="textSize_toolbar_score">17sp</dimen>
 
+    <!-- LeaderBoardActivity -->
+    <dimen name="height_banner">0dp</dimen>
+    <dimen name="height_userRankSection">152dp</dimen>
+    <dimen name="margin_userRankSection">8dp</dimen>
+    <dimen name="padding_userRankSection">16dp</dimen>
+    <dimen name="dimen_userRankSection_userAvatar">120dp</dimen>
+    <dimen name="textSize_userRankSection">30sp</dimen>
+    <dimen name="space_userRankSection_userExperience">4dp</dimen>
+    <dimen name="height_row_leaderBoard">48dp</dimen>
+    <dimen name="margin_row_leaderBoard">8dp</dimen>
+    <dimen name="padding_row_leaderBoard">4dp</dimen>
+    <dimen name="dimen_imageView_avatar">40dp</dimen>
+    <dimen name="textSize_row_leaderBoard">18sp</dimen>
+
 </resources>

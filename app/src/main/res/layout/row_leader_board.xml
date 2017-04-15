@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/height_row_leaderBoard"
+    android:orientation="horizontal"
+    android:layout_marginBottom="@dimen/margin_row_leaderBoard"
+    android:layout_marginLeft="@dimen/margin_row_leaderBoard"
+    android:layout_marginRight="@dimen/margin_row_leaderBoard"
+    android:padding="@dimen/padding_row_leaderBoard"
+    android:gravity="center"
+    android:weightSum="3"
+    android:background="@drawable/background_rounded_corner" >
+
+    <ImageView
+        android:id="@+id/rowLeaderBoard_imageView_userAvatar"
+        android:layout_width="@dimen/dimen_imageView_avatar"
+        android:layout_height="@dimen/dimen_imageView_avatar"
+        android:scaleType="centerInside" />
+
+    <TextView
+        android:id="@+id/rowLeaderBoard_textView_userName"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="2"
+        android:gravity="center"
+        android:lines="1"
+        android:maxLines="1"
+        android:singleLine="true"
+        android:textColor="@color/textColor_LightText"
+        android:textSize="@dimen/textSize_row_leaderBoard"
+        android:textStyle="bold" />
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        android:layout_weight="1"
+        android:gravity="center" >
+
+        <ImageView
+            android:id="@+id/layoutToolbarScore_imageView_icon"
+            android:layout_width="@dimen/dimen_toolbar_score"
+            android:layout_height="@dimen/dimen_toolbar_score"
+            android:src="@drawable/ic_toolbar_experience" />
+
+        <TextView
+            android:id="@+id/rowLeaderBoard_textView_userExperience"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/dimen_toolbar_score"
+            android:gravity="center"
+            android:textSize="@dimen/textSize_row_leaderBoard"
+            android:textStyle="bold"
+            android:textColor="@color/textColor_LightText" />
+
+    </LinearLayout>
+
+</LinearLayout>

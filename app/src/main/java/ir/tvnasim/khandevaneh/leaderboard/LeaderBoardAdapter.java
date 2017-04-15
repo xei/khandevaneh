@@ -14,7 +14,6 @@ import android.widget.TextView;
 import java.util.ArrayList;
 
 import ir.tvnasim.khandevaneh.R;
-import ir.tvnasim.khandevaneh.account.User;
 
 /**
  * Created by hamidreza on 4/15/17.

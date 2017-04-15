@@ -101,21 +101,25 @@ public class BaseActivity extends AppCompatActivity implements View.OnClickListe
     public void onClick(View clickedView) {
         switch (clickedView.getId()) {
             case R.id.activityBase_imageButton_profile:
-                ProfileActivity.start(this);
+                if (!(this instanceof ProfileActivity)) {
+                    ProfileActivity.start(this);
+                }
                 break;
             case R.id.activityBase_linearLayout_melon:
                 break;
             case R.id.activityBase_linearLayout_experience:
-                User.getInstance().isLoggedIn(new User.IsLoggedInListener() {
-                    @Override
-                    public void isLoggedIn(boolean isLoggedIn) {
-                        if (isLoggedIn) {
-                            LeaderBoardActivity.start(BaseActivity.this);
-                        } else {
-                            LoginActivity.start(BaseActivity.this);
+                if (!(this instanceof LeaderBoardActivity)) {
+                    User.getInstance().isLoggedIn(new User.IsLoggedInListener() {
+                        @Override
+                        public void isLoggedIn(boolean isLoggedIn) {
+                            if (isLoggedIn) {
+                                LeaderBoardActivity.start(BaseActivity.this);
+                            } else {
+                                LoginActivity.start(BaseActivity.this);
+                            }
                         }
-                    }
-                });
+                    });
+                }
                 break;
         }
     }

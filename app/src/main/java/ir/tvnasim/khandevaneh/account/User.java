@@ -13,6 +13,9 @@ public class User {
     private String mAccessToken;
     private String mRefreshToken;
 
+    private String mName;
+    private String mAvatar;
+
     private int mMelonScore = SCORE_NOT_SET;
     private int mExperienceScore = SCORE_NOT_SET;
 
@@ -26,6 +29,16 @@ public class User {
             sUser = new User();
         }
         return sUser;
+    }
+
+    public void isLoggedIn(IsLoggedInListener listener) {
+        if (mAccessToken != null && AuthHelper.isTokenValid(mAccessToken)) {
+            listener.isLoggedIn(true);
+        } else if (mRefreshToken != null) {
+            // TODO: make a request to auth api with grant_type=refresh_token and call listener
+        } else {
+            listener.isLoggedIn(false);
+        }
     }
 
     public String getAccessToken() {
@@ -44,6 +57,22 @@ public class User {
         this.mRefreshToken = refreshToken;
     }
 
+    public String getName() {
+        return mName;
+    }
+
+    public void setName(String name) {
+        this.mName = name;
+    }
+
+    public String getAvatar() {
+        return mAvatar;
+    }
+
+    public void setAvatar(String avatar) {
+        this.mAvatar = avatar;
+    }
+
     public int getMelonScore() {
         return mMelonScore;
     }
@@ -58,5 +87,9 @@ public class User {
 
     public void setExperienceScore(int experienceScore) {
         this.mExperienceScore = experienceScore;
+    }
+
+    public interface IsLoggedInListener {
+        void isLoggedIn(boolean isLoggedIn);
     }
 }

@@ -34,7 +34,9 @@ public class HomeActivity extends BaseActivity {
         String accessToken = SharedPreferencesHelper.retrieveAccessToken();
         if (accessToken != null && AuthHelper.isTokenValid(accessToken)) {
             User.getInstance().setAccessToken(accessToken);
-            //TODO: get Scores
+            //TODO: get UserInfo
+            User.getInstance().setName("علیرضا");
+            User.getInstance().setAvatar("");
             User.getInstance().setMelonScore(200);
             User.getInstance().setExperienceScore(300);
         } else {

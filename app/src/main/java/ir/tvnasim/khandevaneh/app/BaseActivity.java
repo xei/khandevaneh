@@ -15,8 +15,10 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import ir.tvnasim.khandevaneh.R;
+import ir.tvnasim.khandevaneh.account.LoginActivity;
 import ir.tvnasim.khandevaneh.account.ProfileActivity;
 import ir.tvnasim.khandevaneh.account.User;
+import ir.tvnasim.khandevaneh.leaderboard.LeaderboardActivity;
 
 /**
  * Created by hamidreza on 4/14/17.
@@ -28,7 +30,9 @@ public class BaseActivity extends AppCompatActivity implements View.OnClickListe
 
     private ImageButton mProfileImageButton;
     private LinearLayout mScoreSectionLinearLayout;
+    private LinearLayout mMelonScoreLinearLayout;
     private TextView mMelonScoreTextView;
+    private LinearLayout mExperienceScoreLinearLayout;
     private TextView mExperienceScoreTextView;
 
 
@@ -49,8 +53,10 @@ public class BaseActivity extends AppCompatActivity implements View.OnClickListe
         RelativeLayout toolbar = (RelativeLayout) findViewById(R.id.activityBase_relativeLayout_toolbar);
         mProfileImageButton = (ImageButton) toolbar.findViewById(R.id.activityBase_imageButton_profile);
         mScoreSectionLinearLayout = (LinearLayout) toolbar.findViewById(R.id.activityBase_linearLayout_scoreSection);
-        mMelonScoreTextView = (TextView) toolbar.findViewById(R.id.activityBase_linearLayout_melon).findViewById(R.id.layoutToolbarScore_textView_score);
-        mExperienceScoreTextView = (TextView) toolbar.findViewById(R.id.activityBase_linearLayout_experience).findViewById(R.id.layoutToolbarScore_textView_score);
+        mMelonScoreLinearLayout = (LinearLayout) toolbar.findViewById(R.id.activityBase_linearLayout_melon);
+        mMelonScoreTextView = (TextView) mMelonScoreLinearLayout.findViewById(R.id.layoutToolbarScore_textView_score);
+        mExperienceScoreLinearLayout = (LinearLayout) toolbar.findViewById(R.id.activityBase_linearLayout_experience);
+        mExperienceScoreTextView = (TextView) mExperienceScoreLinearLayout.findViewById(R.id.layoutToolbarScore_textView_score);
 
         ImageView melonScoreImageView = (ImageView) toolbar.findViewById(R.id.activityBase_linearLayout_melon).findViewById(R.id.layoutToolbarScore_imageView_icon);
         melonScoreImageView.setImageResource(R.drawable.ic_toolbar_melon);
@@ -68,7 +74,8 @@ public class BaseActivity extends AppCompatActivity implements View.OnClickListe
 
     private void setOnClickListeners() {
         mProfileImageButton.setOnClickListener(this);
-
+        mMelonScoreLinearLayout.setOnClickListener(this);
+        mExperienceScoreLinearLayout.setOnClickListener(this);
     }
 
     public void showScoresForLoggedInUses() {
@@ -98,6 +105,20 @@ public class BaseActivity extends AppCompatActivity implements View.OnClickListe
         switch (clickedView.getId()) {
             case R.id.activityBase_imageButton_profile:
                 ProfileActivity.start(this);
+                break;
+            case R.id.activityBase_linearLayout_melon:
+                break;
+            case R.id.activityBase_linearLayout_experience:
+                User.getInstance().isLoggedIn(new User.IsLoggedInListener() {
+                    @Override
+                    public void isLoggedIn(boolean isLoggedIn) {
+                        if (isLoggedIn) {
+                            LeaderboardActivity.start(BaseActivity.this);
+                        } else {
+                            LoginActivity.start(BaseActivity.this);
+                        }
+                    }
+                });
                 break;
         }
     }

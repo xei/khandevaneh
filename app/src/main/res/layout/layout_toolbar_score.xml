@@ -4,7 +4,8 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="wrap_content"
     android:layout_height="@dimen/dimen_toolbar_score"
-    android:orientation="horizontal" >
+    android:orientation="horizontal"
+    android:background="?attr/selectableItemBackgroundBorderless" >
 
     <ImageView
         android:id="@+id/layoutToolbarScore_imageView_icon"

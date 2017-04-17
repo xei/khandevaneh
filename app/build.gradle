@@ -11,10 +11,41 @@ android {
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
-    buildTypes {
+
+    signingConfigs {
+        debug {
+            storeFile file(System.properties['user.home'] + '/.android/debug.keystore')
+        }
         release {
+            storeFile file('digikala_key')
+            storePassword KHANDEVANEH_STORE_PASSWORD
+            keyAlias KHANDEVANEH_KEY_ALIAS
+            keyPassword KHANDEVANEH_KEY_PASSWORD
+        }
+    }
+
+    buildTypes {
+        debug {
+            applicationIdSuffix ".debug"
+            versionNameSuffix " - QA"
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.debug
+
+            resValue "string", "app_name", APP_NAME_DEBUG
+
+            buildConfigField "String", "URL_WEBAPI", URL_WEBAPI_DEBUG
+        }
+
+        release {
+            debuggable false
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.release
+
+            resValue "string", "app_name", APP_NAME_RELEASE
+
+            buildConfigField "String", "URL_WEBAPI", URL_WEBAPI_RELEASE
         }
     }
 }
@@ -28,4 +59,12 @@ dependencies {
 //    compile 'com.android.support.constraint:constraint-layout:1.0.1'
     compile 'com.android.support:recyclerview-v7:25.3.1'
     testCompile 'junit:junit:4.12'
+
+    compile 'com.android.volley:volley:1.0.0'
+    compile 'com.squareup.okhttp3:okhttp:3.6.0'
+    compile 'com.squareup.okhttp3:okhttp-urlconnection:3.6.0'
+    compile 'com.google.code.gson:gson:2.8.0'
+    compile 'com.facebook.fresco:fresco:1.2.0'
+    compile "com.facebook.fresco:imagepipeline-okhttp3:1.2.0"
+    compile 'com.facebook.fresco:animated-gif:1.2.0'
 }

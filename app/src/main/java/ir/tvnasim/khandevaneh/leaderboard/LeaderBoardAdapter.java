@@ -11,10 +11,13 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.facebook.drawee.view.SimpleDraweeView;
+
 import java.util.ArrayList;
 
 import ir.tvnasim.khandevaneh.R;
 import ir.tvnasim.khandevaneh.helper.HelperFunctions;
+import ir.tvnasim.khandevaneh.helper.imageloading.FrescoHelper;
 
 /**
  * Created by hamidreza on 4/15/17.
@@ -39,7 +42,7 @@ public class LeaderBoardAdapter extends RecyclerView.Adapter<LeaderBoardAdapter.
         setBackgroundColor(holder.rowView.getContext(), holder.rowView, position);
         LeaderViewModel leader = mLeaders.get(position);
         holder.userName.setText(leader.getName());
-        holder.userAvatar.setImageResource(R.drawable.logo); // TODO: st url
+        FrescoHelper.setImageUrl(holder.userAvatar, leader.getAvatar());
         holder.experienceLevel.setText(HelperFunctions.convertNumberStringToPersian(leader.getExperience()));
     }
 
@@ -61,7 +64,7 @@ public class LeaderBoardAdapter extends RecyclerView.Adapter<LeaderBoardAdapter.
 
         private LinearLayout rowView;
         private TextView userName;
-        private ImageView userAvatar;
+        private SimpleDraweeView userAvatar;
         private TextView experienceLevel;
 
         public LeaderBoardViewHolder(View itemView) {
@@ -69,7 +72,7 @@ public class LeaderBoardAdapter extends RecyclerView.Adapter<LeaderBoardAdapter.
 
             rowView = (LinearLayout) itemView;
             userName = (TextView) itemView.findViewById(R.id.rowLeaderBoard_textView_userName);
-            userAvatar = (ImageView) itemView.findViewById(R.id.rowLeaderBoard_imageView_userAvatar);
+            userAvatar = (SimpleDraweeView) itemView.findViewById(R.id.rowLeaderBoard_simpleDraweeView_userAvatar);
             experienceLevel = (TextView) itemView.findViewById(R.id.rowLeaderBoard_textView_userExperience);
         }
     }

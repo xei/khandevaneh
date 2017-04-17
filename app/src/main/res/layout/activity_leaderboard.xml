@@ -21,8 +21,8 @@
         android:padding="@dimen/padding_userRankSection"
         android:background="@drawable/background_rounded_corner" >
 
-        <ImageView
-            android:id="@+id/activityLeaderboard_imageView_userAvatar"
+        <com.facebook.drawee.view.SimpleDraweeView
+            android:id="@+id/activityLeaderboard_simpleDraweeView_userAvatar"
             android:layout_width="@dimen/dimen_userRankSection_userAvatar"
             android:layout_height="@dimen/dimen_userRankSection_userAvatar"
             android:layout_alignParentLeft="true"

@@ -14,8 +14,8 @@
     android:weightSum="3"
     android:background="@drawable/background_rounded_corner" >
 
-    <ImageView
-        android:id="@+id/rowLeaderBoard_imageView_userAvatar"
+    <com.facebook.drawee.view.SimpleDraweeView
+        android:id="@+id/rowLeaderBoard_simpleDraweeView_userAvatar"
         android:layout_width="@dimen/dimen_imageView_avatar"
         android:layout_height="@dimen/dimen_imageView_avatar"
         android:scaleType="centerInside" />

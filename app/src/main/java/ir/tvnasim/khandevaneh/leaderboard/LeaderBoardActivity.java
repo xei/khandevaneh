@@ -8,17 +8,21 @@ import android.support.v7.widget.RecyclerView;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.facebook.drawee.view.SimpleDraweeView;
+
 import java.util.ArrayList;
 
 import ir.tvnasim.khandevaneh.R;
 import ir.tvnasim.khandevaneh.account.User;
 import ir.tvnasim.khandevaneh.app.BaseActivity;
 import ir.tvnasim.khandevaneh.helper.HelperFunctions;
+import ir.tvnasim.khandevaneh.helper.imageloading.FrescoHelper;
+import ir.tvnasim.khandevaneh.helper.imageloading.ImageLoader;
 
 public class LeaderBoardActivity extends BaseActivity {
 
     private TextView mUserNameTextView;
-    private ImageView mUserAvatarImageView;
+    private SimpleDraweeView mUserAvatarSimpleDraweeView;
     private TextView mUserExperienceTextView;
     private RecyclerView mLeaderBoardRecyclerView;
 
@@ -40,7 +44,7 @@ public class LeaderBoardActivity extends BaseActivity {
 
     private void findViews() {
         mUserNameTextView = (TextView) findViewById(R.id.activityLeaderboard_textView_userName);
-        mUserAvatarImageView = (ImageView) findViewById(R.id.activityLeaderboard_imageView_userAvatar);
+        mUserAvatarSimpleDraweeView = (SimpleDraweeView) findViewById(R.id.activityLeaderboard_simpleDraweeView_userAvatar);
         mUserExperienceTextView = (TextView) findViewById(R.id.activityLeaderboard_textView_userExperience);
         mLeaderBoardRecyclerView = (RecyclerView) findViewById(R.id.activityLeaderboard_recyclerView_leaders);
     }
@@ -61,8 +65,7 @@ public class LeaderBoardActivity extends BaseActivity {
 
     private void renderUserData() {
         mUserNameTextView.setText(User.getInstance().getName());
-        //TODO: set Image url to fresco simple drawee view
-        mUserAvatarImageView.setImageResource(R.drawable.background_splash);
+        FrescoHelper.setImageUrl(mUserAvatarSimpleDraweeView, User.getInstance().getAvatar());
         mUserExperienceTextView.setText(HelperFunctions.convertNumberStringToPersian(String.valueOf(User.getInstance().getExperienceScore())));
     }
 
@@ -72,9 +75,12 @@ public class LeaderBoardActivity extends BaseActivity {
         LeaderViewModel leaderViewModel = new LeaderViewModel();
         leaderViewModel.setName("حمیدرضا");
         leaderViewModel.setExperience("200");
+        leaderViewModel.setAvatar("http://template.digikala.com/Digikala/Image/Public/vtwo/digikala-logo-slogan.png");
         LeaderViewModel leaderViewModel2 = new LeaderViewModel();
         leaderViewModel2.setName("علیرضا");
         leaderViewModel2.setExperience("300");
+        leaderViewModel2.setAvatar("http://template.digikala.com/Digikala/Image/Public/vtwo/digikala-logo-slogan.png");
+
         for (int i = 0 ; i < 50 ; i++) {
             leaders.add(leaderViewModel);
             leaders.add(leaderViewModel2);

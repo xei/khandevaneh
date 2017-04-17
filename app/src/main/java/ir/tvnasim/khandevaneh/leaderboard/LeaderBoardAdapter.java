@@ -14,6 +14,7 @@ import android.widget.TextView;
 import java.util.ArrayList;
 
 import ir.tvnasim.khandevaneh.R;
+import ir.tvnasim.khandevaneh.helper.HelperFunctions;
 
 /**
  * Created by hamidreza on 4/15/17.
@@ -39,7 +40,7 @@ public class LeaderBoardAdapter extends RecyclerView.Adapter<LeaderBoardAdapter.
         LeaderViewModel leader = mLeaders.get(position);
         holder.userName.setText(leader.getName());
         holder.userAvatar.setImageResource(R.drawable.logo); // TODO: st url
-        holder.experienceLevel.setText(leader.getExperience());
+        holder.experienceLevel.setText(HelperFunctions.convertNumberStringToPersian(leader.getExperience()));
     }
 
     @Override

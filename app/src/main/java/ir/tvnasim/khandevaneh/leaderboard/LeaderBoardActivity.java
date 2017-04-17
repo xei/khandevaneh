@@ -13,6 +13,7 @@ import java.util.ArrayList;
 import ir.tvnasim.khandevaneh.R;
 import ir.tvnasim.khandevaneh.account.User;
 import ir.tvnasim.khandevaneh.app.BaseActivity;
+import ir.tvnasim.khandevaneh.helper.HelperFunctions;
 
 public class LeaderBoardActivity extends BaseActivity {
 
@@ -62,7 +63,7 @@ public class LeaderBoardActivity extends BaseActivity {
         mUserNameTextView.setText(User.getInstance().getName());
         //TODO: set Image url to fresco simple drawee view
         mUserAvatarImageView.setImageResource(R.drawable.background_splash);
-        mUserExperienceTextView.setText(String.valueOf(User.getInstance().getExperienceScore()));
+        mUserExperienceTextView.setText(HelperFunctions.convertNumberStringToPersian(String.valueOf(User.getInstance().getExperienceScore())));
     }
 
     private void fetchDataFromApi() {
@@ -70,10 +71,10 @@ public class LeaderBoardActivity extends BaseActivity {
         ArrayList<LeaderViewModel> leaders = new ArrayList<>();
         LeaderViewModel leaderViewModel = new LeaderViewModel();
         leaderViewModel.setName("حمیدرضا");
-        leaderViewModel.setExperience("۲۰۰");
+        leaderViewModel.setExperience("200");
         LeaderViewModel leaderViewModel2 = new LeaderViewModel();
         leaderViewModel2.setName("علیرضا");
-        leaderViewModel2.setExperience("۳۰۰");
+        leaderViewModel2.setExperience("300");
         for (int i = 0 ; i < 50 ; i++) {
             leaders.add(leaderViewModel);
             leaders.add(leaderViewModel2);

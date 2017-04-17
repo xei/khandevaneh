@@ -2,6 +2,7 @@
 
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="@dimen/height_row_leaderBoard"
     android:orientation="horizontal"
@@ -19,7 +20,7 @@
         android:layout_height="@dimen/dimen_imageView_avatar"
         android:scaleType="centerInside" />
 
-    <TextView
+    <ir.tvnasim.khandevaneh.view.XeiTextView
         android:id="@+id/rowLeaderBoard_textView_userName"
         android:layout_width="0dp"
         android:layout_height="match_parent"
@@ -30,7 +31,9 @@
         android:singleLine="true"
         android:textColor="@color/textColor_LightText"
         android:textSize="@dimen/textSize_row_leaderBoard"
-        android:textStyle="bold" />
+        android:textStyle="bold"
+        app:locale="fa_IR"
+        app:style="bold" />
 
     <LinearLayout
         android:layout_width="0dp"
@@ -45,14 +48,16 @@
             android:layout_height="@dimen/dimen_toolbar_score"
             android:src="@drawable/ic_toolbar_experience" />
 
-        <TextView
+        <ir.tvnasim.khandevaneh.view.XeiTextView
             android:id="@+id/rowLeaderBoard_textView_userExperience"
             android:layout_width="wrap_content"
             android:layout_height="@dimen/dimen_toolbar_score"
             android:gravity="center"
             android:textSize="@dimen/textSize_row_leaderBoard"
             android:textStyle="bold"
-            android:textColor="@color/textColor_LightText" />
+            android:textColor="@color/textColor_LightText"
+            app:locale="fa_IR"
+            app:style="bold" />
 
     </LinearLayout>
 

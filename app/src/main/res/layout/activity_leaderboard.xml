@@ -48,7 +48,7 @@
                     android:layout_height="@dimen/dimen_toolbar_score"
                     android:src="@drawable/ic_toolbar_experience" />
 
-                <TextView
+                <ir.tvnasim.khandevaneh.view.XeiTextView
                     android:id="@+id/activityLeaderboard_textView_userExperience"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -56,11 +56,13 @@
                     android:gravity="center"
                     android:textSize="@dimen/textSize_userRankSection"
                     android:textStyle="bold"
-                    android:textColor="@color/textColor_LightText" />
+                    android:textColor="@color/textColor_LightText"
+                    app:locale="fa_IR"
+                    app:style="bold"/>
 
             </LinearLayout>
 
-            <TextView
+            <ir.tvnasim.khandevaneh.view.XeiTextView
                 android:id="@+id/activityLeaderboard_textView_userName"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
@@ -68,7 +70,9 @@
                 android:gravity="center"
                 android:textSize="@dimen/textSize_userRankSection"
                 android:textStyle="bold"
-                android:textColor="@color/textColor_LightText" />
+                android:textColor="@color/textColor_LightText"
+                app:locale="fa_IR"
+                app:style="bold" />
 
         </LinearLayout>
 

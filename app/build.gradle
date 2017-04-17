@@ -34,7 +34,7 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
             signingConfig signingConfigs.debug
 
-            resValue "string", "app_name", APP_NAME_DEBUG
+//            resValue "string", "app_name", APP_NAME_DEBUG
 
             buildConfigField "String", "URL_WEBAPI", URL_WEBAPI_DEBUG
         }
@@ -45,7 +45,7 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
             signingConfig signingConfigs.release
 
-            resValue "string", "app_name", APP_NAME_RELEASE
+//            resValue "string", "app_name", APP_NAME_RELEASE
 
             buildConfigField "String", "URL_WEBAPI", URL_WEBAPI_RELEASE
         }

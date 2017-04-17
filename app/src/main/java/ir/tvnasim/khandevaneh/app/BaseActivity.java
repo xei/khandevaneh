@@ -15,6 +15,7 @@ import ir.tvnasim.khandevaneh.R;
 import ir.tvnasim.khandevaneh.account.LoginActivity;
 import ir.tvnasim.khandevaneh.account.ProfileActivity;
 import ir.tvnasim.khandevaneh.account.User;
+import ir.tvnasim.khandevaneh.helper.HelperFunctions;
 import ir.tvnasim.khandevaneh.leaderboard.LeaderBoardActivity;
 
 /**
@@ -85,8 +86,8 @@ public class BaseActivity extends AppCompatActivity implements View.OnClickListe
 
     public void showScores(int melon, int experience) {
         if (mScoreSectionLinearLayout != null) {
-            mMelonScoreTextView.setText(String.valueOf(melon));
-            mExperienceScoreTextView.setText(String.valueOf(experience));
+            mMelonScoreTextView.setText(HelperFunctions.convertNumberStringToPersian(String.valueOf(melon)));
+            mExperienceScoreTextView.setText(HelperFunctions.convertNumberStringToPersian(String.valueOf(experience)));
             mScoreSectionLinearLayout.setVisibility(View.VISIBLE);
         }
     }

@@ -5,8 +5,8 @@ import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 
 import ir.tvnasim.khandevaneh.R;
+import ir.tvnasim.khandevaneh.helper.LogHelper;
 import ir.tvnasim.khandevaneh.home.HomeActivity;
-import ir.tvnasim.khandevaneh.util.LogHelper;
 
 public class LaunchActivity extends AppCompatActivity {
 

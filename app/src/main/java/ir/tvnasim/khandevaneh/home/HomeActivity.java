@@ -9,7 +9,7 @@ import ir.tvnasim.khandevaneh.R;
 import ir.tvnasim.khandevaneh.account.AuthHelper;
 import ir.tvnasim.khandevaneh.account.User;
 import ir.tvnasim.khandevaneh.app.BaseActivity;
-import ir.tvnasim.khandevaneh.persistance.SharedPreferencesHelper;
+import ir.tvnasim.khandevaneh.helper.SharedPreferencesHelper;
 
 public class HomeActivity extends BaseActivity {
 

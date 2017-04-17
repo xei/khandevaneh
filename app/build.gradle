@@ -10,6 +10,8 @@ android {
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
+        buildConfigField "boolean", "ENABLE_PROGRESSIVE_JPEG_RENDERING", ENABLE_PROGRESSIVE_JPEG_RENDERING
     }
 
     signingConfigs {

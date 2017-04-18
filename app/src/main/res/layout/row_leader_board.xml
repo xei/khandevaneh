@@ -18,7 +18,15 @@
         android:id="@+id/rowLeaderBoard_simpleDraweeView_userAvatar"
         android:layout_width="@dimen/dimen_imageView_avatar"
         android:layout_height="@dimen/dimen_imageView_avatar"
-        android:scaleType="centerInside" />
+        app:actualImageScaleType="centerInside"
+        app:placeholderImage="@color/placeholder_fresco"
+        app:placeholderImageScaleType="centerInside"
+        app:failureImage="@drawable/logo"
+        app:failureImageScaleType="centerInside"
+        app:backgroundImage="@color/placeholder_fresco"
+        app:roundedCornerRadius="4dp"
+        app:roundingBorderWidth="2dp"
+        app:roundingBorderColor="#fff" />
 
     <ir.tvnasim.khandevaneh.view.XeiTextView
         android:id="@+id/rowLeaderBoard_textView_userName"

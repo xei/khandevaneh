@@ -26,13 +26,21 @@
             android:layout_width="@dimen/dimen_userRankSection_userAvatar"
             android:layout_height="@dimen/dimen_userRankSection_userAvatar"
             android:layout_alignParentLeft="true"
-            android:scaleType="centerCrop" />
+            app:actualImageScaleType="centerInside"
+            app:placeholderImage="@color/placeholder_fresco"
+            app:placeholderImageScaleType="centerInside"
+            app:failureImage="@drawable/logo"
+            app:failureImageScaleType="centerInside"
+            app:backgroundImage="@color/placeholder_fresco"
+            app:roundedCornerRadius="@dimen/radius_rounded_corner_userRankSection_avatar"
+            app:roundingBorderWidth="@dimen/width_rounding_border_userRankSection_avatar"
+            app:roundingBorderColor="@color/border_avatar"/>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical"
-            android:layout_toRightOf="@+id/activityLeaderboard_imageView_userAvatar"
+            android:layout_toRightOf="@+id/activityLeaderboard_simpleDraweeView_userAvatar"
             android:weightSum="2" >
 
             <LinearLayout
@@ -57,6 +65,10 @@
                     android:textSize="@dimen/textSize_userRankSection"
                     android:textStyle="bold"
                     android:textColor="@color/textColor_LightText"
+                    android:shadowColor="@color/shadow_userRankSection_text"
+                    android:shadowDx="2"
+                    android:shadowDy="2"
+                    android:shadowRadius="4"
                     app:locale="fa_IR"
                     app:style="bold"/>
 
@@ -71,6 +83,10 @@
                 android:textSize="@dimen/textSize_userRankSection"
                 android:textStyle="bold"
                 android:textColor="@color/textColor_LightText"
+                android:shadowColor="@color/shadow_userRankSection_text"
+                android:shadowDx="2"
+                android:shadowDy="2"
+                android:shadowRadius="4"
                 app:locale="fa_IR"
                 app:style="bold" />
 

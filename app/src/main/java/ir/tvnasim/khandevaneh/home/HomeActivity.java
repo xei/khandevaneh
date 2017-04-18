@@ -36,7 +36,7 @@ public class HomeActivity extends BaseActivity {
             User.getInstance().setAccessToken(accessToken);
             //TODO: get UserInfo
             User.getInstance().setName("علیرضا");
-            User.getInstance().setAvatar("http://template.digikala.com/Digikala/Image/Public/vtwo/digikala-logo-slogan.png");
+            User.getInstance().setAvatar("http://img.bisms.ir//2015/06/rambod-javan-2.jpg");
             User.getInstance().setMelonScore(200);
             User.getInstance().setExperienceScore(300);
         } else {

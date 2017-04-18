@@ -19,6 +19,8 @@
     <dimen name="dimen_userRankSection_userAvatar">120dp</dimen>
     <dimen name="textSize_userRankSection">25sp</dimen>
     <dimen name="space_userRankSection_userExperience">4dp</dimen>
+    <dimen name="radius_rounded_corner_userRankSection_avatar">8dp</dimen>
+    <dimen name="width_rounding_border_userRankSection_avatar">3dp</dimen>
     <dimen name="height_row_leaderBoard">48dp</dimen>
     <dimen name="margin_row_leaderBoard">8dp</dimen>
     <dimen name="padding_row_leaderBoard">4dp</dimen>

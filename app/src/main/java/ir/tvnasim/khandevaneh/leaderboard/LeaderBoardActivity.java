@@ -75,11 +75,11 @@ public class LeaderBoardActivity extends BaseActivity {
         LeaderViewModel leaderViewModel = new LeaderViewModel();
         leaderViewModel.setName("حمیدرضا");
         leaderViewModel.setExperience("200");
-        leaderViewModel.setAvatar("http://template.digikala.com/Digikala/Image/Public/vtwo/digikala-logo-slogan.png");
+        leaderViewModel.setAvatar("http://img.bisms.ir//2015/06/rambod-javan-2.jpg");
         LeaderViewModel leaderViewModel2 = new LeaderViewModel();
         leaderViewModel2.setName("علیرضا");
         leaderViewModel2.setExperience("300");
-        leaderViewModel2.setAvatar("http://template.digikala.com/Digikala/Image/Public/vtwo/digikala-logo-slogan.png");
+        leaderViewModel2.setAvatar("http://img.bisms.ir//2015/06/rambod-javan-2.jpg");
 
         for (int i = 0 ; i < 50 ; i++) {
             leaders.add(leaderViewModel);

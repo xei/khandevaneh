@@ -17,4 +17,10 @@
 
     <color name="textColor_LightText">#fff</color>
 
+    <color name="placeholder_fresco">#848080</color>
+
+    <!-- LeaderBoardActivity -->
+    <color name="border_avatar">#fff</color>
+    <color name="shadow_userRankSection_text">#bc000000</color>
+
 </resources>

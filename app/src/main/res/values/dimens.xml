@@ -5,6 +5,7 @@
     <!-- BaseActivity -->
     <dimen name="height_statusbar">24dp</dimen>
     <dimen name="height_toolbar">56dp</dimen>
+    <dimen name="elevation_toolbar">4dp</dimen>
     <dimen name="dimen_toolbar_action">48dp</dimen>
     <dimen name="dimen_toolbar_score">32dp</dimen>
     <dimen name="margin_toolbar_action">4dp</dimen>
@@ -26,5 +27,19 @@
     <dimen name="padding_row_leaderBoard">4dp</dimen>
     <dimen name="dimen_imageView_avatar">40dp</dimen>
     <dimen name="textSize_row_leaderBoard">18sp</dimen>
+    <dimen name="fab_margin">16dp</dimen>
+
+    <!-- StoreActivity -->
+    <dimen name="height_userMelonSection">120dp</dimen>
+    <dimen name="elevation_userMelonSection">4dp</dimen>
+    <dimen name="dimen_melon_image">80dp</dimen>
+    <dimen name="marginLeft_userMelonSection_melon">16dp</dimen>
+    <dimen name="textSize_userMelonsSection_melon">30sp</dimen>
+    <dimen name="marginLeft_userMelonSection_melonLabel">32dp</dimen>
+    <dimen name="textSize_userMelonsSection_melonLabel">25sp</dimen>
+    <dimen name="dimen_row_item">160dp</dimen>
+    <dimen name="margin_row_item">8dp</dimen>
+    <dimen name="height_storeActivity_row_image">112dp</dimen>
+    <dimen name="height_storeActivity_row_title">48dp</dimen>
 
 </resources>

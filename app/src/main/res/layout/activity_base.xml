@@ -19,7 +19,8 @@
         android:layout_width="match_parent"
         android:layout_height="@dimen/height_toolbar"
         android:layout_below="@+id/activityBase_view_statusbar"
-        android:background="@color/colorToolbar" >
+        android:background="@color/colorToolbar"
+        android:elevation="@dimen/elevation_toolbar" >
 
         <ImageButton
             android:id="@+id/activityBase_imageButton_profile"

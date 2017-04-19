@@ -25,8 +25,10 @@ public class LeaderBoardActivity extends BaseActivity {
     private SimpleDraweeView mUserAvatarSimpleDraweeView;
     private TextView mUserExperienceTextView;
     private RecyclerView mLeaderBoardRecyclerView;
+    private LeaderBoardAdapter mLeaderBoardAdapter;
 
     private ArrayList<LeaderViewModel> mLeaders = new ArrayList<>();
+
 
     public static void start(Context starter) {
         Intent intent = new Intent(starter, LeaderBoardActivity.class);
@@ -52,7 +54,8 @@ public class LeaderBoardActivity extends BaseActivity {
     private void initRecyclerView() {
         mLeaderBoardRecyclerView.setHasFixedSize(true);
         mLeaderBoardRecyclerView.setLayoutManager(new LinearLayoutManager(this));
-        mLeaderBoardRecyclerView.setAdapter(new LeaderBoardAdapter(mLeaders));
+        mLeaderBoardAdapter = new LeaderBoardAdapter(mLeaders);
+        mLeaderBoardRecyclerView.setAdapter(mLeaderBoardAdapter);
     }
 
     @Override
@@ -92,5 +95,6 @@ public class LeaderBoardActivity extends BaseActivity {
     private void bindData(ArrayList<LeaderViewModel> leaders) {
         mLeaders.clear();
         mLeaders.addAll(leaders);
+        mLeaderBoardAdapter.notifyDataSetChanged();
     }
 }

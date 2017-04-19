@@ -23,8 +23,10 @@
         <activity android:name=".home.HomeActivity" />
         <activity android:name=".app.UpdateActivity" />
         <activity android:name=".account.ProfileActivity" />
+        <activity android:name=".account.LoginActivity" />
         <activity android:name=".leaderboard.LeaderBoardActivity" />
-        <activity android:name=".account.LoginActivity"></activity>
+        <activity android:name=".store.StoreActivity" />
+
     </application>
 
 </manifest>

@@ -1,8 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
+    <color name="materialGreen300">#81c784</color>
+    <color name="materialGreen400">#66bb6a</color>
     <color name="materialGreen500">#4caf50</color>
     <color name="materialGreen800">#2e7d32</color>
+    <color name="materialGreen900">#1b5e20</color>
 
     <color name="khandevanehGreen">#119e17</color>
 
@@ -22,5 +25,9 @@
     <!-- LeaderBoardActivity -->
     <color name="border_avatar">#fff</color>
     <color name="shadow_userRankSection_text">#bc000000</color>
+
+    <!-- StoreActivity -->
+    <color name="background_userMelonSection">@color/materialGreen400</color>
+    <color name="shadow_userMelonSection_text">#64000000</color>
 
 </resources>

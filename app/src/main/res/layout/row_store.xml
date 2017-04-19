@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="@dimen/dimen_row_item"
+    android:layout_height="@dimen/dimen_row_item"
+    android:layout_margin="@dimen/margin_row_item"
+    android:layout_gravity="center"
+    android:background="@drawable/background_store_item" >
+
+    <com.facebook.drawee.view.SimpleDraweeView
+        android:id="@+id/rowStore_simpleDraweeView_image"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/height_storeActivity_row_image"
+        app:actualImageScaleType="centerInside"
+        app:placeholderImage="@color/placeholder_fresco"
+        app:placeholderImageScaleType="centerInside"
+        app:failureImage="@drawable/logo"
+        app:failureImageScaleType="centerInside" />
+
+    <ir.tvnasim.khandevaneh.view.XeiTextView
+        android:id="@+id/rowStore_xeiTextView_title"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/height_storeActivity_row_title"
+        android:gravity="center"
+        android:textSize="@dimen/textSize_toolbar_score"
+        android:textStyle="bold"
+        android:textColor="@color/textColor_toolbar_score"
+        app:locale="fa_IR"
+        app:style="bold" />
+
+</LinearLayout>

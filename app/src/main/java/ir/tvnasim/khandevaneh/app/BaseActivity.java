@@ -17,6 +17,7 @@ import ir.tvnasim.khandevaneh.account.ProfileActivity;
 import ir.tvnasim.khandevaneh.account.User;
 import ir.tvnasim.khandevaneh.helper.HelperFunctions;
 import ir.tvnasim.khandevaneh.leaderboard.LeaderBoardActivity;
+import ir.tvnasim.khandevaneh.store.StoreActivity;
 
 /**
  * Created by hamidreza on 4/14/17.
@@ -107,6 +108,18 @@ public class BaseActivity extends AppCompatActivity implements View.OnClickListe
                 }
                 break;
             case R.id.activityBase_linearLayout_melon:
+                if (!(this instanceof StoreActivity)) {
+                    User.getInstance().isLoggedIn(new User.IsLoggedInListener() {
+                        @Override
+                        public void isLoggedIn(boolean isLoggedIn) {
+                            if (isLoggedIn) {
+                                StoreActivity.start(BaseActivity.this);
+                            } else {
+                                LoginActivity.start(BaseActivity.this);
+                            }
+                        }
+                    });
+                }
                 break;
             case R.id.activityBase_linearLayout_experience:
                 if (!(this instanceof LeaderBoardActivity)) {

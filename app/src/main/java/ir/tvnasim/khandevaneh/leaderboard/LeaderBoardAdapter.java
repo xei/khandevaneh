@@ -60,14 +60,14 @@ public class LeaderBoardAdapter extends RecyclerView.Adapter<LeaderBoardAdapter.
         }
     }
 
-    public class LeaderBoardViewHolder extends RecyclerView.ViewHolder {
+    class LeaderBoardViewHolder extends RecyclerView.ViewHolder {
 
         private LinearLayout rowView;
         private TextView userName;
         private SimpleDraweeView userAvatar;
         private TextView experienceLevel;
 
-        public LeaderBoardViewHolder(View itemView) {
+        LeaderBoardViewHolder(View itemView) {
             super(itemView);
 
             rowView = (LinearLayout) itemView;

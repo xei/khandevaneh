@@ -15,8 +15,6 @@
         android:layout_width="match_parent"
         android:layout_height="@dimen/height_storeActivity_row_image"
         app:actualImageScaleType="centerInside"
-        app:placeholderImage="@color/placeholder_fresco"
-        app:placeholderImageScaleType="centerInside"
         app:failureImage="@drawable/logo"
         app:failureImageScaleType="centerInside" />
 

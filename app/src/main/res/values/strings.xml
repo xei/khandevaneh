@@ -1,9 +1,11 @@
 <resources>
     <string name="app_name">خندوانه</string>
-    <string name="title_activity_store">StoreActivity</string>
+    <string name="inform_notImplemented">این ویژگی در حال حاضر قابل استفاده نمی‌باشد</string>
 
     <!-- StoreActivity -->
     <string name="label_user_melon">هندوانه شما:</string>
     <string name="melon_count">x %s</string>
+    <string name="title_activity_live_like">LiveLikeActivity</string>
+
 
 </resources>

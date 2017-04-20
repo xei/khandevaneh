@@ -12,6 +12,9 @@
     <dimen name="space_toolbar_score">8dp</dimen>
     <dimen name="textSize_toolbar_score">17sp</dimen>
 
+    <!-- HomeActivity -->
+    <dimen name="radius_rounded_corner_Home_menuItems">8dp</dimen>
+
     <!-- LeaderBoardActivity -->
     <dimen name="height_banner">0dp</dimen>
     <dimen name="height_userRankSection">152dp</dimen>

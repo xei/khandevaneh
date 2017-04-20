@@ -3,6 +3,8 @@ package ir.tvnasim.khandevaneh.home;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
 import ir.tvnasim.khandevaneh.R;
@@ -12,6 +14,9 @@ import ir.tvnasim.khandevaneh.app.BaseActivity;
 import ir.tvnasim.khandevaneh.helper.SharedPreferencesHelper;
 
 public class HomeActivity extends BaseActivity {
+
+    private RecyclerView mMenuItemRecyclerView;
+    private HomeMenuAdapter mHomeMenuAdapter;
 
     public static void start(Context starter) {
         Intent intent = new Intent(starter, HomeActivity.class);
@@ -26,6 +31,7 @@ public class HomeActivity extends BaseActivity {
         autoLogin();
 
         findViews();
+        initRecyclerView();
         setOnClickListeners();
 
     }
@@ -53,7 +59,14 @@ public class HomeActivity extends BaseActivity {
     }
 
     private void findViews() {
+        mMenuItemRecyclerView = (RecyclerView) findViewById(R.id.activityHome_recyclerView_menuItems);
+    }
 
+    private void initRecyclerView() {
+        mMenuItemRecyclerView.setHasFixedSize(true);
+        mMenuItemRecyclerView.setLayoutManager(new GridLayoutManager(this, 2));
+        mHomeMenuAdapter = new HomeMenuAdapter();
+        mMenuItemRecyclerView.setAdapter(mHomeMenuAdapter);
     }
 
     private void setOnClickListeners() {

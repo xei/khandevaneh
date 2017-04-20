@@ -67,7 +67,7 @@ public class StoreActivity extends BaseActivity {
         //TODO: API call
         ArrayList<ItemModel> leaders = new ArrayList<>();
         ItemModel leaderViewModel = new ItemModel();
-        leaderViewModel.setTitle("حمیدرضا");
+        leaderViewModel.setTitle(HelperFunctions.persianizeDigitsInString("۴ بسته ۱۰۰ تایی"));
         leaderViewModel.setImage("http://img.bisms.ir//2015/06/rambod-javan-2.jpg");
 
         for (int i = 0 ; i < 50 ; i++) {

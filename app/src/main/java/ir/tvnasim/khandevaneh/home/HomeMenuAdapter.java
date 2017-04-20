@@ -35,19 +35,19 @@ public class HomeMenuAdapter extends RecyclerView.Adapter<HomeMenuAdapter.HomeMe
 
     public HomeMenuAdapter() {
 
-        // Live Like
-        HomeMenuItem liveLive = new HomeMenuItem();
-        liveLive.setId(HomeMenuItem.ID_LIVE_LIKE);
-        liveLive.setTitle("لایک زنده");
-        liveLive.setBackgroundImage(User.getInstance().getAvatar());
-        menuItems.add(liveLive);
-
         //Archive
         HomeMenuItem archive = new HomeMenuItem();
         archive.setId(HomeMenuItem.ID_ARCHIVE);
         archive.setTitle("آرشیو");
         archive.setBackgroundImage(User.getInstance().getAvatar());
         menuItems.add(archive);
+
+        // Live Like
+        HomeMenuItem liveLive = new HomeMenuItem();
+        liveLive.setId(HomeMenuItem.ID_LIVE_LIKE);
+        liveLive.setTitle("لایک زنده");
+        liveLive.setBackgroundImage(User.getInstance().getAvatar());
+        menuItems.add(liveLive);
 
         // Polling
         HomeMenuItem  polling = new HomeMenuItem();
@@ -63,19 +63,19 @@ public class HomeMenuAdapter extends RecyclerView.Adapter<HomeMenuAdapter.HomeMe
         competition.setBackgroundImage(User.getInstance().getAvatar());
         menuItems.add(competition);
 
-        // Campaign
-        HomeMenuItem campaign = new HomeMenuItem();
-        campaign.setId(HomeMenuItem.ID_CAMPAIGN);
-        campaign.setTitle("کمپین");
-        campaign.setBackgroundImage(User.getInstance().getAvatar());
-        menuItems.add(campaign);
-
         // Awards
         HomeMenuItem awards = new HomeMenuItem();
         awards.setId(HomeMenuItem.ID_AWARDS);
         awards.setTitle("جایزه ها");
         awards.setBackgroundImage(User.getInstance().getAvatar());
         menuItems.add(awards);
+
+        // Campaign
+        HomeMenuItem campaign = new HomeMenuItem();
+        campaign.setId(HomeMenuItem.ID_CAMPAIGN);
+        campaign.setTitle("کمپین");
+        campaign.setBackgroundImage(User.getInstance().getAvatar());
+        menuItems.add(campaign);
 
     }
 

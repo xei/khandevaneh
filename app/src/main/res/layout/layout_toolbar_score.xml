@@ -18,7 +18,7 @@
         android:id="@+id/layoutToolbarScore_textView_score"
         android:layout_width="wrap_content"
         android:layout_height="@dimen/dimen_toolbar_score"
-        android:gravity="center"
+        android:gravity="bottom"
         android:textSize="@dimen/textSize_toolbar_score"
         android:textStyle="bold"
         android:textColor="@color/textColor_toolbar_score"

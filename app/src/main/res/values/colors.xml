@@ -24,7 +24,7 @@
 
     <!-- HomeActivity -->
     <color name="background_home_toolbar">#fff</color>
-    <color name="text_toolbar_home_score">#000</color>
+    <color name="text_toolbar_home_score">#1b5e20</color>
     <color name="background_home">#dbf400</color>
 
     <!-- LeaderBoardActivity -->

@@ -15,7 +15,7 @@ class HomeMenuItem {
 
     private String id;
     private String title;
-    private String backgroundImage;
+    private int backgroundImageResourceId;
 
 
     public String getId() {
@@ -34,11 +34,11 @@ class HomeMenuItem {
         this.title = title;
     }
 
-    public String getBackgroundImage() {
-        return backgroundImage;
+    public int getBackgroundImageResourceId() {
+        return backgroundImageResourceId;
     }
 
-    public void setBackgroundImage(String backgroundImage) {
-        this.backgroundImage = backgroundImage;
+    public void setBackgroundImageResourceId(int backgroundImageResourceId) {
+        this.backgroundImageResourceId = backgroundImageResourceId;
     }
 }

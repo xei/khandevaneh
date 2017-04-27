@@ -1,35 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<RelativeLayout
+<ImageView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical"
+    android:id="@+id/rowMenuHome_imageView_image"
     android:layout_width="@dimen/dimen_row_item"
     android:layout_height="@dimen/dimen_row_item"
     android:layout_margin="@dimen/margin_row_item"
-    android:layout_gravity="center" >
-
-    <com.facebook.drawee.view.SimpleDraweeView
-        android:id="@+id/rowMenuHome_simpleDraweeView_image"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:actualImageScaleType="centerInside"
-        app:placeholderImage="@color/placeholder_fresco"
-        app:placeholderImageScaleType="centerInside"
-        app:failureImage="@drawable/logo"
-        app:failureImageScaleType="centerInside"
-        app:roundedCornerRadius="@dimen/radius_rounded_corner_Home_menuItems" />
-
-    <ir.tvnasim.khandevaneh.view.XeiTextView
-        android:id="@+id/rowMenuHome_xeiTextView_title"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/height_storeActivity_row_title"
-        android:layout_alignParentBottom="true"
-        android:gravity="center"
-        android:textSize="@dimen/textSize_toolbar_score"
-        android:textStyle="bold"
-        android:textColor="@color/textColor_toolbar_score"
-        app:locale="fa_IR"
-        app:style="bold" />
-
-</RelativeLayout>
+    android:background="@drawable/background_menu_home" />

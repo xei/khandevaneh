@@ -6,6 +6,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.facebook.drawee.view.SimpleDraweeView;
@@ -38,43 +39,37 @@ public class HomeMenuAdapter extends RecyclerView.Adapter<HomeMenuAdapter.HomeMe
         //Archive
         HomeMenuItem archive = new HomeMenuItem();
         archive.setId(HomeMenuItem.ID_ARCHIVE);
-        archive.setTitle("آرشیو");
-        archive.setBackgroundImage(User.getInstance().getAvatar());
+        archive.setBackgroundImageResourceId(R.drawable.ic_menu_home_archive);
         menuItems.add(archive);
 
         // Live Like
         HomeMenuItem liveLive = new HomeMenuItem();
         liveLive.setId(HomeMenuItem.ID_LIVE_LIKE);
-        liveLive.setTitle("لایک زنده");
-        liveLive.setBackgroundImage(User.getInstance().getAvatar());
+        liveLive.setBackgroundImageResourceId(R.drawable.ic_menu_home_livelike);
         menuItems.add(liveLive);
 
         // Polling
         HomeMenuItem  polling = new HomeMenuItem();
         polling.setId(HomeMenuItem.ID_POLLING);
-        polling.setTitle("نظرسنجی");
-        polling.setBackgroundImage(User.getInstance().getAvatar());
+        polling.setBackgroundImageResourceId(R.drawable.ic_menu_home_polling);
         menuItems.add(polling);
 
         // Competition
         HomeMenuItem competition = new HomeMenuItem();
         competition.setId(HomeMenuItem.ID_COMPETITION);
-        competition.setTitle("مسابقه");
-        competition.setBackgroundImage(User.getInstance().getAvatar());
+        competition.setBackgroundImageResourceId(R.drawable.ic_menu_home_competition);
         menuItems.add(competition);
 
         // Awards
         HomeMenuItem awards = new HomeMenuItem();
         awards.setId(HomeMenuItem.ID_AWARDS);
-        awards.setTitle("جایزه ها");
-        awards.setBackgroundImage(User.getInstance().getAvatar());
+        awards.setBackgroundImageResourceId(R.drawable.ic_menu_home_awards);
         menuItems.add(awards);
 
         // Campaign
         HomeMenuItem campaign = new HomeMenuItem();
         campaign.setId(HomeMenuItem.ID_CAMPAIGN);
-        campaign.setTitle("کمپین");
-        campaign.setBackgroundImage(User.getInstance().getAvatar());
+        campaign.setBackgroundImageResourceId(R.drawable.ic_menu_home_lock);
         menuItems.add(campaign);
 
     }
@@ -88,8 +83,7 @@ public class HomeMenuAdapter extends RecyclerView.Adapter<HomeMenuAdapter.HomeMe
     @Override
     public void onBindViewHolder(HomeMenuItemViewHolder holder, int position) {
         HomeMenuItem item = menuItems.get(position);
-        FrescoHelper.setImageUrl(holder.backgroundImage, item.getBackgroundImage());
-        holder.title.setText(item.getTitle());
+        holder.backgroundImage.setImageResource(item.getBackgroundImageResourceId());
         holder.itemView.setTag(item.getId());
         holder.itemView.setOnClickListener(this);
     }
@@ -131,15 +125,13 @@ public class HomeMenuAdapter extends RecyclerView.Adapter<HomeMenuAdapter.HomeMe
     class HomeMenuItemViewHolder extends RecyclerView.ViewHolder {
 
         View itemView;
-        SimpleDraweeView backgroundImage;
-        XeiTextView title;
+        ImageView backgroundImage;
 
         public HomeMenuItemViewHolder(View itemView) {
             super(itemView);
 
             this.itemView = itemView;
-            backgroundImage = (SimpleDraweeView) itemView.findViewById(R.id.rowMenuHome_simpleDraweeView_image);
-            title = (XeiTextView) itemView.findViewById(R.id.rowMenuHome_xeiTextView_title);
+            backgroundImage = (ImageView) itemView.findViewById(R.id.rowMenuHome_imageView_image);
         }
     }
 

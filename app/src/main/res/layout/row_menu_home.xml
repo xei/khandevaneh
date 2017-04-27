@@ -7,4 +7,5 @@
     android:layout_width="@dimen/dimen_row_item"
     android:layout_height="@dimen/dimen_row_item"
     android:layout_margin="@dimen/margin_row_item"
+    android:padding="@dimen/width_border_Home_menuItems"
     android:background="@drawable/background_menu_home" />

@@ -22,7 +22,7 @@
     <dimen name="height_slider">160dp</dimen>
     <dimen name="margin_slider">4dp</dimen>
     <dimen name="radius_rounded_corner_slider">8dp</dimen>
-    <dimen name="radius_rounded_corner_Home_menuItems">8dp</dimen>
+    <dimen name="width_border_Home_menuItems">2dp</dimen>
 
     <!-- LeaderBoardActivity -->
     <dimen name="height_banner">0dp</dimen>

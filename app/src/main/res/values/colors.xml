@@ -22,6 +22,11 @@
 
     <color name="placeholder_fresco">#848080</color>
 
+    <!-- HomeActivity -->
+    <color name="background_home_toolbar">#fff</color>
+    <color name="text_toolbar_home_score">#000</color>
+    <color name="background_home">#dbf400</color>
+
     <!-- LeaderBoardActivity -->
     <color name="border_avatar">#fff</color>
     <color name="shadow_userRankSection_text">#bc000000</color>

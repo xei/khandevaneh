@@ -5,6 +5,7 @@
     <!-- BaseActivity -->
     <dimen name="height_statusbar">24dp</dimen>
     <dimen name="height_toolbar">56dp</dimen>
+    <dimen name="height_statusBarPlusToolbar">80dp</dimen>
     <dimen name="elevation_toolbar">4dp</dimen>
     <dimen name="dimen_toolbar_action">48dp</dimen>
     <dimen name="dimen_toolbar_score">32dp</dimen>

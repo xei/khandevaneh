@@ -1,24 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="ir.tvnasim.khandevaneh.app.BaseActivity" >
 
-    <View
-        android:id="@+id/activityBase_view_statusbar"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/height_statusbar"
-        android:layout_alignParentTop="true"
-        android:background="@color/colorStatusBar" />
-
     <ViewStub
         android:id="@+id/activityBase_toolbar"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/height_toolbar"
-        android:layout_below="@+id/activityBase_view_statusbar" />
+        android:layout_height="@dimen/height_statusBarPlusToolbar" />
 
     <ViewStub
         android:id="@+id/activityBase_viewStub_pageContainer"

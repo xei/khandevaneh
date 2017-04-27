@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!-- root id must be "@+id/activityBase_toolbar" -->
+
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/activityBase_toolbar"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorToolbar"
+    android:elevation="@dimen/elevation_toolbar">
+
+    <ImageButton
+        android:id="@+id/toolbarHome_imageButton_profile"
+        android:layout_width="@dimen/dimen_toolbar_action"
+        android:layout_height="@dimen/dimen_toolbar_action"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:layout_marginRight="@dimen/margin_toolbar_action"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        android:scaleType="centerInside"
+        android:src="@drawable/ic_toolbar_profile" />
+
+    <LinearLayout
+        android:id="@+id/toolbarHome_linearLayout_scoreSection"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="@dimen/margin_toolbar_action"
+        android:orientation="horizontal"
+        android:visibility="gone">
+
+        <include
+            android:id="@+id/toolbarHome_linearLayout_experience"
+            layout="@layout/layout_toolbar_score" />
+
+        <View
+            android:layout_width="@dimen/space_toolbar_score"
+            android:layout_height="@dimen/dimen_toolbar_score" />
+
+        <include
+            android:id="@+id/toolbarHome_linearLayout_melon"
+            layout="@layout/layout_toolbar_score" />
+
+    </LinearLayout>
+
+</RelativeLayout>

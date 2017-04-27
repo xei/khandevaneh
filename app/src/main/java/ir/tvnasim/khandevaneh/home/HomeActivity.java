@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.view.ViewStub;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -43,6 +44,11 @@ public class HomeActivity extends BaseActivity implements OnBannerClickedListene
 
         fetchBannersFromApi();
 
+    }
+
+    @Override
+    public int getToolbarViewId() {
+        return R.layout.toolbar_home;
     }
 
     private void autoLogin() {

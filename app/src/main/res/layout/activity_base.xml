@@ -14,55 +14,16 @@
         android:layout_alignParentTop="true"
         android:background="@color/colorStatusBar" />
 
-    <RelativeLayout
-        android:id="@+id/activityBase_relativeLayout_toolbar"
+    <ViewStub
+        android:id="@+id/activityBase_toolbar"
         android:layout_width="match_parent"
         android:layout_height="@dimen/height_toolbar"
-        android:layout_below="@+id/activityBase_view_statusbar"
-        android:background="@color/colorToolbar"
-        android:elevation="@dimen/elevation_toolbar" >
-
-        <ImageButton
-            android:id="@+id/activityBase_imageButton_profile"
-            android:layout_width="@dimen/dimen_toolbar_action"
-            android:layout_height="@dimen/dimen_toolbar_action"
-            android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"
-            android:layout_marginRight="@dimen/margin_toolbar_action"
-            android:background="?attr/selectableItemBackgroundBorderless"
-            android:scaleType="centerInside"
-            android:src="@drawable/ic_toolbar_profile" />
-
-        <LinearLayout
-            android:id="@+id/activityBase_linearLayout_scoreSection"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_alignParentLeft="true"
-            android:layout_centerVertical="true"
-            android:layout_marginLeft="@dimen/margin_toolbar_action"
-            android:visibility="gone" >
-
-            <include
-                android:id="@+id/activityBase_linearLayout_experience"
-                layout="@layout/layout_toolbar_score" />
-
-            <View
-                android:layout_width="@dimen/space_toolbar_score"
-                android:layout_height="@dimen/dimen_toolbar_score" />
-
-            <include
-                android:id="@+id/activityBase_linearLayout_melon"
-                layout="@layout/layout_toolbar_score" />
-
-        </LinearLayout>
-
-    </RelativeLayout>
+        android:layout_below="@+id/activityBase_view_statusbar" />
 
     <ViewStub
         android:id="@+id/activityBase_viewStub_pageContainer"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@id/activityBase_relativeLayout_toolbar" />
+        android:layout_below="@id/activityBase_toolbar" />
 
 </RelativeLayout>

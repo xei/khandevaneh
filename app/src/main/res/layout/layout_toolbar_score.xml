@@ -11,7 +11,8 @@
     <ImageView
         android:id="@+id/layoutToolbarScore_imageView_icon"
         android:layout_width="@dimen/dimen_toolbar_score"
-        android:layout_height="@dimen/dimen_toolbar_score" />
+        android:layout_height="@dimen/dimen_toolbar_score"
+        android:padding="@dimen/padding_toolbar_score"/>
 
     <ir.tvnasim.khandevaneh.view.XeiTextView
         android:id="@+id/layoutToolbarScore_textView_score"

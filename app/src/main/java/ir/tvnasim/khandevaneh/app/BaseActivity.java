@@ -66,9 +66,9 @@ public class BaseActivity extends AppCompatActivity implements View.OnClickListe
         mExperienceScoreTextView = (TextView) mExperienceScoreLinearLayout.findViewById(R.id.layoutToolbarScore_textView_score);
 
         ImageView melonScoreImageView = (ImageView) toolbar.findViewById(R.id.toolbarHome_linearLayout_melon).findViewById(R.id.layoutToolbarScore_imageView_icon);
-        melonScoreImageView.setImageResource(R.drawable.ic_toolbar_melon);
+        melonScoreImageView.setImageResource(R.drawable.ic_toolbar_home_melon);
         ImageView experienceScoreImageView = (ImageView) toolbar.findViewById(R.id.toolbarHome_linearLayout_experience).findViewById(R.id.layoutToolbarScore_imageView_icon);
-        experienceScoreImageView.setImageResource(R.drawable.ic_toolbar_experience);
+        experienceScoreImageView.setImageResource(R.drawable.ic_toolbar_home_experience);
 
     }
 

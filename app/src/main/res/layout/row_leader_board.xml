@@ -54,7 +54,7 @@
             android:id="@+id/layoutToolbarScore_imageView_icon"
             android:layout_width="@dimen/dimen_toolbar_score"
             android:layout_height="@dimen/dimen_toolbar_score"
-            android:src="@drawable/ic_toolbar_experience" />
+            android:src="@drawable/ic_toolbar_home_experience" />
 
         <ir.tvnasim.khandevaneh.view.XeiTextView
             android:id="@+id/rowLeaderBoard_textView_userExperience"

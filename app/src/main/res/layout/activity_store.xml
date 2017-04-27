@@ -26,7 +26,7 @@
             <ImageView
                 android:layout_width="@dimen/dimen_melon_image"
                 android:layout_height="@dimen/dimen_melon_image"
-                android:src="@drawable/ic_toolbar_melon" />
+                android:src="@drawable/ic_toolbar_home_melon" />
 
             <ir.tvnasim.khandevaneh.view.XeiTextView
                 android:id="@+id/activityStore_textView_melon"

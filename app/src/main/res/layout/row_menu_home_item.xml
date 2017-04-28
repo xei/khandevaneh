@@ -4,8 +4,10 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/rowMenuHome_imageView_image"
-    android:layout_width="@dimen/dimen_row_item"
+    android:layout_width="match_parent"
     android:layout_height="@dimen/dimen_row_item"
     android:layout_margin="@dimen/margin_row_item"
     android:padding="@dimen/width_border_Home_menuItems"
-    android:background="@drawable/background_menu_home" />
+    android:scaleType="fitXY"
+    android:background="@drawable/background_menu_home"
+    android:foreground="?attr/selectableItemBackgroundBorderless" />

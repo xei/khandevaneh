@@ -1,7 +1,7 @@
 package ir.tvnasim.khandevaneh.home;
 
 import android.content.Context;
-import android.support.v4.content.ContextCompat;
+import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,30 +9,30 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.Toast;
 
-import com.facebook.drawee.view.SimpleDraweeView;
-
 import java.util.ArrayList;
 
 import ir.tvnasim.khandevaneh.R;
-import ir.tvnasim.khandevaneh.account.User;
 import ir.tvnasim.khandevaneh.archive.ArchiveActivity;
 import ir.tvnasim.khandevaneh.helper.LogHelper;
-import ir.tvnasim.khandevaneh.helper.imageloading.FrescoHelper;
 import ir.tvnasim.khandevaneh.livelike.LiveLikeActivity;
 import ir.tvnasim.khandevaneh.polling.PollingActivity;
-import ir.tvnasim.khandevaneh.view.XeiTextView;
+import ir.tvnasim.khandevaneh.view.bannerslider.SliderView;
 
 /**
  * Created by hamidreza on 4/20/17.
  */
 
-public class HomeMenuAdapter extends RecyclerView.Adapter<HomeMenuAdapter.HomeMenuItemViewHolder> implements View.OnClickListener{
+public class HomeMenuAdapter extends RecyclerView.Adapter implements View.OnClickListener{
 
     private static final String TAG_DEBUG = HomeMenuAdapter.class.getSimpleName();
+
+    public static final int TYPE_VIEW_SLIDER = 0;
+    public static final int TYPE_VIEW_MENU_ITEM = 1;
 
     private static final int SIZE_MENU = 6;
 
     private ArrayList<HomeMenuItem> menuItems = new ArrayList<>();
+    private ArrayList<Bundle> mBanners;
 
     public HomeMenuAdapter() {
 
@@ -45,25 +45,25 @@ public class HomeMenuAdapter extends RecyclerView.Adapter<HomeMenuAdapter.HomeMe
         // Live Like
         HomeMenuItem liveLive = new HomeMenuItem();
         liveLive.setId(HomeMenuItem.ID_LIVE_LIKE);
-        liveLive.setBackgroundImageResourceId(R.drawable.ic_menu_home_livelike);
+//        liveLive.setBackgroundImageResourceId(R.drawable.ic_menu_home_livelike);
         menuItems.add(liveLive);
 
         // Polling
         HomeMenuItem  polling = new HomeMenuItem();
         polling.setId(HomeMenuItem.ID_POLLING);
-        polling.setBackgroundImageResourceId(R.drawable.ic_menu_home_polling);
+//        polling.setBackgroundImageResourceId(R.drawable.ic_menu_home_polling);
         menuItems.add(polling);
 
         // Competition
         HomeMenuItem competition = new HomeMenuItem();
         competition.setId(HomeMenuItem.ID_COMPETITION);
-        competition.setBackgroundImageResourceId(R.drawable.ic_menu_home_competition);
+//        competition.setBackgroundImageResourceId(R.drawable.ic_menu_home_competition);
         menuItems.add(competition);
 
         // Awards
         HomeMenuItem awards = new HomeMenuItem();
         awards.setId(HomeMenuItem.ID_AWARDS);
-        awards.setBackgroundImageResourceId(R.drawable.ic_menu_home_awards);
+//        awards.setBackgroundImageResourceId(R.drawable.ic_menu_home_awards);
         menuItems.add(awards);
 
         // Campaign
@@ -74,23 +74,56 @@ public class HomeMenuAdapter extends RecyclerView.Adapter<HomeMenuAdapter.HomeMe
 
     }
 
-    @Override
-    public HomeMenuItemViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.row_menu_home, parent, false);
-        return new HomeMenuItemViewHolder(itemView);
+    public void setSliderBanners(ArrayList<Bundle> banners) {
+        mBanners = banners;
     }
 
     @Override
-    public void onBindViewHolder(HomeMenuItemViewHolder holder, int position) {
-        HomeMenuItem item = menuItems.get(position);
-        holder.backgroundImage.setImageResource(item.getBackgroundImageResourceId());
-        holder.itemView.setTag(item.getId());
-        holder.itemView.setOnClickListener(this);
+    public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        switch (viewType) {
+            case TYPE_VIEW_SLIDER:
+                return new HomeSliderViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.row_menu_home_slider, parent, false));
+
+            case TYPE_VIEW_MENU_ITEM:
+                return new HomeMenuItemViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.row_menu_home_item, parent, false));
+
+            default:
+                return null;
+        }
+    }
+
+    @Override
+    public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
+
+        if (holder instanceof HomeSliderViewHolder) {
+            HomeSliderViewHolder homeSliderViewHolder = (HomeSliderViewHolder) holder;
+            homeSliderViewHolder.sliderView.setBanners(mBanners);
+
+        } else if (holder instanceof HomeMenuItemViewHolder) {
+            final HomeMenuItemViewHolder homeMenuItemViewHolder = (HomeMenuItemViewHolder) holder;
+
+            HomeMenuItem item = menuItems.get(position - 1);
+            homeMenuItemViewHolder.backgroundImage.setImageResource(item.getBackgroundImageResourceId());
+            homeMenuItemViewHolder.itemView.setTag(item.getId());
+            homeMenuItemViewHolder.itemView.setOnClickListener(this);
+        } else {
+
+        }
+
     }
 
     @Override
     public int getItemCount() {
-        return SIZE_MENU;
+        return SIZE_MENU + 1;
+    }
+
+    @Override
+    public int getItemViewType(int position) {
+        if (position == 0) {
+            return TYPE_VIEW_SLIDER;
+        } else {
+            return TYPE_VIEW_MENU_ITEM;
+        }
     }
 
     @Override
@@ -122,12 +155,23 @@ public class HomeMenuAdapter extends RecyclerView.Adapter<HomeMenuAdapter.HomeMe
         }
     }
 
+    class HomeSliderViewHolder extends RecyclerView.ViewHolder {
+
+        SliderView sliderView;
+
+        public HomeSliderViewHolder(View itemView) {
+            super(itemView);
+
+            sliderView = (SliderView) itemView.findViewById(R.id.rowMenuHomeSlider_sliderView_slider);
+        }
+    }
+
     class HomeMenuItemViewHolder extends RecyclerView.ViewHolder {
 
         View itemView;
         ImageView backgroundImage;
 
-        public HomeMenuItemViewHolder(View itemView) {
+        public HomeMenuItemViewHolder(final View itemView) {
             super(itemView);
 
             this.itemView = itemView;

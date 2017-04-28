@@ -22,7 +22,6 @@ import ir.tvnasim.khandevaneh.view.bannerslider.SliderView;
 
 public class HomeActivity extends BaseActivity implements OnBannerClickedListener {
 
-    private SliderView mBannersSliderView;
     private RecyclerView mMenuItemRecyclerView;
     private HomeMenuAdapter mHomeMenuAdapter;
 
@@ -74,19 +73,18 @@ public class HomeActivity extends BaseActivity implements OnBannerClickedListene
     }
 
     private void findViews() {
-        mBannersSliderView = (SliderView) findViewById(R.id.activityHome_slider_slider);
         mMenuItemRecyclerView = (RecyclerView) findViewById(R.id.activityHome_recyclerView_menuItems);
     }
 
     private void initRecyclerView() {
         mMenuItemRecyclerView.setHasFixedSize(true);
-        mMenuItemRecyclerView.setLayoutManager(new GridLayoutManager(this, 2));
         mHomeMenuAdapter = new HomeMenuAdapter();
+        mMenuItemRecyclerView.setLayoutManager(new HomeMenuLayoutManager(this, mHomeMenuAdapter));
         mMenuItemRecyclerView.setAdapter(mHomeMenuAdapter);
     }
 
     private void setOnClickListeners() {
-        mBannersSliderView.setOnBannerClickListener(this);
+//        mBannersSliderView.setOnBannerClickListener(this);
     }
 
     private void fetchBannersFromApi() {
@@ -98,7 +96,8 @@ public class HomeActivity extends BaseActivity implements OnBannerClickedListene
         for (int i = 0 ; i < 5 ; i++) {
             list.add(banner);
         }
-        mBannersSliderView.setBanners(list);
+        mHomeMenuAdapter.setSliderBanners(list);
+        mHomeMenuAdapter.notifyDataSetChanged();
     }
 
     @Override

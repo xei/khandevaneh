@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    >
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:background="@drawable/background_blur" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/background_leader_board" >
+
+        <RelativeLayout
+
+            android:orientation="vertical"
+            android:layout_width="352dp"
+            android:layout_height="@dimen/height_userRankSection"
+            android:layout_alignParentLeft="true"
+            android:background="@color/background_leader_board">
+
+
+
+            <LinearLayout
+                android:layout_width="287dp"
+                android:layout_height="80dp"
+                android:layout_centerVertical="true"
+                android:background="#fff">
+
+                <ir.tvnasim.khandevaneh.view.XeiTextView
+                    android:id="@+id/activityLeaderboard_textView_userName"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:paddingRight="73dp"
+                    android:gravity="right|center_vertical"
+                    android:textSize="@dimen/textSize_userRankSection"
+                    android:textStyle="bold"
+                    android:textColor="@color/textColor_dark"
+                    android:shadowColor="@color/shadow_userRankSection_text"
+                    android:shadowDx="2"
+                    android:shadowDy="2"
+                    android:shadowRadius="4"
+                    app:locale="fa_IR"
+                    app:style="bold" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="48dp"
+                android:layout_centerVertical="true"
+                android:paddingLeft="8dp"
+                android:paddingRight="16dp"
+                android:layout_weight="1"
+                android:orientation="horizontal"
+                android:gravity="center"
+                android:background="@drawable/background_experience_leaderboard" >
+
+                <ImageView
+                    android:id="@+id/layoutToolbarScore_imageView_icon"
+                    android:layout_width="@dimen/dimen_toolbar_score"
+                    android:layout_height="@dimen/dimen_toolbar_score"
+                    android:padding="@dimen/padding_toolbar_score"
+                    android:src="@drawable/ic_toolbar_home_experience" />
+
+                <ir.tvnasim.khandevaneh.view.XeiTextView
+                    android:id="@+id/activityLeaderboard_textView_userExperience"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/space_userRankSection_userExperience"
+                    android:paddingTop="4dp"
+                    android:gravity="bottom"
+                    android:textSize="@dimen/textSize_userRankSection"
+                    android:textStyle="bold"
+                    android:textColor="@color/textColor_userRankSection_experience"
+                    android:shadowColor="@color/shadow_userRankSection_text"
+                    android:shadowDx="2"
+                    android:shadowDy="2"
+                    android:shadowRadius="4"
+                    app:locale="fa_IR"
+                    app:style="bold"/>
+
+            </LinearLayout>
+
+            <com.facebook.drawee.view.SimpleDraweeView
+                android:id="@+id/layoutLeaderboardUser_simpleDraweeView_userAvatar"
+                android:layout_width="@dimen/dimen_userRankSection_userAvatar"
+                android:layout_height="@dimen/dimen_userRankSection_userAvatar"
+                android:layout_alignParentRight="true"
+                app:actualImageScaleType="centerInside"
+                app:placeholderImage="@color/placeholder_fresco"
+                app:placeholderImageScaleType="centerInside"
+                app:failureImage="@drawable/logo"
+                app:failureImageScaleType="centerInside"
+                app:backgroundImage="@color/placeholder_fresco"
+                app:roundAsCircle="true"
+                app:roundingBorderWidth="@dimen/width_rounding_border_userRankSection_avatar"
+                app:roundingBorderColor="@color/border_avatar"/>
+
+        </RelativeLayout>
+
+    </RelativeLayout>
+
+
+
+    </LinearLayout>
+

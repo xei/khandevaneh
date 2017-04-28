@@ -6,67 +6,68 @@
     android:layout_width="match_parent"
     android:layout_height="@dimen/height_row_leaderBoard"
     android:orientation="horizontal"
-    android:layout_marginBottom="@dimen/margin_row_leaderBoard"
-    android:layout_marginLeft="@dimen/margin_row_leaderBoard"
-    android:layout_marginRight="@dimen/margin_row_leaderBoard"
-    android:padding="@dimen/padding_row_leaderBoard"
+    android:layout_marginTop="@dimen/marginBottom_row_leaderBoard"
+    android:layout_marginLeft="@dimen/marginSide_row_leaderBoard"
+    android:layout_marginRight="@dimen/marginSide_row_leaderBoard"
     android:gravity="center"
-    android:weightSum="3"
-    android:background="@drawable/background_rounded_corner" >
-
-    <com.facebook.drawee.view.SimpleDraweeView
-        android:id="@+id/rowLeaderBoard_simpleDraweeView_userAvatar"
-        android:layout_width="@dimen/dimen_imageView_avatar"
-        android:layout_height="@dimen/dimen_imageView_avatar"
-        app:actualImageScaleType="centerInside"
-        app:placeholderImage="@color/placeholder_fresco"
-        app:placeholderImageScaleType="centerInside"
-        app:failureImage="@drawable/logo"
-        app:failureImageScaleType="centerInside"
-        app:backgroundImage="@color/placeholder_fresco"
-        app:roundedCornerRadius="4dp"
-        app:roundingBorderWidth="2dp"
-        app:roundingBorderColor="#fff" />
-
-    <ir.tvnasim.khandevaneh.view.XeiTextView
-        android:id="@+id/rowLeaderBoard_textView_userName"
-        android:layout_width="0dp"
-        android:layout_height="match_parent"
-        android:layout_weight="2"
-        android:gravity="center"
-        android:lines="1"
-        android:maxLines="1"
-        android:singleLine="true"
-        android:textColor="@color/textColor_LightText"
-        android:textSize="@dimen/textSize_row_leaderBoard"
-        android:textStyle="bold"
-        app:locale="fa_IR"
-        app:style="bold" />
+    android:weightSum="1"
+    android:background="@drawable/background_row_leaderboard" >
 
     <LinearLayout
-        android:layout_width="0dp"
+        android:layout_width="wrap_content"
         android:layout_height="match_parent"
+        android:layout_marginLeft="@dimen/paddingLeft_row_leaderBoard"
         android:orientation="horizontal"
-        android:layout_weight="1"
         android:gravity="center" >
 
         <ImageView
             android:id="@+id/layoutToolbarScore_imageView_icon"
             android:layout_width="@dimen/dimen_toolbar_score"
             android:layout_height="@dimen/dimen_toolbar_score"
+            android:padding="@dimen/padding_toolbar_score"
             android:src="@drawable/ic_toolbar_home_experience" />
 
         <ir.tvnasim.khandevaneh.view.XeiTextView
             android:id="@+id/rowLeaderBoard_textView_userExperience"
             android:layout_width="wrap_content"
             android:layout_height="@dimen/dimen_toolbar_score"
-            android:gravity="center"
+            android:gravity="bottom"
             android:textSize="@dimen/textSize_row_leaderBoard"
             android:textStyle="bold"
-            android:textColor="@color/textColor_LightText"
+            android:textColor="@color/textColor_dark"
             app:locale="fa_IR"
             app:style="bold" />
 
     </LinearLayout>
+
+    <ir.tvnasim.khandevaneh.view.XeiTextView
+        android:id="@+id/rowLeaderBoard_textView_userName"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:paddingRight="8dp"
+        android:layout_weight="1"
+        android:gravity="right|center_vertical"
+        android:lines="1"
+        android:maxLines="1"
+        android:singleLine="true"
+        android:textColor="@color/textColor_dark"
+        android:textSize="@dimen/textSize_row_leaderBoard"
+        android:textStyle="bold"
+        app:locale="fa_IR"
+        app:style="bold" />
+
+    <com.facebook.drawee.view.SimpleDraweeView
+        android:id="@+id/rowLeaderBoard_simpleDraweeView_userAvatar"
+        android:layout_width="@dimen/dimen_row_leaderBoard_image"
+        android:layout_height="@dimen/dimen_row_leaderBoard_image"
+        app:actualImageScaleType="centerInside"
+        app:placeholderImage="@color/placeholder_fresco"
+        app:placeholderImageScaleType="centerInside"
+        app:failureImage="@drawable/logo"
+        app:failureImageScaleType="centerInside"
+        app:backgroundImage="@color/placeholder_fresco"
+        app:roundAsCircle="true"
+        app:roundingBorderWidth="@dimen/width_rounding_border_userRankSection_avatar"
+        app:roundingBorderColor="@color/border_avatar" />
 
 </LinearLayout>

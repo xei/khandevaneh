@@ -39,9 +39,10 @@ public class LeaderBoardAdapter extends RecyclerView.Adapter<LeaderBoardAdapter.
 
     @Override
     public void onBindViewHolder(LeaderBoardViewHolder holder, int position) {
-        setBackgroundColor(holder.rowView.getContext(), holder.rowView, position);
+//        setBackgroundColor(holder.rowView.getContext(), holder.rowView, position);
         LeaderViewModel leader = mLeaders.get(position);
-        holder.userName.setText(leader.getName());
+        // TODO: replace position with leader rank
+        holder.userName.setText(HelperFunctions.convertNumberStringToPersian(String.valueOf(position + 1)) + ". " + leader.getName());
         FrescoHelper.setImageUrl(holder.userAvatar, leader.getAvatar());
         holder.experienceLevel.setText(HelperFunctions.convertNumberStringToPersian(leader.getExperience()));
     }

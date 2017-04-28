@@ -19,6 +19,7 @@
     <color name="textColor_toolbar_score">#fff</color>
 
     <color name="textColor_LightText">#fff</color>
+    <color name="textColor_dark">#1b5e20</color>
 
     <color name="placeholder_fresco">#848080</color>
 
@@ -31,7 +32,11 @@
     <!-- LeaderBoardActivity -->
     <color name="background_leader_board">#004529</color>
     <color name="border_avatar">#fff</color>
+    <color name="textColor_userRankSection_experience">#F0CE0D</color>
     <color name="shadow_userRankSection_text">#bc000000</color>
+    <color name="background_leaderboard_row">#fff</color>
+    <color name="startColor_gradient_blur">#ff004529</color>
+    <color name="endColor_gradient_blur">#00004529</color>
 
     <!-- StoreActivity -->
     <color name="background_userMelonSection">@color/materialGreen500</color>

@@ -1,104 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<LinearLayout
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     android:background="@color/background_leader_board"
     tools:context="ir.tvnasim.khandevaneh.leaderboard.LeaderBoardActivity" >
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/height_banner"
-        android:background="#ff0000" />
-
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/height_userRankSection"
-        android:layout_margin="@dimen/margin_userRankSection"
-        android:padding="@dimen/padding_userRankSection"
-        android:background="@drawable/background_rounded_corner" >
-
-        <com.facebook.drawee.view.SimpleDraweeView
-            android:id="@+id/activityLeaderboard_simpleDraweeView_userAvatar"
-            android:layout_width="@dimen/dimen_userRankSection_userAvatar"
-            android:layout_height="@dimen/dimen_userRankSection_userAvatar"
-            android:layout_alignParentLeft="true"
-            app:actualImageScaleType="centerInside"
-            app:placeholderImage="@color/placeholder_fresco"
-            app:placeholderImageScaleType="centerInside"
-            app:failureImage="@drawable/logo"
-            app:failureImageScaleType="centerInside"
-            app:backgroundImage="@color/placeholder_fresco"
-            app:roundedCornerRadius="@dimen/radius_rounded_corner_userRankSection_avatar"
-            app:roundingBorderWidth="@dimen/width_rounding_border_userRankSection_avatar"
-            app:roundingBorderColor="@color/border_avatar"/>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical"
-            android:layout_toRightOf="@+id/activityLeaderboard_simpleDraweeView_userAvatar"
-            android:weightSum="2" >
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:orientation="horizontal"
-                android:gravity="center" >
-
-                <ImageView
-                    android:id="@+id/layoutToolbarScore_imageView_icon"
-                    android:layout_width="@dimen/dimen_toolbar_score"
-                    android:layout_height="@dimen/dimen_toolbar_score"
-                    android:src="@drawable/ic_toolbar_home_experience" />
-
-                <ir.tvnasim.khandevaneh.view.XeiTextView
-                    android:id="@+id/activityLeaderboard_textView_userExperience"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/space_userRankSection_userExperience"
-                    android:gravity="center"
-                    android:textSize="@dimen/textSize_userRankSection"
-                    android:textStyle="bold"
-                    android:textColor="@color/textColor_LightText"
-                    android:shadowColor="@color/shadow_userRankSection_text"
-                    android:shadowDx="2"
-                    android:shadowDy="2"
-                    android:shadowRadius="4"
-                    app:locale="fa_IR"
-                    app:style="bold"/>
-
-            </LinearLayout>
-
-            <ir.tvnasim.khandevaneh.view.XeiTextView
-                android:id="@+id/activityLeaderboard_textView_userName"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:textSize="@dimen/textSize_userRankSection"
-                android:textStyle="bold"
-                android:textColor="@color/textColor_LightText"
-                android:shadowColor="@color/shadow_userRankSection_text"
-                android:shadowDx="2"
-                android:shadowDy="2"
-                android:shadowRadius="4"
-                app:locale="fa_IR"
-                app:style="bold" />
-
-        </LinearLayout>
-
-    </RelativeLayout>
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/activityLeaderboard_recyclerView_leaders"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_marginBottom="@dimen/height_userRankSection"
         android:overScrollMode="never" />
 
-</LinearLayout>
+    <RelativeLayout
+        android:id="@+id/activityLeaderboard_relativeLayout_userExperience"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/height_userRankSection_with_blur"
+        android:layout_alignParentBottom="true" >
+        <include layout="@layout/layout_leaderboard_user" />
+    </RelativeLayout>
+
+</RelativeLayout>

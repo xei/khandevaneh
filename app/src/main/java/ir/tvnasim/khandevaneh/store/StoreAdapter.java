@@ -48,11 +48,20 @@ public class StoreAdapter extends RecyclerView.Adapter<StoreAdapter.ItemViewHold
         SimpleDraweeView image;
         XeiTextView title;
 
-        public ItemViewHolder(View itemView) {
+        public ItemViewHolder(final View itemView) {
             super(itemView);
 
             image = (SimpleDraweeView) itemView.findViewById(R.id.rowStore_simpleDraweeView_image);
             title = (XeiTextView) itemView.findViewById(R.id.rowStore_xeiTextView_title);
+
+            itemView.post(new Runnable() {
+                @Override
+                public void run() {
+                    ViewGroup.LayoutParams lp = itemView.getLayoutParams();
+                    lp.height = itemView.getWidth();
+                    itemView.setLayoutParams(lp);
+                }
+            });
         }
 
     }

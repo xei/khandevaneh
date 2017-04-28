@@ -19,7 +19,7 @@
     <dimen name="textSize_toolbar_score">17sp</dimen>
 
     <!-- HomeActivity -->
-    <dimen name="height_slider">160dp</dimen>
+    <dimen name="height_slider">0dp</dimen>
     <dimen name="margin_slider">4dp</dimen>
     <dimen name="radius_rounded_corner_slider">8dp</dimen>
     <dimen name="width_border_Home_menuItems">2dp</dimen>
@@ -49,7 +49,7 @@
     <dimen name="textSize_userMelonsSection_melon">30sp</dimen>
     <dimen name="marginLeft_userMelonSection_melonLabel">32dp</dimen>
     <dimen name="textSize_userMelonsSection_melonLabel">25sp</dimen>
-    <dimen name="dimen_row_item">160dp</dimen>
+    <dimen name="dimen_row_item">0dp</dimen>
     <dimen name="margin_row_item">8dp</dimen>
     <dimen name="height_storeActivity_row_image">112dp</dimen>
     <dimen name="height_storeActivity_row_title">48dp</dimen>

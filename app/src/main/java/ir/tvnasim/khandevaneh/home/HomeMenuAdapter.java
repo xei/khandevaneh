@@ -159,10 +159,19 @@ public class HomeMenuAdapter extends RecyclerView.Adapter implements View.OnClic
 
         SliderView sliderView;
 
-        public HomeSliderViewHolder(View itemView) {
+        public HomeSliderViewHolder(final View itemView) {
             super(itemView);
 
             sliderView = (SliderView) itemView.findViewById(R.id.rowMenuHomeSlider_sliderView_slider);
+
+            itemView.post(new Runnable() {
+                @Override
+                public void run() {
+                    ViewGroup.LayoutParams lp = itemView.getLayoutParams();
+                    lp.height = itemView.getWidth() / 2;
+                    itemView.setLayoutParams(lp);
+                }
+            });
         }
     }
 
@@ -176,6 +185,16 @@ public class HomeMenuAdapter extends RecyclerView.Adapter implements View.OnClic
 
             this.itemView = itemView;
             backgroundImage = (ImageView) itemView.findViewById(R.id.rowMenuHome_imageView_image);
+
+            itemView.post(new Runnable() {
+                @Override
+                public void run() {
+                    ViewGroup.LayoutParams lp = itemView.getLayoutParams();
+                    lp.height = itemView.getWidth();
+                    itemView.setLayoutParams(lp);
+                }
+            });
+
         }
     }
 

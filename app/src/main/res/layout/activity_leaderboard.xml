@@ -7,12 +7,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="@color/background_leader_board"
     tools:context="ir.tvnasim.khandevaneh.leaderboard.LeaderBoardActivity" >
 
     <View
         android:layout_width="match_parent"
         android:layout_height="@dimen/height_banner"
-        android:background="#e9cc15" />
+        android:background="#ff0000" />
 
     <RelativeLayout
         android:layout_width="match_parent"

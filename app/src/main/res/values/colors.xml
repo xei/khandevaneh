@@ -29,6 +29,7 @@
     <color name="border_home_menu_items">#1b5e20</color>
 
     <!-- LeaderBoardActivity -->
+    <color name="background_leader_board">#004529</color>
     <color name="border_avatar">#fff</color>
     <color name="shadow_userRankSection_text">#bc000000</color>
 

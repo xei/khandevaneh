@@ -32,7 +32,7 @@
             android:padding="@dimen/padding_toolbar_action"
             android:background="?attr/selectableItemBackgroundBorderless"
             android:scaleType="centerInside"
-            android:src="@drawable/ic_toolbar_home_profile" />
+            android:src="@drawable/ic_toolbar_profile_dark" />
 
         <LinearLayout
             android:id="@+id/toolbarHome_linearLayout_scoreSection"
@@ -46,7 +46,7 @@
 
             <include
                 android:id="@+id/toolbarHome_linearLayout_experience"
-                layout="@layout/layout_toolbar_score" />
+                layout="@layout/layout_toolbar_score_dark" />
 
             <View
                 android:layout_width="@dimen/space_toolbar_score"
@@ -54,7 +54,7 @@
 
             <include
                 android:id="@+id/toolbarHome_linearLayout_melon"
-                layout="@layout/layout_toolbar_score" />
+                layout="@layout/layout_toolbar_score_dark" />
 
         </LinearLayout>
 

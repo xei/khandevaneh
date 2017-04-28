@@ -44,6 +44,11 @@ public class LeaderBoardActivity extends BaseActivity {
         initRecyclerView();
     }
 
+    @Override
+    public int getToolbarViewId() {
+        return R.layout.toolbar_leaderboard;
+    }
+
     private void findViews() {
         mUserNameTextView = (TextView) findViewById(R.id.activityLeaderboard_textView_userName);
         mUserAvatarSimpleDraweeView = (SimpleDraweeView) findViewById(R.id.activityLeaderboard_simpleDraweeView_userAvatar);

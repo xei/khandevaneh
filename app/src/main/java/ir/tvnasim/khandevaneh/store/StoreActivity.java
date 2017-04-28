@@ -38,6 +38,11 @@ public class StoreActivity extends BaseActivity {
         initRecyclerView();
     }
 
+    @Override
+    public int getToolbarViewId() {
+        return R.layout.toolbar_store;
+    }
+
     private void findViews() {
         mMelonTextView = (TextView) findViewById(R.id.activityStore_textView_melon);
         mItemsRecyclerView = (RecyclerView) findViewById(R.id.activityStore_recyclerView_items);

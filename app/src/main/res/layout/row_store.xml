@@ -1,19 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<LinearLayout
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="@dimen/dimen_row_item"
     android:layout_margin="@dimen/margin_row_item"
     android:layout_gravity="center"
-    android:background="@drawable/background_store_item" >
+    android:background="@drawable/background_store_item"
+    android:foreground="?attr/selectableItemBackgroundBorderless" >
 
     <com.facebook.drawee.view.SimpleDraweeView
         android:id="@+id/rowStore_simpleDraweeView_image"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/height_storeActivity_row_image"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/rowStore_xeiTextView_title"
         app:actualImageScaleType="centerInside"
         app:failureImage="@drawable/logo"
         app:failureImageScaleType="centerInside" />
@@ -22,6 +23,7 @@
         android:id="@+id/rowStore_xeiTextView_title"
         android:layout_width="match_parent"
         android:layout_height="@dimen/height_storeActivity_row_title"
+        android:layout_alignParentBottom="true"
         android:gravity="center"
         android:textSize="@dimen/textSize_toolbar_score"
         android:textStyle="bold"
@@ -29,4 +31,4 @@
         app:locale="fa_IR"
         app:style="bold" />
 
-</LinearLayout>
+</RelativeLayout>

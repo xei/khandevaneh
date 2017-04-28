@@ -16,6 +16,7 @@ import ir.tvnasim.khandevaneh.account.LoginActivity;
 import ir.tvnasim.khandevaneh.account.ProfileActivity;
 import ir.tvnasim.khandevaneh.account.User;
 import ir.tvnasim.khandevaneh.helper.HelperFunctions;
+import ir.tvnasim.khandevaneh.helper.LogHelper;
 import ir.tvnasim.khandevaneh.leaderboard.LeaderBoardActivity;
 import ir.tvnasim.khandevaneh.store.StoreActivity;
 
@@ -33,6 +34,7 @@ public class BaseActivity extends AppCompatActivity implements View.OnClickListe
     private TextView mMelonScoreTextView;
     private LinearLayout mExperienceScoreLinearLayout;
     private TextView mExperienceScoreTextView;
+    private ImageButton mUpImageButton;
 
 
     @Override
@@ -48,7 +50,12 @@ public class BaseActivity extends AppCompatActivity implements View.OnClickListe
         toolbarViewStub.inflate();
 
         findViews();
-        setOnClickListeners();
+
+        try {
+            setOnClickListeners();
+        } catch (NullPointerException npe) {
+            LogHelper.logInfo(TAG_DEBUG, "some views not find");
+        }
 
     }
 
@@ -64,6 +71,7 @@ public class BaseActivity extends AppCompatActivity implements View.OnClickListe
         mMelonScoreTextView = (TextView) mMelonScoreLinearLayout.findViewById(R.id.layoutToolbarScore_textView_score);
         mExperienceScoreLinearLayout = (LinearLayout) toolbar.findViewById(R.id.toolbarHome_linearLayout_experience);
         mExperienceScoreTextView = (TextView) mExperienceScoreLinearLayout.findViewById(R.id.layoutToolbarScore_textView_score);
+        mUpImageButton = (ImageButton) findViewById(R.id.toolbarHome_imageButton_up);
 
         ImageView melonScoreImageView = (ImageView) toolbar.findViewById(R.id.toolbarHome_linearLayout_melon).findViewById(R.id.layoutToolbarScore_imageView_icon);
         melonScoreImageView.setImageResource(R.drawable.ic_toolbar_home_melon);
@@ -79,10 +87,11 @@ public class BaseActivity extends AppCompatActivity implements View.OnClickListe
         showScoresForLoggedInUses();
     }
 
-    private void setOnClickListeners() {
+    private void setOnClickListeners() throws NullPointerException{
         mProfileImageButton.setOnClickListener(this);
         mMelonScoreLinearLayout.setOnClickListener(this);
         mExperienceScoreLinearLayout.setOnClickListener(this);
+        mUpImageButton.setOnClickListener(this);
     }
 
     public void showScoresForLoggedInUses() {
@@ -129,6 +138,7 @@ public class BaseActivity extends AppCompatActivity implements View.OnClickListe
                     });
                 }
                 break;
+
             case R.id.toolbarHome_linearLayout_experience:
                 if (!(this instanceof LeaderBoardActivity)) {
                     User.getInstance().isLoggedIn(new User.IsLoggedInListener() {
@@ -142,6 +152,10 @@ public class BaseActivity extends AppCompatActivity implements View.OnClickListe
                         }
                     });
                 }
+                break;
+
+            case R.id.toolbarHome_imageButton_up:
+                finish();
                 break;
         }
     }

@@ -6,6 +6,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/background_store"
     tools:context="ir.tvnasim.khandevaneh.store.StoreActivity" >
 
     <RelativeLayout
@@ -26,7 +27,7 @@
             <ImageView
                 android:layout_width="@dimen/dimen_melon_image"
                 android:layout_height="@dimen/dimen_melon_image"
-                android:src="@drawable/ic_toolbar_home_melon" />
+                android:src="@drawable/ic_store_melon" />
 
             <ir.tvnasim.khandevaneh.view.XeiTextView
                 android:id="@+id/activityStore_textView_melon"

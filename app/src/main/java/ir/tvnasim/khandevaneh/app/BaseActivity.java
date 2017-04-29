@@ -49,12 +49,8 @@ public class BaseActivity extends AppCompatActivity implements View.OnClickListe
         toolbarViewStub.setLayoutResource(getToolbarViewId());
         toolbarViewStub.inflate();
 
-        try {
-            findViews();
-            setOnClickListeners();
-        } catch (NullPointerException npe) {
-            LogHelper.logInfo(TAG_DEBUG, "some views not find");
-        }
+        findViews();
+        setOnClickListeners();
 
     }
 
@@ -62,21 +58,38 @@ public class BaseActivity extends AppCompatActivity implements View.OnClickListe
         return R.layout.toolbar_default;
     }
 
-    private void findViews() throws NullPointerException {
+    private void findViews() {
 
         RelativeLayout toolbar = (RelativeLayout) findViewById(R.id.activityBase_toolbar);
-        mProfileImageButton = (ImageButton) toolbar.findViewById(R.id.toolbarHome_imageButton_profile);
-        mScoreSectionLinearLayout = (LinearLayout) toolbar.findViewById(R.id.toolbarHome_linearLayout_scoreSection);
-        mMelonScoreLinearLayout = (LinearLayout) toolbar.findViewById(R.id.toolbarHome_linearLayout_melon);
-        mMelonScoreTextView = (TextView) mMelonScoreLinearLayout.findViewById(R.id.layoutToolbarScore_textView_score);
-        mExperienceScoreLinearLayout = (LinearLayout) toolbar.findViewById(R.id.toolbarHome_linearLayout_experience);
-        mExperienceScoreTextView = (TextView) mExperienceScoreLinearLayout.findViewById(R.id.layoutToolbarScore_textView_score);
+        try {
+            mProfileImageButton = (ImageButton) toolbar.findViewById(R.id.toolbarHome_imageButton_profile);
+            mScoreSectionLinearLayout = (LinearLayout) toolbar.findViewById(R.id.toolbarHome_linearLayout_scoreSection);
+            mMelonScoreLinearLayout = (LinearLayout) toolbar.findViewById(R.id.toolbarHome_linearLayout_melon);
+            mExperienceScoreLinearLayout = (LinearLayout) toolbar.findViewById(R.id.toolbarHome_linearLayout_experience);
+        } catch (NullPointerException npe) {
+            LogHelper.logInfo(TAG_DEBUG, "some views not exist.");
+        }
+        try {
+            mMelonScoreTextView = (TextView) mMelonScoreLinearLayout.findViewById(R.id.layoutToolbarScore_textView_score);
+        } catch (NullPointerException npe) {
+            LogHelper.logInfo(TAG_DEBUG, "some views not exist.");
+        }
+        try {
+            mExperienceScoreTextView = (TextView) mExperienceScoreLinearLayout.findViewById(R.id.layoutToolbarScore_textView_score);
+        } catch (NullPointerException npe) {
+            LogHelper.logInfo(TAG_DEBUG, "some views not exist.");
+        }
         mUpImageButton = (ImageButton) findViewById(R.id.toolbarHome_imageButton_up);
 
-        ImageView melonScoreImageView = (ImageView) toolbar.findViewById(R.id.toolbarHome_linearLayout_melon).findViewById(R.id.layoutToolbarScore_imageView_icon);
-        melonScoreImageView.setImageResource(R.drawable.ic_toolbar_home_melon);
-        ImageView experienceScoreImageView = (ImageView) toolbar.findViewById(R.id.toolbarHome_linearLayout_experience).findViewById(R.id.layoutToolbarScore_imageView_icon);
-        experienceScoreImageView.setImageResource(R.drawable.ic_toolbar_home_experience);
+        try {
+            ImageView melonScoreImageView = (ImageView) toolbar.findViewById(R.id.toolbarHome_linearLayout_melon).findViewById(R.id.layoutToolbarScore_imageView_icon);
+            melonScoreImageView.setImageResource(R.drawable.ic_toolbar_home_melon);
+            ImageView experienceScoreImageView = (ImageView) toolbar.findViewById(R.id.toolbarHome_linearLayout_experience).findViewById(R.id.layoutToolbarScore_imageView_icon);
+            experienceScoreImageView.setImageResource(R.drawable.ic_toolbar_home_experience);
+        } catch (NullPointerException npe) {
+            LogHelper.logInfo(TAG_DEBUG, "some views not exist.");
+        }
+
 
     }
 
@@ -87,11 +100,24 @@ public class BaseActivity extends AppCompatActivity implements View.OnClickListe
         showScoresForLoggedInUses();
     }
 
-    private void setOnClickListeners() throws NullPointerException{
-        mProfileImageButton.setOnClickListener(this);
-        mMelonScoreLinearLayout.setOnClickListener(this);
-        mExperienceScoreLinearLayout.setOnClickListener(this);
-        mUpImageButton.setOnClickListener(this);
+    private void setOnClickListeners(){
+
+        if (mProfileImageButton != null) {
+            mProfileImageButton.setOnClickListener(this);
+        }
+
+        if (mMelonScoreLinearLayout != null) {
+            mMelonScoreLinearLayout.setOnClickListener(this);
+        }
+
+        if (mExperienceScoreLinearLayout != null) {
+            mExperienceScoreLinearLayout.setOnClickListener(this);
+        }
+
+        if (mUpImageButton != null) {
+            mUpImageButton.setOnClickListener(this);
+        }
+
     }
 
     public void showScoresForLoggedInUses() {

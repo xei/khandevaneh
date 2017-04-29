@@ -50,7 +50,7 @@ public class LeaderBoardActivity extends BaseActivity {
     }
 
     private void findViews() {
-        mUserNameTextView = (TextView) findViewById(R.id.activityLeaderboard_textView_userName);
+        mUserNameTextView = (TextView) findViewById(R.id.layoutLeaderboardUser_textView_userName);
         mUserAvatarSimpleDraweeView = (SimpleDraweeView) findViewById(R.id.layoutLeaderboardUser_simpleDraweeView_userAvatar);
         mUserExperienceTextView = (TextView) findViewById(R.id.activityLeaderboard_textView_userExperience);
         mLeaderBoardRecyclerView = (RecyclerView) findViewById(R.id.activityLeaderboard_recyclerView_leaders);

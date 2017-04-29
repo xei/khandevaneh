@@ -5,8 +5,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical"
-    >
+    android:orientation="vertical">
 
     <View
         android:layout_width="match_parent"
@@ -19,35 +18,34 @@
         android:background="@color/background_leader_board" >
 
         <RelativeLayout
-
-            android:orientation="vertical"
             android:layout_width="352dp"
             android:layout_height="@dimen/height_userRankSection"
             android:layout_alignParentLeft="true"
-            android:background="@color/background_leader_board">
-
-
+            android:background="@color/background_leader_board"
+            android:orientation="vertical" >
 
             <LinearLayout
                 android:layout_width="287dp"
                 android:layout_height="80dp"
                 android:layout_centerVertical="true"
-                android:background="#fff">
+                android:orientation="vertical"
+                android:gravity="center_vertical"
+                android:background="#fff" >
 
                 <ir.tvnasim.khandevaneh.view.XeiTextView
-                    android:id="@+id/activityLeaderboard_textView_userName"
+                    android:id="@+id/layoutLeaderboardUser_textView_userName"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:paddingRight="73dp"
                     android:gravity="right|center_vertical"
-                    android:textSize="@dimen/textSize_userRankSection"
-                    android:textStyle="bold"
-                    android:textColor="@color/textColor_dark"
+                    android:paddingRight="73dp"
                     android:shadowColor="@color/shadow_userRankSection_text"
                     android:shadowDx="2"
                     android:shadowDy="2"
                     android:shadowRadius="4"
+                    android:textColor="@color/textColor_dark"
+                    android:textSize="@dimen/textSize_userRankSection"
+                    android:textStyle="bold"
                     app:locale="fa_IR"
                     app:style="bold" />
 
@@ -57,12 +55,12 @@
                 android:layout_width="wrap_content"
                 android:layout_height="48dp"
                 android:layout_centerVertical="true"
-                android:paddingLeft="8dp"
-                android:paddingRight="16dp"
                 android:layout_weight="1"
-                android:orientation="horizontal"
+                android:background="@drawable/background_experience_leaderboard"
                 android:gravity="center"
-                android:background="@drawable/background_experience_leaderboard" >
+                android:orientation="horizontal"
+                android:paddingLeft="8dp"
+                android:paddingRight="16dp" >
 
                 <ImageView
                     android:id="@+id/layoutToolbarScore_imageView_icon"
@@ -76,17 +74,17 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/space_userRankSection_userExperience"
-                    android:paddingTop="4dp"
                     android:gravity="bottom"
-                    android:textSize="@dimen/textSize_userRankSection"
-                    android:textStyle="bold"
-                    android:textColor="@color/textColor_userRankSection_experience"
+                    android:paddingTop="4dp"
                     android:shadowColor="@color/shadow_userRankSection_text"
                     android:shadowDx="2"
                     android:shadowDy="2"
                     android:shadowRadius="4"
+                    android:textColor="@color/textColor_userRankSection_experience"
+                    android:textSize="@dimen/textSize_userRankSection"
+                    android:textStyle="bold"
                     app:locale="fa_IR"
-                    app:style="bold"/>
+                    app:style="bold" />
 
             </LinearLayout>
 
@@ -96,20 +94,18 @@
                 android:layout_height="@dimen/dimen_userRankSection_userAvatar"
                 android:layout_alignParentRight="true"
                 app:actualImageScaleType="centerInside"
-                app:placeholderImage="@color/placeholder_fresco"
-                app:placeholderImageScaleType="centerInside"
+                app:backgroundImage="@color/placeholder_fresco"
                 app:failureImage="@drawable/logo"
                 app:failureImageScaleType="centerInside"
-                app:backgroundImage="@color/placeholder_fresco"
+                app:placeholderImage="@color/placeholder_fresco"
+                app:placeholderImageScaleType="centerInside"
                 app:roundAsCircle="true"
-                app:roundingBorderWidth="@dimen/width_rounding_border_userRankSection_avatar"
-                app:roundingBorderColor="@color/border_avatar"/>
+                app:roundingBorderColor="@color/border_avatar"
+                app:roundingBorderWidth="@dimen/width_rounding_border_userRankSection_avatar" />
 
         </RelativeLayout>
 
     </RelativeLayout>
 
-
-
-    </LinearLayout>
+</LinearLayout>
 

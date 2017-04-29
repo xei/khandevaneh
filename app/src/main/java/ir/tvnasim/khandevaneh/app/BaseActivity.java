@@ -121,7 +121,16 @@ public class BaseActivity extends AppCompatActivity implements View.OnClickListe
         switch (clickedView.getId()) {
             case R.id.toolbarHome_imageButton_profile:
                 if (!(this instanceof ProfileActivity)) {
-                    ProfileActivity.start(this);
+                    User.getInstance().isLoggedIn(new User.IsLoggedInListener() {
+                        @Override
+                        public void isLoggedIn(boolean isLoggedIn) {
+                            if (isLoggedIn) {
+                                ProfileActivity.start(BaseActivity.this);
+                            } else {
+                                LoginActivity.start(BaseActivity.this);
+                            }
+                        }
+                    });
                 }
                 break;
             case R.id.toolbarHome_linearLayout_melon:

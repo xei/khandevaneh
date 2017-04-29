@@ -12,6 +12,10 @@ import android.widget.Toast;
 import java.util.ArrayList;
 
 import ir.tvnasim.khandevaneh.R;
+import ir.tvnasim.khandevaneh.account.LoginActivity;
+import ir.tvnasim.khandevaneh.account.ProfileActivity;
+import ir.tvnasim.khandevaneh.account.User;
+import ir.tvnasim.khandevaneh.app.BaseActivity;
 import ir.tvnasim.khandevaneh.archive.ArchiveActivity;
 import ir.tvnasim.khandevaneh.helper.LogHelper;
 import ir.tvnasim.khandevaneh.livelike.LiveLikeActivity;
@@ -128,33 +132,43 @@ public class HomeMenuAdapter extends RecyclerView.Adapter implements View.OnClic
     }
 
     @Override
-    public void onClick(View clickedView) {
-        String id = (String) clickedView.getTag();
-        Context context = clickedView.getContext();
-        switch (id) {
-            case HomeMenuItem.ID_LIVE_LIKE:
-                LiveLikeActivity.start(context);
-                break;
-            case HomeMenuItem.ID_ARCHIVE:
-                Toast.makeText(context, context.getString(R.string.inform_notImplemented), Toast.LENGTH_SHORT).show();
-//                ArchiveActivity.start(context);
-                break;
-            case HomeMenuItem.ID_POLLING:
-                PollingActivity.start(context);
-                break;
-            case HomeMenuItem.ID_COMPETITION:
-                PollingActivity.start(context);
-                break;
-            case HomeMenuItem.ID_CAMPAIGN:
-                Toast.makeText(context, context.getString(R.string.inform_notImplemented), Toast.LENGTH_SHORT).show();
-                break;
-            case HomeMenuItem.ID_AWARDS:
-                Toast.makeText(context, context.getString(R.string.inform_notImplemented), Toast.LENGTH_SHORT).show();
-                break;
-            default:
-                LogHelper.logError(TAG_DEBUG, "invalid item id!");
+    public void onClick(final View clickedView) {
 
-        }
+        User.getInstance().isLoggedIn(new User.IsLoggedInListener() {
+            @Override
+            public void isLoggedIn(boolean isLoggedIn) {
+                if (isLoggedIn) {
+                    String id = (String) clickedView.getTag();
+                    Context context = clickedView.getContext();
+                    switch (id) {
+                        case HomeMenuItem.ID_LIVE_LIKE:
+                            LiveLikeActivity.start(context);
+                            break;
+                        case HomeMenuItem.ID_ARCHIVE:
+                            Toast.makeText(context, context.getString(R.string.inform_notImplemented), Toast.LENGTH_SHORT).show();
+//                ArchiveActivity.start(context);
+                            break;
+                        case HomeMenuItem.ID_POLLING:
+                            PollingActivity.start(context);
+                            break;
+                        case HomeMenuItem.ID_COMPETITION:
+                            PollingActivity.start(context);
+                            break;
+                        case HomeMenuItem.ID_CAMPAIGN:
+                            Toast.makeText(context, context.getString(R.string.inform_notImplemented), Toast.LENGTH_SHORT).show();
+                            break;
+                        case HomeMenuItem.ID_AWARDS:
+                            Toast.makeText(context, context.getString(R.string.inform_notImplemented), Toast.LENGTH_SHORT).show();
+                            break;
+                        default:
+                            LogHelper.logError(TAG_DEBUG, "invalid item id!");
+                    }
+                } else {
+                    LoginActivity.start(clickedView.getContext());
+                }
+            }
+        });
+
     }
 
     class HomeSliderViewHolder extends RecyclerView.ViewHolder {

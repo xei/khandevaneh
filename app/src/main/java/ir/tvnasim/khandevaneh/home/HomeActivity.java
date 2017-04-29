@@ -3,22 +3,21 @@ package ir.tvnasim.khandevaneh.home;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
-import android.view.ViewStub;
 import android.widget.Toast;
 
 import java.util.ArrayList;
 
 import ir.tvnasim.khandevaneh.R;
 import ir.tvnasim.khandevaneh.account.AuthHelper;
+import ir.tvnasim.khandevaneh.account.LoginActivity;
+import ir.tvnasim.khandevaneh.account.ProfileActivity;
 import ir.tvnasim.khandevaneh.account.User;
 import ir.tvnasim.khandevaneh.app.BaseActivity;
 import ir.tvnasim.khandevaneh.helper.SharedPreferencesHelper;
 import ir.tvnasim.khandevaneh.view.bannerslider.BannerFragment;
 import ir.tvnasim.khandevaneh.view.bannerslider.OnBannerClickedListener;
-import ir.tvnasim.khandevaneh.view.bannerslider.SliderView;
 
 public class HomeActivity extends BaseActivity implements OnBannerClickedListener {
 
@@ -35,7 +34,7 @@ public class HomeActivity extends BaseActivity implements OnBannerClickedListene
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
-        autoLogin();
+        authenticate();
 
         findViews();
         initRecyclerView();
@@ -50,9 +49,11 @@ public class HomeActivity extends BaseActivity implements OnBannerClickedListene
         return R.layout.toolbar_home;
     }
 
-    private void autoLogin() {
+    // TODO: think about move this to launch activity
+    private void authenticate() {
         String accessToken = SharedPreferencesHelper.retrieveAccessToken();
         if (accessToken != null && AuthHelper.isTokenValid(accessToken)) {
+            // There exist an access token
             User.getInstance().setAccessToken(accessToken);
             //TODO: get UserInfo
             User.getInstance().setName("علیرضا");
@@ -62,12 +63,15 @@ public class HomeActivity extends BaseActivity implements OnBannerClickedListene
         } else {
             String refreshToken = SharedPreferencesHelper.retrieveRefreshToken();
             if (refreshToken != null) {
-                // We may could get a valid access token
+                // We may could get a valid access token by refresh token
                 // TODO: call auth with refresh token and if ok do the following
                 User.getInstance().setAccessToken("ACCESS-TOKEN");
                 User.getInstance().setRefreshToken("REFRESH-TOKEN");
                 SharedPreferencesHelper.storeAccessToken("ACCESS-TOKEN");
                 SharedPreferencesHelper.storeRefreshToken("REFRESH-TOKEN");
+            } else {
+                // Need to authenticate with phone number.
+                //TODO: if move this method to LauncherActivity then must handle this else and open login screen
             }
         }
     }
@@ -106,8 +110,17 @@ public class HomeActivity extends BaseActivity implements OnBannerClickedListene
     }
 
     @Override
-    public void onBannerClick(Bundle bundle) {
-        Toast.makeText(this, bundle.getString(BannerFragment.KEY_ARG_IMAGE_URL), Toast.LENGTH_SHORT).show();
+    public void onBannerClick(final Bundle bundle) {
+        User.getInstance().isLoggedIn(new User.IsLoggedInListener() {
+            @Override
+            public void isLoggedIn(boolean isLoggedIn) {
+                if (isLoggedIn) {
+                    Toast.makeText(HomeActivity.this, bundle.getString(BannerFragment.KEY_ARG_IMAGE_URL), Toast.LENGTH_SHORT).show();
+                } else {
+                    LoginActivity.start(HomeActivity.this);
+                }
+            }
+        });
     }
 
 }

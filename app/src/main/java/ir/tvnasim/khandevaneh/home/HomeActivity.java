@@ -11,8 +11,7 @@ import java.util.ArrayList;
 
 import ir.tvnasim.khandevaneh.R;
 import ir.tvnasim.khandevaneh.account.AuthHelper;
-import ir.tvnasim.khandevaneh.account.LoginActivity;
-import ir.tvnasim.khandevaneh.account.ProfileActivity;
+import ir.tvnasim.khandevaneh.account.login.LoginActivity;
 import ir.tvnasim.khandevaneh.account.User;
 import ir.tvnasim.khandevaneh.app.BaseActivity;
 import ir.tvnasim.khandevaneh.helper.SharedPreferencesHelper;
@@ -34,7 +33,7 @@ public class HomeActivity extends BaseActivity implements OnBannerClickedListene
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
-        authenticate();
+//        authenticate();
 
         findViews();
         initRecyclerView();

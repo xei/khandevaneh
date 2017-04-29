@@ -12,7 +12,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import ir.tvnasim.khandevaneh.R;
-import ir.tvnasim.khandevaneh.account.LoginActivity;
+import ir.tvnasim.khandevaneh.account.login.LoginActivity;
 import ir.tvnasim.khandevaneh.account.ProfileActivity;
 import ir.tvnasim.khandevaneh.account.User;
 import ir.tvnasim.khandevaneh.helper.HelperFunctions;
@@ -49,9 +49,8 @@ public class BaseActivity extends AppCompatActivity implements View.OnClickListe
         toolbarViewStub.setLayoutResource(getToolbarViewId());
         toolbarViewStub.inflate();
 
-        findViews();
-
         try {
+            findViews();
             setOnClickListeners();
         } catch (NullPointerException npe) {
             LogHelper.logInfo(TAG_DEBUG, "some views not find");
@@ -63,7 +62,8 @@ public class BaseActivity extends AppCompatActivity implements View.OnClickListe
         return R.layout.toolbar_default;
     }
 
-    private void findViews() {
+    private void findViews() throws NullPointerException {
+
         RelativeLayout toolbar = (RelativeLayout) findViewById(R.id.activityBase_toolbar);
         mProfileImageButton = (ImageButton) toolbar.findViewById(R.id.toolbarHome_imageButton_profile);
         mScoreSectionLinearLayout = (LinearLayout) toolbar.findViewById(R.id.toolbarHome_linearLayout_scoreSection);

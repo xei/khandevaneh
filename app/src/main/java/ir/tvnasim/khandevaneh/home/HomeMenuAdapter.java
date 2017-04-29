@@ -12,11 +12,8 @@ import android.widget.Toast;
 import java.util.ArrayList;
 
 import ir.tvnasim.khandevaneh.R;
-import ir.tvnasim.khandevaneh.account.LoginActivity;
-import ir.tvnasim.khandevaneh.account.ProfileActivity;
+import ir.tvnasim.khandevaneh.account.login.LoginActivity;
 import ir.tvnasim.khandevaneh.account.User;
-import ir.tvnasim.khandevaneh.app.BaseActivity;
-import ir.tvnasim.khandevaneh.archive.ArchiveActivity;
 import ir.tvnasim.khandevaneh.helper.LogHelper;
 import ir.tvnasim.khandevaneh.livelike.LiveLikeActivity;
 import ir.tvnasim.khandevaneh.polling.PollingActivity;

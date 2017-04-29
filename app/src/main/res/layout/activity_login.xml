@@ -1,25 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<RelativeLayout
+<ScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="ir.tvnasim.khandevaneh.account.login.LoginActivity">
+    tools:context="ir.tvnasim.khandevaneh.account.login.LoginActivity" >
 
-    <ImageView
-        android:id="@+id/activityLogin_imageView_logo"
-        android:layout_width="297dp"
-        android:layout_height="84dp"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="32dp"
-        android:layout_marginBottom="32dp"
-        android:src="@drawable/login_logo" />
-
-    <FrameLayout
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_below="@+id/activityLogin_imageView_logo" />
+        android:layout_height="match_parent" >
 
-</RelativeLayout>
+        <ImageView
+            android:id="@+id/activityLogin_imageView_logo"
+            android:layout_width="297dp"
+            android:layout_height="84dp"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="32dp"
+            android:layout_marginBottom="32dp"
+            android:src="@drawable/login_logo" />
+
+        <FrameLayout
+            android:id="@+id/activityLogin_frameLayout_fragmentContainer"
+            android:layout_width="300dp"
+            android:layout_height="match_parent"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@+id/activityLogin_imageView_logo" />
+
+    </RelativeLayout>
+
+</ScrollView>

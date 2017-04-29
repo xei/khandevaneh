@@ -39,7 +39,8 @@ public class HomeMenuAdapter extends RecyclerView.Adapter implements View.OnClic
         //Archive
         HomeMenuItem archive = new HomeMenuItem();
         archive.setId(HomeMenuItem.ID_ARCHIVE);
-        archive.setBackgroundImageResourceId(R.drawable.ic_menu_home_archive);
+//        archive.setBackgroundImageResourceId(R.drawable.ic_menu_home_archive);
+        archive.setBackgroundImageResourceId(R.drawable.ic_menu_home_lock);
         menuItems.add(archive);
 
         // Live Like
@@ -135,7 +136,8 @@ public class HomeMenuAdapter extends RecyclerView.Adapter implements View.OnClic
                 LiveLikeActivity.start(context);
                 break;
             case HomeMenuItem.ID_ARCHIVE:
-                ArchiveActivity.start(context);
+                Toast.makeText(context, context.getString(R.string.inform_notImplemented), Toast.LENGTH_SHORT).show();
+//                ArchiveActivity.start(context);
                 break;
             case HomeMenuItem.ID_POLLING:
                 PollingActivity.start(context);

@@ -1,107 +1,92 @@
 package ir.tvnasim.khandevaneh.account.login;
 
 import android.content.Context;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import ir.tvnasim.khandevaneh.R;
+import ir.tvnasim.khandevaneh.view.XeiButton;
+import ir.tvnasim.khandevaneh.view.XeiEditText;
 
-/**
- * A simple {@link Fragment} subclass.
- * Activities that contain this fragment must implement the
- * {@link PhoneNoFragment.OnFragmentInteractionListener} interface
- * to handle interaction events.
- * Use the {@link PhoneNoFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
-public class PhoneNoFragment extends Fragment {
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
+public class PhoneNoFragment extends Fragment implements View.OnClickListener {
 
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
+    private XeiEditText mPhoneNoEditText;
+    private XeiButton mSendButton;
 
-    private OnFragmentInteractionListener mListener;
+    private OnSendButtonClickListener mSendButtonClickListener;
 
     public PhoneNoFragment() {
         // Required empty public constructor
     }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-//     * @param param1 Parameter 1.
-//     * @param param2 Parameter 2.
-     * @return A new instance of fragment PhoneNoFragment.
-     */
-    // TODO: Rename and change types and number of parameters
     public static PhoneNoFragment newInstance() {
         PhoneNoFragment fragment = new PhoneNoFragment();
-        Bundle args = new Bundle();
-        fragment.setArguments(args);
         return fragment;
     }
 
     @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.fragment_phone_no, container, false);
+
+        findViews(view);
+        setOnClickListeners();
+
+        return view;
     }
 
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_phone_no, container, false);
+    private void findViews(View rootView) {
+        mPhoneNoEditText = (XeiEditText) rootView.findViewById(R.id.fragmentPhoneNo_xeiEditText_phoneNo);
+        mSendButton = (XeiButton) rootView.findViewById(R.id.fragmentPhoneNo_xeiButton_send);
     }
 
-    // TODO: Rename method, update argument and hook method into UI event
-    public void onButtonPressed(Uri uri) {
-        if (mListener != null) {
-            mListener.onFragmentInteraction(uri);
+    private void setOnClickListeners() {
+        mPhoneNoEditText.setOnClickListener(this);
+        mSendButton.setOnClickListener(this);
+    }
+
+    public void onSendButtonPressed(String phoneNo) {
+        if (phoneNo == null || phoneNo.isEmpty()) {
+            Toast.makeText(getContext(), "لطفا شماره موبایل خود را وارد کنید!", Toast.LENGTH_SHORT).show();
+        } else if (phoneNo.trim().length() != 11) {
+            Toast.makeText(getContext(), "شماره وارد شده نامعتبر است!", Toast.LENGTH_SHORT).show();
+        } else if (mSendButtonClickListener != null) {
+            mSendButtonClickListener.onSendPhoneNoButtonClick(phoneNo);
         }
     }
 
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-        if (context instanceof OnFragmentInteractionListener) {
-            mListener = (OnFragmentInteractionListener) context;
+
+        if (context instanceof OnSendButtonClickListener) {
+            mSendButtonClickListener = (OnSendButtonClickListener) context;
         } else {
-            throw new RuntimeException(context.toString()
-                    + " must implement OnFragmentInteractionListener");
+            throw new RuntimeException(context.toString() + " must implement OnFragmentInteractionListener");
         }
     }
 
     @Override
     public void onDetach() {
         super.onDetach();
-        mListener = null;
+        mSendButtonClickListener = null;
     }
 
-    /**
-     * This interface must be implemented by activities that contain this
-     * fragment to allow an interaction in this fragment to be communicated
-     * to the activity and potentially other fragments contained in that
-     * activity.
-     * <p>
-     * See the Android Training lesson <a href=
-     * "http://developer.android.com/training/basics/fragments/communicating.html"
-     * >Communicating with Other Fragments</a> for more information.
-     */
-    public interface OnFragmentInteractionListener {
-        // TODO: Update argument type and name
-        void onFragmentInteraction(Uri uri);
+    @Override
+    public void onClick(View clickedView) {
+        switch (clickedView.getId()) {
+            case R.id.fragmentPhoneNo_xeiButton_send:
+                onSendButtonPressed(mPhoneNoEditText.getText().toString());
+                break;
+
+            default:
+        }
+    }
+
+    interface OnSendButtonClickListener {
+        void onSendPhoneNoButtonClick(String phoneNo);
     }
 }

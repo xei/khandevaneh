@@ -4,29 +4,39 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="ir.tvnasim.khandevaneh.account.login.PhoneNoFragment" >
+    tools:context="ir.tvnasim.khandevaneh.account.login.VerificationCodeFragment" >
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical" >
 
-        <ir.tvnasim.khandevaneh.view.XeiEditText
-            android:id="@+id/fragmentPhoneNo_xeiEditText_phoneNo"
+        <ir.tvnasim.khandevaneh.view.XeiTextView
             android:layout_width="match_parent"
             android:layout_height="48dp"
-            android:background="@drawable/background_edittext_phone"
+            android:gravity="center"
+            android:text="کد فعالسازی برای شما پیامک شد..."
+            android:textColor="@color/textColor_dark"
+            app:locale="fa_IR"
+            app:style="bold"
+            />
+
+        <ir.tvnasim.khandevaneh.view.XeiEditText
+            android:id="@+id/fragmentVerificationCode_xeiEditText_verificationCode"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
             android:layout_marginTop="16dp"
-            android:paddingRight="16dp"
-            android:paddingLeft="16dp"
+            android:background="@drawable/background_edittext_phone"
             android:gravity="right|center_vertical"
-            android:hint="شماره موبایل خود را وارد کنید!"
-            android:textColorHint="@color/textColor_LightText"
+            android:hint="کد فعالسازی را وارد کنید!"
+            android:inputType="phone"
+            android:paddingLeft="16dp"
+            android:paddingRight="16dp"
             android:textColor="@color/textColor_LightText"
-            android:inputType="phone"/>
+            android:textColorHint="@color/textColor_LightText" />
 
         <ir.tvnasim.khandevaneh.view.XeiButton
-            android:id="@+id/fragmentPhoneNo_xeiButton_send"
+            android:id="@+id/fragmentVerificationCode_xeiButton_send"
             android:layout_width="100dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"

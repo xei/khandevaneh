@@ -92,4 +92,5 @@ public class User {
     public interface IsLoggedInListener {
         void isLoggedIn(boolean isLoggedIn);
     }
+
 }

@@ -4,12 +4,30 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#F10E0E"
     tools:context="ir.tvnasim.khandevaneh.app.LaunchActivity">
 
-    <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:src="@drawable/background_splash"
-        android:scaleType="centerCrop" />
+    <LinearLayout
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:orientation="vertical">
+
+        <ImageView
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            android:src="@drawable/logo_splash"
+            android:scaleType="centerInside" />
+
+        <ImageView
+            android:layout_width="200dp"
+            android:layout_height="100dp"
+
+            android:src="@drawable/ic_toolbar_logo"
+            android:scaleType="centerInside" />
+
+    </LinearLayout>
+
+
 
 </RelativeLayout>

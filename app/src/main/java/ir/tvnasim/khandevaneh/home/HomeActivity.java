@@ -55,7 +55,8 @@ public class HomeActivity extends BaseActivity implements OnBannerClickedListene
             // There exist an access token
             User.getInstance().setAccessToken(accessToken);
             //TODO: get UserInfo
-            User.getInstance().setName("علیرضا");
+            User.getInstance().setFirstName("علیرضا");
+            User.getInstance().setLastName("علیرضا");
             User.getInstance().setAvatar("http://img.bisms.ir/2015/06/rambod-javan-2.jpg");
             User.getInstance().setMelonScore(200);
             User.getInstance().setExperienceScore(300);

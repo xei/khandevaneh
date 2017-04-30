@@ -43,7 +43,8 @@ public class LoginActivity extends BaseActivity implements PhoneNoFragment.OnSen
         // TODO: send verification code to api and get auth token (login)
         User.getInstance().setAccessToken("accessToken");
         //TODO: get UserInfo from api with access token
-        User.getInstance().setName("علیرضا");
+        User.getInstance().setFirstName("علیرضا");
+        User.getInstance().setLastName("علیرضا");
         User.getInstance().setAvatar("http://img.bisms.ir/2015/06/rambod-javan-2.jpg");
         User.getInstance().setMelonScore(200);
         User.getInstance().setExperienceScore(300);

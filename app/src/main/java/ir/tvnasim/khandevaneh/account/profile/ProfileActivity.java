@@ -1,13 +1,11 @@
-package ir.tvnasim.khandevaneh.account;
+package ir.tvnasim.khandevaneh.account.profile;
 
 import android.content.Context;
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
 import ir.tvnasim.khandevaneh.R;
 import ir.tvnasim.khandevaneh.app.BaseActivity;
-import ir.tvnasim.khandevaneh.home.HomeActivity;
 
 public class ProfileActivity extends BaseActivity {
 
@@ -20,5 +18,10 @@ public class ProfileActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
+    }
+
+    @Override
+    public int getToolbarViewId() {
+        return R.layout.toolbar_profile;
     }
 }

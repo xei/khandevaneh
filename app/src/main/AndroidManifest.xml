@@ -22,7 +22,7 @@
         </activity>
         <activity android:name=".home.HomeActivity" />
         <activity android:name=".app.UpdateActivity" />
-        <activity android:name=".account.ProfileActivity" />
+        <activity android:name=".account.profile.ProfileActivity" />
         <activity android:name=".account.login.LoginActivity" />
         <activity android:name=".leaderboard.LeaderBoardActivity" />
         <activity android:name=".store.StoreActivity" />

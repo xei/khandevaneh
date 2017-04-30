@@ -13,11 +13,16 @@ public class User {
     private String mAccessToken;
     private String mRefreshToken;
 
-    private String mName;
-    private String mAvatar;
-
     private int mMelonScore = SCORE_NOT_SET;
     private int mExperienceScore = SCORE_NOT_SET;
+
+    private String mFirstName;
+    private String mLastName;
+    private String mAvatar;
+    private String mPhoneNo;
+    private String mEmailAddress;
+    private String mPostalAddress;
+
 
 
     private User() {
@@ -57,22 +62,6 @@ public class User {
         this.mRefreshToken = refreshToken;
     }
 
-    public String getName() {
-        return mName;
-    }
-
-    public void setName(String name) {
-        this.mName = name;
-    }
-
-    public String getAvatar() {
-        return mAvatar;
-    }
-
-    public void setAvatar(String avatar) {
-        this.mAvatar = avatar;
-    }
-
     public int getMelonScore() {
         return mMelonScore;
     }
@@ -87,6 +76,54 @@ public class User {
 
     public void setExperienceScore(int experienceScore) {
         this.mExperienceScore = experienceScore;
+    }
+
+    public String getFirstName() {
+        return mFirstName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.mFirstName = firstName;
+    }
+
+    public String getLastName() {
+        return mLastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.mLastName = lastName;
+    }
+
+    public String getAvatar() {
+        return mAvatar;
+    }
+
+    public void setAvatar(String avatar) {
+        this.mAvatar = avatar;
+    }
+
+    public String getPhoneNo() {
+        return mPhoneNo;
+    }
+
+    public void setPhoneNo(String phoneNo) {
+        this.mPhoneNo = phoneNo;
+    }
+
+    public String getEmailAddress() {
+        return mEmailAddress;
+    }
+
+    public void setEmailAddress(String emailAddress) {
+        this.mEmailAddress = emailAddress;
+    }
+
+    public String getPostalAddress() {
+        return mPostalAddress;
+    }
+
+    public void setPostalAddress(String postalAddress) {
+        this.mPostalAddress = postalAddress;
     }
 
     public interface IsLoggedInListener {

@@ -47,24 +47,25 @@ public class HomeMenuAdapter extends RecyclerView.Adapter implements View.OnClic
         // Live Like
         HomeMenuItem liveLive = new HomeMenuItem();
         liveLive.setId(HomeMenuItem.ID_LIVE_LIKE);
-//        liveLive.setBackgroundImageResourceId(R.drawable.ic_menu_home_livelike);
+        liveLive.setBackgroundImageResourceId(R.drawable.ic_menu_home_livelike);
         menuItems.add(liveLive);
 
         // Polling
         HomeMenuItem  polling = new HomeMenuItem();
         polling.setId(HomeMenuItem.ID_POLLING);
-//        polling.setBackgroundImageResourceId(R.drawable.ic_menu_home_polling);
+        polling.setBackgroundImageResourceId(R.drawable.ic_menu_home_polling);
         menuItems.add(polling);
 
         // Competition
         HomeMenuItem competition = new HomeMenuItem();
         competition.setId(HomeMenuItem.ID_COMPETITION);
-//        competition.setBackgroundImageResourceId(R.drawable.ic_menu_home_competition);
+        competition.setBackgroundImageResourceId(R.drawable.ic_menu_home_competition);
         menuItems.add(competition);
 
         // Awards
         HomeMenuItem awards = new HomeMenuItem();
         awards.setId(HomeMenuItem.ID_AWARDS);
+        awards.setBackgroundImageResourceId(R.drawable.ic_menu_home_lock);
 //        awards.setBackgroundImageResourceId(R.drawable.ic_menu_home_awards);
         menuItems.add(awards);
 

@@ -20,4 +20,10 @@ public class PollingActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_polling);
     }
+
+    @Override
+    public int getToolbarViewId() {
+        return R.layout.toolbar_polling;
+    }
+
 }

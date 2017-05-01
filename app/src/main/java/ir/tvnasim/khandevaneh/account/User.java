@@ -23,6 +23,8 @@ public class User {
     private String mEmailAddress;
     private String mPostalAddress;
 
+    private boolean mIsProfileComplete;
+
 
 
     private User() {
@@ -130,4 +132,11 @@ public class User {
         void isLoggedIn(boolean isLoggedIn);
     }
 
+    public boolean isProfileComplete() {
+        return mIsProfileComplete;
+    }
+
+    public void setIsProfileComplete(boolean isProfileComplete) {
+        this.mIsProfileComplete = isProfileComplete;
+    }
 }

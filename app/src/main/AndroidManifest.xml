@@ -29,6 +29,7 @@
         <activity android:name=".livelike.LiveLikeActivity" />
         <activity android:name=".archive.ArchiveActivity" />
         <activity android:name=".polling.PollingActivity" />
+        <activity android:name=".account.profile.ProfileCompletionActivity"></activity>
     </application>
 
 </manifest>

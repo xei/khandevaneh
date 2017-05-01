@@ -15,6 +15,7 @@ import ir.tvnasim.khandevaneh.R;
 import ir.tvnasim.khandevaneh.account.login.LoginActivity;
 import ir.tvnasim.khandevaneh.account.profile.ProfileActivity;
 import ir.tvnasim.khandevaneh.account.User;
+import ir.tvnasim.khandevaneh.account.profile.ProfileCompletionActivity;
 import ir.tvnasim.khandevaneh.helper.HelperFunctions;
 import ir.tvnasim.khandevaneh.helper.LogHelper;
 import ir.tvnasim.khandevaneh.leaderboard.LeaderBoardActivity;
@@ -146,12 +147,16 @@ public class BaseActivity extends AppCompatActivity implements View.OnClickListe
     public void onClick(View clickedView) {
         switch (clickedView.getId()) {
             case R.id.toolbarHome_imageButton_profile:
-                if (!(this instanceof ProfileActivity)) {
+                if (!(this instanceof ProfileActivity) && !(this instanceof ProfileCompletionActivity)) {
                     User.getInstance().isLoggedIn(new User.IsLoggedInListener() {
                         @Override
                         public void isLoggedIn(boolean isLoggedIn) {
                             if (isLoggedIn) {
-                                ProfileActivity.start(BaseActivity.this);
+                                if (User.getInstance().isProfileComplete()) {
+                                    ProfileActivity.start(BaseActivity.this);
+                                } else {
+                                    ProfileCompletionActivity.start(BaseActivity.this);
+                                }
                             } else {
                                 LoginActivity.start(BaseActivity.this);
                             }

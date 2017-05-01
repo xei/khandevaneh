@@ -53,6 +53,8 @@ public class PhoneNoFragment extends Fragment implements View.OnClickListener {
             Toast.makeText(getContext(), "لطفا شماره موبایل خود را وارد کنید!", Toast.LENGTH_SHORT).show();
         } else if (phoneNo.trim().length() != 11) {
             Toast.makeText(getContext(), "شماره وارد شده نامعتبر است!", Toast.LENGTH_SHORT).show();
+        } else if (!phoneNo.trim().substring(0, 3).equals("091") && !phoneNo.trim().substring(0, 3).equals("099")) {
+            Toast.makeText(getContext(), "برای استفاده از این اپلیکیشن نیاز به سیم‌کارت همراه اول دارید", Toast.LENGTH_SHORT).show();
         } else if (mSendButtonClickListener != null) {
             mSendButtonClickListener.onSendPhoneNoButtonClick(phoneNo);
         }

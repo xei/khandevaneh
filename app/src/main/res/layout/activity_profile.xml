@@ -39,6 +39,7 @@
             android:orientation="horizontal" >
 
             <ir.tvnasim.khandevaneh.view.XeiTextView
+                android:id="@+id/activityProfile_xeiTextView_firstName"
                 android:layout_width="0dp"
                 android:layout_height="48dp"
                 android:layout_weight="1"
@@ -69,6 +70,7 @@
             android:orientation="horizontal" >
 
             <ir.tvnasim.khandevaneh.view.XeiTextView
+                android:id="@+id/activityProfile_xeiTextView_lastName"
                 android:layout_width="0dp"
                 android:layout_height="48dp"
                 android:layout_weight="1"
@@ -99,6 +101,7 @@
             android:orientation="horizontal" >
 
             <ir.tvnasim.khandevaneh.view.XeiTextView
+                android:id="@+id/activityProfile_xeiTextView_phoneNo"
                 android:layout_width="0dp"
                 android:layout_height="48dp"
                 android:layout_weight="1"
@@ -129,6 +132,7 @@
             android:orientation="horizontal" >
 
             <ir.tvnasim.khandevaneh.view.XeiTextView
+                android:id="@+id/activityProfile_xeiTextView_emailAddress"
                 android:layout_width="0dp"
                 android:layout_height="48dp"
                 android:layout_weight="1"
@@ -159,6 +163,7 @@
             android:orientation="horizontal" >
 
             <ir.tvnasim.khandevaneh.view.XeiTextView
+                android:id="@+id/activityProfile_xeiTextView_postalAddress"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -193,6 +198,7 @@
             android:background="#fff"/>
 
         <ir.tvnasim.khandevaneh.view.XeiButton
+            android:id="@+id/activityProfile_xeiButton_editProfile"
             android:layout_width="200dp"
             android:layout_height="48dp"
             android:layout_margin="8dp"
@@ -207,6 +213,7 @@
             app:style="bold"/>
 
         <ir.tvnasim.khandevaneh.view.XeiButton
+            android:id="@+id/activityProfile_xeiButton_subscribe"
             android:layout_width="200dp"
             android:layout_height="48dp"
             android:layout_margin="8dp"
@@ -221,6 +228,7 @@
             app:style="bold"/>
 
         <ir.tvnasim.khandevaneh.view.XeiButton
+            android:id="@+id/activityProfile_xeiButton_participate"
             android:layout_width="200dp"
             android:layout_height="48dp"
             android:layout_margin="8dp"

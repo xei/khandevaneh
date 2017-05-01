@@ -169,11 +169,11 @@ public class HomeMenuAdapter extends RecyclerView.Adapter implements View.OnClic
 
     }
 
-    class HomeSliderViewHolder extends RecyclerView.ViewHolder {
+    private class HomeSliderViewHolder extends RecyclerView.ViewHolder {
 
         SliderView sliderView;
 
-        public HomeSliderViewHolder(final View itemView) {
+        HomeSliderViewHolder(final View itemView) {
             super(itemView);
 
             sliderView = (SliderView) itemView.findViewById(R.id.rowMenuHomeSlider_sliderView_slider);
@@ -189,12 +189,12 @@ public class HomeMenuAdapter extends RecyclerView.Adapter implements View.OnClic
         }
     }
 
-    class HomeMenuItemViewHolder extends RecyclerView.ViewHolder {
+    private class HomeMenuItemViewHolder extends RecyclerView.ViewHolder {
 
         View itemView;
         ImageView backgroundImage;
 
-        public HomeMenuItemViewHolder(final View itemView) {
+        HomeMenuItemViewHolder(final View itemView) {
             super(itemView);
 
             this.itemView = itemView;

@@ -15,7 +15,6 @@ import java.util.ArrayList;
 public class SliderView extends ViewPager {
 
     private SliderAdapter mSliderAdapter;
-    private OnBannerClickedListener mBannerClickedListener;
 
     private ArrayList<Bundle> mBanners = new ArrayList<>();
 
@@ -38,10 +37,6 @@ public class SliderView extends ViewPager {
         mBanners.clear();
         mBanners.addAll(banners);
         mSliderAdapter.notifyDataSetChanged();
-    }
-
-    public void setOnBannerClickListener(OnBannerClickedListener onBannerClickListener) {
-        mSliderAdapter.setOnBannerClickListener(onBannerClickListener);
     }
 
 }

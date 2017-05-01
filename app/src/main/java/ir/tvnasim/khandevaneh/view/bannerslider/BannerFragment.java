@@ -1,6 +1,7 @@
 package ir.tvnasim.khandevaneh.view.bannerslider;
 
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -28,10 +29,9 @@ public class BannerFragment extends Fragment {
         // Required empty public constructor
     }
 
-    public static BannerFragment newInstance(Bundle banner, OnBannerClickedListener onBannerClickedListener) {
+    public static BannerFragment newInstance(Bundle banner) {
         BannerFragment fragment = new BannerFragment();
         fragment.setArguments(banner);
-        fragment.mOnBannerClickedListener = onBannerClickedListener;
         return fragment;
     }
 
@@ -60,6 +60,25 @@ public class BannerFragment extends Fragment {
         });
 
         return itemView;
+    }
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+
+        if (context instanceof OnBannerClickedListener) {
+            mOnBannerClickedListener = (OnBannerClickedListener)context;
+        } else {
+            throw new RuntimeException(context.toString() + " must implement OnBannerClickedListener");
+        }
+
+    }
+
+    @Override
+    public void onDetach() {
+        super.onDetach();
+
+        mOnBannerClickedListener = null;
     }
 
 }

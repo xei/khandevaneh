@@ -14,7 +14,6 @@ import java.util.ArrayList;
 class SliderAdapter extends FragmentPagerAdapter {
 
     private ArrayList<Bundle> mBanners;
-    private OnBannerClickedListener mOnBannerClickedListener;
 
     public SliderAdapter(FragmentManager fm, ArrayList<Bundle> banners) {
         super(fm);
@@ -23,16 +22,12 @@ class SliderAdapter extends FragmentPagerAdapter {
 
     @Override
     public Fragment getItem(int position) {
-        return BannerFragment.newInstance(mBanners.get(position), mOnBannerClickedListener);
+        return BannerFragment.newInstance(mBanners.get(position));
     }
 
     @Override
     public int getCount() {
         return mBanners.size();
-    }
-
-    public void setOnBannerClickListener(OnBannerClickedListener onBannerClickListener) {
-        mOnBannerClickedListener = onBannerClickListener;
     }
 
 }

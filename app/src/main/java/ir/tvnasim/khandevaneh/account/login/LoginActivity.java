@@ -73,7 +73,8 @@ public class LoginActivity extends BaseActivity implements PhoneNoFragment.OnSen
 
                     @Override
                     public void onErrorResponse(String errorMessage) {
-
+                        int x = 2;
+                        x++;
                     }
                 }, null).send();
             }

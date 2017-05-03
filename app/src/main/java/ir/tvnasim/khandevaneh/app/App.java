@@ -7,6 +7,7 @@ import android.content.res.Configuration;
 import java.util.Locale;
 
 import ir.tvnasim.khandevaneh.helper.HelperFunctions;
+import ir.tvnasim.khandevaneh.helper.SharedPreferencesHelper;
 import ir.tvnasim.khandevaneh.helper.imageloading.ImageLoader;
 import ir.tvnasim.khandevaneh.helper.webapi.VolleyHelper;
 import okhttp3.internal.Util;
@@ -50,7 +51,7 @@ public class App extends Application {
     }
 
     private void setPreferenceLocale() {
-        String appLanguage = HelperFunctions.getLanguageFromSharedPreference(this);
+        String appLanguage = SharedPreferencesHelper.getLanguageFromSharedPreference();
         setLocale(appLanguage);
     }
 

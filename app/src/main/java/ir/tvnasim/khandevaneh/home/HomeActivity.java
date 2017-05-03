@@ -38,7 +38,7 @@ public class HomeActivity extends BaseActivity implements OnBannerClickedListene
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
-//        authenticate();
+        authenticate();
 
         findViews();
         initRecyclerView();

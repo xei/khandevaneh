@@ -2,9 +2,12 @@ package ir.tvnasim.khandevaneh.leaderboard;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Base64;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -75,7 +78,14 @@ public class LeaderBoardActivity extends BaseActivity {
 
     private void renderUserData() {
         mUserNameTextView.setText(User.getInstance().getFirstName() + ' ' + User.getInstance().getLastName());
-        FrescoHelper.setImageUrl(mUserAvatarSimpleDraweeView, User.getInstance().getAvatar());
+        try {
+            FrescoHelper.setImageUrl(mUserAvatarSimpleDraweeView, User.getInstance().getAvatar());
+        } catch (Exception e) {
+            byte[] decodedString = Base64.decode(User.getInstance().getAvatar(), Base64.DEFAULT);
+            Bitmap bmp = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
+            mUserAvatarSimpleDraweeView.setImageBitmap(bmp);
+        }
+
         mUserExperienceTextView.setText(HelperFunctions.convertNumberStringToPersian(String.valueOf(User.getInstance().getExperienceScore())));
     }
 

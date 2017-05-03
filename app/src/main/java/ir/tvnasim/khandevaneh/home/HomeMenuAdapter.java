@@ -14,9 +14,12 @@ import java.util.ArrayList;
 import ir.tvnasim.khandevaneh.R;
 import ir.tvnasim.khandevaneh.account.login.LoginActivity;
 import ir.tvnasim.khandevaneh.account.User;
+import ir.tvnasim.khandevaneh.app.BaseActivity;
 import ir.tvnasim.khandevaneh.helper.LogHelper;
+import ir.tvnasim.khandevaneh.leaderboard.LeaderBoardActivity;
 import ir.tvnasim.khandevaneh.livelike.LiveLikeActivity;
 import ir.tvnasim.khandevaneh.polling.PollingListActivity;
+import ir.tvnasim.khandevaneh.store.StoreActivity;
 import ir.tvnasim.khandevaneh.view.bannerslider.SliderView;
 
 /**
@@ -33,7 +36,7 @@ public class HomeMenuAdapter extends RecyclerView.Adapter implements View.OnClic
     private static final int SIZE_MENU = 6;
 
     private ArrayList<HomeMenuItem> menuItems = new ArrayList<>();
-    private ArrayList<Bundle> mBanners;
+    private ArrayList<Bundle> mBanners = new ArrayList<>();
 
     public HomeMenuAdapter() {
 
@@ -43,6 +46,12 @@ public class HomeMenuAdapter extends RecyclerView.Adapter implements View.OnClic
 //        archive.setBackgroundImageResourceId(R.drawable.ic_menu_home_archive);
         archive.setBackgroundImageResourceId(R.drawable.ic_menu_home_lock);
         menuItems.add(archive);
+
+        // Competition
+        HomeMenuItem competition = new HomeMenuItem();
+        competition.setId(HomeMenuItem.ID_COMPETITION);
+        competition.setBackgroundImageResourceId(R.drawable.ic_menu_home_competition);
+        menuItems.add(competition);
 
         // Live Like
         HomeMenuItem liveLive = new HomeMenuItem();
@@ -56,11 +65,17 @@ public class HomeMenuAdapter extends RecyclerView.Adapter implements View.OnClic
         polling.setBackgroundImageResourceId(R.drawable.ic_menu_home_polling);
         menuItems.add(polling);
 
-        // Competition
-        HomeMenuItem competition = new HomeMenuItem();
-        competition.setId(HomeMenuItem.ID_COMPETITION);
-        competition.setBackgroundImageResourceId(R.drawable.ic_menu_home_competition);
-        menuItems.add(competition);
+        // Leader Board
+        HomeMenuItem  leaderBoard = new HomeMenuItem();
+        polling.setId(HomeMenuItem.ID_LEADER_BOARD);
+        polling.setBackgroundImageResourceId(R.drawable.ic_menu_home_leaderboard);
+        menuItems.add(leaderBoard);
+
+        // Store
+        HomeMenuItem  store = new HomeMenuItem();
+        polling.setId(HomeMenuItem.ID_STORE);
+        polling.setBackgroundImageResourceId(R.drawable.ic_menu_home_store);
+        menuItems.add(store);
 
         // Awards
         HomeMenuItem awards = new HomeMenuItem();
@@ -78,7 +93,8 @@ public class HomeMenuAdapter extends RecyclerView.Adapter implements View.OnClic
     }
 
     public void setSliderBanners(ArrayList<Bundle> banners) {
-        mBanners = banners;
+        mBanners.clear();
+        mBanners.addAll(banners);
     }
 
     @Override
@@ -152,6 +168,13 @@ public class HomeMenuAdapter extends RecyclerView.Adapter implements View.OnClic
                         case HomeMenuItem.ID_COMPETITION:
                             PollingListActivity.start(context);
                             break;
+                        case HomeMenuItem.ID_LEADER_BOARD:
+                            LeaderBoardActivity.start(context);
+                            break;
+                        case HomeMenuItem.ID_STORE:
+                            StoreActivity.start(context);
+                            break;
+
                         case HomeMenuItem.ID_CAMPAIGN:
                             Toast.makeText(context, context.getString(R.string.inform_notImplemented), Toast.LENGTH_SHORT).show();
                             break;

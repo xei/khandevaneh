@@ -6,10 +6,12 @@ package ir.tvnasim.khandevaneh.home;
 
 class HomeMenuItem {
 
-    static final String ID_LIVE_LIKE = "ID_LIVE_LIKE";
     static final String ID_ARCHIVE = "ID_ARCHIVE";
-    static final String ID_POLLING = "ID_POLLING";
     static final String ID_COMPETITION = "ID_COMPETITION";
+    static final String ID_LIVE_LIKE = "ID_LIVE_LIKE";
+    static final String ID_POLLING = "ID_POLLING";
+    static final String ID_LEADER_BOARD = "ID_LEADER_BOARD";
+    static final String ID_STORE = "ID_STORE";
     static final String ID_CAMPAIGN = "ID_CAMPAIGN";
     static final String ID_AWARDS = "ID_AWARDS";
 

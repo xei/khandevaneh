@@ -3,6 +3,7 @@ package ir.tvnasim.khandevaneh.app;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
+import android.widget.Toast;
 
 import ir.tvnasim.khandevaneh.R;
 import ir.tvnasim.khandevaneh.helper.HelperFunctions;
@@ -30,20 +31,19 @@ public class LaunchActivity extends AppCompatActivity {
 
             @Override
             public void onErrorResponse(String errorMessage) {
-                StartupConfig startupConfig = new StartupConfig();
-                startupConfig.setVersionState(StartupConfig.VERSION_STATE_VALID_VERSION);
-                startupConfig.setLatestApk("http://www.tvnasim.ir/khandevaneh/latest.apk");
-                openAppropriateActivity(startupConfig);
+
             }
         }, null).send();
 
     }
 
     private void openAppropriateActivity(StartupConfig startupConfig) {
-        if (startupConfig.getVersionState() == StartupConfig.VERSION_STATE_NEED_UPDATE) {
-            UpdateActivity.start(this, startupConfig.getLatestApk());
-        } else if (startupConfig.getVersionState() == StartupConfig.VERSION_STATE_VALID_VERSION) {
+        if (startupConfig.getVersionState() == StartupConfig.VERSION_STATE_VALID) {
             HomeActivity.start(this);
+        } else if (startupConfig.getVersionState() == StartupConfig.VERSION_STATE_OLD) {
+            Toast.makeText(this, "نسخه جدیدی از اپلیکیشن منتشر شده. لطفا آپدیت کنید!", Toast.LENGTH_SHORT).show();
+        } else if (startupConfig.getVersionState() == StartupConfig.VERSION_STATE_DEPRECATED) {
+            UpdateActivity.start(this, startupConfig.getLatestApk());
         } else {
             LogHelper.logError(TAG_DEBUG, "invalid version state!");
         }

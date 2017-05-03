@@ -69,4 +69,5 @@ dependencies {
     compile 'com.facebook.fresco:fresco:1.2.0'
     compile "com.facebook.fresco:imagepipeline-okhttp3:1.2.0"
     compile 'com.facebook.fresco:animated-gif:1.2.0'
+    compile 'com.auth0.android:jwtdecode:1.1.1'
 }

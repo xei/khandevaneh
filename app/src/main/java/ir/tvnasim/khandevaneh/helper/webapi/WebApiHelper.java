@@ -46,15 +46,15 @@ public final class WebApiHelper {
 
     public static WebApiRequest<StartupConfig> getStartupConfig(String requestTag, WebApiRequest.WebApiListener<StartupConfig> webApiListener, WebApiRequest.LoadRequests fragment) {
 
-        String appType = "ANDROID";
+        String appType = "android";
         int appVersionCode = HelperFunctions.getAppVersionCode(App.getApplication());
 
         HashMap<String, String> params = new HashMap<>();
-        params.put("", appType);
-        params.put("", String.valueOf(appVersionCode));
+        params.put("appType", appType);
+        params.put("appVersion", String.valueOf(appVersionCode));
 
         return new WebApiRequest<>(
-                Request.Method.GET,
+                Request.Method.POST,
                 ENDPOINT_GET_STARTUP_CONFIG,
                 params,
                 new TypeToken<WebApiRequest.WebApiResponse<StartupConfig>>() {

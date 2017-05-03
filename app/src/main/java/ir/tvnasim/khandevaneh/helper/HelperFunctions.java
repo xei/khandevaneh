@@ -142,17 +142,4 @@ public class HelperFunctions {
         context.startActivity(intent);
     }
 
-    public static void saveLanguageToSharedPreference(Context context, String language) {
-        SharedPreferences preferences = SharedPreferencesHelper.getDefaultSharedPreferences(context);
-        SharedPreferences.Editor editor = preferences.edit();
-        editor.putString(SharedPreferencesHelper.KEY_SHARED_PREFERENCES_LANGUAGE, language);
-        editor.commit();
-    }
-
-    public static String getLanguageFromSharedPreference(Context context) {
-        SharedPreferences preferences = SharedPreferencesHelper.getDefaultSharedPreferences(context);
-        String language = preferences.getString(SharedPreferencesHelper.KEY_SHARED_PREFERENCES_LANGUAGE, "fa");
-        return language;
-    }
-
 }

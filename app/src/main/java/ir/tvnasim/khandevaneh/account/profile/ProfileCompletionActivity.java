@@ -11,6 +11,8 @@ import android.util.Log;
 import ir.tvnasim.khandevaneh.R;
 import ir.tvnasim.khandevaneh.account.User;
 import ir.tvnasim.khandevaneh.app.BaseActivity;
+import ir.tvnasim.khandevaneh.helper.webapi.WebApiHelper;
+import ir.tvnasim.khandevaneh.helper.webapi.WebApiRequest;
 
 public class ProfileCompletionActivity extends BaseActivity {
 
@@ -73,10 +75,18 @@ public class ProfileCompletionActivity extends BaseActivity {
         if (whichFragment < 4) {
             changeFragment(R.id.activityProfileCompletion_frameLayout_fragmentContainer, UserInfoFragment.newInstance(++mCurrentFragment), true);
         } else if (whichFragment == 4) {
-            // TODO: send User data to api
-            // in response:
-            User.getInstance().setIsProfileComplete(true);
-            finish();
+            WebApiHelper.editUserInfo(User.getInstance(), "requestTag_profileCompletionActivity_editUserInfo", new WebApiRequest.WebApiListener<Boolean>() {
+                @Override
+                public void onResponse(Boolean response) {
+                    User.getInstance().setIsProfileComplete(true);
+                    finish();
+                }
+
+                @Override
+                public void onErrorResponse(String errorMessage) {
+
+                }
+            }, null);
         } else {
             Log.e(TAG_DEBUG, "invalid fragment number!");
         }

@@ -5,7 +5,11 @@ import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 
 import ir.tvnasim.khandevaneh.R;
+import ir.tvnasim.khandevaneh.helper.HelperFunctions;
 import ir.tvnasim.khandevaneh.helper.LogHelper;
+import ir.tvnasim.khandevaneh.helper.webapi.WebApiHelper;
+import ir.tvnasim.khandevaneh.helper.webapi.WebApiRequest;
+import ir.tvnasim.khandevaneh.helper.webapi.model.app.StartupConfig;
 import ir.tvnasim.khandevaneh.home.HomeActivity;
 
 public class LaunchActivity extends AppCompatActivity {
@@ -18,17 +22,20 @@ public class LaunchActivity extends AppCompatActivity {
         setContentView(R.layout.activity_launch);
 
         //TODO: getStartupConfig (APP_ID:APP_SECRET)
-        // getVersionCode
-        Handler handler = new Handler();
-        handler.postDelayed(new Runnable() {
+        WebApiHelper.getStartupConfig("TAG_REQUEST_GET_STARTUP_CONFIG", new WebApiRequest.WebApiListener<StartupConfig>() {
             @Override
-            public void run() {
+            public void onResponse(StartupConfig startupConfig) {
+                openAppropriateActivity(startupConfig);
+            }
+
+            @Override
+            public void onErrorResponse(String errorMessage) {
                 StartupConfig startupConfig = new StartupConfig();
                 startupConfig.setVersionState(StartupConfig.VERSION_STATE_VALID_VERSION);
                 startupConfig.setLatestApk("http://www.tvnasim.ir/khandevaneh/latest.apk");
                 openAppropriateActivity(startupConfig);
             }
-        }, 1000);
+        }, null).send();
 
     }
 

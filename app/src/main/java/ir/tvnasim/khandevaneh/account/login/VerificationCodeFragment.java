@@ -76,7 +76,7 @@ public class VerificationCodeFragment extends Fragment implements View.OnClickLi
 
     public void onSendButtonPressed(String verificationCode) {
         if (mOnSendButtonClickListener != null) {
-            mOnSendButtonClickListener.onSendVerificationCodeButtonClick(verificationCode);
+            mOnSendButtonClickListener.onSendVerificationCodeButtonClick(mPhoneNo, verificationCode);
         }
     }
 
@@ -108,6 +108,6 @@ public class VerificationCodeFragment extends Fragment implements View.OnClickLi
     }
 
     interface OnSendButtonClickListener {
-        void onSendVerificationCodeButtonClick(String verificationCode);
+        void onSendVerificationCodeButtonClick(String phoneNo, String verificationCode);
     }
 }

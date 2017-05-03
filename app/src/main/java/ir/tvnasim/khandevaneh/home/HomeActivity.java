@@ -15,6 +15,11 @@ import ir.tvnasim.khandevaneh.account.login.LoginActivity;
 import ir.tvnasim.khandevaneh.account.User;
 import ir.tvnasim.khandevaneh.app.BaseActivity;
 import ir.tvnasim.khandevaneh.helper.SharedPreferencesHelper;
+import ir.tvnasim.khandevaneh.helper.webapi.WebApiHelper;
+import ir.tvnasim.khandevaneh.helper.webapi.WebApiRequest;
+import ir.tvnasim.khandevaneh.helper.webapi.model.app.SliderBanner;
+import ir.tvnasim.khandevaneh.helper.webapi.model.user.Token;
+import ir.tvnasim.khandevaneh.helper.webapi.model.user.UserInfo;
 import ir.tvnasim.khandevaneh.view.bannerslider.BannerFragment;
 import ir.tvnasim.khandevaneh.view.bannerslider.OnBannerClickedListener;
 
@@ -54,21 +59,40 @@ public class HomeActivity extends BaseActivity implements OnBannerClickedListene
         if (accessToken != null && AuthHelper.isTokenValid(accessToken)) {
             // There exist an access token
             User.getInstance().setAccessToken(accessToken);
-            //TODO: get UserInfo
-            User.getInstance().setFirstName("علیرضا");
-            User.getInstance().setLastName("علیرضا");
-            User.getInstance().setAvatar("http://img.bisms.ir/2015/06/rambod-javan-2.jpg");
-            User.getInstance().setMelonScore(200);
-            User.getInstance().setExperienceScore(300);
+            WebApiHelper.getUserInfo("requestTag_homeActivity_getUserInfo", new WebApiRequest.WebApiListener<UserInfo>() {
+                @Override
+                public void onResponse(UserInfo userInfo) {
+                    User.getInstance().setFirstName(userInfo.getFirstName());
+                    User.getInstance().setLastName(userInfo.getLastName());
+                    User.getInstance().setAvatar(userInfo.getAvatar());
+                    User.getInstance().setMelonScore(userInfo.getMelonScore());
+                    User.getInstance().setExperienceScore(userInfo.getExperienceScore());
+                }
+
+                @Override
+                public void onErrorResponse(String errorMessage) {
+
+                }}, null).send();
+
         } else {
             String refreshToken = SharedPreferencesHelper.retrieveRefreshToken();
             if (refreshToken != null) {
                 // We may could get a valid access token by refresh token
-                // TODO: call auth with refresh token and if ok do the following
-                User.getInstance().setAccessToken("ACCESS-TOKEN");
-                User.getInstance().setRefreshToken("REFRESH-TOKEN");
-                SharedPreferencesHelper.storeAccessToken("ACCESS-TOKEN");
-                SharedPreferencesHelper.storeRefreshToken("REFRESH-TOKEN");
+                WebApiHelper.authenticateWithRefreshToken(refreshToken, "requestTag_homeActivity_authWithRefreshToken", new WebApiRequest.WebApiListener<Token>() {
+                    @Override
+                    public void onResponse(Token token) {
+                        User.getInstance().setAccessToken(token.getAcessToken());
+                        User.getInstance().setRefreshToken(token.getRefreshToken());
+                        SharedPreferencesHelper.storeAccessToken(token.getAcessToken());
+                        SharedPreferencesHelper.storeRefreshToken(token.getRefreshToken());
+                    }
+
+                    @Override
+                    public void onErrorResponse(String errorMessage) {
+
+                    }
+                }, null).send();
+
             } else {
                 // Need to authenticate with phone number.
                 //TODO: if move this method to LauncherActivity then must handle this else and open login screen
@@ -93,15 +117,25 @@ public class HomeActivity extends BaseActivity implements OnBannerClickedListene
 
     private void fetchBannersFromApi() {
 
-        //TODO: fetch from API
-        ArrayList<Bundle> list = new ArrayList<>();
-        Bundle banner = new Bundle();
-        banner.putString(BannerFragment.KEY_ARG_IMAGE_URL, "http://khndvanh.ir/wp-content/uploads/Untitled-3-5.jpg");
-        for (int i = 0 ; i < 5 ; i++) {
-            list.add(banner);
-        }
-        mHomeMenuAdapter.setSliderBanners(list);
-        mHomeMenuAdapter.notifyDataSetChanged();
+        WebApiHelper.getSliderBanners("requestTag_homeActivity_getSliderBanners", new WebApiRequest.WebApiListener<ArrayList<SliderBanner>>() {
+            @Override
+            public void onResponse(ArrayList<SliderBanner> sliderBanners) {
+                ArrayList<Bundle> bannersList = new ArrayList<>();
+                for (SliderBanner sliderBanner : sliderBanners) {
+                    Bundle banner = new Bundle();
+                    banner.putString(BannerFragment.KEY_ARG_IMAGE_URL, sliderBanner.getImageUrl());
+                    bannersList.add(banner);
+                }
+                mHomeMenuAdapter.setSliderBanners(bannersList);
+                mHomeMenuAdapter.notifyDataSetChanged();
+            }
+
+            @Override
+            public void onErrorResponse(String errorMessage) {
+
+            }
+        }, null).send();
+
     }
 
     @Override

@@ -173,20 +173,21 @@ public class WebApiRequest<T> {
      */
     public static class WebApiResponse<U> {
 
-        private static final String STATUS_SUCCESS = "Success";
+        private static final String STATUS_SUCCESS = "True";
         private static final String STATUS_ERROR = "Error";
         private static final String STATUS_FAIL = "Fail";
         private static final String STATUS_FORCE_UPDATE = "ForceUpdate";
         private static final String STATUS_OPTIONAL_UPDATE = "OptionalUpdate";
 
-        @SerializedName("Data")
-        private U data;
 
-        @SerializedName("Status")
+        @SerializedName("result")
         private String status;
 
-        @SerializedName("Message")
+        @SerializedName("message")
         private String message;
+
+        @SerializedName("content")
+        private U data;
 
     }
 

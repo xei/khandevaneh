@@ -1,22 +1,40 @@
 package ir.tvnasim.khandevaneh.leaderboard;
 
+import com.google.gson.annotations.SerializedName;
+
 /**
  * Created by hamidreza on 4/15/17.
  */
 
 public class LeaderViewModel {
 
-    private String name;
+    @SerializedName("firstName")
+    private String firstName;
+
+    @SerializedName("lastName")
+    private String lastName;
+
+    @SerializedName("profilePic")
     private String avatar;
+
+    @SerializedName("exLevel")
     private String experience;
 
 
-    public String getName() {
-        return name;
+    public String getFirstName() {
+        return firstName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 
     public String getAvatar() {

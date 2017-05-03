@@ -18,6 +18,8 @@ import ir.tvnasim.khandevaneh.app.BaseActivity;
 import ir.tvnasim.khandevaneh.helper.HelperFunctions;
 import ir.tvnasim.khandevaneh.helper.imageloading.FrescoHelper;
 import ir.tvnasim.khandevaneh.helper.imageloading.ImageLoader;
+import ir.tvnasim.khandevaneh.helper.webapi.WebApiHelper;
+import ir.tvnasim.khandevaneh.helper.webapi.WebApiRequest;
 
 public class LeaderBoardActivity extends BaseActivity {
 
@@ -78,22 +80,18 @@ public class LeaderBoardActivity extends BaseActivity {
     }
 
     private void fetchDataFromApi() {
-        //TODO: API call
-        ArrayList<LeaderViewModel> leaders = new ArrayList<>();
-        LeaderViewModel leaderViewModel = new LeaderViewModel();
-        leaderViewModel.setName("حمیدرضا");
-        leaderViewModel.setExperience("200");
-        leaderViewModel.setAvatar("http://img.bisms.ir//2015/06/rambod-javan-2.jpg");
-        LeaderViewModel leaderViewModel2 = new LeaderViewModel();
-        leaderViewModel2.setName("علیرضا");
-        leaderViewModel2.setExperience("300");
-        leaderViewModel2.setAvatar("http://img.bisms.ir//2015/06/rambod-javan-2.jpg");
 
-        for (int i = 0 ; i < 50 ; i++) {
-            leaders.add(leaderViewModel);
-            leaders.add(leaderViewModel2);
-        }
-        bindData(leaders);
+        WebApiHelper.getLeaderBoard("requestTag_leaderBoardActivity_getLeaderBoard", new WebApiRequest.WebApiListener<ArrayList<LeaderViewModel>>() {
+            @Override
+            public void onResponse(ArrayList<LeaderViewModel> leaders) {
+                bindData(leaders);
+            }
+
+            @Override
+            public void onErrorResponse(String errorMessage) {
+
+            }
+        }, null).send();
 
     }
 

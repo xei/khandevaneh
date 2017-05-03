@@ -3,11 +3,10 @@ package ir.tvnasim.khandevaneh.polling;
 import com.google.gson.annotations.SerializedName;
 
 /**
- * Created by hamidreza on 5/1/17.
- * All rights reserved by Digikala.
+ * Created by hamidreza on 5/3/17.
  */
 
-public class PollingListItem {
+class PollingOption {
 
     @SerializedName("id")
     private String id;
@@ -17,6 +16,7 @@ public class PollingListItem {
 
     @SerializedName("imageUrl")
     private String imageUrl;
+
 
     public String getId() {
         return id;
@@ -41,4 +41,5 @@ public class PollingListItem {
     public void setImageUrl(String imageUrl) {
         this.imageUrl = imageUrl;
     }
+
 }

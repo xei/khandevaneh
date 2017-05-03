@@ -34,9 +34,16 @@ public class PollingListAdapter extends RecyclerView.Adapter<PollingListAdapter.
 
     @Override
     public void onBindViewHolder(ListItemViewHolder holder, int position) {
-        PollingListItem item = mList.get(position);
+        final PollingListItem item = mList.get(position);
         holder.title.setText(item.getTitle());
         FrescoHelper.setImageUrl(holder.image, item.getImageUrl());
+
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View clickedView) {
+                PollingActivity.start(clickedView.getContext(), item.getId());
+            }
+        });
 
     }
 

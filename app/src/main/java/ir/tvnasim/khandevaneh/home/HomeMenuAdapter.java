@@ -16,7 +16,7 @@ import ir.tvnasim.khandevaneh.account.login.LoginActivity;
 import ir.tvnasim.khandevaneh.account.User;
 import ir.tvnasim.khandevaneh.helper.LogHelper;
 import ir.tvnasim.khandevaneh.livelike.LiveLikeActivity;
-import ir.tvnasim.khandevaneh.polling.PollingActivity;
+import ir.tvnasim.khandevaneh.polling.PollingListActivity;
 import ir.tvnasim.khandevaneh.view.bannerslider.SliderView;
 
 /**
@@ -147,10 +147,10 @@ public class HomeMenuAdapter extends RecyclerView.Adapter implements View.OnClic
 //                ArchiveActivity.start(context);
                             break;
                         case HomeMenuItem.ID_POLLING:
-                            PollingActivity.start(context);
+                            PollingListActivity.start(context);
                             break;
                         case HomeMenuItem.ID_COMPETITION:
-                            PollingActivity.start(context);
+                            PollingListActivity.start(context);
                             break;
                         case HomeMenuItem.ID_CAMPAIGN:
                             Toast.makeText(context, context.getString(R.string.inform_notImplemented), Toast.LENGTH_SHORT).show();

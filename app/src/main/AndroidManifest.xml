@@ -20,16 +20,18 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".home.HomeActivity" />
         <activity android:name=".app.UpdateActivity" />
-        <activity android:name=".account.profile.ProfileActivity" />
+        <activity android:name=".home.HomeActivity" />
         <activity android:name=".account.login.LoginActivity" />
+        <activity android:name=".account.profile.ProfileActivity" />
+        <activity android:name=".account.profile.ProfileCompletionActivity" />
         <activity android:name=".leaderboard.LeaderBoardActivity" />
         <activity android:name=".store.StoreActivity" />
         <activity android:name=".livelike.LiveLikeActivity" />
         <activity android:name=".archive.ArchiveActivity" />
-        <activity android:name=".polling.PollingActivity" />
-        <activity android:name=".account.profile.ProfileCompletionActivity"></activity>
+        <activity android:name=".polling.PollingListActivity">
+        </activity>
+        <activity android:name=".polling.PollingActivity"></activity>
     </application>
 
 </manifest>

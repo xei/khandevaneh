@@ -14,6 +14,8 @@ import ir.tvnasim.khandevaneh.helper.webapi.model.app.StartupConfig;
 import ir.tvnasim.khandevaneh.helper.webapi.model.user.Token;
 import ir.tvnasim.khandevaneh.helper.webapi.model.user.UserInfo;
 import ir.tvnasim.khandevaneh.leaderboard.LeaderViewModel;
+import ir.tvnasim.khandevaneh.polling.PollingItem;
+import ir.tvnasim.khandevaneh.polling.PollingListItem;
 
 /**
  * @author H. Hosseinkhani
@@ -22,20 +24,24 @@ import ir.tvnasim.khandevaneh.leaderboard.LeaderViewModel;
  */
 public final class WebApiHelper {
 
-    public static final String ENDPOINT_LOGIN = "xxx";
+    static final String ENDPOINT_LOGIN = "xxx";
 
 
     public static final String ENDPOINT_GET_STARTUP = "app/getStartup";
-    public static final String ENDPOINT_GET_STARTUP_CONFIG = "app/getConfig";
-    public static final String ENDPOINT_GET_SLIDER_BANNERS = "app/getSlider";
+    private static final String ENDPOINT_GET_STARTUP_CONFIG = "app/getConfig";
+    private static final String ENDPOINT_GET_SLIDER_BANNERS = "app/getSlider";
     public static final String ENDPOINT_GET_BANNER = "app/getBanner";
 
-    public static final String ENDPOINT_REGISTER_PHONE_NO = "user/registration";
-    public static final String ENDPOINT_AUTH_WITH_CREDENTIALS= "user/activation";
-    public static final String ENDPOINT_AUTH_WITH_REFRESH_TOKEN = "user/auth";
-    public static final String ENDPOINT_GET_USER_INFO = "user/info";
-    public static final String ENDPOINT_EDIT_USER_INFO = "user/edit";
-    public static final String ENDPOINT_GET_LEADERBOARD = "user/leaderboard";
+    private static final String ENDPOINT_REGISTER_PHONE_NO = "user/registration";
+    private static final String ENDPOINT_AUTH_WITH_CREDENTIALS= "user/activation";
+    private static final String ENDPOINT_AUTH_WITH_REFRESH_TOKEN = "user/auth";
+    private static final String ENDPOINT_GET_USER_INFO = "user/info";
+    private static final String ENDPOINT_EDIT_USER_INFO = "user/edit";
+    private static final String ENDPOINT_GET_LEADERBOARD = "user/leaderboard";
+
+
+    private static final String ENDPOINT_GET_POLLING_LIST = "5909e1f1100000fa0c47c23e";
+    private static final String ENDPOINT_GET_POLLING_ITEM = "5909e2e61000000b0d47c246";
 
 
     public static WebApiRequest<StartupConfig> getStartupConfig(String requestTag, WebApiRequest.WebApiListener<StartupConfig> webApiListener, WebApiRequest.LoadRequests fragment) {
@@ -168,6 +174,42 @@ public final class WebApiHelper {
                 ENDPOINT_GET_LEADERBOARD,
                 null,
                 new TypeToken<WebApiRequest.WebApiResponse<ArrayList<LeaderViewModel>>>() {
+                }.getType(),
+                requestTag,
+                webApiListener,
+                fragment
+        );
+    }
+
+    public static MockApiRequest<ArrayList<PollingListItem>> getPollingList(String type, int limit, int offset, String requestTag, MockApiRequest.WebApiListener<ArrayList<PollingListItem>> webApiListener, MockApiRequest.LoadRequests fragment) {
+
+        HashMap<String, String> params = new HashMap<>();
+        params.put("type", type);
+        params.put("limit", String.valueOf(limit));
+        params.put("offset", String.valueOf(offset));
+
+        return new MockApiRequest<>(
+                Request.Method.GET,
+                ENDPOINT_GET_POLLING_LIST,
+                params,
+                new TypeToken<MockApiRequest.WebApiResponse<ArrayList<PollingListItem>>>() {
+                }.getType(),
+                requestTag,
+                webApiListener,
+                fragment
+        );
+    }
+
+    public static MockApiRequest<PollingItem> getPollingItem(String id, String requestTag, MockApiRequest.WebApiListener<PollingItem> webApiListener, MockApiRequest.LoadRequests fragment) {
+
+        HashMap<String, String> params = new HashMap<>();
+        params.put("id", id);
+
+        return new MockApiRequest<>(
+                Request.Method.GET,
+                ENDPOINT_GET_POLLING_ITEM,
+                params,
+                new TypeToken<MockApiRequest.WebApiResponse<PollingItem>>() {
                 }.getType(),
                 requestTag,
                 webApiListener,

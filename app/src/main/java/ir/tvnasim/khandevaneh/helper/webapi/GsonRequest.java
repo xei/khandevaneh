@@ -17,6 +17,8 @@ import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.Map;
 
+import ir.tvnasim.khandevaneh.account.User;
+
 /**
  * This class is a custom Volley request that returns a design-model object that parsed with Google Gson JSON Parser.
  * <p>
@@ -89,7 +91,7 @@ public class GsonRequest<T> extends Request<T> {
     @Override
     public Map<String, String> getHeaders() throws AuthFailureError {
         Map<String, String> headers = new HashMap<>();
-//        headers.put("AppVersion", String.valueOf(Util.getAppVersionCode(App.getApplication())));
+        headers.put("Authorization", String.valueOf(User.getInstance().getAccessToken()));
         return headers;
     }
 

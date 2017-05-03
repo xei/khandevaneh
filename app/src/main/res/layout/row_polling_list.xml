@@ -15,7 +15,7 @@
         android:layout_centerVertical="true"
         android:layout_marginRight="97dp"
         android:paddingRight="73dp"
-        android:gravity="center_vertical"
+        android:gravity="right|center_vertical"
         android:background="#fff"
         android:textColor="@color/textColor_dark"
         android:textSize="@dimen/textSize_userRankSection"

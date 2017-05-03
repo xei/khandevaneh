@@ -171,7 +171,7 @@ public class WebApiRequest<T> {
      *
      * @param <U>
      */
-    public static class WebApiResponse<U> {
+    static class WebApiResponse<U> {
 
         private static final String STATUS_SUCCESS = "True";
         private static final String STATUS_ERROR = "Error";

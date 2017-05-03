@@ -4,27 +4,21 @@ import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
-
-import java.util.ArrayList;
+import android.widget.Toast;
 
 import ir.tvnasim.khandevaneh.R;
-import ir.tvnasim.khandevaneh.account.User;
-import ir.tvnasim.khandevaneh.app.BaseActivity;
-import ir.tvnasim.khandevaneh.home.HomeMenuAdapter;
-import ir.tvnasim.khandevaneh.home.HomeMenuLayoutManager;
-import ir.tvnasim.khandevaneh.view.bannerslider.BannerFragment;
+import ir.tvnasim.khandevaneh.helper.webapi.MockApiRequest;
+import ir.tvnasim.khandevaneh.helper.webapi.WebApiHelper;
 
-public class PollingActivity extends BaseActivity {
+public class PollingActivity extends AppCompatActivity {
 
-    private RecyclerView mListRecyclerView;
-    private PollingListAdapter mListAdapter;
+    private static final String KEY_EXTRA_POLLING_ID = "KEY_EXTRA_POLLING_ID";
 
-    private ArrayList<PollingListItem> mList = new ArrayList<>();
+    private String mPollingId;
 
-    public static void start(Context starter) {
+    public static void start(Context starter, String pollingId) {
         Intent intent = new Intent(starter, PollingActivity.class);
+        intent.putExtra(KEY_EXTRA_POLLING_ID, pollingId);
         starter.startActivity(intent);
     }
 
@@ -33,40 +27,22 @@ public class PollingActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_polling);
 
-        findViews();
-        initRecyclerView();
-//        setOnClickListeners();
+        this.mPollingId = getIntent().getStringExtra(KEY_EXTRA_POLLING_ID);
 
-        fetchBannersFromApi();
+        fetchPollingFromApi();
     }
 
-    @Override
-    public int getToolbarViewId() {
-        return R.layout.toolbar_polling;
+    private void fetchPollingFromApi() {
+        WebApiHelper.getPollingItem(mPollingId, "requestTag_pollingActivity_getPollingItem", new MockApiRequest.WebApiListener<PollingItem>() {
+            @Override
+            public void onResponse(PollingItem pollingItem) {
+                Toast.makeText(PollingActivity.this, pollingItem.getDescription(), Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onErrorResponse(String errorMessage) {
+
+            }
+        }, null).send();
     }
-
-    private void findViews() {
-        mListRecyclerView = (RecyclerView) findViewById(R.id.activityPolling_recyclerView_list);
-    }
-
-    private void initRecyclerView() {
-        mListRecyclerView.setHasFixedSize(true);
-        mListAdapter = new PollingListAdapter(mList);
-        mListRecyclerView.setLayoutManager(new LinearLayoutManager(this));
-        mListRecyclerView.setAdapter(mListAdapter);
-    }
-
-
-    private void fetchBannersFromApi() {
-
-        //TODO: fetch from API
-        PollingListItem item = new PollingListItem();
-        item.setImageUrl(User.getInstance().getAvatar());
-        item.setTitle("خنداننده برتر");
-        for (int i = 0 ; i < 5 ; i++) {
-            mList.add(item);
-        }
-        mListAdapter.notifyDataSetChanged();
-    }
-
 }

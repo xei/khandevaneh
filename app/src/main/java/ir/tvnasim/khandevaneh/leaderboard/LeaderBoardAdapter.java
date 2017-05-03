@@ -42,7 +42,7 @@ public class LeaderBoardAdapter extends RecyclerView.Adapter<LeaderBoardAdapter.
 //        setBackgroundColor(holder.rowView.getContext(), holder.rowView, position);
         LeaderViewModel leader = mLeaders.get(position);
         // TODO: replace position with leader rank
-        holder.userName.setText(HelperFunctions.convertNumberStringToPersian(String.valueOf(position + 1)) + ". " + leader.getName());
+        holder.userName.setText(HelperFunctions.convertNumberStringToPersian(String.valueOf(position + 1)) + ". " + leader.getFirstName());
         FrescoHelper.setImageUrl(holder.userAvatar, leader.getAvatar());
         holder.experienceLevel.setText(HelperFunctions.convertNumberStringToPersian(leader.getExperience()));
     }
@@ -50,15 +50,6 @@ public class LeaderBoardAdapter extends RecyclerView.Adapter<LeaderBoardAdapter.
     @Override
     public int getItemCount() {
         return mLeaders.size();
-    }
-
-    private void setBackgroundColor(Context context, View rowView, int position) {
-        GradientDrawable backgroundDrawable = (GradientDrawable) rowView.getBackground();
-        if (position % 2 == 0) {
-            backgroundDrawable.setColor(ContextCompat.getColor(context, R.color.colorPrimaryDark));
-        } else {
-            backgroundDrawable.setColor(ContextCompat.getColor(context, R.color.colorPrimary));
-        }
     }
 
     class LeaderBoardViewHolder extends RecyclerView.ViewHolder {

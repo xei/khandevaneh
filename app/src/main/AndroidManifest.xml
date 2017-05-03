@@ -14,11 +14,7 @@
         android:supportsRtl="true"
         android:theme="@style/KhandevanehTheme">
         <activity android:name=".app.LaunchActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity android:name=".app.UpdateActivity" />
         <activity android:name=".home.HomeActivity" />
@@ -30,8 +26,13 @@
         <activity android:name=".livelike.LiveLikeActivity" />
         <activity android:name=".archive.ArchiveActivity" />
         <activity android:name=".polling.PollingListActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
-        <activity android:name=".polling.PollingActivity"></activity>
+        <activity android:name=".polling.PollingActivity" />
     </application>
 
 </manifest>

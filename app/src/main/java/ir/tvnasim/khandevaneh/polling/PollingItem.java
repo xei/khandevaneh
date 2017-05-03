@@ -15,9 +15,6 @@ public class PollingItem {
     public static final int TYPE_POLLING_VIDEO = 2;
     public static final int TYPE_POLLING_VOICE = 3;
 
-    public static final int TYPE_OPTION_SINGLE = 0;
-    public static final int TYPE_OPTION_MULTI = 1;
-
     @SerializedName("id")
     private String id;
 

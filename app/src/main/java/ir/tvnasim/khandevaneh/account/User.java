@@ -1,5 +1,9 @@
 package ir.tvnasim.khandevaneh.account;
 
+import ir.tvnasim.khandevaneh.helper.webapi.WebApiHelper;
+import ir.tvnasim.khandevaneh.helper.webapi.WebApiRequest;
+import ir.tvnasim.khandevaneh.helper.webapi.model.user.Token;
+
 /**
  * Created by hamidreza on 4/14/17.
  */
@@ -38,11 +42,23 @@ public class User {
         return sUser;
     }
 
-    public void isLoggedIn(IsLoggedInListener listener) {
+    public void isLoggedIn(final IsLoggedInListener listener) {
         if (mAccessToken != null && AuthHelper.isTokenValid(mAccessToken)) {
             listener.isLoggedIn(true);
         } else if (mRefreshToken != null) {
-            // TODO: make a request to auth api with grant_type=refresh_token and call listener
+            WebApiHelper.authenticateWithRefreshToken(mRefreshToken, "requestTag_User_authWithRefreshToken", new WebApiRequest.WebApiListener<Token>() {
+                @Override
+                public void onResponse(Token token) {
+                    User.getInstance().setAccessToken(token.getAcessToken());
+                    User.getInstance().setRefreshToken(token.getRefreshToken());
+                    listener.isLoggedIn(true);
+                }
+
+                @Override
+                public void onErrorResponse(String errorMessage) {
+                    listener.isLoggedIn(false);
+                }
+            }, null).send();
         } else {
             listener.isLoggedIn(false);
         }

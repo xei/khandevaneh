@@ -1,12 +1,10 @@
 package ir.tvnasim.khandevaneh.app;
 
 import android.os.Bundle;
-import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.Toast;
 
 import ir.tvnasim.khandevaneh.R;
-import ir.tvnasim.khandevaneh.helper.HelperFunctions;
 import ir.tvnasim.khandevaneh.helper.LogHelper;
 import ir.tvnasim.khandevaneh.helper.webapi.WebApiHelper;
 import ir.tvnasim.khandevaneh.helper.webapi.WebApiRequest;

@@ -14,8 +14,7 @@ public class SharedPreferencesHelper {
 
     private static final String KEY_SHARED_PREFERENCES_ACCESS_TOKEN = "acc";
     private static final String KEY_SHARED_PREFERENCES_REFRESH_TOKEN = "ref";
-
-    public static final String KEY_SHARED_PREFERENCES_LANGUAGE = "language";
+    private static final String KEY_SHARED_PREFERENCES_LANGUAGE = "language";
 
     public static void storeAccessToken(String accessToken) {
         SharedPreferences defaultSharedPreferences = PreferenceManager.getDefaultSharedPreferences(App.getApplication());

@@ -30,8 +30,6 @@ public class HomeMenuAdapter extends RecyclerView.Adapter implements View.OnClic
     static final int TYPE_VIEW_SLIDER = 0;
     static final int TYPE_VIEW_MENU_ITEM = 1;
 
-    private static final int SIZE_MENU = 6;
-
     private ArrayList<HomeMenuItem> menuItems = new ArrayList<>();
     private ArrayList<Bundle> mBanners = new ArrayList<>();
 
@@ -41,8 +39,14 @@ public class HomeMenuAdapter extends RecyclerView.Adapter implements View.OnClic
         HomeMenuItem archive = new HomeMenuItem();
         archive.setId(HomeMenuItem.ID_ARCHIVE);
 //        archive.setBackgroundImageResourceId(R.drawable.ic_menu_home_archive);
-        archive.setBackgroundImageResourceId(R.drawable.ic_menu_home_lock);
+        archive.setBackgroundImageResourceId(R.drawable.ic_menu_home_archive);
         menuItems.add(archive);
+
+        // Competition
+        HomeMenuItem competition = new HomeMenuItem();
+        competition.setId(HomeMenuItem.ID_COMPETITION);
+        competition.setBackgroundImageResourceId(R.drawable.ic_menu_home_competition);
+        menuItems.add(competition);
 
         // Live Like
         HomeMenuItem liveLive = new HomeMenuItem();
@@ -56,24 +60,32 @@ public class HomeMenuAdapter extends RecyclerView.Adapter implements View.OnClic
         polling.setBackgroundImageResourceId(R.drawable.ic_menu_home_polling);
         menuItems.add(polling);
 
-        // Competition
-        HomeMenuItem competition = new HomeMenuItem();
-        competition.setId(HomeMenuItem.ID_COMPETITION);
-        competition.setBackgroundImageResourceId(R.drawable.ic_menu_home_competition);
-        menuItems.add(competition);
+        // Leader Board
+        HomeMenuItem  leaderboard = new HomeMenuItem();
+        leaderboard.setId(HomeMenuItem.ID_LEADER_BOARD);
+        leaderboard.setBackgroundImageResourceId(R.drawable.ic_menu_home_leaderboard);
+        menuItems.add(leaderboard);
 
-        // Awards
-        HomeMenuItem awards = new HomeMenuItem();
-        awards.setId(HomeMenuItem.ID_AWARDS);
-        awards.setBackgroundImageResourceId(R.drawable.ic_menu_home_lock);
-//        awards.setBackgroundImageResourceId(R.drawable.ic_menu_home_awards);
-        menuItems.add(awards);
+        // Store
+        HomeMenuItem  store = new HomeMenuItem();
+        store.setId(HomeMenuItem.ID_STORE);
+        store.setBackgroundImageResourceId(R.drawable.ic_menu_home_store);
+        menuItems.add(store);
+
 
         // Campaign
         HomeMenuItem campaign = new HomeMenuItem();
         campaign.setId(HomeMenuItem.ID_CAMPAIGN);
-        campaign.setBackgroundImageResourceId(R.drawable.ic_menu_home_lock);
+        campaign.setBackgroundImageResourceId(R.drawable.ic_menu_home_campaign);
         menuItems.add(campaign);
+
+        // Awards
+        HomeMenuItem awards = new HomeMenuItem();
+        awards.setId(HomeMenuItem.ID_AWARDS);
+        awards.setBackgroundImageResourceId(R.drawable.ic_menu_home_awards);
+        menuItems.add(awards);
+
+
 
     }
 
@@ -118,7 +130,7 @@ public class HomeMenuAdapter extends RecyclerView.Adapter implements View.OnClic
 
     @Override
     public int getItemCount() {
-        return SIZE_MENU + 1;
+        return menuItems.size() + 1;
     }
 
     @Override

@@ -3,12 +3,14 @@ package ir.tvnasim.khandevaneh.account.login;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 
 import ir.tvnasim.khandevaneh.R;
 import ir.tvnasim.khandevaneh.account.User;
 import ir.tvnasim.khandevaneh.app.BaseActivity;
+import ir.tvnasim.khandevaneh.helper.SharedPreferencesHelper;
 import ir.tvnasim.khandevaneh.helper.webapi.WebApiHelper;
 import ir.tvnasim.khandevaneh.helper.webapi.WebApiRequest;
 import ir.tvnasim.khandevaneh.helper.webapi.model.user.Token;
@@ -58,25 +60,32 @@ public class LoginActivity extends BaseActivity implements PhoneNoFragment.OnSen
             @Override
             public void onResponse(Token token) {
                 User.getInstance().setAccessToken(token.getAcessToken());
-
-                WebApiHelper.getUserInfo("TAG_REQUEST_GET_USER_INFO", new WebApiRequest.WebApiListener<UserInfo>() {
+                User.getInstance().setRefreshToken(token.getRefreshToken());
+                SharedPreferencesHelper.storeAccessToken(token.getAcessToken());
+                SharedPreferencesHelper.storeRefreshToken(token.getRefreshToken());
+                Handler h = new Handler();
+                h.postDelayed(new Runnable() {
                     @Override
-                    public void onResponse(UserInfo userInfo) {
-                        User.getInstance().setFirstName(userInfo.getFirstName());
-                        User.getInstance().setLastName(userInfo.getLastName());
-                        User.getInstance().setAvatar(userInfo.getAvatar());
-                        User.getInstance().setMelonScore(userInfo.getMelonScore());
-                        User.getInstance().setExperienceScore(userInfo.getExperienceScore());
+                    public void run() {
+                        WebApiHelper.getUserInfo("TAG_REQUEST_GET_USER_INFO", new WebApiRequest.WebApiListener<UserInfo>() {
+                            @Override
+                            public void onResponse(UserInfo userInfo) {
+                                User.getInstance().setFirstName(userInfo.getFirstName());
+                                User.getInstance().setLastName(userInfo.getLastName());
+                                User.getInstance().setAvatar(userInfo.getAvatar());
+                                User.getInstance().setMelonScore(userInfo.getMelonScore());
+                                User.getInstance().setExperienceScore(userInfo.getExperienceScore());
 
-                        finish();
-                    }
+                                finish();
+                            }
 
-                    @Override
-                    public void onErrorResponse(String errorMessage) {
-                        int x = 2;
-                        x++;
+                            @Override
+                            public void onErrorResponse(String errorMessage) {
+
+                            }
+                        }, null).send();
                     }
-                }, null).send();
+                }, 1000);
             }
 
             @Override

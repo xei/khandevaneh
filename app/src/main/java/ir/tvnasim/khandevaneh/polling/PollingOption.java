@@ -11,7 +11,7 @@ class PollingOption {
     @SerializedName("id")
     private String id;
 
-    @SerializedName("title")
+    @SerializedName("content")
     private String title;
 
     @SerializedName("imageUrl")

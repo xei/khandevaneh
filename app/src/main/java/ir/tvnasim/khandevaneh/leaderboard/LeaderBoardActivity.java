@@ -91,10 +91,10 @@ public class LeaderBoardActivity extends BaseActivity {
 
     private void fetchDataFromApi() {
 
-        WebApiHelper.getLeaderBoard("requestTag_leaderBoardActivity_getLeaderBoard", new WebApiRequest.WebApiListener<ArrayList<LeaderViewModel>>() {
+        WebApiHelper.getLeaderBoard("requestTag_leaderBoardActivity_getLeaderBoard", new WebApiRequest.WebApiListener<LeaderContainerModel>() {
             @Override
-            public void onResponse(ArrayList<LeaderViewModel> leaders) {
-                bindData(leaders);
+            public void onResponse(LeaderContainerModel leaders) {
+                bindData(leaders.getLeaders());
             }
 
             @Override

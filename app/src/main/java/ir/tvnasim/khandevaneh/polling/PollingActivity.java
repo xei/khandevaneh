@@ -13,6 +13,7 @@ import ir.tvnasim.khandevaneh.R;
 import ir.tvnasim.khandevaneh.app.BaseActivity;
 import ir.tvnasim.khandevaneh.helper.webapi.MockApiRequest;
 import ir.tvnasim.khandevaneh.helper.webapi.WebApiHelper;
+import ir.tvnasim.khandevaneh.helper.webapi.WebApiRequest;
 import ir.tvnasim.khandevaneh.view.XeiButton;
 import ir.tvnasim.khandevaneh.view.XeiTextView;
 
@@ -76,7 +77,7 @@ public class PollingActivity extends BaseActivity {
     }
 
     private void fetchPollingFromApi() {
-        WebApiHelper.getPollingItem(mPollingId, "requestTag_pollingActivity_getPollingItem", new MockApiRequest.WebApiListener<PollingItem>() {
+        WebApiHelper.getPollingItem(mPollingId, "requestTag_pollingActivity_getPollingItem", new WebApiRequest.WebApiListener<PollingItem>() {
             @Override
             public void onResponse(PollingItem pollingItem) {
                 mTitleTextView.setText(pollingItem.getTitle());

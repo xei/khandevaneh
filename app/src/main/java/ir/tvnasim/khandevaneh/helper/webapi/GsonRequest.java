@@ -18,6 +18,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import ir.tvnasim.khandevaneh.account.User;
+import ir.tvnasim.khandevaneh.helper.LogHelper;
 
 /**
  * This class is a custom Volley request that returns a design-model object that parsed with Google Gson JSON Parser.
@@ -67,6 +68,7 @@ public class GsonRequest<T> extends Request<T> {
     protected Response<T> parseNetworkResponse(NetworkResponse response) {
         try {
             String responseJsonStr = new String(response.data, "UTF-8");
+            LogHelper.logInfo(TAG_DEBUG, "API Response: " + responseJsonStr);
             T result = sGson.fromJson(responseJsonStr, mResponseType);
             return Response.success(result, HttpHeaderParser.parseCacheHeaders(response));
         } catch (UnsupportedEncodingException uee) {

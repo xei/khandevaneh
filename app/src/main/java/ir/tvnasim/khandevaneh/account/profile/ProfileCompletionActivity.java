@@ -1,12 +1,20 @@
 package ir.tvnasim.khandevaneh.account.profile;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
+import android.util.Base64;
 import android.util.Log;
+
+import java.io.ByteArrayOutputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 
 import ir.tvnasim.khandevaneh.R;
 import ir.tvnasim.khandevaneh.account.User;
@@ -72,7 +80,10 @@ public class ProfileCompletionActivity extends BaseActivity {
                 break;
         }
 
-        if (whichFragment < 4) {
+        if (whichFragment == 1) {
+            mCurrentFragment++;
+            changeFragment(R.id.activityProfileCompletion_frameLayout_fragmentContainer, UserAvatarFragment.newInstance(), false);
+        } else if (whichFragment < 4) {
             changeFragment(R.id.activityProfileCompletion_frameLayout_fragmentContainer, UserInfoFragment.newInstance(++mCurrentFragment), true);
         } else if (whichFragment == 4) {
             WebApiHelper.editUserInfo(User.getInstance(), "requestTag_profileCompletionActivity_editUserInfo", new WebApiRequest.WebApiListener<Boolean>() {
@@ -86,10 +97,36 @@ public class ProfileCompletionActivity extends BaseActivity {
                 public void onErrorResponse(String errorMessage) {
 
                 }
-            }, null);
+            }, null).send();
         } else {
             Log.e(TAG_DEBUG, "invalid fragment number!");
         }
+
     }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (requestCode == 65547) {
+            if (resultCode == Activity.RESULT_OK) {
+                if (data != null) {
+                    try {
+                        Bitmap bmp = MediaStore.Images.Media.getBitmap(getContentResolver(), data.getData());
+//                        String bmpStr =
+                        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+                        bmp.compress(Bitmap.CompressFormat.PNG, 100, baos);
+                        byte[] ba = baos.toByteArray();
+                        String encoded = Base64.encodeToString(ba, Base64.DEFAULT);
+                        onInfoEnter(UserInfoFragment.WHICH_FRAGMENT_AVATAR, encoded);
+                    } catch (FileNotFoundException e) {
+                        e.printStackTrace();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+        }
+
+    }
 }

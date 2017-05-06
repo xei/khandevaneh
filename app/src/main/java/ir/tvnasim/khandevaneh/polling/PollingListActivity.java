@@ -12,6 +12,7 @@ import ir.tvnasim.khandevaneh.R;
 import ir.tvnasim.khandevaneh.app.BaseActivity;
 import ir.tvnasim.khandevaneh.helper.webapi.MockApiRequest;
 import ir.tvnasim.khandevaneh.helper.webapi.WebApiHelper;
+import ir.tvnasim.khandevaneh.helper.webapi.WebApiRequest;
 
 public class PollingListActivity extends BaseActivity {
 
@@ -56,7 +57,7 @@ public class PollingListActivity extends BaseActivity {
 
     private void fetchPollingListFromApi() {
 
-        WebApiHelper.getPollingList("", 1, 2, "requestTag_pollingListActivity_getPollingList", new MockApiRequest.WebApiListener<ArrayList<PollingListItem>>() {
+        WebApiHelper.getPollingList("", 1, 2, "requestTag_pollingListActivity_getPollingList", new WebApiRequest.WebApiListener<ArrayList<PollingListItem>>() {
             @Override
             public void onResponse(ArrayList<PollingListItem> pollingListItems) {
                 mList.clear();

@@ -15,8 +15,10 @@ import ir.tvnasim.khandevaneh.R;
 import ir.tvnasim.khandevaneh.account.User;
 import ir.tvnasim.khandevaneh.account.login.LoginActivity;
 import ir.tvnasim.khandevaneh.helper.LogHelper;
+import ir.tvnasim.khandevaneh.leaderboard.LeaderBoardActivity;
 import ir.tvnasim.khandevaneh.livelike.LiveLikeActivity;
 import ir.tvnasim.khandevaneh.polling.PollingListActivity;
+import ir.tvnasim.khandevaneh.store.StoreActivity;
 import ir.tvnasim.khandevaneh.view.bannerslider.SliderView;
 
 /**
@@ -154,6 +156,12 @@ public class HomeMenuAdapter extends RecyclerView.Adapter implements View.OnClic
                     switch (id) {
                         case HomeMenuItem.ID_LIVE_LIKE:
                             LiveLikeActivity.start(context);
+                            break;
+                        case HomeMenuItem.ID_LEADER_BOARD:
+                            LeaderBoardActivity.start(context);
+                            break;
+                        case HomeMenuItem.ID_STORE:
+                            StoreActivity.start(context);
                             break;
                         case HomeMenuItem.ID_ARCHIVE:
                             Toast.makeText(context, context.getString(R.string.inform_notImplemented), Toast.LENGTH_SHORT).show();

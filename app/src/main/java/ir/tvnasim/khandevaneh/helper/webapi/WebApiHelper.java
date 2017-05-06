@@ -13,6 +13,7 @@ import ir.tvnasim.khandevaneh.helper.webapi.model.app.SliderBanner;
 import ir.tvnasim.khandevaneh.helper.webapi.model.app.StartupConfig;
 import ir.tvnasim.khandevaneh.helper.webapi.model.user.Token;
 import ir.tvnasim.khandevaneh.helper.webapi.model.user.UserInfo;
+import ir.tvnasim.khandevaneh.leaderboard.LeaderContainerModel;
 import ir.tvnasim.khandevaneh.leaderboard.LeaderViewModel;
 import ir.tvnasim.khandevaneh.polling.PollingItem;
 import ir.tvnasim.khandevaneh.polling.PollingListItem;
@@ -40,8 +41,8 @@ public final class WebApiHelper {
     private static final String ENDPOINT_GET_LEADERBOARD = "user/leaderboard";
 
 
-    private static final String ENDPOINT_GET_POLLING_LIST = "5909e1f1100000fa0c47c23e";
-    private static final String ENDPOINT_GET_POLLING_ITEM = "5909e2e61000000b0d47c246";
+    private static final String ENDPOINT_GET_POLLING_LIST = "poll/getList";
+    private static final String ENDPOINT_GET_POLLING_ITEM = "poll/getItem";
 
 
     public static WebApiRequest<StartupConfig> getStartupConfig(String requestTag, WebApiRequest.WebApiListener<StartupConfig> webApiListener, WebApiRequest.LoadRequests fragment) {
@@ -167,13 +168,13 @@ public final class WebApiHelper {
         );
     }
 
-    public static WebApiRequest<ArrayList<LeaderViewModel>> getLeaderBoard(String requestTag, WebApiRequest.WebApiListener<ArrayList<LeaderViewModel>> webApiListener, WebApiRequest.LoadRequests fragment) {
+    public static WebApiRequest<LeaderContainerModel> getLeaderBoard(String requestTag, WebApiRequest.WebApiListener<LeaderContainerModel> webApiListener, WebApiRequest.LoadRequests fragment) {
 
         return new WebApiRequest<>(
                 Request.Method.GET,
                 ENDPOINT_GET_LEADERBOARD,
                 null,
-                new TypeToken<WebApiRequest.WebApiResponse<ArrayList<LeaderViewModel>>>() {
+                new TypeToken<WebApiRequest.WebApiResponse<LeaderContainerModel>>() {
                 }.getType(),
                 requestTag,
                 webApiListener,
@@ -181,18 +182,18 @@ public final class WebApiHelper {
         );
     }
 
-    public static MockApiRequest<ArrayList<PollingListItem>> getPollingList(String type, int limit, int offset, String requestTag, MockApiRequest.WebApiListener<ArrayList<PollingListItem>> webApiListener, MockApiRequest.LoadRequests fragment) {
+    public static WebApiRequest<ArrayList<PollingListItem>> getPollingList(String type, int limit, int offset, String requestTag, WebApiRequest.WebApiListener<ArrayList<PollingListItem>> webApiListener, WebApiRequest.LoadRequests fragment) {
 
         HashMap<String, String> params = new HashMap<>();
-        params.put("type", type);
-        params.put("limit", String.valueOf(limit));
-        params.put("offset", String.valueOf(offset));
+//        params.put("type", type);
+//        params.put("limit", String.valueOf(limit));
+//        params.put("offset", String.valueOf(offset));
 
-        return new MockApiRequest<>(
+        return new WebApiRequest<>(
                 Request.Method.GET,
                 ENDPOINT_GET_POLLING_LIST,
                 params,
-                new TypeToken<MockApiRequest.WebApiResponse<ArrayList<PollingListItem>>>() {
+                new TypeToken<WebApiRequest.WebApiResponse<ArrayList<PollingListItem>>>() {
                 }.getType(),
                 requestTag,
                 webApiListener,
@@ -200,16 +201,13 @@ public final class WebApiHelper {
         );
     }
 
-    public static MockApiRequest<PollingItem> getPollingItem(String id, String requestTag, MockApiRequest.WebApiListener<PollingItem> webApiListener, MockApiRequest.LoadRequests fragment) {
+    public static WebApiRequest<PollingItem> getPollingItem(String id, String requestTag, WebApiRequest.WebApiListener<PollingItem> webApiListener, WebApiRequest.LoadRequests fragment) {
 
-        HashMap<String, String> params = new HashMap<>();
-        params.put("id", id);
-
-        return new MockApiRequest<>(
+        return new WebApiRequest<>(
                 Request.Method.GET,
-                ENDPOINT_GET_POLLING_ITEM,
-                params,
-                new TypeToken<MockApiRequest.WebApiResponse<PollingItem>>() {
+                ENDPOINT_GET_POLLING_ITEM + "?id=" + id,
+                null,
+                new TypeToken<WebApiRequest.WebApiResponse<PollingItem>>() {
                 }.getType(),
                 requestTag,
                 webApiListener,

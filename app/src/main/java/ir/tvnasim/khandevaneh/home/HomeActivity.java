@@ -149,7 +149,7 @@ public class HomeActivity extends BaseActivity implements OnBannerClickedListene
             @Override
             public void isLoggedIn(boolean isLoggedIn) {
                 if (isLoggedIn) {
-                    Toast.makeText(HomeActivity.this, bundle.getString(BannerFragment.KEY_ARG_IMAGE_URL), Toast.LENGTH_SHORT).show();
+//                    Toast.makeText(HomeActivity.this, bundle.getString(BannerFragment.KEY_ARG_IMAGE_URL), Toast.LENGTH_SHORT).show();
                 } else {
                     LoginActivity.start(HomeActivity.this);
                 }

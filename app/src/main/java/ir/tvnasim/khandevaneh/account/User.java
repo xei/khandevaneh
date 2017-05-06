@@ -149,7 +149,10 @@ public class User {
     }
 
     public boolean isProfileComplete() {
-        return mIsProfileComplete;
+        if (mFirstName != null && !mFirstName.isEmpty()) {
+            return true;
+        }
+        return false;
     }
 
     public void setIsProfileComplete(boolean isProfileComplete) {

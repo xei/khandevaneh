@@ -21,7 +21,7 @@ public class PollingItem {
     @SerializedName("title")
     private String title;
 
-    @SerializedName("description")
+    @SerializedName("question")
     private String description;
 
     @SerializedName("pollingType")
@@ -30,10 +30,10 @@ public class PollingItem {
     @SerializedName("payload")
     private String payload;
 
-    @SerializedName("optionType")
+    @SerializedName("choiceType")
     private int optionType;
 
-    @SerializedName("options")
+    @SerializedName("answer")
     private ArrayList<PollingOption> options;
 
 

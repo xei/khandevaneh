@@ -8,6 +8,7 @@ import java.util.Locale;
 
 import ir.tvnasim.khandevaneh.helper.HelperFunctions;
 import ir.tvnasim.khandevaneh.helper.SharedPreferencesHelper;
+import ir.tvnasim.khandevaneh.helper.firebase.analytics.FirebaseAnalyticsHelper;
 import ir.tvnasim.khandevaneh.helper.imageloading.ImageLoader;
 import ir.tvnasim.khandevaneh.helper.webapi.VolleyHelper;
 import okhttp3.internal.Util;
@@ -28,6 +29,7 @@ public class App extends Application {
 
         VolleyHelper.init(this);
         ImageLoader.init(this);
+        FirebaseAnalyticsHelper.init(this);
 //        setPreferenceLocale();
 
 

@@ -1,0 +1,63 @@
+{
+  "project_info": {
+    "project_number": "660593423428",
+    "firebase_url": "https://khandevaneh-9fc26.firebaseio.com",
+    "project_id": "khandevaneh-9fc26",
+    "storage_bucket": "khandevaneh-9fc26.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:660593423428:android:8cba28b088757de4",
+        "android_client_info": {
+          "package_name": "ir.tvnasim.khandevaneh.debug"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "660593423428-8eqqr583tr3plu2tsrjuphmabjcatq02.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "ir.tvnasim.khandevaneh.debug",
+            "certificate_hash": "c37a78ebc6dacaa33105fd1929b0eee713ecc083"
+          }
+        },
+        {
+          "client_id": "660593423428-tuiialrcn2c4j0mteerf65homaqfdst1.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "ir.tvnasim.khandevaneh.debug",
+            "certificate_hash": "e56acf26e39433bc0e85dcccffcf790ac83f46dc"
+          }
+        },
+        {
+          "client_id": "660593423428-v5u93afp85bj827nuka4ek71c5ulm85s.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAvP_Q_f2NdzEj_uHzGHH6mNtZpZblfBB0"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "660593423428-v5u93afp85bj827nuka4ek71c5ulm85s.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

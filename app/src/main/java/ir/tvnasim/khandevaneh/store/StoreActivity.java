@@ -75,7 +75,7 @@ public class StoreActivity extends BaseActivity {
         leaderViewModel.setTitle(HelperFunctions.persianizeDigitsInString("۴ بسته ۱۰۰ تایی"));
         leaderViewModel.setImage("http://img.bisms.ir//2015/06/rambod-javan-2.jpg");
 
-        for (int i = 0 ; i < 50 ; i++) {
+        for (int i = 0 ; i < 10 ; i++) {
             leaders.add(leaderViewModel);
         }
         bindData(leaders);

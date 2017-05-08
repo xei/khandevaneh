@@ -41,13 +41,6 @@ public class HomeMenuAdapter extends RecyclerView.Adapter implements View.OnClic
 
     public HomeMenuAdapter() {
 
-        //Archive
-        HomeMenuItem archive = new HomeMenuItem();
-        archive.setId(HomeMenuItem.ID_ARCHIVE);
-//        archive.setBackgroundImageResourceId(R.drawable.ic_menu_home_archive);
-        archive.setBackgroundImageResourceId(R.drawable.ic_menu_home_archive);
-        menuItems.add(archive);
-
         // Competition
         HomeMenuItem competition = new HomeMenuItem();
         competition.setId(HomeMenuItem.ID_COMPETITION);
@@ -66,18 +59,17 @@ public class HomeMenuAdapter extends RecyclerView.Adapter implements View.OnClic
         polling.setBackgroundImageResourceId(R.drawable.ic_menu_home_polling);
         menuItems.add(polling);
 
-        // Leader Board
-        HomeMenuItem  leaderboard = new HomeMenuItem();
-        leaderboard.setId(HomeMenuItem.ID_LEADER_BOARD);
-        leaderboard.setBackgroundImageResourceId(R.drawable.ic_menu_home_leaderboard);
-        menuItems.add(leaderboard);
-
         // Store
         HomeMenuItem  store = new HomeMenuItem();
         store.setId(HomeMenuItem.ID_STORE);
         store.setBackgroundImageResourceId(R.drawable.ic_menu_home_store);
         menuItems.add(store);
 
+        // Leader Board
+        HomeMenuItem  leaderboard = new HomeMenuItem();
+        leaderboard.setId(HomeMenuItem.ID_LEADER_BOARD);
+        leaderboard.setBackgroundImageResourceId(R.drawable.ic_menu_home_leaderboard);
+        menuItems.add(leaderboard);
 
         // Campaign
         HomeMenuItem campaign = new HomeMenuItem();
@@ -85,13 +77,18 @@ public class HomeMenuAdapter extends RecyclerView.Adapter implements View.OnClic
         campaign.setBackgroundImageResourceId(R.drawable.ic_menu_home_campaign);
         menuItems.add(campaign);
 
+        //Archive
+        HomeMenuItem archive = new HomeMenuItem();
+        archive.setId(HomeMenuItem.ID_ARCHIVE);
+//        archive.setBackgroundImageResourceId(R.drawable.ic_menu_home_archive);
+        archive.setBackgroundImageResourceId(R.drawable.ic_menu_home_archive);
+        menuItems.add(archive);
+
         // Awards
         HomeMenuItem awards = new HomeMenuItem();
         awards.setId(HomeMenuItem.ID_AWARDS);
         awards.setBackgroundImageResourceId(R.drawable.ic_menu_home_awards);
         menuItems.add(awards);
-
-
 
     }
 

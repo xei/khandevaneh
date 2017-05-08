@@ -3,9 +3,9 @@
 <resources>
 
     <!-- BaseActivity -->
-    <dimen name="height_statusbar">24dp</dimen>
+    <dimen name="height_statusbar">0dp</dimen>
     <dimen name="height_toolbar">56dp</dimen>
-    <dimen name="height_statusBarPlusToolbar">80dp</dimen>
+    <dimen name="height_statusBarPlusToolbar">56dp</dimen>
     <dimen name="elevation_toolbar">4dp</dimen>
     <dimen name="width_toolbar_logo">110dp</dimen>
     <dimen name="height_toolbar_logo">32dp</dimen>

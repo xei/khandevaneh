@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<resources>
+
+    <!-- BaseActivity -->
+    <dimen name="height_statusbar">24dp</dimen>
+    <dimen name="height_statusBarPlusToolbar">80dp</dimen>
+
+</resources>

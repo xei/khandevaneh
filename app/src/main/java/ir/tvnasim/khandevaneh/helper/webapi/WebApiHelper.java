@@ -49,6 +49,8 @@ public final class WebApiHelper {
 
     private static final String ENDPOINT_GET_POLLING_LIST = "poll/getList";
     private static final String ENDPOINT_GET_POLLING_ITEM = "poll/getItem";
+    private static final String ENDPOINT_POLL = "poll/like";
+    private static final String ENDPOINT_GET_POLLING_STATISTICS = "poll/getStatistics";
 
     private static final String ENDPOINT_GET_STORE_LIST = "store/getList";
 

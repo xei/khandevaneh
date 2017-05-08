@@ -22,6 +22,7 @@ import ir.tvnasim.khandevaneh.leaderboard.LeaderBoardActivity;
 import ir.tvnasim.khandevaneh.livelike.LiveLikeActivity;
 import ir.tvnasim.khandevaneh.polling.PollingListActivity;
 import ir.tvnasim.khandevaneh.store.StoreActivity;
+import ir.tvnasim.khandevaneh.view.KhandevanehDialog;
 import ir.tvnasim.khandevaneh.view.bannerslider.SliderView;
 
 /**
@@ -153,9 +154,9 @@ public class HomeMenuAdapter extends RecyclerView.Adapter implements View.OnClic
         User.getInstance().isLoggedIn(new User.IsLoggedInListener() {
             @Override
             public void isLoggedIn(boolean isLoggedIn) {
+                Context context = clickedView.getContext();
                 if (isLoggedIn) {
                     String id = (String) clickedView.getTag();
-                    Context context = clickedView.getContext();
                     switch (id) {
                         case HomeMenuItem.ID_LIVE_LIKE:
                             LiveLikeActivity.start(context);
@@ -167,7 +168,7 @@ public class HomeMenuAdapter extends RecyclerView.Adapter implements View.OnClic
                             StoreActivity.start(context);
                             break;
                         case HomeMenuItem.ID_ARCHIVE:
-                            Toast.makeText(context, context.getString(R.string.inform_notImplemented), Toast.LENGTH_SHORT).show();
+                            new KhandevanehDialog(context, context.getString(R.string.inform_notImplemented), null).show();
 //                ArchiveActivity.start(context);
                             break;
                         case HomeMenuItem.ID_POLLING:
@@ -177,16 +178,21 @@ public class HomeMenuAdapter extends RecyclerView.Adapter implements View.OnClic
                             PollingListActivity.start(context);
                             break;
                         case HomeMenuItem.ID_CAMPAIGN:
-                            Toast.makeText(context, context.getString(R.string.inform_notImplemented), Toast.LENGTH_SHORT).show();
-                            break;
+                            new KhandevanehDialog(context, context.getString(R.string.inform_notImplemented), null).show();
+                        break;
                         case HomeMenuItem.ID_AWARDS:
-                            Toast.makeText(context, context.getString(R.string.inform_notImplemented), Toast.LENGTH_SHORT).show();
+                            new KhandevanehDialog(context, context.getString(R.string.inform_notImplemented), null).show();
                             break;
                         default:
                             LogHelper.logError(TAG_DEBUG, "invalid item id!");
                     }
                 } else {
-                    LoginActivity.start(clickedView.getContext());
+                    new KhandevanehDialog(context, context.getString(R.string.inform_needLogin), new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            LoginActivity.start(clickedView.getContext());
+                        }
+                    }).show();
                 }
             }
         });

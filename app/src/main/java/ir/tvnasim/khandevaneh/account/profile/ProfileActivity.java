@@ -12,6 +12,7 @@ import ir.tvnasim.khandevaneh.R;
 import ir.tvnasim.khandevaneh.account.User;
 import ir.tvnasim.khandevaneh.app.BaseActivity;
 import ir.tvnasim.khandevaneh.helper.imageloading.FrescoHelper;
+import ir.tvnasim.khandevaneh.view.KhandevanehDialog;
 import ir.tvnasim.khandevaneh.view.XeiButton;
 import ir.tvnasim.khandevaneh.view.XeiTextView;
 
@@ -91,7 +92,7 @@ public class ProfileActivity extends BaseActivity {
 
         switch (clickedView.getId()) {
             case R.id.activityProfile_xeiButton_editProfile:
-                Toast.makeText(this, "امکان ویرایش پروفایل در این نسخه وجود ندارد", Toast.LENGTH_SHORT).show();
+                new KhandevanehDialog(this, getString(R.string.inform_notImplemented), null).show();
                 break;
 
             case R.id.activityProfile_xeiButton_subscribe:

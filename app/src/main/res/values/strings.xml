@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">خندوانه</string>
-    <string name="inform_notImplemented">این ویژگی در حال حاضر قابل استفاده نمی‌باشد</string>
+    <string name="inform_notImplemented">منتظر این قابلیت تو نسخه بعدیمون باش.</string>
+    <string name="inform_needLogin">چی فکر کردی؟ اول باید لاگین کنی رفیق!</string>
 
     <!-- StoreActivity -->
     <string name="label_user_melon">هندوانه شما:</string>

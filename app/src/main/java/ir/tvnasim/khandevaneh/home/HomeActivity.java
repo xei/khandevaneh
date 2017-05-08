@@ -1,10 +1,13 @@
 package ir.tvnasim.khandevaneh.home;
 
+import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.view.Window;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -20,6 +23,7 @@ import ir.tvnasim.khandevaneh.helper.webapi.WebApiRequest;
 import ir.tvnasim.khandevaneh.helper.webapi.model.app.SliderBanner;
 import ir.tvnasim.khandevaneh.helper.webapi.model.user.Token;
 import ir.tvnasim.khandevaneh.helper.webapi.model.user.UserInfo;
+import ir.tvnasim.khandevaneh.view.KhandevanehDialog;
 import ir.tvnasim.khandevaneh.view.bannerslider.BannerFragment;
 import ir.tvnasim.khandevaneh.view.bannerslider.OnBannerClickedListener;
 
@@ -42,10 +46,8 @@ public class HomeActivity extends BaseActivity implements OnBannerClickedListene
 
         findViews();
         initRecyclerView();
-        setOnClickListeners();
 
         fetchBannersFromApi();
-
     }
 
     @Override
@@ -109,10 +111,6 @@ public class HomeActivity extends BaseActivity implements OnBannerClickedListene
         mHomeMenuAdapter = new HomeMenuAdapter();
         mMenuItemRecyclerView.setLayoutManager(new HomeMenuLayoutManager(this, mHomeMenuAdapter));
         mMenuItemRecyclerView.setAdapter(mHomeMenuAdapter);
-    }
-
-    private void setOnClickListeners() {
-//        mBannersSliderView.setOnBannerClickListener(this);
     }
 
     private void fetchBannersFromApi() {

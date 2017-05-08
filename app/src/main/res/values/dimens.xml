@@ -59,4 +59,8 @@
     <dimen name="height_storeActivity_row_image">112dp</dimen>
     <dimen name="height_storeActivity_row_title">48dp</dimen>
 
+    <!-- LiveLikeActivity -->
+    <dimen name="liveLike_textSize_title">25sp</dimen>
+    <dimen name="liveLike_marginTop_title">56dp</dimen>
+
 </resources>

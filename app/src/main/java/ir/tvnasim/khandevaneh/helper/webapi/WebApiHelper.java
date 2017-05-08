@@ -11,6 +11,8 @@ import ir.tvnasim.khandevaneh.app.App;
 import ir.tvnasim.khandevaneh.helper.HelperFunctions;
 import ir.tvnasim.khandevaneh.helper.webapi.model.app.SliderBanner;
 import ir.tvnasim.khandevaneh.helper.webapi.model.app.StartupConfig;
+import ir.tvnasim.khandevaneh.helper.webapi.model.section.LikeResult;
+import ir.tvnasim.khandevaneh.helper.webapi.model.section.Section;
 import ir.tvnasim.khandevaneh.helper.webapi.model.user.Token;
 import ir.tvnasim.khandevaneh.helper.webapi.model.user.UserInfo;
 import ir.tvnasim.khandevaneh.leaderboard.LeaderContainerModel;
@@ -39,6 +41,10 @@ public final class WebApiHelper {
     private static final String ENDPOINT_GET_USER_INFO = "user/info";
     private static final String ENDPOINT_EDIT_USER_INFO = "user/edit";
     private static final String ENDPOINT_GET_LEADERBOARD = "user/leaderboard";
+
+    private static final String ENDPOINT_GET_LIVE_LIKE = "section/getList";
+    private static final String ENDPOINT_LIKE_SECTION = "section/like";
+    private static final String ENDPOINT_COMMENT_SECTION = "section/comment";
 
 
     private static final String ENDPOINT_GET_POLLING_LIST = "poll/getList";
@@ -208,6 +214,55 @@ public final class WebApiHelper {
                 ENDPOINT_GET_POLLING_ITEM + "?id=" + id,
                 null,
                 new TypeToken<WebApiRequest.WebApiResponse<PollingItem>>() {
+                }.getType(),
+                requestTag,
+                webApiListener,
+                fragment
+        );
+    }
+
+    public static WebApiRequest<Section> getLiveLike(String requestTag, WebApiRequest.WebApiListener<Section> webApiListener, WebApiRequest.LoadRequests fragment) {
+
+        return new WebApiRequest<>(
+                Request.Method.GET,
+                ENDPOINT_GET_LIVE_LIKE,
+                null,
+                new TypeToken<WebApiRequest.WebApiResponse<Section>>() {
+                }.getType(),
+                requestTag,
+                webApiListener,
+                fragment
+        );
+    }
+
+    public static WebApiRequest<LikeResult> likeSection(String sectionId, String requestTag, WebApiRequest.WebApiListener<LikeResult> webApiListener, WebApiRequest.LoadRequests fragment) {
+
+        HashMap<String, String> params = new HashMap<>();
+        params.put("id", sectionId);
+
+        return new WebApiRequest<>(
+                Request.Method.POST,
+                ENDPOINT_LIKE_SECTION,
+                params,
+                new TypeToken<WebApiRequest.WebApiResponse<LikeResult>>() {
+                }.getType(),
+                requestTag,
+                webApiListener,
+                fragment
+        );
+    }
+
+    public static WebApiRequest<LikeResult> commentOnSection(String sectionId, String msg, String requestTag, WebApiRequest.WebApiListener<LikeResult> webApiListener, WebApiRequest.LoadRequests fragment) {
+
+        HashMap<String, String> params = new HashMap<>();
+        params.put("id", sectionId);
+        params.put("comment", msg);
+
+        return new WebApiRequest<>(
+                Request.Method.POST,
+                ENDPOINT_COMMENT_SECTION,
+                params,
+                new TypeToken<WebApiRequest.WebApiResponse<LikeResult>>() {
                 }.getType(),
                 requestTag,
                 webApiListener,

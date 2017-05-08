@@ -21,7 +21,7 @@
         android:gravity="bottom"
         android:textSize="@dimen/textSize_toolbar_score"
         android:textStyle="bold"
-        android:textColor="@color/textColor_LightText"
+        android:textColor="@color/textColor_light"
         app:locale="fa_IR"
         app:style="bold" />
 

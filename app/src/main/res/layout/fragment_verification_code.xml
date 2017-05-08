@@ -32,8 +32,8 @@
             android:inputType="phone"
             android:paddingLeft="16dp"
             android:paddingRight="16dp"
-            android:textColor="@color/textColor_LightText"
-            android:textColorHint="@color/textColor_LightText" />
+            android:textColor="@color/textColor_light"
+            android:textColorHint="@color/textColor_light" />
 
         <ir.tvnasim.khandevaneh.view.XeiButton
             android:id="@+id/fragmentVerificationCode_xeiButton_send"
@@ -43,7 +43,7 @@
             android:layout_marginTop="32dp"
             android:background="@drawable/background_button_sendphone"
             android:text="ارسال"
-            android:textColor="@color/textColor_LightText"
+            android:textColor="@color/textColor_light"
             android:textSize="@dimen/textSize_row_leaderBoard"
             android:textStyle="bold"
             app:locale="fa_IR"

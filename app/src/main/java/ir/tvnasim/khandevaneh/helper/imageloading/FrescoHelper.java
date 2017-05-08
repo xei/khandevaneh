@@ -9,6 +9,7 @@ import android.util.Log;
 
 import com.facebook.common.executors.CallerThreadExecutor;
 import com.facebook.common.references.CloseableReference;
+import com.facebook.common.util.UriUtil;
 import com.facebook.datasource.DataSource;
 import com.facebook.drawee.backends.pipeline.Fresco;
 import com.facebook.drawee.interfaces.DraweeController;
@@ -22,6 +23,7 @@ import com.facebook.imagepipeline.image.CloseableImage;
 import com.facebook.imagepipeline.request.ImageRequest;
 import com.facebook.imagepipeline.request.ImageRequestBuilder;
 
+import ir.tvnasim.khandevaneh.R;
 import okhttp3.OkHttpClient;
 
 //import com.digikala.xei.StethoHelper;
@@ -135,6 +137,20 @@ public class FrescoHelper {
                 .setImageRequest(request)
                 .setOldController(simpleDraweeView.getController())
                 .build();
+        simpleDraweeView.setController(controller);
+    }
+
+    public static void loadGifFromResources(SimpleDraweeView simpleDraweeView, int resourceId) {
+        Uri uri = new Uri.Builder()
+                .scheme(UriUtil.LOCAL_RESOURCE_SCHEME)
+                .path(String.valueOf(resourceId))
+                .build();
+
+        DraweeController controller = Fresco.newDraweeControllerBuilder()
+                .setUri(uri)
+                .setAutoPlayAnimations(true)
+                .build();
+
         simpleDraweeView.setController(controller);
     }
 

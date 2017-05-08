@@ -12,27 +12,27 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher"
         android:supportsRtl="true"
-        android:theme="@style/KhandevanehTheme">
-        <activity android:name=".app.LaunchActivity">
+        android:theme="@style/KhandevanehTheme" >
+        <activity
+            android:name=".app.LaunchActivity"
+            android:screenOrientation="portrait" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".app.UpdateActivity" />
-        <activity android:name=".home.HomeActivity" />
-        <activity android:name=".account.login.LoginActivity" />
-        <activity android:name=".account.profile.ProfileActivity" />
-        <activity android:name=".account.profile.ProfileCompletionActivity" />
-        <activity android:name=".leaderboard.LeaderBoardActivity" />
-        <activity android:name=".store.StoreActivity" />
-        <activity android:name=".livelike.LiveLikeActivity" />
-        <activity android:name=".archive.ArchiveActivity" />
-        <activity android:name=".polling.PollingListActivity">
-
-        </activity>
-        <activity android:name=".polling.PollingActivity" />
+        <activity android:name=".app.UpdateActivity" android:screenOrientation="portrait" />
+        <activity android:name=".home.HomeActivity" android:screenOrientation="portrait" />
+        <activity android:name=".account.login.LoginActivity" android:screenOrientation="portrait" />
+        <activity android:name=".account.profile.ProfileActivity" android:screenOrientation="portrait" />
+        <activity android:name=".account.profile.ProfileCompletionActivity" android:screenOrientation="portrait" />
+        <activity android:name=".leaderboard.LeaderBoardActivity" android:screenOrientation="portrait" />
+        <activity android:name=".store.StoreActivity" android:screenOrientation="portrait" />
+        <activity android:name=".livelike.LiveLikeActivity" android:screenOrientation="portrait" />
+        <activity android:name=".archive.ArchiveActivity" android:screenOrientation="portrait" />
+        <activity android:name=".polling.PollingListActivity" android:screenOrientation="portrait" />
+        <activity android:name=".polling.PollingActivity" android:screenOrientation="portrait" />
     </application>
 
 </manifest>

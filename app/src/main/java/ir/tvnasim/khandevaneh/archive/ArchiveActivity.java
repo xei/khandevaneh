@@ -6,7 +6,6 @@ import android.os.Bundle;
 
 import ir.tvnasim.khandevaneh.R;
 import ir.tvnasim.khandevaneh.app.BaseActivity;
-import ir.tvnasim.khandevaneh.livelike.LiveLikeActivity;
 
 public class ArchiveActivity extends BaseActivity {
 

@@ -8,8 +8,7 @@
     android:id="@+id/activityBase_toolbar"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/background_home_toolbar"
-    android:elevation="@dimen/elevation_toolbar">
+    android:elevation="@dimen/elevation_toolbar" >
 
     <View
         android:id="@+id/toolbarHome_view_statusBar"
@@ -20,10 +19,57 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@+id/toolbarHome_view_statusBar">
+        android:layout_below="@+id/toolbarHome_view_statusBar" >
 
         <ImageButton
             android:id="@+id/toolbarHome_imageButton_profile"
+            android:layout_width="@dimen/dimen_toolbar_action"
+            android:layout_height="@dimen/dimen_toolbar_action"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/margin_toolbar_action"
+            android:padding="@dimen/padding_toolbar_action"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:scaleType="centerInside"
+            android:src="@drawable/ic_toolbar_profile_dark" />
+
+        <LinearLayout
+            android:id="@+id/toolbarHome_linearLayout_scoreSection"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/toolbarHome_imageButton_profile"
+            android:layout_toLeftOf="@+id/toolbarHome_imageButton_up"
+            android:layout_marginLeft="@dimen/margin_toolbar_score"
+            android:layout_marginRight="@dimen/margin_toolbar_score"
+            android:layout_centerVertical="true"
+            android:orientation="horizontal"
+            android:weightSum="2"
+            android:visibility="gone" >
+
+            <RelativeLayout
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="@dimen/dimen_toolbar_score"
+                android:gravity="center" >
+                <include
+                    android:id="@+id/toolbarHome_linearLayout_experience"
+                    layout="@layout/layout_toolbar_score_dark" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="@dimen/dimen_toolbar_score"
+                android:gravity="center" >
+                <include
+                    android:id="@+id/toolbarHome_linearLayout_melon"
+                    layout="@layout/layout_toolbar_score_dark" />
+            </RelativeLayout>
+
+        </LinearLayout>
+
+        <ImageButton
+            android:id="@+id/toolbarHome_imageButton_up"
             android:layout_width="@dimen/dimen_toolbar_action"
             android:layout_height="@dimen/dimen_toolbar_action"
             android:layout_alignParentRight="true"
@@ -32,31 +78,7 @@
             android:padding="@dimen/padding_toolbar_action"
             android:background="?attr/selectableItemBackgroundBorderless"
             android:scaleType="centerInside"
-            android:src="@drawable/ic_toolbar_profile_dark" />
-
-        <LinearLayout
-            android:id="@+id/toolbarHome_linearLayout_scoreSection"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:layout_centerVertical="true"
-            android:layout_marginLeft="@dimen/margin_toolbar_action"
-            android:orientation="horizontal"
-            android:visibility="gone">
-
-            <include
-                android:id="@+id/toolbarHome_linearLayout_experience"
-                layout="@layout/layout_toolbar_score_dark" />
-
-            <View
-                android:layout_width="@dimen/space_toolbar_score"
-                android:layout_height="@dimen/dimen_toolbar_score" />
-
-            <include
-                android:id="@+id/toolbarHome_linearLayout_melon"
-                layout="@layout/layout_toolbar_score_dark" />
-
-        </LinearLayout>
+            android:src="@drawable/ic_toolbar_up_dark" />
 
     </RelativeLayout>
 

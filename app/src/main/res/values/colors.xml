@@ -18,7 +18,7 @@
     <color name="colorToolbar">@color/colorPrimary</color>
     <color name="textColor_toolbar_score">#fff</color>
 
-    <color name="textColor_LightText">#fff</color>
+    <color name="textColor_light">#fff</color>
     <color name="textColor_dark">#1b5e20</color>
 
     <color name="placeholder_fresco">#848080</color>
@@ -28,6 +28,10 @@
     <color name="text_toolbar_home_score">#1b5e20</color>
     <color name="background_home">#F2CF0D</color>
     <color name="border_home_menu_items">#1b5e20</color>
+
+    <!-- LiveLike -->
+    <color name="liveLikeList_background_screen">#00682A</color>
+    <color name="liveLikeList_text_title">@color/textColor_light</color>
 
     <!-- LeaderBoardActivity -->
     <color name="background_leader_board">#004529</color>

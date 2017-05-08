@@ -1,17 +1,89 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="ir.tvnasim.khandevaneh.livelike.LiveLikeActivity">
+    android:background="@color/liveLikeList_background_screen"
+    tools:context="ir.tvnasim.khandevaneh.livelike.LiveLikeActivity" >
 
-    <TextView
+    <RelativeLayout
+        android:id="@+id/activityLiveLike_relativeLayout_liveLikeSection"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:gravity="center"
-        android:textSize="72sp"
-        android:text="Live Like"/>
+        android:visibility="gone" >
+
+        <ir.tvnasim.khandevaneh.view.XeiTextView
+            android:id="@+id/activityLiveLike_xeiTextView_title"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:layout_alignParentTop="true"
+            android:layout_marginTop="@dimen/liveLike_marginTop_title"
+            android:gravity="center"
+            android:textColor="@color/liveLikeList_text_title"
+            android:textSize="@dimen/liveLike_textSize_title"
+            app:locale="fa_IR" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_above="@+id/activityLiveLike_relativeLayout_commentSection">
+
+            <ImageView
+                android:id="@+id/activityLiveLike_imageView_backHeart"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:src="@drawable/heartback2"
+                android:visibility="gone" />
+
+            <com.facebook.drawee.view.SimpleDraweeView
+                android:id="@+id/activityLiveLike_simpleDraweeView_like"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="112dp" />
+
+        </RelativeLayout>
+        
+        <RelativeLayout
+            android:id="@+id/activityLiveLike_relativeLayout_commentSection"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:layout_alignParentBottom="true"
+            android:background="#fff"
+            android:visibility="gone" >
+
+            <ir.tvnasim.khandevaneh.view.XeiEditText
+                android:id="@+id/activityLiveLike_xeiEditText_comment"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_toRightOf="@+id/activityLiveLike_imageView_sendBtn"
+                android:gravity="right|center_vertical"
+                android:paddingRight="8dp"
+                android:background="@android:color/transparent"
+                android:hint="نظرات شما" />
+
+            <ImageView
+                android:id="@+id/activityLiveLike_imageView_sendBtn"
+                android:layout_width="56dp"
+                android:layout_height="56dp"
+                android:layout_alignParentLeft="true"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"
+                android:layout_marginRight="8dp"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:src="@drawable/send"
+                android:scaleType="centerInside" />
+
+        </RelativeLayout>
+
+    </RelativeLayout>
+
+    <com.facebook.drawee.view.SimpleDraweeView
+        android:id="@+id/activityLiveLike_simpleDraweeView_banner"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone"/>
 
 </RelativeLayout>

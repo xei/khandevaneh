@@ -9,6 +9,9 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.rd.PageIndicatorView;
+import com.rd.animation.AnimationType;
+
 import java.util.ArrayList;
 
 import ir.tvnasim.khandevaneh.R;
@@ -193,11 +196,16 @@ public class HomeMenuAdapter extends RecyclerView.Adapter implements View.OnClic
     private class HomeSliderViewHolder extends RecyclerView.ViewHolder {
 
         SliderView sliderView;
+        PageIndicatorView pagerIndicator;
 
         HomeSliderViewHolder(final View itemView) {
             super(itemView);
 
             sliderView = (SliderView) itemView.findViewById(R.id.rowMenuHomeSlider_sliderView_slider);
+            pagerIndicator = (PageIndicatorView) itemView.findViewById(R.id.rowMenuHomeSlider_pageIndicatorView_indicator);
+
+            pagerIndicator.setDynamicCount(true);
+            pagerIndicator.setAnimationType(AnimationType.SWAP);
 
             itemView.post(new Runnable() {
                 @Override

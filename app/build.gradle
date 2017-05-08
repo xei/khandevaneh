@@ -79,6 +79,8 @@ dependencies {
     compile 'com.facebook.fresco:imagepipeline-okhttp3:1.2.0'
     compile 'com.facebook.fresco:animated-gif:1.2.0'
 
+    compile 'com.romandanylyk:pageindicatorview:0.1.2@aar'
+
     testCompile 'junit:junit:4.12'
 }
 

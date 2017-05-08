@@ -13,16 +13,21 @@ import ir.tvnasim.khandevaneh.R;
 import ir.tvnasim.khandevaneh.account.User;
 import ir.tvnasim.khandevaneh.app.BaseActivity;
 import ir.tvnasim.khandevaneh.helper.HelperFunctions;
+import ir.tvnasim.khandevaneh.helper.webapi.WebApiHelper;
+import ir.tvnasim.khandevaneh.helper.webapi.WebApiRequest;
+import ir.tvnasim.khandevaneh.helper.webapi.model.store.StoreItem;
+import ir.tvnasim.khandevaneh.view.KhandevanehDialog;
 
 public class StoreActivity extends BaseActivity {
 
+    private static final String TAG_REQUEST_GET_STORE_LIST = "requestTag_storeActivity_getStoreList";
     private static final int COUNT_SPAN_RECYCLER_VIEW = 2;
 
     private TextView mMelonTextView;
     private RecyclerView mItemsRecyclerView;
     private StoreAdapter mStoreAdapter;
 
-    private ArrayList<ItemModel> mItems = new ArrayList<>();
+    private ArrayList<StoreItem> mItems = new ArrayList<>();
 
     public static void start(Context starter) {
         Intent intent = new Intent(starter, StoreActivity.class);
@@ -69,20 +74,24 @@ public class StoreActivity extends BaseActivity {
     }
 
     private void fetchDataFromApi() {
-        //TODO: API call
-        ArrayList<ItemModel> leaders = new ArrayList<>();
-        ItemModel leaderViewModel = new ItemModel();
-        leaderViewModel.setTitle(HelperFunctions.persianizeDigitsInString("۴ بسته ۱۰۰ تایی"));
-        leaderViewModel.setImage("http://img.bisms.ir//2015/06/rambod-javan-2.jpg");
+        WebApiHelper.getStoreList(TAG_REQUEST_GET_STORE_LIST, new WebApiRequest.WebApiListener<ArrayList<StoreItem>>() {
+            @Override
+            public void onResponse(ArrayList<StoreItem> storeItems) {
+                if (storeItems != null) {
+                    bindData(storeItems);
+                }
+            }
 
-        for (int i = 0 ; i < 10 ; i++) {
-            leaders.add(leaderViewModel);
-        }
-        bindData(leaders);
+            @Override
+            public void onErrorResponse(String errorMessage) {
+                new KhandevanehDialog(StoreActivity.this, "فروشگاه در دسترس نیست", null).show();
+            }
+        }, null).send();
+
 
     }
 
-    private void bindData(ArrayList<ItemModel> items) {
+    private void bindData(ArrayList<StoreItem> items) {
         mItems.clear();
         mItems.addAll(items);
         mStoreAdapter.notifyDataSetChanged();

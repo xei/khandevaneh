@@ -16,7 +16,7 @@ import ir.tvnasim.khandevaneh.app.BaseActivity;
 import ir.tvnasim.khandevaneh.helper.SharedPreferencesHelper;
 import ir.tvnasim.khandevaneh.helper.webapi.WebApiHelper;
 import ir.tvnasim.khandevaneh.helper.webapi.WebApiRequest;
-import ir.tvnasim.khandevaneh.helper.webapi.model.app.SliderBanner;
+import ir.tvnasim.khandevaneh.helper.webapi.model.app.Banner;
 import ir.tvnasim.khandevaneh.helper.webapi.model.user.Token;
 import ir.tvnasim.khandevaneh.helper.webapi.model.user.UserInfo;
 import ir.tvnasim.khandevaneh.view.bannerslider.BannerFragment;
@@ -110,11 +110,11 @@ public class HomeActivity extends BaseActivity implements OnBannerClickedListene
 
     private void fetchBannersFromApi() {
 
-        WebApiHelper.getSliderBanners("requestTag_homeActivity_getSliderBanners", new WebApiRequest.WebApiListener<ArrayList<SliderBanner>>() {
+        WebApiHelper.getSliderBanners("requestTag_homeActivity_getSliderBanners", new WebApiRequest.WebApiListener<ArrayList<Banner>>() {
             @Override
-            public void onResponse(ArrayList<SliderBanner> sliderBanners) {
+            public void onResponse(ArrayList<Banner> sliderBanners) {
                 ArrayList<Bundle> bannersList = new ArrayList<>();
-                for (SliderBanner sliderBanner : sliderBanners) {
+                for (Banner sliderBanner : sliderBanners) {
                     Bundle banner = new Bundle();
                     banner.putString(BannerFragment.KEY_ARG_IMAGE_URL, sliderBanner.getImageUrl());
                     bannersList.add(banner);

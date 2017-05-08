@@ -129,15 +129,17 @@ public class FrescoHelper {
     }
 
     public static void setImageUrl(SimpleDraweeView simpleDraweeView, String imageUrl) {
-        Uri uri = Uri.parse(imageUrl);
-        ImageRequest request = ImageRequestBuilder.newBuilderWithSource(uri)
-                .setProgressiveRenderingEnabled(true)
-                .build();
-        DraweeController controller = Fresco.newDraweeControllerBuilder()
-                .setImageRequest(request)
-                .setOldController(simpleDraweeView.getController())
-                .build();
-        simpleDraweeView.setController(controller);
+        if (imageUrl != null) {
+            Uri uri = Uri.parse(imageUrl);
+            ImageRequest request = ImageRequestBuilder.newBuilderWithSource(uri)
+                    .setProgressiveRenderingEnabled(true)
+                    .build();
+            DraweeController controller = Fresco.newDraweeControllerBuilder()
+                    .setImageRequest(request)
+                    .setOldController(simpleDraweeView.getController())
+                    .build();
+            simpleDraweeView.setController(controller);
+        }
     }
 
     public static void loadGifFromResources(SimpleDraweeView simpleDraweeView, int resourceId) {

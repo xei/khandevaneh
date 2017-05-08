@@ -10,7 +10,10 @@ import com.facebook.drawee.view.SimpleDraweeView;
 import java.util.ArrayList;
 
 import ir.tvnasim.khandevaneh.R;
+import ir.tvnasim.khandevaneh.helper.HelperFunctions;
 import ir.tvnasim.khandevaneh.helper.imageloading.FrescoHelper;
+import ir.tvnasim.khandevaneh.helper.webapi.model.store.StoreItem;
+import ir.tvnasim.khandevaneh.view.KhandevanehDialog;
 import ir.tvnasim.khandevaneh.view.XeiTextView;
 
 /**
@@ -19,9 +22,9 @@ import ir.tvnasim.khandevaneh.view.XeiTextView;
 
 public class StoreAdapter extends RecyclerView.Adapter<StoreAdapter.ItemViewHolder> {
 
-    private ArrayList<ItemModel> mItems;
+    private ArrayList<StoreItem> mItems;
 
-    public StoreAdapter(ArrayList<ItemModel> items) {
+    public StoreAdapter(ArrayList<StoreItem> items) {
         mItems = items;
     }
 
@@ -33,9 +36,16 @@ public class StoreAdapter extends RecyclerView.Adapter<StoreAdapter.ItemViewHold
 
     @Override
     public void onBindViewHolder(ItemViewHolder holder, int position) {
-        ItemModel item = mItems.get(position);
+        final StoreItem item = mItems.get(position);
         holder.title.setText(item.getTitle());
         FrescoHelper.setImageUrl(holder.image, item.getImage());
+
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                new KhandevanehDialog(view.getContext(), "قیمت این بسته " + HelperFunctions.convertNumberStringToPersian(item.getPrice()) + " تومنه", null).show();
+            }
+        });
     }
 
     @Override
@@ -45,12 +55,14 @@ public class StoreAdapter extends RecyclerView.Adapter<StoreAdapter.ItemViewHold
 
     class ItemViewHolder extends RecyclerView.ViewHolder{
 
+        View itemView;
         SimpleDraweeView image;
         XeiTextView title;
 
-        public ItemViewHolder(final View itemView) {
+        ItemViewHolder(final View itemView) {
             super(itemView);
 
+            this.itemView = itemView;
             image = (SimpleDraweeView) itemView.findViewById(R.id.rowStore_simpleDraweeView_image);
             title = (XeiTextView) itemView.findViewById(R.id.rowStore_xeiTextView_title);
 

@@ -12,11 +12,15 @@ import ir.tvnasim.khandevaneh.R;
 import ir.tvnasim.khandevaneh.account.User;
 import ir.tvnasim.khandevaneh.app.BaseActivity;
 import ir.tvnasim.khandevaneh.helper.imageloading.FrescoHelper;
+import ir.tvnasim.khandevaneh.helper.webapi.WebApiHelper;
+import ir.tvnasim.khandevaneh.helper.webapi.WebApiRequest;
 import ir.tvnasim.khandevaneh.view.KhandevanehDialog;
 import ir.tvnasim.khandevaneh.view.XeiButton;
 import ir.tvnasim.khandevaneh.view.XeiTextView;
 
 public class ProfileActivity extends BaseActivity {
+
+    private static final String TAG_REQUEST_SEND_PARTICIPATE_REQUEST = "requestTag_profileActivity_sendParticipateRequest";
 
     private SimpleDraweeView mAvatarSimpleDraweeView;
     private XeiTextView mFirstNameTextView;
@@ -83,7 +87,18 @@ public class ProfileActivity extends BaseActivity {
     }
 
     private void participate() {
+        WebApiHelper.sendParticipateRequest(TAG_REQUEST_SEND_PARTICIPATE_REQUEST, new WebApiRequest.WebApiListener<Boolean>() {
+            @Override
+            public void onResponse(Boolean response) {
+                // TODO: check ack
+                new KhandevanehDialog(ProfileActivity.this, "اسمت ثبت شد. ایشالا می‌بینیمت.", null).show();
+            }
 
+            @Override
+            public void onErrorResponse(String errorMessage) {
+                new KhandevanehDialog(ProfileActivity.this, errorMessage, null).show();
+            }
+        }, null).send();
     }
 
     @Override

@@ -9,14 +9,14 @@ import java.util.HashMap;
 import ir.tvnasim.khandevaneh.account.User;
 import ir.tvnasim.khandevaneh.app.App;
 import ir.tvnasim.khandevaneh.helper.HelperFunctions;
-import ir.tvnasim.khandevaneh.helper.webapi.model.app.SliderBanner;
+import ir.tvnasim.khandevaneh.helper.webapi.model.app.Banner;
 import ir.tvnasim.khandevaneh.helper.webapi.model.app.StartupConfig;
 import ir.tvnasim.khandevaneh.helper.webapi.model.section.LikeResult;
 import ir.tvnasim.khandevaneh.helper.webapi.model.section.Section;
+import ir.tvnasim.khandevaneh.helper.webapi.model.store.StoreItem;
 import ir.tvnasim.khandevaneh.helper.webapi.model.user.Token;
 import ir.tvnasim.khandevaneh.helper.webapi.model.user.UserInfo;
 import ir.tvnasim.khandevaneh.leaderboard.LeaderContainerModel;
-import ir.tvnasim.khandevaneh.leaderboard.LeaderViewModel;
 import ir.tvnasim.khandevaneh.polling.PollingItem;
 import ir.tvnasim.khandevaneh.polling.PollingListItem;
 
@@ -41,14 +41,16 @@ public final class WebApiHelper {
     private static final String ENDPOINT_GET_USER_INFO = "user/info";
     private static final String ENDPOINT_EDIT_USER_INFO = "user/edit";
     private static final String ENDPOINT_GET_LEADERBOARD = "user/leaderboard";
+    private static final String ENDPOINT_SEND_PARTICIPATE_REQUEST = "user/registrationToKhandevane";
 
     private static final String ENDPOINT_GET_LIVE_LIKE = "section/getList";
     private static final String ENDPOINT_LIKE_SECTION = "section/like";
     private static final String ENDPOINT_COMMENT_SECTION = "section/comment";
 
-
     private static final String ENDPOINT_GET_POLLING_LIST = "poll/getList";
     private static final String ENDPOINT_GET_POLLING_ITEM = "poll/getItem";
+
+    private static final String ENDPOINT_GET_STORE_LIST = "store/getList";
 
 
     public static WebApiRequest<StartupConfig> getStartupConfig(String requestTag, WebApiRequest.WebApiListener<StartupConfig> webApiListener, WebApiRequest.LoadRequests fragment) {
@@ -72,13 +74,27 @@ public final class WebApiHelper {
         );
     }
 
-    public static WebApiRequest<ArrayList<SliderBanner>> getSliderBanners(String requestTag, WebApiRequest.WebApiListener<ArrayList<SliderBanner>> webApiListener, WebApiRequest.LoadRequests fragment) {
+    public static WebApiRequest<ArrayList<Banner>> getSliderBanners(String requestTag, WebApiRequest.WebApiListener<ArrayList<Banner>> webApiListener, WebApiRequest.LoadRequests fragment) {
 
         return new WebApiRequest<>(
                 Request.Method.GET,
                 ENDPOINT_GET_SLIDER_BANNERS,
                 null,
-                new TypeToken<WebApiRequest.WebApiResponse<ArrayList<SliderBanner>>>() {
+                new TypeToken<WebApiRequest.WebApiResponse<ArrayList<Banner>>>() {
+                }.getType(),
+                requestTag,
+                webApiListener,
+                fragment
+        );
+    }
+
+    public static WebApiRequest<ArrayList<Banner>> getBanners(String requestTag, WebApiRequest.WebApiListener<ArrayList<Banner>> webApiListener, WebApiRequest.LoadRequests fragment) {
+
+        return new WebApiRequest<>(
+                Request.Method.GET,
+                ENDPOINT_GET_BANNER,
+                null,
+                new TypeToken<WebApiRequest.WebApiResponse<ArrayList<Banner>>>() {
                 }.getType(),
                 requestTag,
                 webApiListener,
@@ -188,6 +204,20 @@ public final class WebApiHelper {
         );
     }
 
+    public static WebApiRequest<Boolean> sendParticipateRequest(String requestTag, WebApiRequest.WebApiListener<Boolean> webApiListener, WebApiRequest.LoadRequests fragment) {
+
+        return new WebApiRequest<>(
+                Request.Method.GET,
+                ENDPOINT_SEND_PARTICIPATE_REQUEST,
+                null,
+                new TypeToken<WebApiRequest.WebApiResponse<Boolean>>() {
+                }.getType(),
+                requestTag,
+                webApiListener,
+                fragment
+        );
+    }
+
     public static WebApiRequest<ArrayList<PollingListItem>> getPollingList(String type, int limit, int offset, String requestTag, WebApiRequest.WebApiListener<ArrayList<PollingListItem>> webApiListener, WebApiRequest.LoadRequests fragment) {
 
         HashMap<String, String> params = new HashMap<>();
@@ -263,6 +293,20 @@ public final class WebApiHelper {
                 ENDPOINT_COMMENT_SECTION,
                 params,
                 new TypeToken<WebApiRequest.WebApiResponse<LikeResult>>() {
+                }.getType(),
+                requestTag,
+                webApiListener,
+                fragment
+        );
+    }
+
+    public static WebApiRequest<ArrayList<StoreItem>> getStoreList(String requestTag, WebApiRequest.WebApiListener<ArrayList<StoreItem>> webApiListener, WebApiRequest.LoadRequests fragment) {
+
+        return new WebApiRequest<>(
+                Request.Method.GET,
+                ENDPOINT_GET_STORE_LIST,
+                null,
+                new TypeToken<WebApiRequest.WebApiResponse<ArrayList<StoreItem>>>() {
                 }.getType(),
                 requestTag,
                 webApiListener,

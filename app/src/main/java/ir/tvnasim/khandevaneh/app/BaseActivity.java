@@ -98,7 +98,7 @@ public class BaseActivity extends AppCompatActivity implements View.OnClickListe
     protected void onResume() {
         super.onResume();
 
-        showScoresForLoggedInUses();
+        showScores();
     }
 
     private void setOnClickListeners(){
@@ -121,26 +121,17 @@ public class BaseActivity extends AppCompatActivity implements View.OnClickListe
 
     }
 
-    public void showScoresForLoggedInUses() {
+    public void showScores() {
+
         int melonScore = User.getInstance().getMelonScore();
         int experienceScore = User.getInstance().getExperienceScore();
-        if (melonScore >= 0 && experienceScore >= 0) {
-            showScores(melonScore, experienceScore);
-        }
-    }
 
-    public void showScores(int melon, int experience) {
-        if (mScoreSectionLinearLayout != null) {
-            mMelonScoreTextView.setText(HelperFunctions.convertNumberStringToPersian(String.valueOf(melon)));
-            mExperienceScoreTextView.setText(HelperFunctions.convertNumberStringToPersian(String.valueOf(experience)));
+        if (melonScore >= 0 && experienceScore >= 0 && mScoreSectionLinearLayout != null) {
+            mMelonScoreTextView.setText(HelperFunctions.convertNumberStringToPersian(String.valueOf(melonScore)));
+            mExperienceScoreTextView.setText(HelperFunctions.convertNumberStringToPersian(String.valueOf(experienceScore)));
             mScoreSectionLinearLayout.setVisibility(View.VISIBLE);
         }
-    }
 
-    public void goneScoreSection() {
-        if (mScoreSectionLinearLayout != null) {
-            mScoreSectionLinearLayout.setVisibility(View.GONE);
-        }
     }
 
     @Override

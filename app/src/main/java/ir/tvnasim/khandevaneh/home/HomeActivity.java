@@ -64,6 +64,8 @@ public class HomeActivity extends BaseActivity implements OnBannerClickedListene
                     User.getInstance().setAvatar(userInfo.getAvatar());
                     User.getInstance().setMelonScore(userInfo.getMelonScore());
                     User.getInstance().setExperienceScore(userInfo.getExperienceScore());
+
+                    showScores();
                 }
 
                 @Override

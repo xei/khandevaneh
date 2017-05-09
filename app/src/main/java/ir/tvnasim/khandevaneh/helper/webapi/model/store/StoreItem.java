@@ -15,7 +15,7 @@ public class StoreItem {
     @SerializedName("title")
     private String title;
 
-    @SerializedName("image")
+    @SerializedName("imageUrl")
     private String image;
 
     @SerializedName("price")

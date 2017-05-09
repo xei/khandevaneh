@@ -24,6 +24,20 @@ public class Banner {
     public static final String DESTINATION_AWARDS = "";
     public static final String DESTINATION_PROFILE = "8";
 
+    public static final String LOCATION_COMPETITION_LIST = "2";
+    public static final String LOCATION_COMPETITION = "3";
+    public static final String LOCATION_COMPETITION_STATISTICS = "4";
+    public static final String LOCATION_LIVE_LIKE = "1";
+    public static final String LOCATION_POLLING_LIST = "5";
+    public static final String LOCATION_POLLING = "6";
+    public static final String LOCATION_POLLING_STATISTICS = "7";
+    public static final String LOCATION_STORE = "9";
+    public static final String LOCATION_LEADER_BOARD = "";
+    public static final String LOCATION_CAMPAIGN = "";
+    public static final String LOCATION_ARCHIVE = "";
+    public static final String LOCATION_AWARDS = "";
+    public static final String LOCATION_PROFILE = "8";
+
     @SerializedName("id")
     private String id;
 
@@ -38,6 +52,9 @@ public class Banner {
 
     @SerializedName("param")
     private String destinationParam;
+
+    @SerializedName("location")
+    private String location;
 
 
     public String getId() {
@@ -80,4 +97,11 @@ public class Banner {
         this.destinationParam = destinationParam;
     }
 
+    public String getLocation() {
+        return location;
+    }
+
+    public void setLocation(String location) {
+        this.location = location;
+    }
 }

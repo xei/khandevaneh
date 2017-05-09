@@ -11,12 +11,15 @@ import android.widget.RelativeLayout;
 
 import com.facebook.drawee.view.SimpleDraweeView;
 
+import java.util.ArrayList;
+
 import ir.tvnasim.khandevaneh.R;
 import ir.tvnasim.khandevaneh.app.BaseActivity;
 import ir.tvnasim.khandevaneh.helper.LogHelper;
 import ir.tvnasim.khandevaneh.helper.imageloading.FrescoHelper;
 import ir.tvnasim.khandevaneh.helper.webapi.WebApiHelper;
 import ir.tvnasim.khandevaneh.helper.webapi.WebApiRequest;
+import ir.tvnasim.khandevaneh.helper.webapi.model.app.Banner;
 import ir.tvnasim.khandevaneh.helper.webapi.model.section.LikeResult;
 import ir.tvnasim.khandevaneh.helper.webapi.model.section.Section;
 import ir.tvnasim.khandevaneh.helper.webapi.model.section.SectionContainer;
@@ -28,6 +31,7 @@ import ir.tvnasim.khandevaneh.view.XeiTextView;
 public class LiveLikeActivity extends BaseActivity {
 
     private static final String TAG_REQUEST_GET_SECTION = "requestTag_liveLikeListActivity_getLiveLike";
+    private static final String TAG_REQUEST_GET_BANNER = "requestTag_liveLikeListActivity_getBanner";
     private static final String TAG_REQUEST_LIKE = "requestTag_liveLikeListActivity_like";
     private static final String TAG_REQUEST_COMMENT = "requestTag_liveLikeListActivity_comment";
 
@@ -75,26 +79,51 @@ public class LiveLikeActivity extends BaseActivity {
         mSendBtnImageView.setOnClickListener(this);
     }
 
-
     private void fetchSectionFromApi() {
         WebApiHelper.getLiveLike(TAG_REQUEST_GET_SECTION, new WebApiRequest.WebApiListener<SectionContainer>() {
             @Override
             public void onResponse(SectionContainer sectionContainer) {
-                mSection = sectionContainer.getSection();
 
-                if (mSection != null) {
+                if (sectionContainer != null && (mSection = sectionContainer.getSection()) != null) {
                     renderLiveLikeSection();
                 } else {
-                    String bannerUrl = "";  //TODO: get banner from api?
-                    renderBanner(bannerUrl);
+                    WebApiHelper.getBanners(TAG_REQUEST_GET_BANNER, new WebApiRequest.WebApiListener<ArrayList<Banner>>() {
+                        @Override
+                        public void onResponse(ArrayList<Banner> allBanners) {
+                            Banner banner = findAppropriateBanner(allBanners);
+                            if (banner != null) {
+                                renderBanner(banner.getImageUrl());
+                            }
+                        }
+
+                        @Override
+                        public void onErrorResponse(String errorMessage) {
+                            LogHelper.logError(TAG_DEBUG, "getBanners request failed: " + errorMessage);
+                            finish();
+                        }
+                    }, null).send();
                 }
             }
 
             @Override
             public void onErrorResponse(String errorMessage) {
                 LogHelper.logError(TAG_DEBUG, "getLiveLike request failed: " + errorMessage);
-                String bannerUrl = "";  //TODO: get banner from api?
-                renderBanner(bannerUrl);
+
+                WebApiHelper.getBanners(TAG_REQUEST_GET_BANNER, new WebApiRequest.WebApiListener<ArrayList<Banner>>() {
+                    @Override
+                    public void onResponse(ArrayList<Banner> allBanners) {
+                        Banner banner = findAppropriateBanner(allBanners);
+                        if (banner != null) {
+                            renderBanner(banner.getImageUrl());
+                        }
+                    }
+
+                    @Override
+                    public void onErrorResponse(String errorMessage) {
+                        LogHelper.logError(TAG_DEBUG, "getBanners request failed: " + errorMessage);
+                        finish();
+                    }
+                }, null).send();
             }
         }, null).send();
     }
@@ -105,6 +134,17 @@ public class LiveLikeActivity extends BaseActivity {
         if (!mSection.isCommentSent()) {
             mCommentSection.setVisibility(View.VISIBLE);
         }
+    }
+
+    private Banner findAppropriateBanner(ArrayList<Banner> banners) {
+        if (banners != null) {
+            for (Banner banner : banners) {
+                if(banner.getLocation().equals(Banner.LOCATION_LIVE_LIKE)) {
+                    return banner;
+                }
+            }
+        }
+        return null;
     }
 
     private void renderBanner(String bannerUrl) {

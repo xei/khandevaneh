@@ -11,6 +11,7 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.rd.PageIndicatorView;
+import com.rd.RtlMode;
 import com.rd.animation.AnimationType;
 
 import java.util.ArrayList;
@@ -33,6 +34,8 @@ import ir.tvnasim.khandevaneh.view.bannerslider.SliderView;
 public class HomeMenuAdapter extends RecyclerView.Adapter implements View.OnClickListener{
 
     private static final String TAG_DEBUG = HomeMenuAdapter.class.getSimpleName();
+
+    private static final int RADIUS_SLIDER_INDICATOR = 4;
 
     static final int TYPE_VIEW_SLIDER = 0;
     static final int TYPE_VIEW_MENU_ITEM = 1;
@@ -118,6 +121,7 @@ public class HomeMenuAdapter extends RecyclerView.Adapter implements View.OnClic
         if (holder instanceof HomeSliderViewHolder) {
             HomeSliderViewHolder homeSliderViewHolder = (HomeSliderViewHolder) holder;
             homeSliderViewHolder.sliderView.setBanners(mBanners);
+            homeSliderViewHolder.sliderView.setCurrentItem(mBanners.size() - 1);
 
         } else if (holder instanceof HomeMenuItemViewHolder) {
             final HomeMenuItemViewHolder homeMenuItemViewHolder = (HomeMenuItemViewHolder) holder;
@@ -210,6 +214,8 @@ public class HomeMenuAdapter extends RecyclerView.Adapter implements View.OnClic
 
             pagerIndicator.setDynamicCount(true);
             pagerIndicator.setAnimationType(AnimationType.SWAP);
+            pagerIndicator.setInteractiveAnimation(true);
+            pagerIndicator.setRadius(RADIUS_SLIDER_INDICATOR);
 
             itemView.post(new Runnable() {
                 @Override

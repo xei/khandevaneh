@@ -14,7 +14,8 @@
     <dimen name="margin_toolbar_score">16dp</dimen>
     <dimen name="padding_toolbar_score">4dp</dimen>
     <dimen name="margin_toolbar_action">0dp</dimen>
-    <dimen name="marginRight_toolbar_logo">8dp</dimen>
+    <dimen name="marginRight_toolbar_logo">6dp</dimen>
+    <dimen name="padding_toolbar_logo">2dp</dimen>
     <dimen name="padding_toolbar_action">12dp</dimen>
     <dimen name="space_toolbar_score">16dp</dimen>
     <dimen name="textSize_toolbar_score">17sp</dimen>

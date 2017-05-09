@@ -12,13 +12,20 @@ import ir.tvnasim.khandevaneh.R;
 import ir.tvnasim.khandevaneh.account.AuthHelper;
 import ir.tvnasim.khandevaneh.account.User;
 import ir.tvnasim.khandevaneh.account.login.LoginActivity;
+import ir.tvnasim.khandevaneh.account.profile.ProfileActivity;
 import ir.tvnasim.khandevaneh.app.BaseActivity;
+import ir.tvnasim.khandevaneh.app.LaunchActivity;
 import ir.tvnasim.khandevaneh.helper.SharedPreferencesHelper;
 import ir.tvnasim.khandevaneh.helper.webapi.WebApiHelper;
 import ir.tvnasim.khandevaneh.helper.webapi.WebApiRequest;
 import ir.tvnasim.khandevaneh.helper.webapi.model.app.Banner;
 import ir.tvnasim.khandevaneh.helper.webapi.model.user.Token;
 import ir.tvnasim.khandevaneh.helper.webapi.model.user.UserInfo;
+import ir.tvnasim.khandevaneh.leaderboard.LeaderBoardActivity;
+import ir.tvnasim.khandevaneh.livelike.LiveLikeActivity;
+import ir.tvnasim.khandevaneh.polling.PollingActivity;
+import ir.tvnasim.khandevaneh.polling.PollingListActivity;
+import ir.tvnasim.khandevaneh.store.StoreActivity;
 import ir.tvnasim.khandevaneh.view.bannerslider.BannerFragment;
 import ir.tvnasim.khandevaneh.view.bannerslider.OnBannerClickedListener;
 
@@ -119,6 +126,8 @@ public class HomeActivity extends BaseActivity implements OnBannerClickedListene
                 for (Banner sliderBanner : sliderBanners) {
                     Bundle banner = new Bundle();
                     banner.putString(BannerFragment.KEY_ARG_IMAGE_URL, sliderBanner.getImageUrl());
+                    banner.putString(BannerFragment.KEY_ARG_DESTINATION, sliderBanner.getDestination());
+                    banner.putString(BannerFragment.KEY_ARG_DESTINATION_PARAM, sliderBanner.getDestinationParam());
                     bannersList.add(banner);
                 }
                 mHomeMenuAdapter.setSliderBanners(bannersList);
@@ -144,7 +153,9 @@ public class HomeActivity extends BaseActivity implements OnBannerClickedListene
             @Override
             public void isLoggedIn(boolean isLoggedIn) {
                 if (isLoggedIn) {
-//                    Toast.makeText(HomeActivity.this, bundle.getString(BannerFragment.KEY_ARG_IMAGE_URL), Toast.LENGTH_SHORT).show();
+                    String destination = bundle.getString(BannerFragment.KEY_ARG_DESTINATION);
+                    String destinationParam = bundle.getString(BannerFragment.KEY_ARG_DESTINATION_PARAM);
+                    LaunchActivity.goTo(HomeActivity.this, destination, destinationParam);
                 } else {
                     LoginActivity.start(HomeActivity.this);
                 }

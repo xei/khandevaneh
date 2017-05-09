@@ -10,6 +10,20 @@ import java.util.HashMap;
 
 public class Banner {
 
+    public static final String DESTINATION_COMPETITION_LIST = "2";
+    public static final String DESTINATION_COMPETITION = "3";
+    public static final String DESTINATION_COMPETITION_STATISTICS = "4";
+    public static final String DESTINATION_LIVE_LIKE = "1";
+    public static final String DESTINATION_POLLING_LIST = "5";
+    public static final String DESTINATION_POLLING = "6";
+    public static final String DESTINATION_POLLING_STATISTICS = "7";
+    public static final String DESTINATION_STORE = "9";
+    public static final String DESTINATION_LEADER_BOARD = "";
+    public static final String DESTINATION_CAMPAIGN = "";
+    public static final String DESTINATION_ARCHIVE = "";
+    public static final String DESTINATION_AWARDS = "";
+    public static final String DESTINATION_PROFILE = "8";
+
     @SerializedName("id")
     private String id;
 
@@ -19,8 +33,11 @@ public class Banner {
     @SerializedName("title")
     private String title;
 
+    @SerializedName("destination")
+    private String destination;
+
     @SerializedName("param")
-    private HashMap<String, String> metaData;
+    private String destinationParam;
 
 
     public String getId() {
@@ -47,11 +64,20 @@ public class Banner {
         this.title = title;
     }
 
-    public HashMap<String, String> getMetaData() {
-        return metaData;
+    public String getDestination() {
+        return destination;
     }
 
-    public void setMetaData(HashMap<String, String> metaData) {
-        this.metaData = metaData;
+    public void setDestination(String destination) {
+        this.destination = destination;
     }
+
+    public String getDestinationParam() {
+        return destinationParam;
+    }
+
+    public void setDestinationParam(String destinationParam) {
+        this.destinationParam = destinationParam;
+    }
+
 }

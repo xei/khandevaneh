@@ -17,6 +17,8 @@ import ir.tvnasim.khandevaneh.helper.imageloading.FrescoHelper;
 public class BannerFragment extends Fragment {
 
     public static final String KEY_ARG_IMAGE_URL = "KEY_ARG_IMAGE_URL";
+    public static final String KEY_ARG_DESTINATION = "KEY_ARG_DESTINATION";
+    public static final String KEY_ARG_DESTINATION_PARAM = "KEY_ARG_DESTINATION_PARAM";
 
     private SimpleDraweeView mImageSimpleDraweeView;
     private OnBannerClickedListener mOnBannerClickedListener;

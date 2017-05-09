@@ -1,15 +1,23 @@
 package ir.tvnasim.khandevaneh.app;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.Toast;
 
 import ir.tvnasim.khandevaneh.R;
+import ir.tvnasim.khandevaneh.account.profile.ProfileActivity;
 import ir.tvnasim.khandevaneh.helper.LogHelper;
 import ir.tvnasim.khandevaneh.helper.webapi.WebApiHelper;
 import ir.tvnasim.khandevaneh.helper.webapi.WebApiRequest;
+import ir.tvnasim.khandevaneh.helper.webapi.model.app.Banner;
 import ir.tvnasim.khandevaneh.helper.webapi.model.app.StartupConfig;
 import ir.tvnasim.khandevaneh.home.HomeActivity;
+import ir.tvnasim.khandevaneh.leaderboard.LeaderBoardActivity;
+import ir.tvnasim.khandevaneh.livelike.LiveLikeActivity;
+import ir.tvnasim.khandevaneh.polling.PollingActivity;
+import ir.tvnasim.khandevaneh.polling.PollingListActivity;
+import ir.tvnasim.khandevaneh.store.StoreActivity;
 
 public class LaunchActivity extends AppCompatActivity {
 
@@ -46,6 +54,65 @@ public class LaunchActivity extends AppCompatActivity {
             LogHelper.logError(TAG_DEBUG, "invalid version state!");
         }
         finish();
+    }
+
+    public static void goTo(Context starterContext, String destination, String param) {
+        switch (destination) {
+            case Banner.DESTINATION_COMPETITION_LIST:
+                PollingListActivity.start(starterContext); //TODO: id and param
+                break;
+
+            case Banner.DESTINATION_COMPETITION:
+                PollingActivity.start(starterContext, ""); //TODO: id and param
+                break;
+
+            case Banner.DESTINATION_COMPETITION_STATISTICS:
+                //TODO: invoke statistics screen
+                //TODO: id and param
+                break;
+
+            case Banner.DESTINATION_LIVE_LIKE:
+                LiveLikeActivity.start(starterContext);
+                break;
+
+            case Banner.DESTINATION_POLLING_LIST:
+                PollingListActivity.start(starterContext); //TODO: id and param
+                break;
+
+            case Banner.DESTINATION_POLLING:
+                PollingActivity.start(starterContext, ""); //TODO: id and param
+                break;
+
+            case Banner.DESTINATION_POLLING_STATISTICS:
+                //TODO: invoke statistics screen
+                //TODO: id and param
+                break;
+
+            case Banner.DESTINATION_STORE:
+                StoreActivity.start(starterContext);
+                break;
+
+            case Banner.DESTINATION_LEADER_BOARD:
+                LeaderBoardActivity.start(starterContext);
+                break;
+//
+//            case Banner.DESTINATION_CAMPAIGN:
+//                break;
+//
+//            case Banner.DESTINATION_ARCHIVE:
+//                break;
+//
+//            case Banner.DESTINATION_AWARDS:
+//                break;
+
+            case Banner.DESTINATION_PROFILE:
+                ProfileActivity.start(starterContext);
+                break;
+
+            default:
+                //
+
+        }
     }
 
 }

@@ -19,7 +19,7 @@ public class Section {
     private String timeScope;
 
     @SerializedName("sendComment")
-    private boolean commentSent;
+    private int commentSent;
 
 
     public String getId() {
@@ -47,10 +47,14 @@ public class Section {
     }
 
     public boolean isCommentSent() {
-        return commentSent;
+        if (commentSent == 0) {
+            return false;
+        } else {
+            return true;
+        }
     }
 
-    public void setCommentSent(boolean commentSent) {
+    public void setCommentSent(int commentSent) {
         this.commentSent = commentSent;
     }
 }

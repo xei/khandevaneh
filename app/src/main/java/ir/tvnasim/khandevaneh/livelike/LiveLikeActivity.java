@@ -19,6 +19,8 @@ import ir.tvnasim.khandevaneh.helper.webapi.WebApiHelper;
 import ir.tvnasim.khandevaneh.helper.webapi.WebApiRequest;
 import ir.tvnasim.khandevaneh.helper.webapi.model.section.LikeResult;
 import ir.tvnasim.khandevaneh.helper.webapi.model.section.Section;
+import ir.tvnasim.khandevaneh.helper.webapi.model.section.SectionContainer;
+import ir.tvnasim.khandevaneh.view.KhandevanehDialog;
 import ir.tvnasim.khandevaneh.view.XeiEditText;
 import ir.tvnasim.khandevaneh.view.XeiTextView;
 
@@ -75,10 +77,10 @@ public class LiveLikeActivity extends BaseActivity {
 
 
     private void fetchSectionFromApi() {
-        WebApiHelper.getLiveLike(TAG_REQUEST_GET_SECTION, new WebApiRequest.WebApiListener<Section>() {
+        WebApiHelper.getLiveLike(TAG_REQUEST_GET_SECTION, new WebApiRequest.WebApiListener<SectionContainer>() {
             @Override
-            public void onResponse(Section section) {
-                mSection = section;
+            public void onResponse(SectionContainer sectionContainer) {
+                mSection = sectionContainer.getSection();
 
                 if (mSection != null) {
                     renderLiveLikeSection();
@@ -160,6 +162,10 @@ public class LiveLikeActivity extends BaseActivity {
             @Override
             public void onResponse(LikeResult response) {
                 // TODO: update experience
+                //TODO: if ack
+                new KhandevanehDialog(LiveLikeActivity.this, "نظرت ثبت شد رفیق!", null).show();
+                mCommentSection.setVisibility(View.GONE);
+
             }
 
             @Override

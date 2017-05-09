@@ -6,8 +6,8 @@ package ir.tvnasim.khandevaneh.polling;
 
 public class OptionType {
 
-    public static final int TYPE_OPTION_SINGLE = 0;
-    public static final int TYPE_OPTION_MULTI = 1;
+    public static final int TYPE_OPTION_SINGLE = 1;
+    public static final int TYPE_OPTION_MULTI = 2;
 
     int mType;
 

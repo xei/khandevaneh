@@ -9,10 +9,12 @@ import java.util.HashMap;
 import ir.tvnasim.khandevaneh.account.User;
 import ir.tvnasim.khandevaneh.app.App;
 import ir.tvnasim.khandevaneh.helper.HelperFunctions;
+import ir.tvnasim.khandevaneh.helper.webapi.model.PoleResult;
 import ir.tvnasim.khandevaneh.helper.webapi.model.app.Banner;
 import ir.tvnasim.khandevaneh.helper.webapi.model.app.StartupConfig;
 import ir.tvnasim.khandevaneh.helper.webapi.model.section.LikeResult;
 import ir.tvnasim.khandevaneh.helper.webapi.model.section.Section;
+import ir.tvnasim.khandevaneh.helper.webapi.model.section.SectionContainer;
 import ir.tvnasim.khandevaneh.helper.webapi.model.store.StoreItem;
 import ir.tvnasim.khandevaneh.helper.webapi.model.user.Token;
 import ir.tvnasim.khandevaneh.helper.webapi.model.user.UserInfo;
@@ -253,13 +255,38 @@ public final class WebApiHelper {
         );
     }
 
-    public static WebApiRequest<Section> getLiveLike(String requestTag, WebApiRequest.WebApiListener<Section> webApiListener, WebApiRequest.LoadRequests fragment) {
+    public static WebApiRequest<PoleResult> poll(String pollingId, ArrayList<String> options, String requestTag, WebApiRequest.WebApiListener<PoleResult> webApiListener, WebApiRequest.LoadRequests fragment) {
+
+        StringBuilder answersParamBuilder = new StringBuilder();
+        answersParamBuilder.append(options.get(0));
+        for (int i = 1 ; i < options.size() ; i++) {
+            answersParamBuilder.append(',');
+            answersParamBuilder.append(options.get(i));
+        }
+
+        HashMap<String, String> params = new HashMap<>();
+        params.put("id", pollingId);
+        params.put("answer", answersParamBuilder.toString());
+
+        return new WebApiRequest<>(
+                Request.Method.POST,
+                ENDPOINT_POLL,
+                params,
+                new TypeToken<WebApiRequest.WebApiResponse<PoleResult>>() {
+                }.getType(),
+                requestTag,
+                webApiListener,
+                fragment
+        );
+    }
+
+    public static WebApiRequest<SectionContainer> getLiveLike(String requestTag, WebApiRequest.WebApiListener<SectionContainer> webApiListener, WebApiRequest.LoadRequests fragment) {
 
         return new WebApiRequest<>(
                 Request.Method.GET,
                 ENDPOINT_GET_LIVE_LIKE,
                 null,
-                new TypeToken<WebApiRequest.WebApiResponse<Section>>() {
+                new TypeToken<WebApiRequest.WebApiResponse<SectionContainer>>() {
                 }.getType(),
                 requestTag,
                 webApiListener,

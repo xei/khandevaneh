@@ -14,12 +14,15 @@ import ir.tvnasim.khandevaneh.app.BaseActivity;
 import ir.tvnasim.khandevaneh.helper.webapi.MockApiRequest;
 import ir.tvnasim.khandevaneh.helper.webapi.WebApiHelper;
 import ir.tvnasim.khandevaneh.helper.webapi.WebApiRequest;
+import ir.tvnasim.khandevaneh.helper.webapi.model.PoleResult;
+import ir.tvnasim.khandevaneh.view.KhandevanehDialog;
 import ir.tvnasim.khandevaneh.view.XeiButton;
 import ir.tvnasim.khandevaneh.view.XeiTextView;
 
 public class PollingActivity extends BaseActivity {
 
     private static final String KEY_EXTRA_POLLING_ID = "KEY_EXTRA_POLLING_ID";
+    private static final String TAG_REQUEST_POLL = "requestTag_pollingActivity_poll";
 
     private XeiTextView mTitleTextView;
     private XeiTextView mDescriptionTextView;
@@ -86,33 +89,6 @@ public class PollingActivity extends BaseActivity {
                 mOptions.addAll(pollingItem.getOptions());
                 mOptionsType.setType(pollingItem.getOptionType());
 
-                //TODO: remove this
-                PollingOption op = new PollingOption();
-                op.setTitle("onvan");
-                op.setId("0");
-                op.setImageUrl("http://deeplearning.ir/wp-content/uploads/2016/03/deeplearning.ir_-768x360.jpg");
-
-                PollingOption op1 = new PollingOption();
-                op1.setTitle("onvan");
-                op1.setId("1");
-                op1.setImageUrl("http://deeplearning.ir/wp-content/uploads/2016/03/deeplearning.ir_-768x360.jpg");
-
-                PollingOption op2 = new PollingOption();
-                op2.setTitle("onvan");
-                op2.setId("2");
-                op2.setImageUrl("http://deeplearning.ir/wp-content/uploads/2016/03/deeplearning.ir_-768x360.jpg");
-
-                PollingOption op3 = new PollingOption();
-                op3.setTitle("onvan");
-                op3.setId("3");
-                op3.setImageUrl("http://deeplearning.ir/wp-content/uploads/2016/03/deeplearning.ir_-768x360.jpg");
-
-                mOptions.clear();
-                mOptions.add(op);
-                mOptions.add(op1);
-                mOptions.add(op2);
-                mOptions.add(op3);
-
                 mOptionsListAdapter.notifyDataSetChanged();
             }
 
@@ -123,18 +99,47 @@ public class PollingActivity extends BaseActivity {
         }, null).send();
     }
 
+    private void poll() {
+        if (mSelectedOptions.size() > 0) {
+            WebApiHelper.poll(mPollingId, mSelectedOptions, TAG_REQUEST_POLL, new WebApiRequest.WebApiListener<PoleResult>() {
+                @Override
+                public void onResponse(PoleResult response) {
+                    new KhandevanehDialog(PollingActivity.this, "مرسی رفیق", new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            finish();
+                        }
+                    }).show();
+                }
+
+                @Override
+                public void onErrorResponse(String errorMessage) {
+                    new KhandevanehDialog(PollingActivity.this, "مرسی رفیق", new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            finish();
+                        }
+                    }).show();
+                }
+            }, null).send();
+        } else {
+            new KhandevanehDialog(this, "یه چیزی انتخاب کن دیگه!", null).show();
+        }
+
+    }
+
     @Override
     public void onClick(View clickedView) {
         super.onClick(clickedView);
 
         switch (clickedView.getId()) {
             case R.id.activityPolling_xeiButton_poll:
-                // TODO: submit poll
-                finish();
+                poll();
                 break;
 
             case R.id.activityPolling_xeiButton_showStatistics:
                 //TODO: open statistics activity
+                new KhandevanehDialog(this, getString(R.string.inform_notImplemented), null).show();
                 break;
         }
     }

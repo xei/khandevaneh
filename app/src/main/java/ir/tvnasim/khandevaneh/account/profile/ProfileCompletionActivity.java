@@ -39,11 +39,6 @@ public class ProfileCompletionActivity extends BaseActivity {
         changeFragment(R.id.activityProfileCompletion_frameLayout_fragmentContainer, UserInfoFragment.newInstance(mCurrentFragment), false);
     }
 
-    @Override
-    public int getToolbarViewId() {
-        return R.layout.toolbar_profile;
-    }
-
     private void changeFragment(int fragmentContainerId, Fragment fragment, boolean pushToBackStack) {
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         transaction.replace(fragmentContainerId, fragment);

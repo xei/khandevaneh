@@ -48,11 +48,6 @@ public class ProfileActivity extends BaseActivity {
         setOnClickListeners();
     }
 
-    @Override
-    public int getToolbarViewId() {
-        return R.layout.toolbar_profile;
-    }
-
     private void findViews() {
         mAvatarSimpleDraweeView = (SimpleDraweeView) findViewById(R.id.activityProfile_simpleDraweeView_avatar);
         mFirstNameTextView = (XeiTextView) findViewById(R.id.activityProfile_xeiTextView_firstName);

@@ -75,7 +75,7 @@
             android:layout_height="@dimen/height_toolbar_logo"
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
-            android:layout_marginRight="@dimen/margin_toolbar_action"
+            android:layout_marginRight="@dimen/marginRight_toolbar_logo"
             android:src="@drawable/ic_toolbar_logo"/>
 
     </RelativeLayout>

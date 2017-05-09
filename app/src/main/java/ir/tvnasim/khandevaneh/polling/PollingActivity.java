@@ -56,11 +56,6 @@ public class PollingActivity extends BaseActivity {
         fetchPollingFromApi();
     }
 
-    @Override
-    public int getToolbarViewId() {
-        return R.layout.toolbar_polling;
-    }
-
     private void findViews() {
         mTitleTextView = (XeiTextView) findViewById(R.id.activityPolling_xeiTextView_title);
         mDescriptionTextView = (XeiTextView) findViewById(R.id.activityPolling_xeiTextView_description);

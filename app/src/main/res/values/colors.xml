@@ -9,9 +9,9 @@
 
     <color name="khandevanehGreen">#119e17</color>
 
-    <color name="colorPrimary">@color/materialGreen500</color>
-    <color name="colorPrimaryDark">@color/materialGreen800</color>
-    <color name="colorAccent">#FF4081</color>
+    <color name="colorPrimary">#fff</color>
+    <color name="colorPrimaryDark">#fff</color>
+    <color name="colorAccent">@color/khandevanehGreen</color>
 
     <color name="colorSplash">@color/colorPrimary</color>
     <color name="colorStatusBar">@color/colorPrimary</color>

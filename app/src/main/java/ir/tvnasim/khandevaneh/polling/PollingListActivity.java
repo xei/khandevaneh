@@ -38,11 +38,6 @@ public class PollingListActivity extends BaseActivity {
         fetchPollingListFromApi();
     }
 
-    @Override
-    public int getToolbarViewId() {
-        return R.layout.toolbar_polling;
-    }
-
     private void findViews() {
         mListRecyclerView = (RecyclerView) findViewById(R.id.activityPolling_recyclerView_list);
     }

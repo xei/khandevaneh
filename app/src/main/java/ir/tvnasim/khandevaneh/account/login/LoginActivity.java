@@ -31,11 +31,6 @@ public class LoginActivity extends BaseActivity implements PhoneNoFragment.OnSen
     }
 
     @Override
-    public int getToolbarViewId() {
-        return R.layout.toolbar_login;
-    }
-
-    @Override
     public void onSendPhoneNoButtonClick(final String phoneNo) {
 
         WebApiHelper.registerPhoneNo(phoneNo, "REQUEST_REGISTER_PHONE_NO", new WebApiRequest.WebApiListener<Object>() {

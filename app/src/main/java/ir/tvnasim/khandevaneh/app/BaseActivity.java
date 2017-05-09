@@ -56,7 +56,7 @@ public class BaseActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     public int getToolbarViewId() {
-        return R.layout.toolbar_default;
+        return R.layout.toolbar;
     }
 
     private void findViews() {

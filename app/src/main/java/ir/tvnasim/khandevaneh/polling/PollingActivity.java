@@ -5,13 +5,11 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ListView;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 
 import ir.tvnasim.khandevaneh.R;
 import ir.tvnasim.khandevaneh.app.BaseActivity;
-import ir.tvnasim.khandevaneh.helper.webapi.MockApiRequest;
 import ir.tvnasim.khandevaneh.helper.webapi.WebApiHelper;
 import ir.tvnasim.khandevaneh.helper.webapi.WebApiRequest;
 import ir.tvnasim.khandevaneh.helper.webapi.model.PoleResult;

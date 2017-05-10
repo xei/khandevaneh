@@ -174,10 +174,10 @@ public class HomeMenuAdapter extends RecyclerView.Adapter implements View.OnClic
 //                ArchiveActivity.start(context);
                             break;
                         case HomeMenuItem.ID_POLLING:
-                            PollingListActivity.start(context);
+                            PollingListActivity.start(context, PollingListActivity.TYPE_POLLING);
                             break;
                         case HomeMenuItem.ID_COMPETITION:
-                            PollingListActivity.start(context);
+                            PollingListActivity.start(context, PollingListActivity.TYPE_COMPETITION);
                             break;
                         case HomeMenuItem.ID_CAMPAIGN:
                             new KhandevanehDialog(context, context.getString(R.string.inform_notImplemented), null).show();

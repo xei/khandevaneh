@@ -33,6 +33,12 @@
     <color name="liveLikeList_background_screen">#00682A</color>
     <color name="liveLikeList_text_title">@color/textColor_light</color>
 
+    <!-- CompetitionActivity -->
+    <color name="competition_background">#B02533</color>
+
+    <!-- PollingActivity -->
+    <color name="polling_background">#F29B38</color>
+
     <!-- LeaderBoardActivity -->
     <color name="background_leader_board">#004529</color>
     <color name="border_avatar">#fff</color>
@@ -43,6 +49,7 @@
     <color name="endColor_gradient_blur">#00004529</color>
 
     <!-- StoreActivity -->
+    <color name="store_background">#205436</color>
     <color name="background_userMelonSection">@color/materialGreen500</color>
     <color name="shadow_userMelonSection_text">#64000000</color>
 

@@ -10,19 +10,28 @@ import java.util.ArrayList;
 
 import ir.tvnasim.khandevaneh.R;
 import ir.tvnasim.khandevaneh.app.BaseActivity;
+import ir.tvnasim.khandevaneh.helper.LogHelper;
 import ir.tvnasim.khandevaneh.helper.webapi.MockApiRequest;
 import ir.tvnasim.khandevaneh.helper.webapi.WebApiHelper;
 import ir.tvnasim.khandevaneh.helper.webapi.WebApiRequest;
 
 public class PollingListActivity extends BaseActivity {
 
+    private static final String KEY_EXTRA_TYPE = "KEY_EXTRA_TYPE";
+    private static final String TAG_REQUEST_GET_POLLING_LIST = "requestTag_pollingListActivity_getPollingList";
+
+    public static final int TYPE_POLLING = 1;
+    public static final int TYPE_COMPETITION = 2;
+
     private RecyclerView mListRecyclerView;
     private PollingListAdapter mListAdapter;
 
+    private int mType;
     private ArrayList<PollingListItem> mList = new ArrayList<>();
 
-    public static void start(Context starter) {
+    public static void start(Context starter, int type) {
         Intent intent = new Intent(starter, PollingListActivity.class);
+        intent.putExtra(KEY_EXTRA_TYPE, type);
         starter.startActivity(intent);
     }
 
@@ -31,9 +40,10 @@ public class PollingListActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_polling_list);
 
+        this.mType = getIntent().getIntExtra(KEY_EXTRA_TYPE, 0);
+
         findViews();
         initRecyclerView();
-//        setOnClickListeners();
 
         fetchPollingListFromApi();
     }
@@ -52,7 +62,7 @@ public class PollingListActivity extends BaseActivity {
 
     private void fetchPollingListFromApi() {
 
-        WebApiHelper.getPollingList("", 1, 2, "requestTag_pollingListActivity_getPollingList", new WebApiRequest.WebApiListener<ArrayList<PollingListItem>>() {
+        WebApiHelper.getPollingList(mType, TAG_REQUEST_GET_POLLING_LIST, new WebApiRequest.WebApiListener<ArrayList<PollingListItem>>() {
             @Override
             public void onResponse(ArrayList<PollingListItem> pollingListItems) {
                 mList.clear();
@@ -62,7 +72,7 @@ public class PollingListActivity extends BaseActivity {
 
             @Override
             public void onErrorResponse(String errorMessage) {
-
+                LogHelper.logError(TAG_DEBUG, "getPollingList request failed:" + errorMessage);
             }
         }, null).send();
 

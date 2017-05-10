@@ -222,17 +222,12 @@ public final class WebApiHelper {
         );
     }
 
-    public static WebApiRequest<ArrayList<PollingListItem>> getPollingList(String type, int limit, int offset, String requestTag, WebApiRequest.WebApiListener<ArrayList<PollingListItem>> webApiListener, WebApiRequest.LoadRequests fragment) {
-
-        HashMap<String, String> params = new HashMap<>();
-//        params.put("type", type);
-//        params.put("limit", String.valueOf(limit));
-//        params.put("offset", String.valueOf(offset));
+    public static WebApiRequest<ArrayList<PollingListItem>> getPollingList(int type, String requestTag, WebApiRequest.WebApiListener<ArrayList<PollingListItem>> webApiListener, WebApiRequest.LoadRequests fragment) {
 
         return new WebApiRequest<>(
                 Request.Method.GET,
-                ENDPOINT_GET_POLLING_LIST,
-                params,
+                ENDPOINT_GET_POLLING_LIST + "?pollType=" + type,
+                null,
                 new TypeToken<WebApiRequest.WebApiResponse<ArrayList<PollingListItem>>>() {
                 }.getType(),
                 requestTag,

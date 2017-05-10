@@ -59,11 +59,11 @@ public class LaunchActivity extends AppCompatActivity {
     public static void goTo(Context starterContext, String destination, String param) {
         switch (destination) {
             case Banner.DESTINATION_COMPETITION_LIST:
-                PollingListActivity.start(starterContext); //TODO: id and param
+                PollingListActivity.start(starterContext, PollingListActivity.TYPE_COMPETITION);
                 break;
 
             case Banner.DESTINATION_COMPETITION:
-                PollingActivity.start(starterContext, ""); //TODO: id and param
+                PollingActivity.start(starterContext, param);
                 break;
 
             case Banner.DESTINATION_COMPETITION_STATISTICS:
@@ -76,11 +76,11 @@ public class LaunchActivity extends AppCompatActivity {
                 break;
 
             case Banner.DESTINATION_POLLING_LIST:
-                PollingListActivity.start(starterContext); //TODO: id and param
+                PollingListActivity.start(starterContext, PollingListActivity.TYPE_POLLING);
                 break;
 
             case Banner.DESTINATION_POLLING:
-                PollingActivity.start(starterContext, ""); //TODO: id and param
+                PollingActivity.start(starterContext, param);
                 break;
 
             case Banner.DESTINATION_POLLING_STATISTICS:

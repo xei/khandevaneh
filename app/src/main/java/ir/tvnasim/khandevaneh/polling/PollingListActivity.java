@@ -11,7 +11,6 @@ import java.util.ArrayList;
 import ir.tvnasim.khandevaneh.R;
 import ir.tvnasim.khandevaneh.app.BaseActivity;
 import ir.tvnasim.khandevaneh.helper.LogHelper;
-import ir.tvnasim.khandevaneh.helper.webapi.MockApiRequest;
 import ir.tvnasim.khandevaneh.helper.webapi.WebApiHelper;
 import ir.tvnasim.khandevaneh.helper.webapi.WebApiRequest;
 

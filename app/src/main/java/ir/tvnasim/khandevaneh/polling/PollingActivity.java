@@ -20,6 +20,7 @@ import ir.tvnasim.khandevaneh.view.XeiTextView;
 public class PollingActivity extends BaseActivity {
 
     private static final String KEY_EXTRA_POLLING_ID = "KEY_EXTRA_POLLING_ID";
+    private static final String TAG_REQUEST_GET_POLLING_ITEM = "requestTag_pollingActivity_getPollingItem";
     private static final String TAG_REQUEST_POLL = "requestTag_pollingActivity_poll";
 
     private XeiTextView mTitleTextView;
@@ -73,7 +74,7 @@ public class PollingActivity extends BaseActivity {
     }
 
     private void fetchPollingFromApi() {
-        WebApiHelper.getPollingItem(mPollingId, "requestTag_pollingActivity_getPollingItem", new WebApiRequest.WebApiListener<PollingItem>() {
+        WebApiHelper.getPollingItem(mPollingId, TAG_REQUEST_GET_POLLING_ITEM, new WebApiRequest.WebApiListener<PollingItem>() {
             @Override
             public void onResponse(PollingItem pollingItem) {
                 mTitleTextView.setText(pollingItem.getTitle());
@@ -131,8 +132,7 @@ public class PollingActivity extends BaseActivity {
                 break;
 
             case R.id.activityPolling_xeiButton_showStatistics:
-                //TODO: open statistics activity
-                new KhandevanehDialog(this, getString(R.string.inform_notImplemented), null).show();
+                StatisticsActivity.start(this, mPollingId);
                 break;
         }
     }

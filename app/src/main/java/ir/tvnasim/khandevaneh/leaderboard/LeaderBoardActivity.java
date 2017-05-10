@@ -73,14 +73,7 @@ public class LeaderBoardActivity extends BaseActivity {
 
     private void renderUserData() {
         mUserNameTextView.setText(User.getInstance().getFirstName() + ' ' + User.getInstance().getLastName());
-        try {
-            FrescoHelper.setImageUrl(mUserAvatarSimpleDraweeView, User.getInstance().getAvatar());
-        } catch (Exception e) {
-            byte[] decodedString = Base64.decode(User.getInstance().getAvatar(), Base64.DEFAULT);
-            Bitmap bmp = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
-            mUserAvatarSimpleDraweeView.setImageBitmap(bmp);
-        }
-
+        FrescoHelper.setImageUrl(mUserAvatarSimpleDraweeView, User.getInstance().getAvatar());
         mUserExperienceTextView.setText(HelperFunctions.convertNumberStringToPersian(String.valueOf(User.getInstance().getExperienceScore())));
     }
 

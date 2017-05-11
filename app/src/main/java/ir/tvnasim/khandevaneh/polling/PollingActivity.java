@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ListView;
+import android.widget.RelativeLayout;
 
 import java.util.ArrayList;
 
@@ -27,6 +28,7 @@ public class PollingActivity extends BaseActivity {
     private XeiTextView mDescriptionTextView;
     private ListView mOptionsListView;
     private OptionsListAdapter mOptionsListAdapter;
+    private RelativeLayout mFooterRelativeLayout;
     private XeiButton mPollButton;
     private XeiButton mShowStatisticsButton;
 
@@ -59,6 +61,7 @@ public class PollingActivity extends BaseActivity {
         mTitleTextView = (XeiTextView) findViewById(R.id.activityPolling_xeiTextView_title);
         mDescriptionTextView = (XeiTextView) findViewById(R.id.activityPolling_xeiTextView_description);
         mOptionsListView = (ListView) findViewById(R.id.activityPolling_listView_options);
+        mFooterRelativeLayout = (RelativeLayout) findViewById(R.id.activityPolling_relativeLayout_footer);
         mPollButton = (XeiButton) findViewById(R.id.activityPolling_xeiButton_poll);
         mShowStatisticsButton = (XeiButton) findViewById(R.id.activityPolling_xeiButton_showStatistics);
     }
@@ -77,13 +80,15 @@ public class PollingActivity extends BaseActivity {
         WebApiHelper.getPollingItem(mPollingId, TAG_REQUEST_GET_POLLING_ITEM, new WebApiRequest.WebApiListener<PollingItem>() {
             @Override
             public void onResponse(PollingItem pollingItem) {
-                mTitleTextView.setText(pollingItem.getTitle());
-                mDescriptionTextView.setText(pollingItem.getDescription());
-                mOptions.clear();
-                mOptions.addAll(pollingItem.getOptions());
-                mOptionsType.setType(pollingItem.getOptionType());
-
-                mOptionsListAdapter.notifyDataSetChanged();
+                if (pollingItem != null) {
+                    mTitleTextView.setText(pollingItem.getTitle());
+                    mDescriptionTextView.setText(pollingItem.getDescription());
+                    mOptions.clear();
+                    mOptions.addAll(pollingItem.getOptions());
+                    mOptionsType.setType(pollingItem.getOptionType());
+                    mOptionsListAdapter.notifyDataSetChanged();
+                    mFooterRelativeLayout.setVisibility(View.VISIBLE);
+                }
             }
 
             @Override
@@ -132,7 +137,7 @@ public class PollingActivity extends BaseActivity {
                 break;
 
             case R.id.activityPolling_xeiButton_showStatistics:
-                StatisticsActivity.start(this, mPollingId);
+                PollingStatisticsActivity.start(this, mPollingId, mTitleTextView.getText().toString());
                 break;
         }
     }

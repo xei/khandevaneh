@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#fff"
+    tools:context="ir.tvnasim.khandevaneh.polling.PollingStatisticsActivity" >
+
+    <ir.tvnasim.khandevaneh.view.XeiTextView
+        android:id="@+id/activityPollingStatistics_xeiTextView_title"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:layout_alignParentTop="true"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:background="@drawable/background_toolbar_polling"
+        android:textColor="#fff"
+        android:textSize="24dp"
+        android:textStyle="bold"
+        app:locale="fa_IR"
+        app:style="bold" />
+
+    <ir.tvnasim.khandevaneh.view.XeiTextView
+        android:id="@+id/activityPollingStatistics_xeiTextView_description"
+        android:lines="3"
+        android:layout_width="match_parent"
+        android:layout_height="112dp"
+        android:layout_below="@+id/activityPollingStatistics_xeiTextView_title"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:background="@drawable/background_toolbar_polling"
+        android:textColor="#fff"
+        android:textSize="@dimen/textSize_userRankSection"
+        android:textStyle="bold"
+        app:locale="fa_IR"
+        app:style="bold" />
+
+    <ListView
+        android:id="@+id/activityPollingStatistics_listView_statistics"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/activityPollingStatistics_xeiTextView_description"
+        android:layout_marginTop="1dp"
+        android:paddingTop="32dp"
+        android:background="@drawable/background_polling"
+        android:divider="@null"
+        android:dividerHeight="8dp"
+        android:listSelector="@android:color/transparent"
+        />
+
+</RelativeLayout>

@@ -13,7 +13,6 @@ import ir.tvnasim.khandevaneh.helper.webapi.model.PoleResult;
 import ir.tvnasim.khandevaneh.helper.webapi.model.app.Banner;
 import ir.tvnasim.khandevaneh.helper.webapi.model.app.StartupConfig;
 import ir.tvnasim.khandevaneh.helper.webapi.model.section.LikeResult;
-import ir.tvnasim.khandevaneh.helper.webapi.model.section.Section;
 import ir.tvnasim.khandevaneh.helper.webapi.model.section.SectionContainer;
 import ir.tvnasim.khandevaneh.helper.webapi.model.store.StoreItem;
 import ir.tvnasim.khandevaneh.helper.webapi.model.user.Token;
@@ -21,6 +20,7 @@ import ir.tvnasim.khandevaneh.helper.webapi.model.user.UserInfo;
 import ir.tvnasim.khandevaneh.leaderboard.LeaderContainerModel;
 import ir.tvnasim.khandevaneh.polling.PollingItem;
 import ir.tvnasim.khandevaneh.polling.PollingListItem;
+import ir.tvnasim.khandevaneh.polling.PollingStatisticsItem;
 
 /**
  * @author H. Hosseinkhani
@@ -268,6 +268,20 @@ public final class WebApiHelper {
                 ENDPOINT_POLL,
                 params,
                 new TypeToken<WebApiRequest.WebApiResponse<PoleResult>>() {
+                }.getType(),
+                requestTag,
+                webApiListener,
+                fragment
+        );
+    }
+
+    public static WebApiRequest<ArrayList<PollingStatisticsItem>> getPollingStatistics(String pollingId, String requestTag, WebApiRequest.WebApiListener<ArrayList<PollingStatisticsItem>> webApiListener, WebApiRequest.LoadRequests fragment) {
+
+        return new WebApiRequest<>(
+                Request.Method.GET,
+                ENDPOINT_GET_POLLING_STATISTICS + "?id=" + pollingId,
+                null,
+                new TypeToken<WebApiRequest.WebApiResponse<ArrayList<PollingStatisticsItem>>>() {
                 }.getType(),
                 requestTag,
                 webApiListener,

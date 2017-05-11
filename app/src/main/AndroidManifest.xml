@@ -55,7 +55,8 @@
         <activity
             android:name=".polling.PollingActivity"
             android:screenOrientation="portrait" />
-        <activity android:name=".polling.StatisticsActivity"></activity>
+        <activity android:name=".polling.PollingStatisticsActivity"
+            android:screenOrientation="portrait" />
     </application>
 
 </manifest>

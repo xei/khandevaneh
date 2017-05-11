@@ -26,6 +26,9 @@
     <!-- NoNetworkActivity -->
     <color name="noNetwork_background">#004529</color>
 
+    <!-- UpdateActivity -->
+    <color name="update_background">#004529</color>
+
     <!-- HomeActivity -->
     <color name="background_home_toolbar">#fff</color>
     <color name="text_toolbar_home_score">#1b5e20</color>

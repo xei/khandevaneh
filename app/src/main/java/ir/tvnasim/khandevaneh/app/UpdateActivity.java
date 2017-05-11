@@ -2,15 +2,24 @@ package ir.tvnasim.khandevaneh.app;
 
 import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.ListView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import ir.tvnasim.khandevaneh.R;
+import ir.tvnasim.khandevaneh.polling.OptionsListAdapter;
+import ir.tvnasim.khandevaneh.view.XeiButton;
+import ir.tvnasim.khandevaneh.view.XeiTextView;
 
-public class UpdateActivity extends AppCompatActivity {
+public class UpdateActivity extends AppCompatActivity implements View.OnClickListener {
 
-    private static final String KEY_EXTRA_URL_APK = "URL_APK";
+    private static final String KEY_EXTRA_URL_APK = "KEY_EXTRA_URL_APK";
+
+    private XeiTextView mDownloadTextView;
 
     private String mApkUrl;
 
@@ -28,9 +37,36 @@ public class UpdateActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_update);
+
         getArguments();
 
-        ((TextView)findViewById(R.id.activityUpdate_textView_url)).setText(mApkUrl);
+        findViews();
+
+        setOnClickListeners();
+
+    }
+
+    private void findViews() {
+        mDownloadTextView = (XeiTextView) findViewById(R.id.activityUpdate_xeiTextView_download);
+    }
+
+    private void setOnClickListeners() {
+        mDownloadTextView.setOnClickListener(this);
+    }
+
+    private void download(String apkUrl) {
+        Intent intent = new Intent(Intent.ACTION_VIEW);
+        intent.setData(Uri.parse(apkUrl));
+        startActivity(intent);
+    }
+
+    @Override
+    public void onClick(View clickedView) {
+        switch (clickedView.getId()) {
+            case R.id.activityUpdate_xeiTextView_download:
+                download(mApkUrl);
+                break;
+        }
     }
 
 }

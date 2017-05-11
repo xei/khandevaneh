@@ -4,12 +4,42 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/update_background"
     tools:context="ir.tvnasim.khandevaneh.app.UpdateActivity">
 
-    <TextView
-        android:id="@+id/activityUpdate_textView_url"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="center" />
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_centerInParent="true" >
+
+        <ir.tvnasim.khandevaneh.view.XeiTextView
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:gravity="center"
+            android:text="متاسفم رفیق. این نسخه دیگه منسوخ شده. باس نسخه جدید رو بگیری."
+            android:textColor="#fff"
+            android:textSize="20sp"
+            app:locale="fa_IR"
+            app:style="bold"
+            />
+
+        <ir.tvnasim.khandevaneh.view.XeiTextView
+            android:id="@+id/activityUpdate_xeiTextView_download"
+            android:layout_width="wrap_content"
+            android:layout_height="48dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="32dp"
+            android:background="?attr/selectableItemBackground"
+            android:paddingLeft="8dp"
+            android:paddingRight="8dp"
+            android:gravity="center"
+            android:text="دانلود نسخه جدید"
+            android:textColor="#fff"
+            android:textSize="18sp"
+            app:locale="fa_IR"
+            />
+
+    </LinearLayout>
 
 </RelativeLayout>

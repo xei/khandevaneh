@@ -45,7 +45,6 @@
         android:layout_centerHorizontal="true"
         android:layout_below="@+id/activityPollingStatistics_xeiTextView_description"
         android:layout_marginTop="1dp"
-        android:paddingTop="32dp"
         android:background="@drawable/background_polling"
         android:divider="@null"
         android:dividerHeight="8dp"

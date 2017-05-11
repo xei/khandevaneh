@@ -1,45 +1,52 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<LinearLayout
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="horizontal"
-    android:layoutDirection="ltr" >
+    android:layout_height="wrap_content" >
 
-    <ir.tvnasim.khandevaneh.view.XeiTextView
-        android:id="@+id/rowPollingStatistics_xeiTextView_frequency"
-        android:layout_width="0dp"
-        android:layout_weight="1"
+    <LinearLayout
+        android:id="@+id/rowPollingStatistics_linearLayout_itemView"
+        android:layout_width="match_parent"
         android:layout_height="42dp"
-        android:layout_gravity="center_vertical"
-        android:gravity="right|center_vertical"
-        android:paddingRight="32dp"
-        android:background="@drawable/background_left_section_row_statistics"
-        android:textColor="#000"
-        android:textSize="17sp"
-        android:textStyle="bold"
-        app:locale="fa_IR"
-        app:style="bold"/>
+        android:orientation="horizontal"
+        android:layoutDirection="ltr" >
 
-    <View
-        android:layout_width="24dp"
-        android:layout_height="match_parent" />
+        <ir.tvnasim.khandevaneh.view.XeiTextView
+            android:id="@+id/rowPollingStatistics_xeiTextView_frequency"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent"
+            android:layout_gravity="center_vertical"
+            android:gravity="right|center_vertical"
+            android:paddingRight="32dp"
+            android:background="@drawable/background_left_section_row_statistics"
+            android:textColor="#000"
+            android:textSize="17sp"
+            android:textStyle="bold"
+            app:locale="fa_IR"
+            app:style="bold"/>
 
-    <ir.tvnasim.khandevaneh.view.XeiTextView
-        android:id="@+id/rowPollingStatistics_xeiTextView_value"
-        android:layout_width="0dp"
-        android:layout_weight="1"
-        android:layout_height="42dp"
-        android:layout_gravity="center_vertical"
-        android:gravity="left|center_vertical"
-        android:paddingLeft="32dp"
-        android:background="@drawable/background_right_section_row_statistics"
-        android:textColor="#000"
-        android:textSize="17sp"
-        android:textStyle="bold"
-        app:locale="fa_IR"
-        app:style="bold"/>
+        <View
+            android:layout_width="24dp"
+            android:layout_height="match_parent" />
 
-</LinearLayout>
+        <ir.tvnasim.khandevaneh.view.XeiTextView
+            android:id="@+id/rowPollingStatistics_xeiTextView_value"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent"
+            android:layout_gravity="center_vertical"
+            android:gravity="left|center_vertical"
+            android:paddingLeft="32dp"
+            android:background="@drawable/background_right_section_row_statistics"
+            android:textColor="#000"
+            android:textSize="17sp"
+            android:textStyle="bold"
+            app:locale="fa_IR"
+            app:style="bold"/>
+
+    </LinearLayout>
+
+</RelativeLayout>

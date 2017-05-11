@@ -5,12 +5,15 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 
 import com.facebook.drawee.view.SimpleDraweeView;
 
 import java.util.ArrayList;
 
 import ir.tvnasim.khandevaneh.R;
+import ir.tvnasim.khandevaneh.helper.HelperFunctions;
 import ir.tvnasim.khandevaneh.helper.imageloading.FrescoHelper;
 import ir.tvnasim.khandevaneh.view.XeiTextView;
 
@@ -36,10 +39,7 @@ public class PollingListAdapter extends RecyclerView.Adapter<PollingListAdapter.
     public void onBindViewHolder(ListItemViewHolder holder, int position) {
         final PollingListItem item = mList.get(position);
         holder.title.setText(item.getTitle());
-        try {
-            FrescoHelper.setImageUrl(holder.image, item.getImageUrl());
-        }catch (Exception e) {}
-
+        FrescoHelper.setImageUrl(holder.image, item.getImageUrl());
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.View;
 import android.widget.Toast;
 
 import ir.tvnasim.khandevaneh.R;
@@ -23,6 +24,7 @@ import ir.tvnasim.khandevaneh.polling.PollingActivity;
 import ir.tvnasim.khandevaneh.polling.PollingListActivity;
 import ir.tvnasim.khandevaneh.polling.PollingStatisticsActivity;
 import ir.tvnasim.khandevaneh.store.StoreActivity;
+import ir.tvnasim.khandevaneh.view.KhandevanehDialog;
 
 public class LaunchActivity extends AppCompatActivity {
 
@@ -77,14 +79,22 @@ public class LaunchActivity extends AppCompatActivity {
     private void openAppropriateActivity(StartupConfig startupConfig) {
         if (startupConfig.getVersionState() == StartupConfig.VERSION_STATE_VALID) {
             HomeActivity.start(this);
+            finish();
         } else if (startupConfig.getVersionState() == StartupConfig.VERSION_STATE_OLD) {
-            Toast.makeText(this, "نسخه جدیدی از اپلیکیشن منتشر شده. لطفا آپدیت کنید!", Toast.LENGTH_SHORT).show();
+            new KhandevanehDialog(this, "نسخه جدیدمون رو بگیر بابا کلی چیز باحال توشه...", new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    HomeActivity.start(LaunchActivity.this);
+                    finish();
+                }
+            }).show();
         } else if (startupConfig.getVersionState() == StartupConfig.VERSION_STATE_DEPRECATED) {
             UpdateActivity.start(this, startupConfig.getLatestApk());
+            finish();
         } else {
             LogHelper.logError(TAG_DEBUG, "invalid version state!");
+            finish();
         }
-        finish();
     }
 
     public static void goTo(Context starterContext, String destination, String param) {

@@ -103,6 +103,11 @@ public class BaseActivity extends AppCompatActivity implements View.OnClickListe
     protected void onResume() {
         super.onResume();
 
+        if (!HelperFunctions.isNetworkConnected()) {
+            LaunchActivity.goTo(this, LaunchActivity.DESTINATION_NO_NETWORK, null);
+            finish();
+        }
+
         showScores();
     }
 

@@ -37,6 +37,13 @@ public class PollingStatisticsActivity extends BaseActivity {
     }
 
     @Override
+    protected ArrayList<String> getRequestTags() {
+        ArrayList<String> tags = super.getRequestTags();
+        tags.add(TAG_REQUEST_GET_POLLING_STATISTICS);
+        return tags;
+    }
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_polling_statistics);

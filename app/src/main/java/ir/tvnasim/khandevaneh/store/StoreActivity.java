@@ -13,6 +13,7 @@ import ir.tvnasim.khandevaneh.R;
 import ir.tvnasim.khandevaneh.account.User;
 import ir.tvnasim.khandevaneh.app.BaseActivity;
 import ir.tvnasim.khandevaneh.helper.HelperFunctions;
+import ir.tvnasim.khandevaneh.helper.webapi.VolleyHelper;
 import ir.tvnasim.khandevaneh.helper.webapi.WebApiHelper;
 import ir.tvnasim.khandevaneh.helper.webapi.WebApiRequest;
 import ir.tvnasim.khandevaneh.helper.webapi.model.store.StoreItem;
@@ -32,6 +33,13 @@ public class StoreActivity extends BaseActivity {
     public static void start(Context starter) {
         Intent intent = new Intent(starter, StoreActivity.class);
         starter.startActivity(intent);
+    }
+
+    @Override
+    protected ArrayList<String> getRequestTags() {
+        ArrayList<String> tags = super.getRequestTags();
+        tags.add(TAG_REQUEST_GET_STORE_LIST);
+        return tags;
     }
 
     @Override

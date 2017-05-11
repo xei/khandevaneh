@@ -52,6 +52,16 @@ public class LiveLikeActivity extends BaseActivity {
     }
 
     @Override
+    protected ArrayList<String> getRequestTags() {
+        ArrayList<String> tags = super.getRequestTags();
+        tags.add(TAG_REQUEST_GET_SECTION);
+        tags.add(TAG_REQUEST_GET_BANNER);
+        tags.add(TAG_REQUEST_LIKE);
+        tags.add(TAG_REQUEST_COMMENT);
+        return tags;
+    }
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_live_like);

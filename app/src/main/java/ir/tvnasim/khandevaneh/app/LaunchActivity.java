@@ -8,6 +8,7 @@ import android.widget.Toast;
 import ir.tvnasim.khandevaneh.R;
 import ir.tvnasim.khandevaneh.account.profile.ProfileActivity;
 import ir.tvnasim.khandevaneh.helper.LogHelper;
+import ir.tvnasim.khandevaneh.helper.webapi.VolleyHelper;
 import ir.tvnasim.khandevaneh.helper.webapi.WebApiHelper;
 import ir.tvnasim.khandevaneh.helper.webapi.WebApiRequest;
 import ir.tvnasim.khandevaneh.helper.webapi.model.app.Banner;
@@ -23,13 +24,15 @@ public class LaunchActivity extends AppCompatActivity {
 
     protected static final String TAG_DEBUG = LaunchActivity.class.getSimpleName();
 
+    protected static final String TAG_REQUEST_GET_STARTUP_CONFIG = "requestTag_launchActivity_getStartupConfig";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_launch);
 
         //TODO: getStartupConfig (APP_ID:APP_SECRET)
-        WebApiHelper.getStartupConfig("TAG_REQUEST_GET_STARTUP_CONFIG", new WebApiRequest.WebApiListener<StartupConfig>() {
+        WebApiHelper.getStartupConfig(TAG_REQUEST_GET_STARTUP_CONFIG, new WebApiRequest.WebApiListener<StartupConfig>() {
             @Override
             public void onResponse(StartupConfig startupConfig) {
                 openAppropriateActivity(startupConfig);
@@ -115,4 +118,9 @@ public class LaunchActivity extends AppCompatActivity {
         }
     }
 
+    @Override
+    protected void onStop() {
+        super.onStop();
+        VolleyHelper.cancelPendingRequests(TAG_REQUEST_GET_STARTUP_CONFIG);
+    }
 }

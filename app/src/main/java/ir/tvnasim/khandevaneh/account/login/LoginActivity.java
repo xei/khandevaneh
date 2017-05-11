@@ -7,6 +7,8 @@ import android.os.Handler;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 
+import java.util.ArrayList;
+
 import ir.tvnasim.khandevaneh.R;
 import ir.tvnasim.khandevaneh.account.User;
 import ir.tvnasim.khandevaneh.app.BaseActivity;
@@ -17,9 +19,22 @@ import ir.tvnasim.khandevaneh.helper.webapi.model.user.Token;
 import ir.tvnasim.khandevaneh.helper.webapi.model.user.UserInfo;
 
 public class LoginActivity extends BaseActivity implements PhoneNoFragment.OnSendButtonClickListener, VerificationCodeFragment.OnSendButtonClickListener {
+
+    private static final String TAG_REQUEST_REGISTER_PHONE_NO = "requestTag_loginActivity_registerPhoneNo";
+    private static final String TAG_REQUEST_AUTH_WITH_CREDENTIALS = "requestTag_loginActivity_authWithCredentials";
+
+
     public static void start(Context starter) {
         Intent intent = new Intent(starter, LoginActivity.class);
         starter.startActivity(intent);
+    }
+
+    @Override
+    protected ArrayList<String> getRequestTags() {
+        ArrayList<String> tags = super.getRequestTags();
+        tags.add(TAG_REQUEST_REGISTER_PHONE_NO);
+        tags.add(TAG_REQUEST_AUTH_WITH_CREDENTIALS);
+        return tags;
     }
 
     @Override
@@ -33,7 +48,7 @@ public class LoginActivity extends BaseActivity implements PhoneNoFragment.OnSen
     @Override
     public void onSendPhoneNoButtonClick(final String phoneNo) {
 
-        WebApiHelper.registerPhoneNo(phoneNo, "REQUEST_REGISTER_PHONE_NO", new WebApiRequest.WebApiListener<Object>() {
+        WebApiHelper.registerPhoneNo(phoneNo, TAG_REQUEST_REGISTER_PHONE_NO, new WebApiRequest.WebApiListener<Object>() {
             @Override
             public void onResponse(Object response) {
                 //TODO if ack
@@ -51,7 +66,7 @@ public class LoginActivity extends BaseActivity implements PhoneNoFragment.OnSen
 
     @Override
     public void onSendVerificationCodeButtonClick(String phoneNo, String verificationCode) {
-        WebApiHelper.authenticateWithCredentials(phoneNo, verificationCode, "TAG_REQUEST_AUTH_WITH_CREDENTIALS", new WebApiRequest.WebApiListener<Token>() {
+        WebApiHelper.authenticateWithCredentials(phoneNo, verificationCode, TAG_REQUEST_AUTH_WITH_CREDENTIALS, new WebApiRequest.WebApiListener<Token>() {
             @Override
             public void onResponse(Token token) {
                 User.getInstance().setAccessToken(token.getAcessToken());

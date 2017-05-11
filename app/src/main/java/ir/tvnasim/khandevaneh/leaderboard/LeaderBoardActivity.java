@@ -2,13 +2,9 @@ package ir.tvnasim.khandevaneh.leaderboard;
 
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Base64;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.facebook.drawee.view.SimpleDraweeView;
@@ -20,11 +16,12 @@ import ir.tvnasim.khandevaneh.account.User;
 import ir.tvnasim.khandevaneh.app.BaseActivity;
 import ir.tvnasim.khandevaneh.helper.HelperFunctions;
 import ir.tvnasim.khandevaneh.helper.imageloading.FrescoHelper;
-import ir.tvnasim.khandevaneh.helper.imageloading.ImageLoader;
 import ir.tvnasim.khandevaneh.helper.webapi.WebApiHelper;
 import ir.tvnasim.khandevaneh.helper.webapi.WebApiRequest;
 
 public class LeaderBoardActivity extends BaseActivity {
+
+    private static final String TAG_REQUEST_GET_LEADER_BOARD = "requestTag_leaderBoardActivity_getLeaderBoard";
 
     private TextView mUserNameTextView;
     private SimpleDraweeView mUserAvatarSimpleDraweeView;
@@ -38,6 +35,13 @@ public class LeaderBoardActivity extends BaseActivity {
     public static void start(Context starter) {
         Intent intent = new Intent(starter, LeaderBoardActivity.class);
         starter.startActivity(intent);
+    }
+
+    @Override
+    protected ArrayList<String> getRequestTags() {
+        ArrayList<String> tags = super.getRequestTags();
+        tags.add(TAG_REQUEST_GET_LEADER_BOARD);
+        return tags;
     }
 
     @Override
@@ -79,7 +83,7 @@ public class LeaderBoardActivity extends BaseActivity {
 
     private void fetchDataFromApi() {
 
-        WebApiHelper.getLeaderBoard("requestTag_leaderBoardActivity_getLeaderBoard", new WebApiRequest.WebApiListener<LeaderContainerModel>() {
+        WebApiHelper.getLeaderBoard(TAG_REQUEST_GET_LEADER_BOARD, new WebApiRequest.WebApiListener<LeaderContainerModel>() {
             @Override
             public void onResponse(LeaderContainerModel leaders) {
                 bindData(leaders.getLeaders());

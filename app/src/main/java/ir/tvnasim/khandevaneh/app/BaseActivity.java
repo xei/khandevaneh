@@ -11,6 +11,8 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import java.util.ArrayList;
+
 import ir.tvnasim.khandevaneh.R;
 import ir.tvnasim.khandevaneh.account.login.LoginActivity;
 import ir.tvnasim.khandevaneh.account.profile.ProfileActivity;
@@ -18,6 +20,7 @@ import ir.tvnasim.khandevaneh.account.User;
 import ir.tvnasim.khandevaneh.account.profile.ProfileCompletionActivity;
 import ir.tvnasim.khandevaneh.helper.HelperFunctions;
 import ir.tvnasim.khandevaneh.helper.LogHelper;
+import ir.tvnasim.khandevaneh.helper.webapi.VolleyHelper;
 import ir.tvnasim.khandevaneh.leaderboard.LeaderBoardActivity;
 import ir.tvnasim.khandevaneh.store.StoreActivity;
 
@@ -28,6 +31,8 @@ import ir.tvnasim.khandevaneh.store.StoreActivity;
 public class BaseActivity extends AppCompatActivity implements View.OnClickListener {
 
     protected static final String TAG_DEBUG = BaseActivity.class.getSimpleName();
+
+    private ArrayList<String> mRequestTags = new ArrayList<>();
 
     private ImageButton mProfileImageButton;
     private LinearLayout mScoreSectionLinearLayout;
@@ -132,6 +137,19 @@ public class BaseActivity extends AppCompatActivity implements View.OnClickListe
             mScoreSectionLinearLayout.setVisibility(View.VISIBLE);
         }
 
+    }
+
+    protected ArrayList<String> getRequestTags() {
+        return mRequestTags;
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+
+        for (String tag : getRequestTags()) {
+            VolleyHelper.cancelPendingRequests(tag);
+        }
     }
 
     @Override

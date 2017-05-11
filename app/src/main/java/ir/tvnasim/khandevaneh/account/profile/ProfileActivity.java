@@ -8,6 +8,8 @@ import android.widget.Toast;
 
 import com.facebook.drawee.view.SimpleDraweeView;
 
+import java.util.ArrayList;
+
 import ir.tvnasim.khandevaneh.R;
 import ir.tvnasim.khandevaneh.account.User;
 import ir.tvnasim.khandevaneh.app.BaseActivity;
@@ -36,6 +38,13 @@ public class ProfileActivity extends BaseActivity {
     public static void start(Context starter) {
         Intent intent = new Intent(starter, ProfileActivity.class);
         starter.startActivity(intent);
+    }
+
+    @Override
+    protected ArrayList<String> getRequestTags() {
+        ArrayList<String> tags = super.getRequestTags();
+        tags.add(TAG_REQUEST_SEND_PARTICIPATE_REQUEST);
+        return tags;
     }
 
     @Override

@@ -27,16 +27,7 @@ public class VolleyHelper {
         sInitialized = true;
     }
 
-    public static <T> void addToRequestQueue(Request<T> req) {
-        if(sInitialized) {
-            req.setTag(TAG_REQUEST);
-            sRequestQueue.add(req);
-        } else {
-
-        }
-    }
-
-    public static <T> void addToRequestQueue(Request<T> req, String tag) {
+    static <T> void addToRequestQueue(Request<T> req, String tag) {
         if(sInitialized) {
             req.setTag(TextUtils.isEmpty(tag) ? TAG_REQUEST : tag);
             sRequestQueue.add(req);

@@ -31,12 +31,24 @@ import ir.tvnasim.khandevaneh.view.bannerslider.OnBannerClickedListener;
 
 public class HomeActivity extends BaseActivity implements OnBannerClickedListener {
 
+    private static final String TAG_REQUEST_GET_USER_INFO = "requestTag_homeActivity_getUserInfo";
+    private static final String TAG_REQUEST_AUTH_WITH_REFRESH_TOKEN = "requestTag_homeActivity_authWithRefreshToken";
+    private static final String TAG_REQUEST_GET_SLIDER_BANNERS = "requestTag_homeActivity_getSliderBanners";
     private RecyclerView mMenuItemRecyclerView;
     private HomeMenuAdapter mHomeMenuAdapter;
 
     public static void start(Context starter) {
         Intent intent = new Intent(starter, HomeActivity.class);
         starter.startActivity(intent);
+    }
+
+    @Override
+    protected ArrayList<String> getRequestTags() {
+        ArrayList<String> tags = super.getRequestTags();
+        tags.add(TAG_REQUEST_GET_USER_INFO);
+        tags.add(TAG_REQUEST_AUTH_WITH_REFRESH_TOKEN);
+        tags.add(TAG_REQUEST_GET_SLIDER_BANNERS);
+        return tags;
     }
 
     @Override
@@ -63,7 +75,7 @@ public class HomeActivity extends BaseActivity implements OnBannerClickedListene
         if (accessToken != null && AuthHelper.isTokenValid(accessToken)) {
             // There exist an access token
             User.getInstance().setAccessToken(accessToken);
-            WebApiHelper.getUserInfo("requestTag_homeActivity_getUserInfo", new WebApiRequest.WebApiListener<UserInfo>() {
+            WebApiHelper.getUserInfo(TAG_REQUEST_GET_USER_INFO, new WebApiRequest.WebApiListener<UserInfo>() {
                 @Override
                 public void onResponse(UserInfo userInfo) {
                     User.getInstance().setFirstName(userInfo.getFirstName());
@@ -84,7 +96,7 @@ public class HomeActivity extends BaseActivity implements OnBannerClickedListene
             String refreshToken = SharedPreferencesHelper.retrieveRefreshToken();
             if (refreshToken != null) {
                 // We may could get a valid access token by refresh token
-                WebApiHelper.authenticateWithRefreshToken(refreshToken, "requestTag_homeActivity_authWithRefreshToken", new WebApiRequest.WebApiListener<Token>() {
+                WebApiHelper.authenticateWithRefreshToken(refreshToken,TAG_REQUEST_AUTH_WITH_REFRESH_TOKEN , new WebApiRequest.WebApiListener<Token>() {
                     @Override
                     public void onResponse(Token token) {
                         User.getInstance().setAccessToken(token.getAcessToken());
@@ -119,7 +131,7 @@ public class HomeActivity extends BaseActivity implements OnBannerClickedListene
 
     private void fetchBannersFromApi() {
 
-        WebApiHelper.getSliderBanners("requestTag_homeActivity_getSliderBanners", new WebApiRequest.WebApiListener<ArrayList<Banner>>() {
+        WebApiHelper.getSliderBanners(TAG_REQUEST_GET_SLIDER_BANNERS, new WebApiRequest.WebApiListener<ArrayList<Banner>>() {
             @Override
             public void onResponse(ArrayList<Banner> sliderBanners) {
                 ArrayList<Bundle> bannersList = new ArrayList<>();

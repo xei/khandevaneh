@@ -15,6 +15,7 @@ import android.util.Log;
 import java.io.ByteArrayOutputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.ArrayList;
 
 import ir.tvnasim.khandevaneh.R;
 import ir.tvnasim.khandevaneh.account.User;
@@ -24,11 +25,20 @@ import ir.tvnasim.khandevaneh.helper.webapi.WebApiRequest;
 
 public class ProfileCompletionActivity extends BaseActivity {
 
+    private static final String TAG_REQUEST_EDIT_USER_INFO = "requestTag_profileCompletionActivity_editUserInfo";
+
     private int mCurrentFragment = UserInfoFragment.WHICH_FRAGMENT_FIRST_NAME;
 
     public static void start(Context starter) {
         Intent intent = new Intent(starter, ProfileCompletionActivity.class);
         starter.startActivity(intent);
+    }
+
+    @Override
+    protected ArrayList<String> getRequestTags() {
+        ArrayList<String> tags = super.getRequestTags();
+        tags.add(TAG_REQUEST_EDIT_USER_INFO);
+        return tags;
     }
 
     @Override
@@ -81,7 +91,7 @@ public class ProfileCompletionActivity extends BaseActivity {
         } else if (whichFragment < 4) {
             changeFragment(R.id.activityProfileCompletion_frameLayout_fragmentContainer, UserInfoFragment.newInstance(++mCurrentFragment), true);
         } else if (whichFragment == 4) {
-            WebApiHelper.editUserInfo(User.getInstance(), "requestTag_profileCompletionActivity_editUserInfo", new WebApiRequest.WebApiListener<Boolean>() {
+            WebApiHelper.editUserInfo(User.getInstance(), TAG_REQUEST_EDIT_USER_INFO, new WebApiRequest.WebApiListener<Boolean>() {
                 @Override
                 public void onResponse(Boolean response) {
                     User.getInstance().setIsProfileComplete(true);

@@ -128,7 +128,7 @@ public class PollingActivity extends BaseActivity {
 
                 @Override
                 public void onErrorResponse(String errorMessage) {
-                    new KhandevanehDialog(PollingActivity.this, "مرسی رفیق", new View.OnClickListener() {
+                    new KhandevanehDialog(PollingActivity.this, errorMessage, new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
                             finish();

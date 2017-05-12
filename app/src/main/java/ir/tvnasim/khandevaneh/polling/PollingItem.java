@@ -15,6 +15,10 @@ public class PollingItem {
     public static final int TYPE_POLLING_VIDEO = 2;
     public static final int TYPE_POLLING_VOICE = 3;
 
+    public static final int POLLED_BEFORE_NOT_SET = -1;
+    public static final int POLLED_BEFORE_NO = 0;
+    public static final int POLLED_BEFORE_YES = 1;
+
     @SerializedName("id")
     private String id;
 
@@ -35,6 +39,9 @@ public class PollingItem {
 
     @SerializedName("answer")
     private ArrayList<PollingOption> options;
+
+    @SerializedName("userAnswer")
+    private int polledBefore = POLLED_BEFORE_NOT_SET;
 
 
     public String getId() {
@@ -93,4 +100,11 @@ public class PollingItem {
         this.options = options;
     }
 
+    public int getPolledBefore() {
+        return polledBefore;
+    }
+
+    public void setPolledBefore(int polledBefore) {
+        this.polledBefore = polledBefore;
+    }
 }

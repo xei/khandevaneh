@@ -10,13 +10,11 @@ import android.widget.RelativeLayout;
 import java.util.ArrayList;
 
 import ir.tvnasim.khandevaneh.R;
-import ir.tvnasim.khandevaneh.account.User;
 import ir.tvnasim.khandevaneh.app.BaseActivity;
 import ir.tvnasim.khandevaneh.helper.webapi.WebApiHelper;
 import ir.tvnasim.khandevaneh.helper.webapi.WebApiRequest;
 import ir.tvnasim.khandevaneh.helper.webapi.model.PoleResult;
 import ir.tvnasim.khandevaneh.helper.webapi.model.app.ScoresContainer;
-import ir.tvnasim.khandevaneh.helper.webapi.model.user.UserInfo;
 import ir.tvnasim.khandevaneh.view.KhandevanehDialog;
 import ir.tvnasim.khandevaneh.view.XeiButton;
 import ir.tvnasim.khandevaneh.view.XeiTextView;
@@ -36,6 +34,7 @@ public class PollingActivity extends BaseActivity {
     private XeiButton mShowStatisticsButton;
 
     private String mPollingId;
+    private int mPolledBefore = PollingItem.POLLED_BEFORE_NOT_SET;
     private ArrayList<PollingOption> mOptions = new ArrayList<>();
     private OptionType mOptionsType = new OptionType();
     private ArrayList<String> mSelectedOptions = new ArrayList<>();
@@ -92,6 +91,7 @@ public class PollingActivity extends BaseActivity {
             @Override
             public void onResponse(PollingItem pollingItem, ScoresContainer scoresContainer) {
                 if (pollingItem != null) {
+                    mPolledBefore = pollingItem.getPolledBefore();
                     mTitleTextView.setText(pollingItem.getTitle());
                     mDescriptionTextView.setText(pollingItem.getDescription());
                     mOptions.clear();
@@ -156,7 +156,11 @@ public class PollingActivity extends BaseActivity {
                 break;
 
             case R.id.activityPolling_xeiButton_showStatistics:
-                PollingStatisticsActivity.start(this, mPollingId, mTitleTextView.getText().toString());
+                if (mPolledBefore == PollingItem.POLLED_BEFORE_YES) {
+                    PollingStatisticsActivity.start(this, mPollingId, mTitleTextView.getText().toString());
+                } else if (mPolledBefore == PollingItem.POLLED_BEFORE_NO){
+                    new KhandevanehDialog(this, "تو که شرکت نکردی آمار به چه دردت میخوره آخه؟", null).show();
+                }
                 break;
         }
     }

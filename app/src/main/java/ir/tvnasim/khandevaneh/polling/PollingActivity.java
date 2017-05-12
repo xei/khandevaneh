@@ -113,15 +113,19 @@ public class PollingActivity extends BaseActivity {
         if (mSelectedOptions.size() > 0) {
             WebApiHelper.poll(mPollingId, mSelectedOptions, TAG_REQUEST_POLL, new WebApiRequest.WebApiListener<PoleResult>() {
                 @Override
-                public void onResponse(PoleResult response, ScoresContainer scoresContainer) {
+                public void onResponse(PoleResult response, final ScoresContainer scoresContainer) {
 
-                    if (scoresContainer != null) {
-                        updateScores(scoresContainer.getMelonScore(), scoresContainer.getExperienceScore());
-                    }
                     new KhandevanehDialog(PollingActivity.this, "مرسی رفیق", new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
-                            finish();
+                            if (scoresContainer != null) {
+                                updateScores(scoresContainer.getMelonScore(), scoresContainer.getExperienceScore(), new OnShakingFinishedListener() {
+                                    @Override
+                                    public void onShakingFinish() {
+                                        finish();
+                                    }
+                                });
+                            }
                         }
                     }).show();
                 }

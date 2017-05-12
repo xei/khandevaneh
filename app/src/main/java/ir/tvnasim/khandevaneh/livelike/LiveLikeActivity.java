@@ -194,7 +194,7 @@ public class LiveLikeActivity extends BaseActivity {
                 @Override
                 public void onResponse(LikeResult response, ScoresContainer scoresContainer) {
                     if (scoresContainer != null) {
-                        updateScores(scoresContainer.getMelonScore(), scoresContainer.getExperienceScore());
+                        updateScores(scoresContainer.getMelonScore(), scoresContainer.getExperienceScore(), null);
                     }
                 }
 
@@ -213,13 +213,16 @@ public class LiveLikeActivity extends BaseActivity {
 
         WebApiHelper.commentOnSection(mSection.getId(), msg, TAG_REQUEST_COMMENT, new WebApiRequest.WebApiListener<LikeResult>() {
             @Override
-            public void onResponse(LikeResult response, ScoresContainer scoresContainer) {
+            public void onResponse(LikeResult response, final ScoresContainer scoresContainer) {
 
-                if (scoresContainer != null) {
-                    updateScores(scoresContainer.getMelonScore(), scoresContainer.getExperienceScore());
-                }
-
-                new KhandevanehDialog(LiveLikeActivity.this, "نظرت ثبت شد رفیق!", null).show();
+                new KhandevanehDialog(LiveLikeActivity.this, "نظرت ثبت شد رفیق!", new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        if (scoresContainer != null) {
+                            updateScores(scoresContainer.getMelonScore(), scoresContainer.getExperienceScore(), null);
+                        }
+                    }
+                }).show();
                 mCommentSection.setVisibility(View.GONE);
 
             }

@@ -146,7 +146,7 @@ public class BaseActivity extends AppCompatActivity implements View.OnClickListe
 
     }
 
-    public void updateScores(int newMelonScore, int newExperienceScore) {
+    public void updateScores(int newMelonScore, int newExperienceScore, final OnShakingFinishedListener onShakingFinishedListener) {
 
         if (newMelonScore >= 0 && newExperienceScore >= 0 && mScoreSectionLinearLayout != null) {
 
@@ -154,6 +154,25 @@ public class BaseActivity extends AppCompatActivity implements View.OnClickListe
             int oldExperienceScore = User.getInstance().getExperienceScore();
 
             Animation animation = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.anim_shake);
+            animation.setAnimationListener(new Animation.AnimationListener() {
+                @Override
+                public void onAnimationStart(Animation animation) {
+
+                }
+
+                @Override
+                public void onAnimationEnd(Animation animation) {
+                    if (onShakingFinishedListener != null) {
+                        onShakingFinishedListener.onShakingFinish();
+                    }
+                }
+
+                @Override
+                public void onAnimationRepeat(Animation animation) {
+
+                }
+            });
+
             if (newMelonScore != oldMelonScore) {
                 User.getInstance().setMelonScore(newMelonScore);
                 mMelonScoreTextView.setText(HelperFunctions.convertNumberStringToPersian(String.valueOf(newMelonScore)));
@@ -168,6 +187,10 @@ public class BaseActivity extends AppCompatActivity implements View.OnClickListe
 
         }
 
+    }
+
+    public interface OnShakingFinishedListener {
+        void onShakingFinish();
     }
 
     protected ArrayList<String> getRequestTags() {

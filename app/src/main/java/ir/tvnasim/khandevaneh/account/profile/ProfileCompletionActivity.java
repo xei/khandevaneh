@@ -97,11 +97,16 @@ public class ProfileCompletionActivity extends BaseActivity {
                 public void onResponse(Boolean response, ScoresContainer scoresContainer) {
 
                     if (scoresContainer != null) {
-                        updateScores(scoresContainer.getMelonScore(), scoresContainer.getExperienceScore());
+                        updateScores(scoresContainer.getMelonScore(), scoresContainer.getExperienceScore(), new OnShakingFinishedListener() {
+                            @Override
+                            public void onShakingFinish() {
+                                finish();
+                            }
+                        });
                     }
 
                     User.getInstance().setIsProfileComplete(true);
-                    finish();
+
                 }
 
                 @Override

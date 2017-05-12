@@ -94,13 +94,16 @@ public class ProfileActivity extends BaseActivity {
     private void participate() {
         WebApiHelper.sendParticipateRequest(TAG_REQUEST_SEND_PARTICIPATE_REQUEST, new WebApiRequest.WebApiListener<Boolean>() {
             @Override
-            public void onResponse(Boolean response, ScoresContainer scoresContainer) {
+            public void onResponse(Boolean response, final ScoresContainer scoresContainer) {
 
-                if (scoresContainer != null) {
-                    updateScores(scoresContainer.getMelonScore(), scoresContainer.getExperienceScore());
-                }
-
-                new KhandevanehDialog(ProfileActivity.this, "اسمت ثبت شد. ایشالا می‌بینیمت.", null).show();
+                new KhandevanehDialog(ProfileActivity.this, "اسمت ثبت شد. ایشالا می‌بینیمت.", new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        if (scoresContainer != null) {
+                            updateScores(scoresContainer.getMelonScore(), scoresContainer.getExperienceScore(), null);
+                        }
+                    }
+                }).show();
             }
 
             @Override

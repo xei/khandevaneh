@@ -36,17 +36,21 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal" >
+            android:orientation="horizontal"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            android:layout_marginLeft="24dp"
+            android:layout_marginRight="24dp"
+            android:gravity="center"
+            android:background="@drawable/background_row_leaderboard" >
 
             <ir.tvnasim.khandevaneh.view.XeiTextView
                 android:id="@+id/activityProfile_xeiTextView_firstName"
-                android:layout_width="0dp"
+                android:layout_width="wrap_content"
                 android:layout_height="48dp"
-                android:layout_weight="1"
-
                 android:gravity="right|center_vertical"
                 android:text="کد فعالسازی برای شما پیامک شد..."
-                android:textColor="@color/textColor_light"
+                android:textColor="@color/textColor_dark"
                 app:locale="fa_IR"
                 />
 
@@ -57,7 +61,7 @@
                 android:paddingLeft="16dp"
                 android:gravity="right|center_vertical"
                 android:text="نام:"
-                android:textColor="@color/textColor_light"
+                android:textColor="@color/textColor_dark"
                 app:locale="fa_IR"
                 app:style="bold"
                 />
@@ -67,17 +71,21 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal" >
+            android:orientation="horizontal"
+            android:layout_marginBottom="8dp"
+            android:layout_marginLeft="24dp"
+            android:layout_marginRight="24dp"
+            android:gravity="center"
+            android:background="@drawable/background_row_leaderboard" >
 
             <ir.tvnasim.khandevaneh.view.XeiTextView
                 android:id="@+id/activityProfile_xeiTextView_lastName"
-                android:layout_width="0dp"
+                android:layout_width="wrap_content"
                 android:layout_height="48dp"
-                android:layout_weight="1"
 
                 android:gravity="right|center_vertical"
                 android:text="کد فعالسازی برای شما پیامک شد..."
-                android:textColor="@color/textColor_light"
+                android:textColor="@color/textColor_dark"
                 app:locale="fa_IR"
                 />
 
@@ -88,7 +96,7 @@
                 android:paddingLeft="16dp"
                 android:gravity="right|center_vertical"
                 android:text="نام خانوادگی:"
-                android:textColor="@color/textColor_light"
+                android:textColor="@color/textColor_dark"
                 app:locale="fa_IR"
                 app:style="bold"
                 />
@@ -98,17 +106,21 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal" >
+            android:orientation="horizontal"
+            android:layout_marginBottom="8dp"
+            android:layout_marginLeft="24dp"
+            android:layout_marginRight="24dp"
+            android:gravity="center"
+            android:background="@drawable/background_row_leaderboard" >
 
             <ir.tvnasim.khandevaneh.view.XeiTextView
                 android:id="@+id/activityProfile_xeiTextView_phoneNo"
-                android:layout_width="0dp"
+                android:layout_width="wrap_content"
                 android:layout_height="48dp"
-                android:layout_weight="1"
 
                 android:gravity="right|center_vertical"
                 android:text="کد فعالسازی برای شما پیامک شد..."
-                android:textColor="@color/textColor_light"
+                android:textColor="@color/textColor_dark"
                 app:locale="fa_IR"
                 />
 
@@ -119,7 +131,7 @@
                 android:paddingLeft="16dp"
                 android:gravity="right|center_vertical"
                 android:text="شماره موبایل:"
-                android:textColor="@color/textColor_light"
+                android:textColor="@color/textColor_dark"
                 app:locale="fa_IR"
                 app:style="bold"
                 />
@@ -129,17 +141,21 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal" >
+            android:orientation="horizontal"
+            android:layout_marginBottom="8dp"
+            android:layout_marginLeft="24dp"
+            android:layout_marginRight="24dp"
+            android:gravity="center"
+            android:background="@drawable/background_row_leaderboard" >
 
             <ir.tvnasim.khandevaneh.view.XeiTextView
                 android:id="@+id/activityProfile_xeiTextView_emailAddress"
-                android:layout_width="0dp"
+                android:layout_width="wrap_content"
                 android:layout_height="48dp"
-                android:layout_weight="1"
 
                 android:gravity="right|center_vertical"
                 android:text="کد فعالسازی برای شما پیامک شد..."
-                android:textColor="@color/textColor_light"
+                android:textColor="@color/textColor_dark"
                 app:locale="fa_IR"
                 />
 
@@ -150,7 +166,7 @@
                 android:paddingLeft="16dp"
                 android:gravity="right|center_vertical"
                 android:text="آدرس ایمیل:"
-                android:textColor="@color/textColor_light"
+                android:textColor="@color/textColor_dark"
                 app:locale="fa_IR"
                 app:style="bold"
                 />
@@ -160,30 +176,34 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal" >
+            android:orientation="horizontal"
+            android:layout_marginBottom="8dp"
+            android:layout_marginLeft="24dp"
+            android:layout_marginRight="24dp"
+            android:gravity="center"
+            android:background="@drawable/background_row_leaderboard" >
 
             <ir.tvnasim.khandevaneh.view.XeiTextView
                 android:id="@+id/activityProfile_xeiTextView_postalAddress"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
+                android:layout_width="wrap_content"
+                android:layout_height="48dp"
 
                 android:gravity="right|center_vertical"
                 android:text="کد فعالسازی برای شما پیامک خیابان فرمانیه غربی کوچه ابکوه فرمانیه غربی کوچه ابکوه فرمانیه غربی کوچه ابکوه فرمانیه غربی کوچه ابکوه یکم  شد..."
                 android:maxLines="3"
                 android:ellipsize="end"
-                android:textColor="@color/textColor_light"
+                android:textColor="@color/textColor_dark"
                 app:locale="fa_IR"
                 />
 
             <ir.tvnasim.khandevaneh.view.XeiTextView
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="48dp"
                 android:paddingRight="16dp"
                 android:paddingLeft="16dp"
                 android:gravity="right|center_vertical"
                 android:text="نشانی پستی:"
-                android:textColor="@color/textColor_light"
+                android:textColor="@color/textColor_dark"
                 app:locale="fa_IR"
                 app:style="bold"
                 />

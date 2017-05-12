@@ -30,10 +30,11 @@
             android:layout_gravity="center"
             android:layout_marginTop="32dp"
             android:background="@drawable/background_button_participate"
-            android:textColor="#E70D0D"
+            android:textColor="#000"
             android:textSize="17sp"
+            android:text="باشه"
             app:locale="fa_IR"
-            android:text="باشه"/>
+            app:style="bold"/>
 
     </LinearLayout>
 

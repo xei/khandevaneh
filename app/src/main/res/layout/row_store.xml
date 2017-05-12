@@ -1,34 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<RelativeLayout
+<com.facebook.drawee.view.SimpleDraweeView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/rowStore_simpleDraweeView_image"
     android:layout_width="match_parent"
     android:layout_height="@dimen/dimen_row_item"
     android:layout_margin="@dimen/margin_row_item"
-    android:layout_gravity="center"
-    android:background="@drawable/background_store_item"
-    android:foreground="?attr/selectableItemBackgroundBorderless" >
-
-    <com.facebook.drawee.view.SimpleDraweeView
-        android:id="@+id/rowStore_simpleDraweeView_image"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_above="@+id/rowStore_xeiTextView_title"
-        app:actualImageScaleType="centerInside"
-        app:failureImage="@drawable/logo"
-        app:failureImageScaleType="centerInside" />
-
-    <ir.tvnasim.khandevaneh.view.XeiTextView
-        android:id="@+id/rowStore_xeiTextView_title"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/height_storeActivity_row_title"
-        android:layout_alignParentBottom="true"
-        android:gravity="center"
-        android:textSize="@dimen/textSize_toolbar_score"
-        android:textStyle="bold"
-        android:textColor="@color/textColor_toolbar_score"
-        app:locale="fa_IR"
-        app:style="bold" />
-
-</RelativeLayout>
+    android:foreground="?attr/selectableItemBackgroundBorderless"
+    app:actualImageScaleType="centerInside"
+    app:failureImage="@drawable/logo"
+    app:failureImageScaleType="centerInside"
+    app:roundedCornerRadius="10dp"/>

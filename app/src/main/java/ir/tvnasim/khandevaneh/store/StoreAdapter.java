@@ -37,9 +37,7 @@ public class StoreAdapter extends RecyclerView.Adapter<StoreAdapter.ItemViewHold
     @Override
     public void onBindViewHolder(ItemViewHolder holder, int position) {
         final StoreItem item = mItems.get(position);
-        holder.title.setText(item.getTitle());
         FrescoHelper.setImageUrl(holder.image, item.getImage());
-
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -57,14 +55,12 @@ public class StoreAdapter extends RecyclerView.Adapter<StoreAdapter.ItemViewHold
 
         View itemView;
         SimpleDraweeView image;
-        XeiTextView title;
 
         ItemViewHolder(final View itemView) {
             super(itemView);
 
             this.itemView = itemView;
             image = (SimpleDraweeView) itemView.findViewById(R.id.rowStore_simpleDraweeView_image);
-            title = (XeiTextView) itemView.findViewById(R.id.rowStore_xeiTextView_title);
 
             itemView.post(new Runnable() {
                 @Override

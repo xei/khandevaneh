@@ -42,8 +42,10 @@
     <!-- CompetitionActivity -->
     <color name="competition_background">#B02533</color>
 
-    <!-- PollingActivity -->
-    <color name="polling_background">#F29B38</color>
+    <!-- Polling -->
+    <color name="pollingList_background">#B02533</color>
+    <color name="polling_background">#205436</color>
+    <color name="pollingStatistics_background">#F29B38</color>
 
     <!-- LeaderBoardActivity -->
     <color name="background_leader_board">#004529</color>

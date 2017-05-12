@@ -10,10 +10,13 @@ import android.widget.RelativeLayout;
 import java.util.ArrayList;
 
 import ir.tvnasim.khandevaneh.R;
+import ir.tvnasim.khandevaneh.account.User;
 import ir.tvnasim.khandevaneh.app.BaseActivity;
 import ir.tvnasim.khandevaneh.helper.webapi.WebApiHelper;
 import ir.tvnasim.khandevaneh.helper.webapi.WebApiRequest;
 import ir.tvnasim.khandevaneh.helper.webapi.model.PoleResult;
+import ir.tvnasim.khandevaneh.helper.webapi.model.app.ScoresContainer;
+import ir.tvnasim.khandevaneh.helper.webapi.model.user.UserInfo;
 import ir.tvnasim.khandevaneh.view.KhandevanehDialog;
 import ir.tvnasim.khandevaneh.view.XeiButton;
 import ir.tvnasim.khandevaneh.view.XeiTextView;
@@ -87,7 +90,7 @@ public class PollingActivity extends BaseActivity {
     private void fetchPollingFromApi() {
         WebApiHelper.getPollingItem(mPollingId, TAG_REQUEST_GET_POLLING_ITEM, new WebApiRequest.WebApiListener<PollingItem>() {
             @Override
-            public void onResponse(PollingItem pollingItem) {
+            public void onResponse(PollingItem pollingItem, ScoresContainer scoresContainer) {
                 if (pollingItem != null) {
                     mTitleTextView.setText(pollingItem.getTitle());
                     mDescriptionTextView.setText(pollingItem.getDescription());
@@ -110,7 +113,10 @@ public class PollingActivity extends BaseActivity {
         if (mSelectedOptions.size() > 0) {
             WebApiHelper.poll(mPollingId, mSelectedOptions, TAG_REQUEST_POLL, new WebApiRequest.WebApiListener<PoleResult>() {
                 @Override
-                public void onResponse(PoleResult response) {
+                public void onResponse(PoleResult response, ScoresContainer scoresContainer) {
+
+                    updateScores(scoresContainer.getMelonScore(), scoresContainer.getExperienceScore());
+
                     new KhandevanehDialog(PollingActivity.this, "مرسی رفیق", new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {

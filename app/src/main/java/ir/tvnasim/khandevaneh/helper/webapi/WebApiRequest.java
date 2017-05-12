@@ -16,6 +16,7 @@ import java.lang.reflect.Type;
 import java.util.HashMap;
 
 import ir.tvnasim.khandevaneh.BuildConfig;
+import ir.tvnasim.khandevaneh.helper.webapi.model.app.ScoresContainer;
 
 /**
  * This class is a Web Api request and can attach to an activity or a fragment to send from its context.
@@ -67,7 +68,7 @@ public class WebApiRequest<T> {
 
                     } else {
 
-                        webApiListener.onResponse(response.data);
+                        webApiListener.onResponse(response.data, null);
                         mStatus = RequestStatus.SUCCESS;
                     }
 
@@ -79,11 +80,11 @@ public class WebApiRequest<T> {
                         startDownloadAPK(response.message);
                     }
 
-                    webApiListener.onResponse(response.data);
+                    webApiListener.onResponse(response.data, response.scoresContainer);
                     mStatus = RequestStatus.SUCCESS;
 
                 } else if (response != null && response.status.equals(WebApiResponse.STATUS_SUCCESS)) {
-                    webApiListener.onResponse(response.data);
+                    webApiListener.onResponse(response.data, response.scoresContainer);
                     mStatus = RequestStatus.SUCCESS;
                 } else {
                     mStatus = RequestStatus.ERROR;
@@ -189,6 +190,9 @@ public class WebApiRequest<T> {
         @SerializedName("content")
         private U data;
 
+        @SerializedName("push")
+        private ScoresContainer scoresContainer;
+
     }
 
     /**
@@ -197,7 +201,7 @@ public class WebApiRequest<T> {
      * @param <D> is the final response model Generics.
      */
     public interface WebApiListener<D> {
-        void onResponse(D response);
+        void onResponse(D response, ScoresContainer scoresContainer);
 
         void onErrorResponse(String errorMessage);
     }

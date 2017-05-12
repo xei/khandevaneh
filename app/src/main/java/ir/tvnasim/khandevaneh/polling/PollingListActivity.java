@@ -13,6 +13,7 @@ import ir.tvnasim.khandevaneh.app.BaseActivity;
 import ir.tvnasim.khandevaneh.helper.LogHelper;
 import ir.tvnasim.khandevaneh.helper.webapi.WebApiHelper;
 import ir.tvnasim.khandevaneh.helper.webapi.WebApiRequest;
+import ir.tvnasim.khandevaneh.helper.webapi.model.app.ScoresContainer;
 
 public class PollingListActivity extends BaseActivity {
 
@@ -63,7 +64,7 @@ public class PollingListActivity extends BaseActivity {
 
         WebApiHelper.getPollingList(mType, TAG_REQUEST_GET_POLLING_LIST, new WebApiRequest.WebApiListener<ArrayList<PollingListItem>>() {
             @Override
-            public void onResponse(ArrayList<PollingListItem> pollingListItems) {
+            public void onResponse(ArrayList<PollingListItem> pollingListItems, ScoresContainer scoresContainer) {
                 mList.clear();
                 mList.addAll(pollingListItems);
                 mListAdapter.notifyDataSetChanged();

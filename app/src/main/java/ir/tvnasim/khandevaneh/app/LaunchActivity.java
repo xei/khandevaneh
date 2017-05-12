@@ -16,6 +16,7 @@ import ir.tvnasim.khandevaneh.helper.webapi.VolleyHelper;
 import ir.tvnasim.khandevaneh.helper.webapi.WebApiHelper;
 import ir.tvnasim.khandevaneh.helper.webapi.WebApiRequest;
 import ir.tvnasim.khandevaneh.helper.webapi.model.app.Banner;
+import ir.tvnasim.khandevaneh.helper.webapi.model.app.ScoresContainer;
 import ir.tvnasim.khandevaneh.helper.webapi.model.app.StartupConfig;
 import ir.tvnasim.khandevaneh.home.HomeActivity;
 import ir.tvnasim.khandevaneh.leaderboard.LeaderBoardActivity;
@@ -60,7 +61,7 @@ public class LaunchActivity extends AppCompatActivity {
         if (HelperFunctions.isNetworkConnected()) {
             WebApiHelper.getStartupConfig(TAG_REQUEST_GET_STARTUP_CONFIG, new WebApiRequest.WebApiListener<StartupConfig>() {
                 @Override
-                public void onResponse(StartupConfig startupConfig) {
+                public void onResponse(StartupConfig startupConfig, ScoresContainer scoresContainer) {
                     openAppropriateActivity(startupConfig);
                 }
 

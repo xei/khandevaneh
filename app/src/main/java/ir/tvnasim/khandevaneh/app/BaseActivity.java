@@ -5,6 +5,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewStub;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -140,6 +142,30 @@ public class BaseActivity extends AppCompatActivity implements View.OnClickListe
             mMelonScoreTextView.setText(HelperFunctions.convertNumberStringToPersian(String.valueOf(melonScore)));
             mExperienceScoreTextView.setText(HelperFunctions.convertNumberStringToPersian(String.valueOf(experienceScore)));
             mScoreSectionLinearLayout.setVisibility(View.VISIBLE);
+        }
+
+    }
+
+    public void updateScores(int newMelonScore, int newExperienceScore) {
+
+        if (newMelonScore >= 0 && newExperienceScore >= 0 && mScoreSectionLinearLayout != null) {
+
+            int oldMelonScore = User.getInstance().getMelonScore();
+            int oldExperienceScore = User.getInstance().getExperienceScore();
+
+            Animation animation = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.anim_shake);
+            if (newMelonScore != oldMelonScore) {
+                User.getInstance().setMelonScore(newMelonScore);
+                mMelonScoreTextView.setText(HelperFunctions.convertNumberStringToPersian(String.valueOf(newMelonScore)));
+                mMelonScoreLinearLayout.startAnimation(animation);
+            }
+
+            if (newExperienceScore != oldExperienceScore) {
+                User.getInstance().setExperienceScore(newExperienceScore);
+                mExperienceScoreTextView.setText(HelperFunctions.convertNumberStringToPersian(String.valueOf(newExperienceScore)));
+                mExperienceScoreLinearLayout.startAnimation(animation);
+            }
+
         }
 
     }

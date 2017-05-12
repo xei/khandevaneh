@@ -18,6 +18,7 @@ import ir.tvnasim.khandevaneh.helper.HelperFunctions;
 import ir.tvnasim.khandevaneh.helper.imageloading.FrescoHelper;
 import ir.tvnasim.khandevaneh.helper.webapi.WebApiHelper;
 import ir.tvnasim.khandevaneh.helper.webapi.WebApiRequest;
+import ir.tvnasim.khandevaneh.helper.webapi.model.app.ScoresContainer;
 
 public class LeaderBoardActivity extends BaseActivity {
 
@@ -85,7 +86,7 @@ public class LeaderBoardActivity extends BaseActivity {
 
         WebApiHelper.getLeaderBoard(TAG_REQUEST_GET_LEADER_BOARD, new WebApiRequest.WebApiListener<LeaderContainerModel>() {
             @Override
-            public void onResponse(LeaderContainerModel leaders) {
+            public void onResponse(LeaderContainerModel leaders, ScoresContainer scoresContainer) {
                 bindData(leaders.getLeaders());
             }
 

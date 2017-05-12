@@ -16,6 +16,7 @@ import ir.tvnasim.khandevaneh.helper.HelperFunctions;
 import ir.tvnasim.khandevaneh.helper.webapi.VolleyHelper;
 import ir.tvnasim.khandevaneh.helper.webapi.WebApiHelper;
 import ir.tvnasim.khandevaneh.helper.webapi.WebApiRequest;
+import ir.tvnasim.khandevaneh.helper.webapi.model.app.ScoresContainer;
 import ir.tvnasim.khandevaneh.helper.webapi.model.store.StoreItem;
 import ir.tvnasim.khandevaneh.view.KhandevanehDialog;
 
@@ -79,7 +80,7 @@ public class StoreActivity extends BaseActivity {
     private void fetchDataFromApi() {
         WebApiHelper.getStoreList(TAG_REQUEST_GET_STORE_LIST, new WebApiRequest.WebApiListener<ArrayList<StoreItem>>() {
             @Override
-            public void onResponse(ArrayList<StoreItem> storeItems) {
+            public void onResponse(ArrayList<StoreItem> storeItems, ScoresContainer scoresContainer) {
                 if (storeItems != null) {
                     bindData(storeItems);
                 }

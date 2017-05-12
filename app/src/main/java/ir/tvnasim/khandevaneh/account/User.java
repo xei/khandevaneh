@@ -2,6 +2,7 @@ package ir.tvnasim.khandevaneh.account;
 
 import ir.tvnasim.khandevaneh.helper.webapi.WebApiHelper;
 import ir.tvnasim.khandevaneh.helper.webapi.WebApiRequest;
+import ir.tvnasim.khandevaneh.helper.webapi.model.app.ScoresContainer;
 import ir.tvnasim.khandevaneh.helper.webapi.model.user.Token;
 
 /**
@@ -48,7 +49,7 @@ public class User {
         } else if (mRefreshToken != null) {
             WebApiHelper.authenticateWithRefreshToken(mRefreshToken, "requestTag_User_authWithRefreshToken", new WebApiRequest.WebApiListener<Token>() {
                 @Override
-                public void onResponse(Token token) {
+                public void onResponse(Token token, ScoresContainer scoresContainer) {
                     User.getInstance().setAccessToken(token.getAcessToken());
                     User.getInstance().setRefreshToken(token.getRefreshToken());
                     listener.isLoggedIn(true);

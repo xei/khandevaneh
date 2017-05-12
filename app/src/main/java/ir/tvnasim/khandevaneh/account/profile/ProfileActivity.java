@@ -16,6 +16,7 @@ import ir.tvnasim.khandevaneh.app.BaseActivity;
 import ir.tvnasim.khandevaneh.helper.imageloading.FrescoHelper;
 import ir.tvnasim.khandevaneh.helper.webapi.WebApiHelper;
 import ir.tvnasim.khandevaneh.helper.webapi.WebApiRequest;
+import ir.tvnasim.khandevaneh.helper.webapi.model.app.ScoresContainer;
 import ir.tvnasim.khandevaneh.view.KhandevanehDialog;
 import ir.tvnasim.khandevaneh.view.XeiButton;
 import ir.tvnasim.khandevaneh.view.XeiTextView;
@@ -93,8 +94,12 @@ public class ProfileActivity extends BaseActivity {
     private void participate() {
         WebApiHelper.sendParticipateRequest(TAG_REQUEST_SEND_PARTICIPATE_REQUEST, new WebApiRequest.WebApiListener<Boolean>() {
             @Override
-            public void onResponse(Boolean response) {
-                // TODO: check ack
+            public void onResponse(Boolean response, ScoresContainer scoresContainer) {
+
+                if (scoresContainer != null) {
+                    updateScores(scoresContainer.getMelonScore(), scoresContainer.getExperienceScore());
+                }
+
                 new KhandevanehDialog(ProfileActivity.this, "اسمت ثبت شد. ایشالا می‌بینیمت.", null).show();
             }
 

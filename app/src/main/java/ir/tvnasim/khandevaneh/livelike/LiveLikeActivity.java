@@ -20,6 +20,7 @@ import ir.tvnasim.khandevaneh.helper.imageloading.FrescoHelper;
 import ir.tvnasim.khandevaneh.helper.webapi.WebApiHelper;
 import ir.tvnasim.khandevaneh.helper.webapi.WebApiRequest;
 import ir.tvnasim.khandevaneh.helper.webapi.model.app.Banner;
+import ir.tvnasim.khandevaneh.helper.webapi.model.app.ScoresContainer;
 import ir.tvnasim.khandevaneh.helper.webapi.model.section.LikeResult;
 import ir.tvnasim.khandevaneh.helper.webapi.model.section.Section;
 import ir.tvnasim.khandevaneh.helper.webapi.model.section.SectionContainer;
@@ -92,14 +93,14 @@ public class LiveLikeActivity extends BaseActivity {
     private void fetchSectionFromApi() {
         WebApiHelper.getLiveLike(TAG_REQUEST_GET_SECTION, new WebApiRequest.WebApiListener<SectionContainer>() {
             @Override
-            public void onResponse(SectionContainer sectionContainer) {
+            public void onResponse(SectionContainer sectionContainer, ScoresContainer scoresContainer) {
 
                 if (sectionContainer != null && (mSection = sectionContainer.getSection()) != null) {
                     renderLiveLikeSection();
                 } else {
                     WebApiHelper.getBanners(TAG_REQUEST_GET_BANNER, new WebApiRequest.WebApiListener<ArrayList<Banner>>() {
                         @Override
-                        public void onResponse(ArrayList<Banner> allBanners) {
+                        public void onResponse(ArrayList<Banner> allBanners, ScoresContainer scoresContainer) {
                             Banner banner = findAppropriateBanner(allBanners);
                             if (banner != null) {
                                 renderBanner(banner.getImageUrl());
@@ -121,7 +122,7 @@ public class LiveLikeActivity extends BaseActivity {
 
                 WebApiHelper.getBanners(TAG_REQUEST_GET_BANNER, new WebApiRequest.WebApiListener<ArrayList<Banner>>() {
                     @Override
-                    public void onResponse(ArrayList<Banner> allBanners) {
+                    public void onResponse(ArrayList<Banner> allBanners, ScoresContainer scoresContainer) {
                         Banner banner = findAppropriateBanner(allBanners);
                         if (banner != null) {
                             renderBanner(banner.getImageUrl());
@@ -191,8 +192,10 @@ public class LiveLikeActivity extends BaseActivity {
         if (mSection != null && mSection.getId() != null) {
             WebApiHelper.likeSection(mSection.getId(), TAG_REQUEST_LIKE, new WebApiRequest.WebApiListener<LikeResult>() {
                 @Override
-                public void onResponse(LikeResult response) {
-                    // TODO: update exp
+                public void onResponse(LikeResult response, ScoresContainer scoresContainer) {
+                    if (scoresContainer != null) {
+                        updateScores(scoresContainer.getMelonScore(), scoresContainer.getExperienceScore());
+                    }
                 }
 
                 @Override
@@ -210,9 +213,12 @@ public class LiveLikeActivity extends BaseActivity {
 
         WebApiHelper.commentOnSection(mSection.getId(), msg, TAG_REQUEST_COMMENT, new WebApiRequest.WebApiListener<LikeResult>() {
             @Override
-            public void onResponse(LikeResult response) {
-                // TODO: update experience
-                //TODO: if ack
+            public void onResponse(LikeResult response, ScoresContainer scoresContainer) {
+
+                if (scoresContainer != null) {
+                    updateScores(scoresContainer.getMelonScore(), scoresContainer.getExperienceScore());
+                }
+
                 new KhandevanehDialog(LiveLikeActivity.this, "نظرت ثبت شد رفیق!", null).show();
                 mCommentSection.setVisibility(View.GONE);
 

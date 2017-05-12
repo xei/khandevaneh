@@ -22,6 +22,7 @@ import ir.tvnasim.khandevaneh.account.User;
 import ir.tvnasim.khandevaneh.app.BaseActivity;
 import ir.tvnasim.khandevaneh.helper.webapi.WebApiHelper;
 import ir.tvnasim.khandevaneh.helper.webapi.WebApiRequest;
+import ir.tvnasim.khandevaneh.helper.webapi.model.app.ScoresContainer;
 
 public class ProfileCompletionActivity extends BaseActivity {
 
@@ -93,7 +94,12 @@ public class ProfileCompletionActivity extends BaseActivity {
         } else if (whichFragment == 4) {
             WebApiHelper.editUserInfo(User.getInstance(), TAG_REQUEST_EDIT_USER_INFO, new WebApiRequest.WebApiListener<Boolean>() {
                 @Override
-                public void onResponse(Boolean response) {
+                public void onResponse(Boolean response, ScoresContainer scoresContainer) {
+
+                    if (scoresContainer != null) {
+                        updateScores(scoresContainer.getMelonScore(), scoresContainer.getExperienceScore());
+                    }
+
                     User.getInstance().setIsProfileComplete(true);
                     finish();
                 }

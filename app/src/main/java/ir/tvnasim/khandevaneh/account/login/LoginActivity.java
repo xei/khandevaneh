@@ -15,6 +15,7 @@ import ir.tvnasim.khandevaneh.app.BaseActivity;
 import ir.tvnasim.khandevaneh.helper.SharedPreferencesHelper;
 import ir.tvnasim.khandevaneh.helper.webapi.WebApiHelper;
 import ir.tvnasim.khandevaneh.helper.webapi.WebApiRequest;
+import ir.tvnasim.khandevaneh.helper.webapi.model.app.ScoresContainer;
 import ir.tvnasim.khandevaneh.helper.webapi.model.user.Token;
 import ir.tvnasim.khandevaneh.helper.webapi.model.user.UserInfo;
 
@@ -50,7 +51,7 @@ public class LoginActivity extends BaseActivity implements PhoneNoFragment.OnSen
 
         WebApiHelper.registerPhoneNo(phoneNo, TAG_REQUEST_REGISTER_PHONE_NO, new WebApiRequest.WebApiListener<Object>() {
             @Override
-            public void onResponse(Object response) {
+            public void onResponse(Object response, ScoresContainer scoresContainer) {
                 //TODO if ack
                 changeFragment(R.id.activityLogin_frameLayout_fragmentContainer, VerificationCodeFragment.newInstance(phoneNo), true);
             }
@@ -68,7 +69,7 @@ public class LoginActivity extends BaseActivity implements PhoneNoFragment.OnSen
     public void onSendVerificationCodeButtonClick(String phoneNo, String verificationCode) {
         WebApiHelper.authenticateWithCredentials(phoneNo, verificationCode, TAG_REQUEST_AUTH_WITH_CREDENTIALS, new WebApiRequest.WebApiListener<Token>() {
             @Override
-            public void onResponse(Token token) {
+            public void onResponse(Token token, ScoresContainer scoresContainer) {
                 User.getInstance().setAccessToken(token.getAcessToken());
                 User.getInstance().setRefreshToken(token.getRefreshToken());
                 SharedPreferencesHelper.storeAccessToken(token.getAcessToken());
@@ -79,7 +80,7 @@ public class LoginActivity extends BaseActivity implements PhoneNoFragment.OnSen
                     public void run() {
                         WebApiHelper.getUserInfo("TAG_REQUEST_GET_USER_INFO", new WebApiRequest.WebApiListener<UserInfo>() {
                             @Override
-                            public void onResponse(UserInfo userInfo) {
+                            public void onResponse(UserInfo userInfo, ScoresContainer scoresContainer) {
                                 User.getInstance().setFirstName(userInfo.getFirstName());
                                 User.getInstance().setLastName(userInfo.getLastName());
                                 User.getInstance().setAvatar(userInfo.getAvatar());

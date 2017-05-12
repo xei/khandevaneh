@@ -19,6 +19,7 @@ import ir.tvnasim.khandevaneh.helper.SharedPreferencesHelper;
 import ir.tvnasim.khandevaneh.helper.webapi.WebApiHelper;
 import ir.tvnasim.khandevaneh.helper.webapi.WebApiRequest;
 import ir.tvnasim.khandevaneh.helper.webapi.model.app.Banner;
+import ir.tvnasim.khandevaneh.helper.webapi.model.app.ScoresContainer;
 import ir.tvnasim.khandevaneh.helper.webapi.model.user.Token;
 import ir.tvnasim.khandevaneh.helper.webapi.model.user.UserInfo;
 import ir.tvnasim.khandevaneh.leaderboard.LeaderBoardActivity;
@@ -77,7 +78,7 @@ public class HomeActivity extends BaseActivity implements OnBannerClickedListene
             User.getInstance().setAccessToken(accessToken);
             WebApiHelper.getUserInfo(TAG_REQUEST_GET_USER_INFO, new WebApiRequest.WebApiListener<UserInfo>() {
                 @Override
-                public void onResponse(UserInfo userInfo) {
+                public void onResponse(UserInfo userInfo, ScoresContainer scoresContainer) {
                     User.getInstance().setFirstName(userInfo.getFirstName());
                     User.getInstance().setLastName(userInfo.getLastName());
                     User.getInstance().setAvatar(userInfo.getAvatar());
@@ -98,7 +99,7 @@ public class HomeActivity extends BaseActivity implements OnBannerClickedListene
                 // We may could get a valid access token by refresh token
                 WebApiHelper.authenticateWithRefreshToken(refreshToken,TAG_REQUEST_AUTH_WITH_REFRESH_TOKEN , new WebApiRequest.WebApiListener<Token>() {
                     @Override
-                    public void onResponse(Token token) {
+                    public void onResponse(Token token, ScoresContainer scoresContainer) {
                         User.getInstance().setAccessToken(token.getAcessToken());
                         User.getInstance().setRefreshToken(token.getRefreshToken());
                         SharedPreferencesHelper.storeAccessToken(token.getAcessToken());
@@ -133,7 +134,7 @@ public class HomeActivity extends BaseActivity implements OnBannerClickedListene
 
         WebApiHelper.getSliderBanners(TAG_REQUEST_GET_SLIDER_BANNERS, new WebApiRequest.WebApiListener<ArrayList<Banner>>() {
             @Override
-            public void onResponse(ArrayList<Banner> sliderBanners) {
+            public void onResponse(ArrayList<Banner> sliderBanners, ScoresContainer scoresContainer) {
                 ArrayList<Bundle> bannersList = new ArrayList<>();
                 for (Banner sliderBanner : sliderBanners) {
                     Bundle banner = new Bundle();

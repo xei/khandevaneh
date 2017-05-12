@@ -151,7 +151,12 @@ public class PollingActivity extends BaseActivity {
 
         switch (clickedView.getId()) {
             case R.id.activityPolling_xeiButton_poll:
-                poll();
+                if (mPolledBefore == PollingItem.POLLED_BEFORE_YES) {
+                    new KhandevanehDialog(this, "یه بار بیشتر نمی‌تونی رای بدی رفیق!", null).show();
+                } else if (mPolledBefore == PollingItem.POLLED_BEFORE_NO){
+                    poll();
+                }
+
                 break;
 
             case R.id.activityPolling_xeiButton_showStatistics:

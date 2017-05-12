@@ -22,7 +22,7 @@ import ir.tvnasim.khandevaneh.view.XeiTextView;
  * All rights reserved by Digikala.
  */
 
-public class PollingListAdapter extends RecyclerView.Adapter<PollingListAdapter.ListItemViewHolder> {
+public class PollingListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     private ArrayList<PollingListItem> mList;
 
@@ -31,28 +31,47 @@ public class PollingListAdapter extends RecyclerView.Adapter<PollingListAdapter.
     }
 
     @Override
-    public ListItemViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         return new ListItemViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.row_polling_list, parent, false));
     }
 
     @Override
-    public void onBindViewHolder(ListItemViewHolder holder, int position) {
-        final PollingListItem item = mList.get(position);
-        holder.title.setText(item.getTitle());
-        FrescoHelper.setImageUrl(holder.image, item.getImageUrl());
+    public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
 
-        holder.itemView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View clickedView) {
-                PollingActivity.start(clickedView.getContext(), item.getId());
-            }
-        });
+        if (holder instanceof AdsBannerViewHolder) {
+            AdsBannerViewHolder adsBannerViewHolder = (AdsBannerViewHolder) holder;
+            // TODO ...
+        } else if (holder instanceof ListItemViewHolder) {
+            ListItemViewHolder listItemViewHolder = (ListItemViewHolder) holder;
+            final PollingListItem item = mList.get(position);
+            listItemViewHolder.title.setText(item.getTitle());
+            FrescoHelper.setImageUrl(listItemViewHolder.image, item.getImageUrl());
+
+            holder.itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View clickedView) {
+                    PollingActivity.start(clickedView.getContext(), item.getId());
+                }
+            });
+        }
+
 
     }
 
     @Override
     public int getItemCount() {
         return mList.size();
+    }
+
+    class AdsBannerViewHolder extends RecyclerView.ViewHolder {
+
+        SimpleDraweeView bannerView;
+
+        AdsBannerViewHolder(final View itemView) {
+            super(itemView);
+
+            bannerView = new SimpleDraweeView(itemView.getContext());
+        }
     }
 
     class ListItemViewHolder extends RecyclerView.ViewHolder {

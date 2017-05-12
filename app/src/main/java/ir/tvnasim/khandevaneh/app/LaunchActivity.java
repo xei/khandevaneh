@@ -2,6 +2,7 @@ package ir.tvnasim.khandevaneh.app;
 
 import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -43,6 +44,7 @@ public class LaunchActivity extends AppCompatActivity {
     public static final String DESTINATION_ARCHIVE = "";
     public static final String DESTINATION_AWARDS = "";
     public static final String DESTINATION_PROFILE = "8";
+    public static final String DESTINATION_BROWSER = "Browser";
 
     public static void start(Context starter) {
         Intent intent = new Intent(starter, LaunchActivity.class);
@@ -146,6 +148,16 @@ public class LaunchActivity extends AppCompatActivity {
 
             case DESTINATION_PROFILE:
                 ProfileActivity.start(starterContext);
+                break;
+
+            case DESTINATION_BROWSER:
+                try {
+                    Intent intent = new Intent(Intent.ACTION_VIEW);
+                    intent.setData(Uri.parse(param));
+                    starterContext.startActivity(intent);
+                } catch (Exception e) {
+                    LogHelper.logError(TAG_DEBUG, e.getMessage());
+                }
                 break;
 
             default:

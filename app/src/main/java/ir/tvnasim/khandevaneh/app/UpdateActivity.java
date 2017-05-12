@@ -11,11 +11,14 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import ir.tvnasim.khandevaneh.R;
+import ir.tvnasim.khandevaneh.helper.LogHelper;
 import ir.tvnasim.khandevaneh.polling.OptionsListAdapter;
 import ir.tvnasim.khandevaneh.view.XeiButton;
 import ir.tvnasim.khandevaneh.view.XeiTextView;
 
 public class UpdateActivity extends AppCompatActivity implements View.OnClickListener {
+
+    private static final String TAG_DEBUG = UpdateActivity.class.getSimpleName();
 
     private static final String KEY_EXTRA_URL_APK = "KEY_EXTRA_URL_APK";
 
@@ -54,7 +57,7 @@ public class UpdateActivity extends AppCompatActivity implements View.OnClickLis
         mDownloadTextView.setOnClickListener(this);
     }
 
-    private void download(String apkUrl) {
+    private void download(String apkUrl) throws Exception{
         Intent intent = new Intent(Intent.ACTION_VIEW);
         intent.setData(Uri.parse(apkUrl));
         startActivity(intent);
@@ -64,7 +67,11 @@ public class UpdateActivity extends AppCompatActivity implements View.OnClickLis
     public void onClick(View clickedView) {
         switch (clickedView.getId()) {
             case R.id.activityUpdate_xeiTextView_download:
-                download(mApkUrl);
+                try {
+                    download(mApkUrl);
+                } catch (Exception e) {
+                    LogHelper.logError(TAG_DEBUG, e.getMessage());
+                }
                 break;
         }
     }

@@ -15,6 +15,7 @@ import java.util.ArrayList;
 
 import ir.tvnasim.khandevaneh.R;
 import ir.tvnasim.khandevaneh.app.BaseActivity;
+import ir.tvnasim.khandevaneh.app.LaunchActivity;
 import ir.tvnasim.khandevaneh.helper.LogHelper;
 import ir.tvnasim.khandevaneh.helper.imageloading.FrescoHelper;
 import ir.tvnasim.khandevaneh.helper.webapi.WebApiHelper;
@@ -32,6 +33,9 @@ public class LiveLikeActivity extends BaseActivity {
     private static final String TAG_REQUEST_GET_BANNER = "requestTag_liveLikeListActivity_getBanner";
     private static final String TAG_REQUEST_LIKE = "requestTag_liveLikeListActivity_like";
     private static final String TAG_REQUEST_COMMENT = "requestTag_liveLikeListActivity_comment";
+
+    private static final int TAG_VIEW_DESTINATION = 0;
+    private static final int TAG_VIEW_DEST_PARAM = 1;
 
     private RelativeLayout mLiveLikeSectionRelativeLayout;
     private XeiTextView mTitleTextView;
@@ -85,6 +89,7 @@ public class LiveLikeActivity extends BaseActivity {
     private void setOnClickListeners() {
         mLikeSimpleDraweeView.setOnClickListener(this);
         mSendBtnImageView.setOnClickListener(this);
+        mBannerSimpleDraweeView.setOnClickListener(this);
     }
 
     private void fetchSectionFromApi() {
@@ -100,7 +105,7 @@ public class LiveLikeActivity extends BaseActivity {
                         public void onResponse(ArrayList<Banner> allBanners, ScoresContainer scoresContainer) {
                             Banner banner = findAppropriateBanner(allBanners);
                             if (banner != null) {
-                                renderBanner(banner.getImageUrl());
+                                renderBanner(banner);
                             }
                         }
 
@@ -122,7 +127,7 @@ public class LiveLikeActivity extends BaseActivity {
                     public void onResponse(ArrayList<Banner> allBanners, ScoresContainer scoresContainer) {
                         Banner banner = findAppropriateBanner(allBanners);
                         if (banner != null) {
-                            renderBanner(banner.getImageUrl());
+                            renderBanner(banner);
                         }
                     }
 
@@ -155,8 +160,10 @@ public class LiveLikeActivity extends BaseActivity {
         return null;
     }
 
-    private void renderBanner(String bannerUrl) {
-        FrescoHelper.setImageUrl(mBannerSimpleDraweeView, bannerUrl);
+    private void renderBanner(Banner banner) {
+        FrescoHelper.setImageUrl(mBannerSimpleDraweeView, banner.getImageUrl());
+        mBannerSimpleDraweeView.setTag(TAG_VIEW_DESTINATION, banner.getDestinationParam());
+        mBannerSimpleDraweeView.setTag(TAG_VIEW_DEST_PARAM, banner.getDestinationParam());
         mBannerSimpleDraweeView.setVisibility(View.VISIBLE);
     }
 
@@ -242,6 +249,10 @@ public class LiveLikeActivity extends BaseActivity {
 
             case R.id.activityLiveLike_imageView_sendBtn:
                 sendComment(mCommentEditText.getText().toString());
+                break;
+
+            case R.id.activityLiveLike_simpleDraweeView_banner:
+                LaunchActivity.goTo(this, clickedView.getTag(TAG_VIEW_DESTINATION).toString(), clickedView.getTag(TAG_VIEW_DEST_PARAM).toString());
                 break;
         }
     }

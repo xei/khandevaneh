@@ -15,9 +15,10 @@ public class PollingItem {
     public static final int TYPE_POLLING_VIDEO = 2;
     public static final int TYPE_POLLING_VOICE = 3;
 
-    public static final int POLLED_BEFORE_NOT_SET = -1;
-    public static final int POLLED_BEFORE_NO = 0;
-    public static final int POLLED_BEFORE_YES = 1;
+    // TODO: check it with backend
+    static final int POLLED_BEFORE_NOT_SET = -1;
+    static final int POLLED_BEFORE_NO = 0;
+    static final int POLLED_BEFORE_YES = 1;
 
     @SerializedName("id")
     private String id;

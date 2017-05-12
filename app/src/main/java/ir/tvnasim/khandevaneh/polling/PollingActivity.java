@@ -115,8 +115,9 @@ public class PollingActivity extends BaseActivity {
                 @Override
                 public void onResponse(PoleResult response, ScoresContainer scoresContainer) {
 
-                    updateScores(scoresContainer.getMelonScore(), scoresContainer.getExperienceScore());
-
+                    if (scoresContainer != null) {
+                        updateScores(scoresContainer.getMelonScore(), scoresContainer.getExperienceScore());
+                    }
                     new KhandevanehDialog(PollingActivity.this, "مرسی رفیق", new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {

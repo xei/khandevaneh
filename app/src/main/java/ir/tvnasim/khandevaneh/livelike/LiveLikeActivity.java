@@ -34,9 +34,6 @@ public class LiveLikeActivity extends BaseActivity {
     private static final String TAG_REQUEST_LIKE = "requestTag_liveLikeListActivity_like";
     private static final String TAG_REQUEST_COMMENT = "requestTag_liveLikeListActivity_comment";
 
-    private static final int TAG_VIEW_DESTINATION = 0;
-    private static final int TAG_VIEW_DEST_PARAM = 1;
-
     private RelativeLayout mLiveLikeSectionRelativeLayout;
     private XeiTextView mTitleTextView;
     private ImageView mBackHeartImageView;
@@ -162,8 +159,7 @@ public class LiveLikeActivity extends BaseActivity {
 
     private void renderBanner(Banner banner) {
         FrescoHelper.setImageUrl(mBannerSimpleDraweeView, banner.getImageUrl());
-        mBannerSimpleDraweeView.setTag(TAG_VIEW_DESTINATION, banner.getDestinationParam());
-        mBannerSimpleDraweeView.setTag(TAG_VIEW_DEST_PARAM, banner.getDestinationParam());
+        mBannerSimpleDraweeView.setTag(banner.getDestinationParam());
         mBannerSimpleDraweeView.setVisibility(View.VISIBLE);
     }
 
@@ -252,7 +248,7 @@ public class LiveLikeActivity extends BaseActivity {
                 break;
 
             case R.id.activityLiveLike_simpleDraweeView_banner:
-                LaunchActivity.goTo(this, clickedView.getTag(TAG_VIEW_DESTINATION).toString(), clickedView.getTag(TAG_VIEW_DEST_PARAM).toString());
+                LaunchActivity.goTo(this, LaunchActivity.DESTINATION_BROWSER, clickedView.getTag().toString());
                 break;
         }
     }

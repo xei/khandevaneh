@@ -12,7 +12,7 @@ import ir.tvnasim.khandevaneh.app.BaseActivity;
 import ir.tvnasim.khandevaneh.helper.LogHelper;
 import ir.tvnasim.khandevaneh.helper.webapi.WebApiHelper;
 import ir.tvnasim.khandevaneh.helper.webapi.WebApiRequest;
-import ir.tvnasim.khandevaneh.helper.webapi.model.app.ScoresContainer;
+import ir.tvnasim.khandevaneh.app.ScoresContainer;
 import ir.tvnasim.khandevaneh.view.XeiTextView;
 
 public class PollingStatisticsActivity extends BaseActivity {

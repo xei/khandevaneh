@@ -1,4 +1,4 @@
-package ir.tvnasim.khandevaneh.helper.webapi.model.store;
+package ir.tvnasim.khandevaneh.store;
 
 import com.google.gson.annotations.SerializedName;
 

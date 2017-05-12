@@ -1,4 +1,4 @@
-package ir.tvnasim.khandevaneh.helper.webapi.model.app;
+package ir.tvnasim.khandevaneh.app;
 
 /**
  * Created by hamidreza on 5/3/17.

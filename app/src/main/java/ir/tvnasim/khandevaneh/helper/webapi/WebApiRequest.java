@@ -16,7 +16,7 @@ import java.lang.reflect.Type;
 import java.util.HashMap;
 
 import ir.tvnasim.khandevaneh.BuildConfig;
-import ir.tvnasim.khandevaneh.helper.webapi.model.app.ScoresContainer;
+import ir.tvnasim.khandevaneh.app.ScoresContainer;
 
 /**
  * This class is a Web Api request and can attach to an activity or a fragment to send from its context.

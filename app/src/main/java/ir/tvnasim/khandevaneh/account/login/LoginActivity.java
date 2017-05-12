@@ -15,9 +15,9 @@ import ir.tvnasim.khandevaneh.app.BaseActivity;
 import ir.tvnasim.khandevaneh.helper.SharedPreferencesHelper;
 import ir.tvnasim.khandevaneh.helper.webapi.WebApiHelper;
 import ir.tvnasim.khandevaneh.helper.webapi.WebApiRequest;
-import ir.tvnasim.khandevaneh.helper.webapi.model.app.ScoresContainer;
-import ir.tvnasim.khandevaneh.helper.webapi.model.user.Token;
-import ir.tvnasim.khandevaneh.helper.webapi.model.user.UserInfo;
+import ir.tvnasim.khandevaneh.app.ScoresContainer;
+import ir.tvnasim.khandevaneh.account.Token;
+import ir.tvnasim.khandevaneh.account.UserInfo;
 
 public class LoginActivity extends BaseActivity implements PhoneNoFragment.OnSendButtonClickListener, VerificationCodeFragment.OnSendButtonClickListener {
 

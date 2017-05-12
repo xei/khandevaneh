@@ -1,4 +1,4 @@
-package ir.tvnasim.khandevaneh.helper.webapi.model.section;
+package ir.tvnasim.khandevaneh.livelike;
 
 import com.google.gson.annotations.SerializedName;
 

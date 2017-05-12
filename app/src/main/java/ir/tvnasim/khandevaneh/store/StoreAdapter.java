@@ -12,9 +12,7 @@ import java.util.ArrayList;
 import ir.tvnasim.khandevaneh.R;
 import ir.tvnasim.khandevaneh.helper.HelperFunctions;
 import ir.tvnasim.khandevaneh.helper.imageloading.FrescoHelper;
-import ir.tvnasim.khandevaneh.helper.webapi.model.store.StoreItem;
 import ir.tvnasim.khandevaneh.view.KhandevanehDialog;
-import ir.tvnasim.khandevaneh.view.XeiTextView;
 
 /**
  * Created by hamidreza on 4/19/17.

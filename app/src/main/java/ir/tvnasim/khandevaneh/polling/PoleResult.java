@@ -1,4 +1,4 @@
-package ir.tvnasim.khandevaneh.helper.webapi.model;
+package ir.tvnasim.khandevaneh.polling;
 
 /**
  * Created by hamidreza on 5/9/17.

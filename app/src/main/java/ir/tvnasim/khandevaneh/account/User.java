@@ -2,8 +2,7 @@ package ir.tvnasim.khandevaneh.account;
 
 import ir.tvnasim.khandevaneh.helper.webapi.WebApiHelper;
 import ir.tvnasim.khandevaneh.helper.webapi.WebApiRequest;
-import ir.tvnasim.khandevaneh.helper.webapi.model.app.ScoresContainer;
-import ir.tvnasim.khandevaneh.helper.webapi.model.user.Token;
+import ir.tvnasim.khandevaneh.app.ScoresContainer;
 
 /**
  * Created by hamidreza on 4/14/17.

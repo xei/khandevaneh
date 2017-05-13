@@ -68,11 +68,13 @@ public class GsonRequest<T> extends Request<T> {
     protected Response<T> parseNetworkResponse(NetworkResponse response) {
         try {
             String responseJsonStr = new String(response.data, "UTF-8");
+
             LogHelper.logInfo(TAG_DEBUG,
-                    "\n---------------------------------------------------------\n"
-                    + "API Response: "
-                    + responseJsonStr
-                    + "---------------------------------------------------------\n");
+                    "\n------------------------------------------------------------------------"
+                    + "\nRequest => " + getUrl()
+                    + "\nResponse => " + responseJsonStr
+                    + "\n------------------------------------------------------------------------\n");
+
             T result = sGson.fromJson(responseJsonStr, mResponseType);
             return Response.success(result, HttpHeaderParser.parseCacheHeaders(response));
         } catch (UnsupportedEncodingException uee) {

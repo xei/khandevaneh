@@ -10,6 +10,7 @@ import android.view.View;
 
 import ir.tvnasim.khandevaneh.R;
 import ir.tvnasim.khandevaneh.account.profile.ProfileActivity;
+import ir.tvnasim.khandevaneh.exception.InValidDestinationException;
 import ir.tvnasim.khandevaneh.helper.HelperFunctions;
 import ir.tvnasim.khandevaneh.helper.LogHelper;
 import ir.tvnasim.khandevaneh.helper.webapi.VolleyHelper;
@@ -96,46 +97,47 @@ public class LaunchActivity extends AppCompatActivity {
         }
     }
 
-    public static void goTo(Context starterContext, String destination, String param) {
-        switch (destination) {
-            case DESTINATION_NO_NETWORK:
-                NoNetworkActivity.start(starterContext, starterContext.getClass().getSimpleName());
-                break;
-            case DESTINATION_COMPETITION_LIST:
-                PollingListActivity.start(starterContext, PollingListActivity.TYPE_COMPETITION);
-                break;
+    public static void goTo(Context starterContext, String destination, String param) throws InValidDestinationException {
+        if (destination != null) {
+            switch (destination) {
+                case DESTINATION_NO_NETWORK:
+                    NoNetworkActivity.start(starterContext, starterContext.getClass().getSimpleName());
+                    break;
+                case DESTINATION_COMPETITION_LIST:
+                    PollingListActivity.start(starterContext, PollingListActivity.TYPE_COMPETITION);
+                    break;
 
-            case DESTINATION_COMPETITION:
-                PollingActivity.start(starterContext, param);
-                break;
+                case DESTINATION_COMPETITION:
+                    PollingActivity.start(starterContext, param);
+                    break;
 
-            case DESTINATION_COMPETITION_STATISTICS:
-                PollingStatisticsActivity.start(starterContext, param, ""); // TITLE?
-                break;
+                case DESTINATION_COMPETITION_STATISTICS:
+                    PollingStatisticsActivity.start(starterContext, param, ""); // TITLE?
+                    break;
 
-            case DESTINATION_LIVE_LIKE:
-                LiveLikeActivity.start(starterContext);
-                break;
+                case DESTINATION_LIVE_LIKE:
+                    LiveLikeActivity.start(starterContext);
+                    break;
 
-            case DESTINATION_POLLING_LIST:
-                PollingListActivity.start(starterContext, PollingListActivity.TYPE_POLLING);
-                break;
+                case DESTINATION_POLLING_LIST:
+                    PollingListActivity.start(starterContext, PollingListActivity.TYPE_POLLING);
+                    break;
 
-            case DESTINATION_POLLING:
-                PollingActivity.start(starterContext, param);
-                break;
+                case DESTINATION_POLLING:
+                    PollingActivity.start(starterContext, param);
+                    break;
 
-            case DESTINATION_POLLING_STATISTICS:
-                PollingStatisticsActivity.start(starterContext, param, ""); // TITLE?
-                break;
+                case DESTINATION_POLLING_STATISTICS:
+                    PollingStatisticsActivity.start(starterContext, param, ""); // TITLE?
+                    break;
 
-            case DESTINATION_STORE:
-                StoreActivity.start(starterContext);
-                break;
+                case DESTINATION_STORE:
+                    StoreActivity.start(starterContext);
+                    break;
 
-            case DESTINATION_LEADER_BOARD:
-                LeaderBoardActivity.start(starterContext);
-                break;
+                case DESTINATION_LEADER_BOARD:
+                    LeaderBoardActivity.start(starterContext);
+                    break;
 //
 //            case Banner.DESTINATION_CAMPAIGN:
 //                break;
@@ -146,23 +148,27 @@ public class LaunchActivity extends AppCompatActivity {
 //            case Banner.DESTINATION_AWARDS:
 //                break;
 
-            case DESTINATION_PROFILE:
-                ProfileActivity.start(starterContext);
-                break;
+                case DESTINATION_PROFILE:
+                    ProfileActivity.start(starterContext);
+                    break;
 
-            case DESTINATION_BROWSER:
-                try {
-                    Intent intent = new Intent(Intent.ACTION_VIEW);
-                    intent.setData(Uri.parse(param));
-                    starterContext.startActivity(intent);
-                } catch (Exception e) {
-                    LogHelper.logError(TAG_DEBUG, e.getMessage());
-                }
-                break;
+                case DESTINATION_BROWSER:
+                    try {
+                        Intent intent = new Intent(Intent.ACTION_VIEW);
+                        intent.setData(Uri.parse(param));
+                        starterContext.startActivity(intent);
+                    } catch (Exception e) {
+                        LogHelper.logError(TAG_DEBUG, e.getMessage());
+                    }
+                    break;
 
-            default:
-                LogHelper.logInfo(TAG_DEBUG, "invalid destination");
+                default:
+                    throw new InValidDestinationException(destination, param);
+            }
+        } else {
+            throw new InValidDestinationException(destination, param);
         }
+
     }
 
     @Override
@@ -170,4 +176,5 @@ public class LaunchActivity extends AppCompatActivity {
         super.onStop();
         VolleyHelper.cancelPendingRequests(TAG_REQUEST_GET_STARTUP_CONFIG);
     }
+
 }

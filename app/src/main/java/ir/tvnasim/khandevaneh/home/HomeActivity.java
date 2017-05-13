@@ -14,6 +14,8 @@ import ir.tvnasim.khandevaneh.account.User;
 import ir.tvnasim.khandevaneh.account.login.LoginActivity;
 import ir.tvnasim.khandevaneh.app.BaseActivity;
 import ir.tvnasim.khandevaneh.app.LaunchActivity;
+import ir.tvnasim.khandevaneh.exception.InValidDestinationException;
+import ir.tvnasim.khandevaneh.helper.LogHelper;
 import ir.tvnasim.khandevaneh.helper.SharedPreferencesHelper;
 import ir.tvnasim.khandevaneh.helper.webapi.WebApiHelper;
 import ir.tvnasim.khandevaneh.helper.webapi.WebApiRequest;
@@ -162,7 +164,11 @@ public class HomeActivity extends BaseActivity implements OnBannerClickedListene
                 if (isLoggedIn) {
                     String destination = bundle.getString(BannerFragment.KEY_ARG_DESTINATION);
                     String destinationParam = bundle.getString(BannerFragment.KEY_ARG_DESTINATION_PARAM);
-                    LaunchActivity.goTo(HomeActivity.this, destination, destinationParam);
+                    try {
+                        LaunchActivity.goTo(HomeActivity.this, destination, destinationParam);
+                    } catch (InValidDestinationException ide) {
+                        LogHelper.logError(TAG_DEBUG, ide.getMessage());
+                    }
                 } else {
                     LoginActivity.start(HomeActivity.this);
                 }

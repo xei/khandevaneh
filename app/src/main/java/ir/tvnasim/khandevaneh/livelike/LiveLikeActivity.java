@@ -16,6 +16,7 @@ import java.util.ArrayList;
 import ir.tvnasim.khandevaneh.R;
 import ir.tvnasim.khandevaneh.app.BaseActivity;
 import ir.tvnasim.khandevaneh.app.LaunchActivity;
+import ir.tvnasim.khandevaneh.exception.InValidDestinationException;
 import ir.tvnasim.khandevaneh.helper.LogHelper;
 import ir.tvnasim.khandevaneh.helper.imageloading.FrescoHelper;
 import ir.tvnasim.khandevaneh.helper.webapi.WebApiHelper;
@@ -248,7 +249,9 @@ public class LiveLikeActivity extends BaseActivity {
                 break;
 
             case R.id.activityLiveLike_simpleDraweeView_banner:
-                LaunchActivity.goTo(this, LaunchActivity.DESTINATION_BROWSER, clickedView.getTag().toString());
+                try {
+                    LaunchActivity.goTo(this, LaunchActivity.DESTINATION_BROWSER, clickedView.getTag().toString());
+                } catch (InValidDestinationException ignored) {}
                 break;
         }
     }

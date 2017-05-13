@@ -20,6 +20,7 @@ import ir.tvnasim.khandevaneh.account.login.LoginActivity;
 import ir.tvnasim.khandevaneh.account.profile.ProfileActivity;
 import ir.tvnasim.khandevaneh.account.User;
 import ir.tvnasim.khandevaneh.account.profile.ProfileCompletionActivity;
+import ir.tvnasim.khandevaneh.exception.InValidDestinationException;
 import ir.tvnasim.khandevaneh.helper.HelperFunctions;
 import ir.tvnasim.khandevaneh.helper.LogHelper;
 import ir.tvnasim.khandevaneh.helper.webapi.VolleyHelper;
@@ -106,7 +107,10 @@ public class BaseActivity extends AppCompatActivity implements View.OnClickListe
         super.onResume();
 
         if (!HelperFunctions.isNetworkConnected()) {
-            LaunchActivity.goTo(this, LaunchActivity.DESTINATION_NO_NETWORK, null);
+            try {
+                LaunchActivity.goTo(this, LaunchActivity.DESTINATION_NO_NETWORK, null);
+            } catch (InValidDestinationException ignored) {}
+
             finish();
         }
 

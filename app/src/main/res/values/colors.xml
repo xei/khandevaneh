@@ -32,7 +32,7 @@
     <!-- HomeActivity -->
     <color name="background_home_toolbar">#fff</color>
     <color name="text_toolbar_home_score">#1b5e20</color>
-    <color name="background_home">#eeeeee</color>
+    <color name="background_home">#E5E9F1</color>
     <color name="border_home_menu_items">#1b5e20</color>
 
     <!-- LiveLike -->

@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 
 import java.util.ArrayList;
 
@@ -65,9 +66,13 @@ public class PollingListActivity extends BaseActivity {
         WebApiHelper.getPollingList(mType, TAG_REQUEST_GET_POLLING_LIST, new WebApiRequest.WebApiListener<ArrayList<PollingListItem>>() {
             @Override
             public void onResponse(ArrayList<PollingListItem> pollingListItems, ScoresContainer scoresContainer) {
-                mList.clear();
-                mList.addAll(pollingListItems);
-                mListAdapter.notifyDataSetChanged();
+                if (pollingListItems != null) {
+                    mList.clear();
+                    mList.addAll(pollingListItems);
+                    mListAdapter.notifyDataSetChanged();
+                } else {
+                    Log.e(TAG_DEBUG, "pollingListItems is null!");
+                }
             }
 
             @Override

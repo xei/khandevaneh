@@ -224,6 +224,7 @@ public class LiveLikeActivity extends BaseActivity {
                         }
                     }
                 }).show();
+                mCommentEditText.setText("");
                 mCommentSection.setVisibility(View.GONE);
 
             }
@@ -231,6 +232,7 @@ public class LiveLikeActivity extends BaseActivity {
             @Override
             public void onErrorResponse(String errorMessage) {
                 LogHelper.logError(TAG_DEBUG, "comment request failed: " + errorMessage);
+                new KhandevanehDialog(LiveLikeActivity.this, errorMessage, null).show();
             }
         }, null).send();
     }

@@ -86,8 +86,9 @@ public class HomeActivity extends BaseActivity implements OnBannerClickedListene
 
                 @Override
                 public void onErrorResponse(String errorMessage) {
-
-                }}, null).send();
+                    LogHelper.logError(TAG_DEBUG, "getUserInfo request failed!");
+                }
+            }, null).send();
 
         } else {
             String refreshToken = SharedPreferencesHelper.retrieveRefreshToken();

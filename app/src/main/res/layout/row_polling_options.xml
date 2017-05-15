@@ -12,10 +12,27 @@
         android:layout_height="48dp"
         android:background="@drawable/background_row_leaderboard" >
 
+        <com.facebook.drawee.view.SimpleDraweeView
+            android:id="@+id/rowPollingOptions_simpleDraweeView_image"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_alignParentRight="true"
+            android:visibility="gone"
+            app:actualImageScaleType="centerInside"
+            app:placeholderImage="@color/placeholder_fresco"
+            app:placeholderImageScaleType="centerInside"
+            app:failureImage="@drawable/logo"
+            app:failureImageScaleType="centerInside"
+            app:backgroundImage="@color/placeholder_fresco"
+            app:roundAsCircle="true"
+            app:roundingBorderWidth="@dimen/width_rounding_border_userRankSection_avatar"
+            app:roundingBorderColor="@color/border_avatar" />
+
         <ir.tvnasim.khandevaneh.view.XeiTextView
             android:id="@+id/rowPollingOptions_xeiTextView_title"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_toLeftOf="@+id/rowPollingOptions_simpleDraweeView_image"
             android:gravity="center"
             android:textColor="@color/textColor_dark"
             android:textSize="@dimen/textSize_userRankSection"

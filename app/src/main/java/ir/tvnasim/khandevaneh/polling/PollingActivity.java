@@ -27,7 +27,7 @@ public class PollingActivity extends BaseActivity {
     private XeiTextView mTitleTextView;
     private XeiTextView mDescriptionTextView;
     private ListView mOptionsListView;
-    private OptionsListAdapter mOptionsListAdapter;
+    private PollingOptionsListAdapter mOptionsListAdapter;
     private RelativeLayout mFooterRelativeLayout;
     private XeiButton mPollButton;
     private XeiButton mShowStatisticsButton;
@@ -76,7 +76,7 @@ public class PollingActivity extends BaseActivity {
     }
 
     private void initOptionsListView() {
-        mOptionsListAdapter = new OptionsListAdapter(mOptions, mOptionsType, mSelectedOptions);
+        mOptionsListAdapter = new PollingOptionsListAdapter(mOptions, mOptionsType, mSelectedOptions);
         mOptionsListView.setAdapter(mOptionsListAdapter);
     }
 

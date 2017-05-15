@@ -11,22 +11,25 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.facebook.drawee.view.SimpleDraweeView;
+
 import java.util.ArrayList;
 
 import ir.tvnasim.khandevaneh.R;
 import ir.tvnasim.khandevaneh.helper.HelperFunctions;
+import ir.tvnasim.khandevaneh.helper.imageloading.FrescoHelper;
 
 /**
  * Created by hamidreza on 5/3/17.
  */
 
-public class OptionsListAdapter extends BaseAdapter {
+public class PollingOptionsListAdapter extends BaseAdapter {
 
     private ArrayList<PollingOption> mOptions;
     private OptionType mOptionsType;
     private ArrayList<String> mSelectedOptions;
 
-    public OptionsListAdapter(ArrayList<PollingOption> options, OptionType optionsType, ArrayList<String> selectedOptions) {
+    public PollingOptionsListAdapter(ArrayList<PollingOption> options, OptionType optionsType, ArrayList<String> selectedOptions) {
         this.mOptions = options;
         this.mOptionsType = optionsType;
         this.mSelectedOptions = selectedOptions;
@@ -50,10 +53,18 @@ public class OptionsListAdapter extends BaseAdapter {
     @Override
     public View getView(final int position, View convertView, ViewGroup parent) {
         View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.row_polling_options, parent, false);
+        PollingOption item = mOptions.get(position);
 
         TextView titleTextView = (TextView) itemView.findViewById(R.id.rowPollingOptions_xeiTextView_title);
-        titleTextView.setText(mOptions.get(position).getTitle());
-
+        if (item.getTitle() != null && !item.getTitle().isEmpty()) {
+            titleTextView.setText(item.getTitle());
+        }
+        String imageUrl = mOptions.get(position).getImageUrl();
+        if (imageUrl != null && !imageUrl.isEmpty()) {
+            SimpleDraweeView imageSimpleDraweeView = (SimpleDraweeView) itemView.findViewById(R.id.rowPollingOptions_simpleDraweeView_image);
+            FrescoHelper.setImageUrl(imageSimpleDraweeView, mOptions.get(position).getImageUrl());
+            imageSimpleDraweeView.setVisibility(View.VISIBLE);
+        }
         RelativeLayout rowView = (RelativeLayout) itemView.findViewById(R.id.rowPoling_relativeLayout_itemViewForMargin);
 
         GradientDrawable background = (GradientDrawable) rowView.getBackground();

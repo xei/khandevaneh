@@ -79,7 +79,7 @@ public class LeaderBoardActivity extends BaseActivity {
     private void renderUserData() {
         mUserNameTextView.setText(User.getInstance().getFirstName() + ' ' + User.getInstance().getLastName());
         FrescoHelper.setImageUrl(mUserAvatarSimpleDraweeView, User.getInstance().getAvatar());
-        mUserExperienceTextView.setText(HelperFunctions.convertNumberStringToPersian(String.valueOf(User.getInstance().getExperienceScore())));
+        mUserExperienceTextView.setText(HelperFunctions.persianizeDigitsInString(String.valueOf(User.getInstance().getExperienceScore())));
     }
 
     private void fetchDataFromApi() {

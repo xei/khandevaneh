@@ -4,13 +4,19 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.view.ViewStub;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
+import android.widget.VideoView;
+
+import com.facebook.drawee.view.SimpleDraweeView;
 
 import java.util.ArrayList;
 
 import ir.tvnasim.khandevaneh.R;
 import ir.tvnasim.khandevaneh.app.BaseActivity;
+import ir.tvnasim.khandevaneh.helper.LogHelper;
+import ir.tvnasim.khandevaneh.helper.imageloading.FrescoHelper;
 import ir.tvnasim.khandevaneh.helper.webapi.WebApiHelper;
 import ir.tvnasim.khandevaneh.helper.webapi.WebApiRequest;
 import ir.tvnasim.khandevaneh.app.ScoresContainer;
@@ -25,7 +31,7 @@ public class PollingActivity extends BaseActivity {
     private static final String TAG_REQUEST_POLL = "requestTag_pollingActivity_poll";
 
     private XeiTextView mTitleTextView;
-    private XeiTextView mDescriptionTextView;
+    private ViewStub mPollingContextViewStub;
     private ListView mOptionsListView;
     private PollingOptionsListAdapter mOptionsListAdapter;
     private RelativeLayout mFooterRelativeLayout;
@@ -68,7 +74,7 @@ public class PollingActivity extends BaseActivity {
 
     private void findViews() {
         mTitleTextView = (XeiTextView) findViewById(R.id.activityPolling_xeiTextView_title);
-        mDescriptionTextView = (XeiTextView) findViewById(R.id.activityPolling_xeiTextView_description);
+        mPollingContextViewStub = (ViewStub) findViewById(R.id.activityPolling_viewStub_pollingContext);
         mOptionsListView = (ListView) findViewById(R.id.activityPolling_listView_options);
         mFooterRelativeLayout = (RelativeLayout) findViewById(R.id.activityPolling_relativeLayout_footer);
         mPollButton = (XeiButton) findViewById(R.id.activityPolling_xeiButton_poll);
@@ -85,18 +91,51 @@ public class PollingActivity extends BaseActivity {
         mShowStatisticsButton.setOnClickListener(this);
     }
 
+    private void renderPollingContextSection(PollingItem pollingItem) {
+        switch (pollingItem.getPollingType()) {
+            case PollingItem.TYPE_POLLING_TEXT:
+                mPollingContextViewStub.setLayoutResource(R.layout.layout_polling_context_text);
+                XeiTextView pollingContextTextView = (XeiTextView) mPollingContextViewStub.inflate();
+                pollingContextTextView.setText(pollingItem.getDescription());
+                break;
+
+            case PollingItem.TYPE_POLLING_IMAGE:
+                mPollingContextViewStub.setLayoutResource(R.layout.layout_polling_context_image);
+                SimpleDraweeView pollingContextSimpleDraweeView = (SimpleDraweeView) mPollingContextViewStub.inflate();
+                FrescoHelper.setImageUrl(pollingContextSimpleDraweeView, pollingItem.getDescription());
+                break;
+
+            case PollingItem.TYPE_POLLING_VOICE:
+                mPollingContextViewStub.setLayoutResource(R.layout.layout_polling_context_voice);
+                // TODO: handle media player
+                break;
+
+            case PollingItem.TYPE_POLLING_VIDEO:
+                mPollingContextViewStub.setLayoutResource(R.layout.layout_polling_context_video);
+                VideoView pollingContextVideoView = (VideoView) mPollingContextViewStub.inflate();
+                pollingContextVideoView.setVideoPath(pollingItem.getDescription());
+                break;
+
+            default:
+                LogHelper.logError(TAG_DEBUG, "invalid polling type!");
+        }
+    }
+
     private void fetchPollingFromApi() {
         WebApiHelper.getPollingItem(mPollingId, TAG_REQUEST_GET_POLLING_ITEM, new WebApiRequest.WebApiListener<PollingItem>() {
             @Override
             public void onResponse(PollingItem pollingItem, ScoresContainer scoresContainer) {
                 if (pollingItem != null) {
-                    mPolledBefore = pollingItem.getPolledBefore();
                     mTitleTextView.setText(pollingItem.getTitle());
-                    mDescriptionTextView.setText(pollingItem.getDescription());
+
+                    renderPollingContextSection(pollingItem);
+
                     mOptions.clear();
                     mOptions.addAll(pollingItem.getOptions());
                     mOptionsType.setType(pollingItem.getOptionType());
                     mOptionsListAdapter.notifyDataSetChanged();
+
+                    mPolledBefore = pollingItem.getPolledBefore();
                     mFooterRelativeLayout.setVisibility(View.VISIBLE);
                 }
             }

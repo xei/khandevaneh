@@ -23,27 +23,18 @@
         app:locale="fa_IR"
         app:style="bold" />
 
-    <ir.tvnasim.khandevaneh.view.XeiTextView
-        android:id="@+id/activityPolling_xeiTextView_description"
-        android:lines="3"
+    <ViewStub
+        android:id="@+id/activityPolling_viewStub_pollingContext"
         android:layout_width="match_parent"
         android:layout_height="112dp"
-        android:layout_below="@+id/activityPolling_xeiTextView_title"
-        android:layout_gravity="center"
-        android:gravity="center"
-        android:background="@color/polling_background"
-        android:textColor="#fff"
-        android:textSize="@dimen/textSize_userRankSection"
-        android:textStyle="bold"
-        app:locale="fa_IR"
-        app:style="bold" />
+        android:layout_below="@+id/activityPolling_xeiTextView_title" />
     
     <ListView
         android:id="@+id/activityPolling_listView_options"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_centerHorizontal="true"
-        android:layout_below="@+id/activityPolling_xeiTextView_description"
+        android:layout_below="@+id/activityPolling_viewStub_pollingContext"
         android:layout_above="@+id/activityPolling_relativeLayout_footer"
         android:layout_marginTop="1dp"
         android:layout_marginBottom="1dp"

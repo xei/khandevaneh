@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ir.tvnasim.khandevaneh.view.XeiTextView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/activityPolling_viewStub_pollingContext"
+    android:lines="3"
+    android:layout_width="match_parent"
+    android:layout_height="112dp"
+    android:layout_gravity="center"
+    android:gravity="center"
+    android:background="@color/polling_background"
+    android:textColor="#fff"
+    android:textSize="@dimen/textSize_userRankSection"
+    android:textStyle="bold"
+    app:locale="fa_IR"
+    app:style="bold" />

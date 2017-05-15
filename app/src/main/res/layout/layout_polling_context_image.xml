@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<com.facebook.drawee.view.SimpleDraweeView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/activityPolling_viewStub_pollingContext"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/dimen_row_item"
+    android:layout_margin="@dimen/margin_row_item"
+    android:foreground="?attr/selectableItemBackgroundBorderless"
+    app:actualImageScaleType="centerInside"
+    app:failureImage="@drawable/logo"
+    app:failureImageScaleType="centerInside"
+    app:roundedCornerRadius="10dp"/>

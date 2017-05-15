@@ -10,10 +10,10 @@ import java.util.ArrayList;
 
 public class PollingItem {
 
-    public static final int TYPE_POLLING_IMAGE = 0;
-    public static final int TYPE_POLLING_TEXT = 1;
-    public static final int TYPE_POLLING_VIDEO = 2;
-    public static final int TYPE_POLLING_VOICE = 3;
+    public static final int TYPE_POLLING_TEXT = 3;
+    public static final int TYPE_POLLING_IMAGE = 2;
+    public static final int TYPE_POLLING_VOICE = 4;
+    public static final int TYPE_POLLING_VIDEO = 1;
 
     // TODO: check it with backend
     static final int POLLED_BEFORE_NOT_SET = -1;
@@ -29,7 +29,7 @@ public class PollingItem {
     @SerializedName("question")
     private String description;
 
-    @SerializedName("pollingType")
+    @SerializedName("questionType")
     private int pollingType;
 
     @SerializedName("payload")

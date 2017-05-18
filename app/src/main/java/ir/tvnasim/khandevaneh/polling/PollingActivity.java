@@ -2,10 +2,12 @@ package ir.tvnasim.khandevaneh.polling;
 
 import android.content.Context;
 import android.content.Intent;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.view.View;
 import android.view.ViewStub;
 import android.widget.ListView;
+import android.widget.MediaController;
 import android.widget.RelativeLayout;
 import android.widget.VideoView;
 
@@ -14,7 +16,9 @@ import com.facebook.drawee.view.SimpleDraweeView;
 import java.util.ArrayList;
 
 import ir.tvnasim.khandevaneh.R;
+import ir.tvnasim.khandevaneh.account.User;
 import ir.tvnasim.khandevaneh.app.BaseActivity;
+import ir.tvnasim.khandevaneh.helper.HelperFunctions;
 import ir.tvnasim.khandevaneh.helper.LogHelper;
 import ir.tvnasim.khandevaneh.helper.imageloading.FrescoHelper;
 import ir.tvnasim.khandevaneh.helper.webapi.WebApiHelper;
@@ -112,8 +116,30 @@ public class PollingActivity extends BaseActivity {
 
             case PollingItem.TYPE_POLLING_VIDEO:
                 mPollingContextViewStub.setLayoutResource(R.layout.layout_polling_context_video);
-                VideoView pollingContextVideoView = (VideoView) mPollingContextViewStub.inflate();
+                final VideoView pollingContextVideoView = (VideoView) mPollingContextViewStub.inflate();
                 pollingContextVideoView.setVideoPath(pollingItem.getDescription());
+                pollingContextVideoView.setKeepScreenOn(true);
+
+                final MediaController mediaController = new MediaController(this) {
+                    @Override
+                    public void show(int timeout) {
+                        super.show(0);
+                    }
+                };
+                mediaController.getLayoutParams().height = HelperFunctions.dpToPx(this, 24);
+
+                pollingContextVideoView.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
+                    @Override
+                    public void onPrepared(MediaPlayer mediaPlayer) {
+                        mediaPlayer.start();
+
+                        mediaController.setAnchorView(pollingContextVideoView);
+                        mediaController.setMediaPlayer(pollingContextVideoView);
+                        mediaController.show(0);
+                        mediaController.requestFocus();
+                    }
+                });
+
                 break;
 
             default:

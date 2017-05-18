@@ -5,10 +5,13 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/activityPolling_viewStub_pollingContext"
     android:layout_width="match_parent"
-    android:layout_height="@dimen/dimen_row_item"
-    android:layout_margin="@dimen/margin_row_item"
-    android:foreground="?attr/selectableItemBackgroundBorderless"
+    android:layout_height="match_parent"
+    android:paddingBottom="2dp"
+    android:background="@color/polling_background"
     app:actualImageScaleType="centerInside"
-    app:failureImage="@drawable/logo"
+    app:failureImage="@drawable/placeloder"
     app:failureImageScaleType="centerInside"
-    app:roundedCornerRadius="10dp"/>
+    app:placeholderImage="@drawable/placeloder"
+    app:placeholderImageScaleType="centerInside"
+    app:backgroundImage="@color/polling_background"
+    />

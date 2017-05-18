@@ -108,7 +108,7 @@ public class LaunchActivity extends AppCompatActivity {
                     break;
 
                 case DESTINATION_COMPETITION:
-                    PollingActivity.start(starterContext, param);
+                    PollingActivity.start(starterContext, PollingListActivity.TYPE_COMPETITION, param);
                     break;
 
                 case DESTINATION_COMPETITION_STATISTICS:
@@ -124,7 +124,7 @@ public class LaunchActivity extends AppCompatActivity {
                     break;
 
                 case DESTINATION_POLLING:
-                    PollingActivity.start(starterContext, param);
+                    PollingActivity.start(starterContext, PollingListActivity.TYPE_POLLING, param);
                     break;
 
                 case DESTINATION_POLLING_STATISTICS:

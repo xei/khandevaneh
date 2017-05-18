@@ -28,13 +28,27 @@
         android:layout_width="match_parent"
         android:layout_height="112dp"
         android:layout_below="@+id/activityPolling_xeiTextView_title" />
+
+    <com.facebook.drawee.view.SimpleDraweeView
+        android:id="@+id/activityPolling_simpleDraweeView_adsBanner"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:layout_below="@+id/activityPolling_viewStub_pollingContext"
+        android:layout_marginTop="1dp"
+        android:background="@color/polling_background"
+        app:actualImageScaleType="fitXY"
+        app:failureImage="@drawable/placeloder"
+        app:failureImageScaleType="centerInside"
+        app:placeholderImage="@drawable/placeloder"
+        app:placeholderImageScaleType="centerInside"
+        app:backgroundImage="@color/polling_background" />
     
     <ListView
         android:id="@+id/activityPolling_listView_options"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_centerHorizontal="true"
-        android:layout_below="@+id/activityPolling_viewStub_pollingContext"
+        android:layout_below="@+id/activityPolling_simpleDraweeView_adsBanner"
         android:layout_above="@+id/activityPolling_relativeLayout_footer"
         android:layout_marginTop="1dp"
         android:layout_marginBottom="1dp"

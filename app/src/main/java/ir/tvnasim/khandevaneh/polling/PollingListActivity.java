@@ -55,7 +55,7 @@ public class PollingListActivity extends BaseActivity {
 
     private void initRecyclerView() {
         mListRecyclerView.setHasFixedSize(true);
-        mListAdapter = new PollingListAdapter(mList);
+        mListAdapter = new PollingListAdapter(mType, mList);
         mListRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         mListRecyclerView.setAdapter(mListAdapter);
     }

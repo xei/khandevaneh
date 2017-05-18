@@ -17,6 +17,7 @@ import java.util.ArrayList;
 
 import ir.tvnasim.khandevaneh.R;
 import ir.tvnasim.khandevaneh.account.User;
+import ir.tvnasim.khandevaneh.app.Banner;
 import ir.tvnasim.khandevaneh.app.BaseActivity;
 import ir.tvnasim.khandevaneh.helper.HelperFunctions;
 import ir.tvnasim.khandevaneh.helper.LogHelper;
@@ -30,26 +31,31 @@ import ir.tvnasim.khandevaneh.view.XeiTextView;
 
 public class PollingActivity extends BaseActivity {
 
+    private static final String KEY_EXTRA_TYPE = "KEY_EXTRA_TYPE";
     private static final String KEY_EXTRA_POLLING_ID = "KEY_EXTRA_POLLING_ID";
     private static final String TAG_REQUEST_GET_POLLING_ITEM = "requestTag_pollingActivity_getPollingItem";
+    private static final String TAG_REQUEST_GET_ADS_BANNER = "requestTag_pollingActivity_getAdsBanner";
     private static final String TAG_REQUEST_POLL = "requestTag_pollingActivity_poll";
 
     private XeiTextView mTitleTextView;
     private ViewStub mPollingContextViewStub;
+    private SimpleDraweeView mAdsBannerSimpleDraweeView;
     private ListView mOptionsListView;
     private PollingOptionsListAdapter mOptionsListAdapter;
     private RelativeLayout mFooterRelativeLayout;
     private XeiButton mPollButton;
     private XeiButton mShowStatisticsButton;
 
+    private int mType;
     private String mPollingId;
     private int mPolledBefore = PollingItem.POLLED_BEFORE_NOT_SET;
     private ArrayList<PollingOption> mOptions = new ArrayList<>();
     private OptionType mOptionsType = new OptionType();
     private ArrayList<String> mSelectedOptions = new ArrayList<>();
 
-    public static void start(Context starter, String pollingId) {
+    public static void start(Context starter, int type, String pollingId) {
         Intent intent = new Intent(starter, PollingActivity.class);
+        intent.putExtra(KEY_EXTRA_TYPE, type);
         intent.putExtra(KEY_EXTRA_POLLING_ID, pollingId);
         starter.startActivity(intent);
     }
@@ -58,6 +64,7 @@ public class PollingActivity extends BaseActivity {
     protected ArrayList<String> getRequestTags() {
         ArrayList<String> tags = super.getRequestTags();
         tags.add(TAG_REQUEST_GET_POLLING_ITEM);
+        tags.add(TAG_REQUEST_GET_ADS_BANNER);
         tags.add(TAG_REQUEST_POLL);
         return tags;
     }
@@ -67,18 +74,25 @@ public class PollingActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_polling);
 
-        this.mPollingId = getIntent().getStringExtra(KEY_EXTRA_POLLING_ID);
+        setArguments();
 
         findViews();
         initOptionsListView();
         setOnClickListeners();
 
         fetchPollingFromApi();
+        fetchAdsBannerFromApi();
+    }
+
+    private void setArguments() {
+        this.mPollingId = getIntent().getStringExtra(KEY_EXTRA_POLLING_ID);
+        this.mType = getIntent().getIntExtra(KEY_EXTRA_TYPE, 0);
     }
 
     private void findViews() {
         mTitleTextView = (XeiTextView) findViewById(R.id.activityPolling_xeiTextView_title);
         mPollingContextViewStub = (ViewStub) findViewById(R.id.activityPolling_viewStub_pollingContext);
+        mAdsBannerSimpleDraweeView = (SimpleDraweeView) findViewById(R.id.activityPolling_simpleDraweeView_adsBanner);
         mOptionsListView = (ListView) findViewById(R.id.activityPolling_listView_options);
         mFooterRelativeLayout = (RelativeLayout) findViewById(R.id.activityPolling_relativeLayout_footer);
         mPollButton = (XeiButton) findViewById(R.id.activityPolling_xeiButton_poll);
@@ -147,6 +161,34 @@ public class PollingActivity extends BaseActivity {
         }
     }
 
+    private Banner findAppropriateBanner(ArrayList<Banner> banners) {
+        if (banners != null) {
+            if (mType == PollingListActivity.TYPE_POLLING) {
+                for (Banner banner : banners) {
+                    if(banner.getLocation().equals(Banner.LOCATION_POLLING)) {
+                        return banner;
+                    }
+                }
+            } else if (mType == PollingListActivity.TYPE_COMPETITION) {
+                for (Banner banner : banners) {
+                    if(banner.getLocation().equals(Banner.LOCATION_COMPETITION)) {
+                        return banner;
+                    }
+                }
+            }
+        }
+        return null;
+    }
+
+    private void renderAdsBanner(Banner banner) {
+        if (banner != null) {
+            FrescoHelper.setImageUrl(mAdsBannerSimpleDraweeView, banner.getImageUrl());
+        } else {
+            mAdsBannerSimpleDraweeView.setVisibility(View.GONE);
+        }
+
+    }
+
     private void fetchPollingFromApi() {
         WebApiHelper.getPollingItem(mPollingId, TAG_REQUEST_GET_POLLING_ITEM, new WebApiRequest.WebApiListener<PollingItem>() {
             @Override
@@ -168,7 +210,22 @@ public class PollingActivity extends BaseActivity {
 
             @Override
             public void onErrorResponse(String errorMessage) {
+                LogHelper.logError(TAG_DEBUG, "getPollingItem request failed!");
+            }
+        }, null).send();
+    }
 
+    private void fetchAdsBannerFromApi() {
+        WebApiHelper.getBanners(TAG_REQUEST_GET_ADS_BANNER, new WebApiRequest.WebApiListener<ArrayList<Banner>>() {
+            @Override
+            public void onResponse(ArrayList<Banner> banners, ScoresContainer scoresContainer) {
+                renderAdsBanner(findAppropriateBanner(banners));
+            }
+
+            @Override
+            public void onErrorResponse(String errorMessage) {
+                LogHelper.logError(TAG_DEBUG, "getBanners request failed!");
+                mAdsBannerSimpleDraweeView.setVisibility(View.GONE);
             }
         }, null).send();
     }

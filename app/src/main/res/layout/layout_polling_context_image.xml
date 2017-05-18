@@ -13,5 +13,4 @@
     app:failureImageScaleType="centerInside"
     app:placeholderImage="@drawable/placeloder"
     app:placeholderImageScaleType="centerInside"
-    app:backgroundImage="@color/polling_background"
-    />
+    app:backgroundImage="@color/polling_background" />

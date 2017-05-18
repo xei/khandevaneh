@@ -4,16 +4,12 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 
 import com.facebook.drawee.view.SimpleDraweeView;
 
 import java.util.ArrayList;
 
 import ir.tvnasim.khandevaneh.R;
-import ir.tvnasim.khandevaneh.helper.HelperFunctions;
 import ir.tvnasim.khandevaneh.helper.imageloading.FrescoHelper;
 import ir.tvnasim.khandevaneh.view.XeiTextView;
 
@@ -22,11 +18,13 @@ import ir.tvnasim.khandevaneh.view.XeiTextView;
  * All rights reserved by Digikala.
  */
 
-public class PollingListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
+class PollingListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
+    private int mType;
     private ArrayList<PollingListItem> mList;
 
-    public PollingListAdapter(ArrayList<PollingListItem> list) {
+    PollingListAdapter(int type, ArrayList<PollingListItem> list) {
+        this.mType = type;
         this.mList = list;
     }
 
@@ -50,7 +48,7 @@ public class PollingListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
             holder.itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View clickedView) {
-                    PollingActivity.start(clickedView.getContext(), item.getId());
+                    PollingActivity.start(clickedView.getContext(), mType, item.getId());
                 }
             });
         }
@@ -63,7 +61,7 @@ public class PollingListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
         return mList.size();
     }
 
-    class AdsBannerViewHolder extends RecyclerView.ViewHolder {
+    private class AdsBannerViewHolder extends RecyclerView.ViewHolder {
 
         SimpleDraweeView bannerView;
 
@@ -74,7 +72,7 @@ public class PollingListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
         }
     }
 
-    class ListItemViewHolder extends RecyclerView.ViewHolder {
+    private class ListItemViewHolder extends RecyclerView.ViewHolder {
 
         View itemView;
         XeiTextView title;

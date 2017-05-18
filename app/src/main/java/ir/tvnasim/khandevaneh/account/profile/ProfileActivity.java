@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ImageButton;
 
 import com.facebook.drawee.view.SimpleDraweeView;
 
@@ -24,13 +25,13 @@ public class ProfileActivity extends BaseActivity {
 
     private static final String TAG_REQUEST_SEND_PARTICIPATE_REQUEST = "requestTag_profileActivity_sendParticipateRequest";
 
+    private ImageButton mEditProfileImageButton;
     private SimpleDraweeView mAvatarSimpleDraweeView;
     private XeiTextView mFirstNameTextView;
     private XeiTextView mLastNameTextView;
     private XeiTextView mPhoneNoTextView;
     private XeiTextView mEmailAddressTextView;
     private XeiTextView mPostalAddressTextView;
-    private XeiButton mEditProfileButton;
     private XeiButton mSubscribeButton;
     private XeiButton mParticipateButton;
 
@@ -48,6 +49,11 @@ public class ProfileActivity extends BaseActivity {
     }
 
     @Override
+    public int getToolbarViewId() {
+        return R.layout.toolbar_profile;
+    }
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
@@ -58,13 +64,13 @@ public class ProfileActivity extends BaseActivity {
     }
 
     private void findViews() {
+        mEditProfileImageButton = (ImageButton) findViewById(R.id.toolbarHome_imageButton_edit);
         mAvatarSimpleDraweeView = (SimpleDraweeView) findViewById(R.id.activityProfile_simpleDraweeView_avatar);
         mFirstNameTextView = (XeiTextView) findViewById(R.id.activityProfile_xeiTextView_firstName);
         mLastNameTextView = (XeiTextView) findViewById(R.id.activityProfile_xeiTextView_lastName);
         mPhoneNoTextView = (XeiTextView) findViewById(R.id.activityProfile_xeiTextView_phoneNo);
         mEmailAddressTextView = (XeiTextView) findViewById(R.id.activityProfile_xeiTextView_emailAddress);
         mPostalAddressTextView = (XeiTextView) findViewById(R.id.activityProfile_xeiTextView_postalAddress);
-        mEditProfileButton = (XeiButton) findViewById(R.id.activityProfile_xeiButton_editProfile);
         mSubscribeButton = (XeiButton) findViewById(R.id.activityProfile_xeiButton_subscribe);
         mParticipateButton = (XeiButton) findViewById(R.id.activityProfile_xeiButton_participate);
 
@@ -81,7 +87,7 @@ public class ProfileActivity extends BaseActivity {
     }
 
     private void setOnClickListeners() {
-        mEditProfileButton.setOnClickListener(this);
+        mEditProfileImageButton.setOnClickListener(this);
         mSubscribeButton.setOnClickListener(this);
         mParticipateButton.setOnClickListener(this);
     }
@@ -117,7 +123,7 @@ public class ProfileActivity extends BaseActivity {
         super.onClick(clickedView);
 
         switch (clickedView.getId()) {
-            case R.id.activityProfile_xeiButton_editProfile:
+            case R.id.toolbarHome_imageButton_edit:
                 new KhandevanehDialog(this, getString(R.string.inform_notImplemented), null).show();
                 break;
 

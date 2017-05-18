@@ -51,9 +51,8 @@ public class NoNetworkActivity extends AppCompatActivity implements View.OnClick
         if (HelperFunctions.isNetworkConnected()) {
             if (mStarterName.equals(LaunchActivity.class.getSimpleName())) {
                 LaunchActivity.start(this);
-            } else {
-                finish();
             }
+            finish();
         }
     }
 

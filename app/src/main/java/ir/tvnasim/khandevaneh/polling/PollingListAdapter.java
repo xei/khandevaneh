@@ -10,6 +10,7 @@ import com.facebook.drawee.view.SimpleDraweeView;
 import java.util.ArrayList;
 
 import ir.tvnasim.khandevaneh.R;
+import ir.tvnasim.khandevaneh.app.Banner;
 import ir.tvnasim.khandevaneh.helper.imageloading.FrescoHelper;
 import ir.tvnasim.khandevaneh.view.XeiTextView;
 
@@ -20,7 +21,11 @@ import ir.tvnasim.khandevaneh.view.XeiTextView;
 
 class PollingListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
+    private static final int TYPE_ITEM_VIEW_ADS_BANNER = 1;
+    private static final int TYPE_ITEM_VIEW_LIST_ITEM = 2;
+
     private int mType;
+    private Banner mAdsBanner;
     private ArrayList<PollingListItem> mList;
 
     PollingListAdapter(int type, ArrayList<PollingListItem> list) {
@@ -28,9 +33,29 @@ class PollingListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         this.mList = list;
     }
 
+    public void setAdsBanner(Banner adsBanner) {
+        this.mAdsBanner = adsBanner;
+        notifyDataSetChanged();
+    }
+
+    @Override
+    public int getItemViewType(int position) {
+        if (mAdsBanner != null && position == 0) {
+            return TYPE_ITEM_VIEW_ADS_BANNER;
+        }
+        return TYPE_ITEM_VIEW_LIST_ITEM;
+    }
+
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        return new ListItemViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.row_polling_list, parent, false));
+        if (viewType == TYPE_ITEM_VIEW_ADS_BANNER) {
+            return new AdsBannerViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.row_polling_list_banner, parent, false));
+        } else if (viewType == TYPE_ITEM_VIEW_LIST_ITEM) {
+            return new ListItemViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.row_polling_list, parent, false));
+        } else {
+            // Trap
+            return null;
+        }
     }
 
     @Override
@@ -38,10 +63,16 @@ class PollingListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
         if (holder instanceof AdsBannerViewHolder) {
             AdsBannerViewHolder adsBannerViewHolder = (AdsBannerViewHolder) holder;
-            // TODO ...
+            FrescoHelper.setImageUrl(adsBannerViewHolder.bannerView, mAdsBanner.getImageUrl());
         } else if (holder instanceof ListItemViewHolder) {
             ListItemViewHolder listItemViewHolder = (ListItemViewHolder) holder;
-            final PollingListItem item = mList.get(position);
+            final PollingListItem item;
+            if (mAdsBanner != null) {
+                item = mList.get(position - 1);
+            } else {
+                item = mList.get(position);
+            }
+
             listItemViewHolder.title.setText(item.getTitle());
             FrescoHelper.setImageUrl(listItemViewHolder.image, item.getImageUrl());
 
@@ -53,12 +84,15 @@ class PollingListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
             });
         }
 
-
     }
 
     @Override
     public int getItemCount() {
-        return mList.size();
+        if (mAdsBanner != null) {
+            return mList.size() + 1;
+        } else {
+            return mList.size();
+        }
     }
 
     private class AdsBannerViewHolder extends RecyclerView.ViewHolder {
@@ -68,7 +102,7 @@ class PollingListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         AdsBannerViewHolder(final View itemView) {
             super(itemView);
 
-            bannerView = new SimpleDraweeView(itemView.getContext());
+            bannerView = (SimpleDraweeView) itemView;
         }
     }
 

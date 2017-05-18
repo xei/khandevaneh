@@ -10,6 +10,7 @@ import android.util.Log;
 import java.util.ArrayList;
 
 import ir.tvnasim.khandevaneh.R;
+import ir.tvnasim.khandevaneh.app.Banner;
 import ir.tvnasim.khandevaneh.app.BaseActivity;
 import ir.tvnasim.khandevaneh.helper.LogHelper;
 import ir.tvnasim.khandevaneh.helper.webapi.WebApiHelper;
@@ -20,6 +21,7 @@ public class PollingListActivity extends BaseActivity {
 
     private static final String KEY_EXTRA_TYPE = "KEY_EXTRA_TYPE";
     private static final String TAG_REQUEST_GET_POLLING_LIST = "requestTag_pollingListActivity_getPollingList";
+    private static final String TAG_REQUEST_GET_ADS_BANNER = "requestTag_pollingListActivity_getAdsBanner";
 
     public static final int TYPE_POLLING = 1;
     public static final int TYPE_COMPETITION = 2;
@@ -37,6 +39,14 @@ public class PollingListActivity extends BaseActivity {
     }
 
     @Override
+    protected ArrayList<String> getRequestTags() {
+        ArrayList<String> tags = super.getRequestTags();
+        tags.add(TAG_REQUEST_GET_POLLING_LIST);
+        tags.add(TAG_REQUEST_GET_ADS_BANNER);
+        return tags;
+    }
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_polling_list);
@@ -47,6 +57,7 @@ public class PollingListActivity extends BaseActivity {
         initRecyclerView();
 
         fetchPollingListFromApi();
+        fetchAdsBannerFromApi();
     }
 
     private void findViews() {
@@ -60,6 +71,28 @@ public class PollingListActivity extends BaseActivity {
         mListRecyclerView.setAdapter(mListAdapter);
     }
 
+    // TODO: this is fucking
+    private Banner findAppropriateBanner(ArrayList<Banner> banners) {
+        if (banners != null) {
+            if (mType == PollingListActivity.TYPE_POLLING) {
+                for (Banner banner : banners) {
+                    if(banner.getLocation().equals(Banner.LOCATION_POLLING_LIST)) {
+                        return banner;
+                    }
+                }
+            } else if (mType == PollingListActivity.TYPE_COMPETITION) {
+                for (Banner banner : banners) {
+                    if(banner.getLocation().equals(Banner.LOCATION_COMPETITION_LIST)) {
+                        return banner;
+                    } else {
+                        return null;
+                    }
+                }
+            }
+        }
+        return banners.get(0);
+//        return null;
+    }
 
     private void fetchPollingListFromApi() {
 
@@ -81,6 +114,20 @@ public class PollingListActivity extends BaseActivity {
             }
         }, null).send();
 
+    }
+
+    private void fetchAdsBannerFromApi() {
+        WebApiHelper.getBanners(TAG_REQUEST_GET_ADS_BANNER, new WebApiRequest.WebApiListener<ArrayList<Banner>>() {
+            @Override
+            public void onResponse(ArrayList<Banner> banners, ScoresContainer scoresContainer) {
+                mListAdapter.setAdsBanner(findAppropriateBanner(banners));
+            }
+
+            @Override
+            public void onErrorResponse(String errorMessage) {
+                LogHelper.logError(TAG_DEBUG, "getPollingList request failed:" + errorMessage);
+            }
+        }, null).send();
     }
 
 }

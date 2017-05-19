@@ -7,7 +7,7 @@
     <color name="materialGreen800">#2e7d32</color>
     <color name="materialGreen900">#1b5e20</color>
 
-    <color name="khandevanehGreen">#119e17</color>
+    <color name="khandevanehGreen">#004529</color>
 
     <color name="colorPrimary">#fff</color>
     <color name="colorPrimaryDark">#fff</color>
@@ -34,6 +34,9 @@
     <color name="text_toolbar_home_score">#1b5e20</color>
     <color name="background_home">#E5E9F1</color>
     <color name="border_home_menu_items">#1b5e20</color>
+
+    <!-- Profile -->
+    <color name="profileCompletion_background">#B02533</color>
 
     <!-- LiveLike -->
     <color name="liveLikeList_background_screen">#00682A</color>

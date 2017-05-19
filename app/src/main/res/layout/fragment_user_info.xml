@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/profileCompletion_background"
     tools:context="ir.tvnasim.khandevaneh.account.profile.UserInfoFragment">
 
     <LinearLayout
@@ -16,12 +17,13 @@
             android:id="@+id/fragmentUserInfo_xeiTextView_label"
             android:layout_width="wrap_content"
             android:layout_height="48dp"
-            android:paddingRight="16dp"
-            android:paddingLeft="16dp"
+            android:paddingRight="24dp"
+            android:paddingLeft="24dp"
             android:layout_gravity="right"
             android:gravity="right|center_vertical"
             android:text="نام:"
-            android:textColor="@color/textColor_dark"
+            android:textColor="@color/textColor_light"
+            android:textSize="17sp"
             app:locale="fa_IR"
             app:style="bold"
             />
@@ -29,9 +31,16 @@
         <ir.tvnasim.khandevaneh.view.XeiEditText
             android:id="@+id/fragmentUserInfo_xeiTextView_value"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="48dp"
             android:layout_margin="16dp"
-            android:gravity="right"/>
+            android:gravity="right|center_vertical"
+            android:paddingRight="16dp"
+            android:paddingLeft="16dp"
+            android:textColor="@color/textColor_dark"
+            android:background="@drawable/background_row_leaderboard"
+            android:lines="1"
+            android:singleLine="true"
+            app:locale="fa_IR" />
 
         <ir.tvnasim.khandevaneh.view.XeiButton
             android:id="@+id/fragmentUserInfo_xeiButton_next"
@@ -42,7 +51,7 @@
             android:layout_gravity="center"
             android:padding="8dp"
             android:background="@drawable/background_button_participate"
-            android:textColor="#E70D0D"
+            android:textColor="#000"
             android:textSize="17sp"
             android:textStyle="bold"
             app:locale="fa_IR"

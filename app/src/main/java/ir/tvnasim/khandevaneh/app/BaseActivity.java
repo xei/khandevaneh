@@ -177,16 +177,20 @@ public class BaseActivity extends AppCompatActivity implements View.OnClickListe
                 }
             });
 
-            if (newMelonScore != oldMelonScore) {
-                User.getInstance().setMelonScore(newMelonScore);
-                mMelonScoreTextView.setText(HelperFunctions.convertNumberStringToPersian(String.valueOf(newMelonScore)));
-                mMelonScoreLinearLayout.startAnimation(animation);
-            }
+            if (newMelonScore == oldMelonScore && newExperienceScore == oldExperienceScore) {
+                onShakingFinishedListener.onShakingFinish();
+            } else {
+                if (newMelonScore != oldMelonScore) {
+                    User.getInstance().setMelonScore(newMelonScore);
+                    mMelonScoreTextView.setText(HelperFunctions.convertNumberStringToPersian(String.valueOf(newMelonScore)));
+                    mMelonScoreLinearLayout.startAnimation(animation);
+                }
 
-            if (newExperienceScore != oldExperienceScore) {
-                User.getInstance().setExperienceScore(newExperienceScore);
-                mExperienceScoreTextView.setText(HelperFunctions.convertNumberStringToPersian(String.valueOf(newExperienceScore)));
-                mExperienceScoreLinearLayout.startAnimation(animation);
+                if (newExperienceScore != oldExperienceScore) {
+                    User.getInstance().setExperienceScore(newExperienceScore);
+                    mExperienceScoreTextView.setText(HelperFunctions.convertNumberStringToPersian(String.valueOf(newExperienceScore)));
+                    mExperienceScoreLinearLayout.startAnimation(animation);
+                }
             }
 
         }

@@ -4,8 +4,62 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="ir.tvnasim.khandevaneh.account.profile.UserAvatarFragment">
+    android:background="@color/profileCompletion_background"
+    tools:context="ir.tvnasim.khandevaneh.account.profile.UserAvatarFragment" >
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_centerInParent="true">
 
+        <ir.tvnasim.khandevaneh.view.XeiTextView
+            android:id="@+id/fragmentUserAvatar_xeiTextView_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:minHeight="48dp"
+            android:paddingRight="24dp"
+            android:paddingLeft="24dp"
+            android:layout_gravity="right"
+            android:gravity="right|center_vertical"
+            android:text="اگه این عکسو دوس نداری روش بزن و عوضش کن!"
+            android:textColor="@color/textColor_light"
+            android:textSize="17sp"
+            app:locale="fa_IR"
+            app:style="bold" />
+
+        <com.facebook.drawee.view.SimpleDraweeView
+            android:id="@+id/fragmentUserAvatar_simpleDraweeView_avatar"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:layout_margin="32dp"
+            android:layout_gravity="center"
+            app:actualImageScaleType="centerInside"
+            app:backgroundImage="@color/placeholder_fresco"
+            app:failureImage="@drawable/logo"
+            app:failureImageScaleType="centerInside"
+            app:placeholderImage="@drawable/avatar_default"
+            app:placeholderImageScaleType="centerInside"
+            app:roundAsCircle="true"
+            app:roundingBorderColor="@color/border_avatar"
+            app:roundingBorderWidth="@dimen/width_rounding_border_userRankSection_avatar" />
+
+        <ir.tvnasim.khandevaneh.view.XeiButton
+            android:id="@+id/fragmentUserAvatar_xeiButton_next"
+            android:layout_width="200dp"
+            android:layout_height="48dp"
+            android:layout_margin="8dp"
+            android:layout_marginBottom="16dp"
+            android:layout_gravity="center"
+            android:padding="8dp"
+            android:background="@drawable/background_button_participate"
+            android:textColor="#000"
+            android:textSize="17sp"
+            android:textStyle="bold"
+            android:text="بعدی"
+            app:locale="fa_IR"
+            app:style="bold" />
+
+    </LinearLayout>
 
 </RelativeLayout>

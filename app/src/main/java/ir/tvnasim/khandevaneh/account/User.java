@@ -23,6 +23,7 @@ public class User {
     private String mFirstName;
     private String mLastName;
     private String mAvatar;
+    private String mAvatarEncodedBitmap;
     private String mPhoneNo;
     private String mEmailAddress;
     private String mPostalAddress;
@@ -120,6 +121,14 @@ public class User {
         this.mAvatar = avatar;
     }
 
+    public String getAvatarEncodedBitmap() {
+        return mAvatarEncodedBitmap;
+    }
+
+    public void setAvatarEncodedBitmap(String avatarEncodedBitmap) {
+        this.mAvatarEncodedBitmap = avatarEncodedBitmap;
+    }
+
     public String getPhoneNo() {
         return mPhoneNo;
     }
@@ -149,10 +158,7 @@ public class User {
     }
 
     public boolean isProfileComplete() {
-        if (mFirstName != null && !mFirstName.isEmpty()) {
-            return true;
-        }
-        return false;
+        return this.mIsProfileComplete;
     }
 
     public void setIsProfileComplete(boolean isProfileComplete) {

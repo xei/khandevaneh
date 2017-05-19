@@ -1,27 +1,23 @@
 package ir.tvnasim.khandevaneh.account.profile;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Bitmap;
 import android.os.Bundle;
-import android.provider.MediaStore;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
-import android.util.Base64;
 import android.util.Log;
+import android.view.View;
 
-import java.io.ByteArrayOutputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
 import java.util.ArrayList;
 
 import ir.tvnasim.khandevaneh.R;
 import ir.tvnasim.khandevaneh.account.User;
 import ir.tvnasim.khandevaneh.app.BaseActivity;
+import ir.tvnasim.khandevaneh.app.ScoresContainer;
+import ir.tvnasim.khandevaneh.helper.LogHelper;
 import ir.tvnasim.khandevaneh.helper.webapi.WebApiHelper;
 import ir.tvnasim.khandevaneh.helper.webapi.WebApiRequest;
-import ir.tvnasim.khandevaneh.app.ScoresContainer;
+import ir.tvnasim.khandevaneh.view.KhandevanehDialog;
 
 public class ProfileCompletionActivity extends BaseActivity {
 
@@ -70,7 +66,7 @@ public class ProfileCompletionActivity extends BaseActivity {
                 break;
 
             case UserInfoFragment.WHICH_FRAGMENT_AVATAR:
-                User.getInstance().setAvatar(enteredValue);
+                User.getInstance().setAvatarEncodedBitmap(enteredValue);
                 break;
 
             case UserInfoFragment.WHICH_FRAGMENT_EMAIL_ADDRESS:
@@ -85,34 +81,13 @@ public class ProfileCompletionActivity extends BaseActivity {
                 break;
         }
 
-        if (whichFragment == 1) {
+        if (whichFragment == UserInfoFragment.WHICH_FRAGMENT_LAST_NAME) {
             mCurrentFragment++;
-            changeFragment(R.id.activityProfileCompletion_frameLayout_fragmentContainer, UserAvatarFragment.newInstance(), false);
-        } else if (whichFragment < 4) {
+            changeFragment(R.id.activityProfileCompletion_frameLayout_fragmentContainer, UserAvatarFragment.newInstance(), true);
+        } else if (whichFragment < UserInfoFragment.WHICH_FRAGMENT_POSTAL_ADDRESS) {
             changeFragment(R.id.activityProfileCompletion_frameLayout_fragmentContainer, UserInfoFragment.newInstance(++mCurrentFragment), true);
-        } else if (whichFragment == 4) {
-            WebApiHelper.editUserInfo(User.getInstance(), TAG_REQUEST_EDIT_USER_INFO, new WebApiRequest.WebApiListener<Boolean>() {
-                @Override
-                public void onResponse(Boolean response, ScoresContainer scoresContainer) {
-
-                    if (scoresContainer != null) {
-                        updateScores(scoresContainer.getMelonScore(), scoresContainer.getExperienceScore(), new OnShakingFinishedListener() {
-                            @Override
-                            public void onShakingFinish() {
-                                finish();
-                            }
-                        });
-                    }
-
-                    User.getInstance().setIsProfileComplete(true);
-
-                }
-
-                @Override
-                public void onErrorResponse(String errorMessage) {
-
-                }
-            }, null).send();
+        } else if (whichFragment == UserInfoFragment.WHICH_FRAGMENT_POSTAL_ADDRESS) {
+            sendUpdatedUserInfoToApi();
         } else {
             Log.e(TAG_DEBUG, "invalid fragment number!");
         }
@@ -120,28 +95,42 @@ public class ProfileCompletionActivity extends BaseActivity {
     }
 
     @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
+    public void onBackPressed() {
+        mCurrentFragment--;
+        super.onBackPressed();
+    }
 
-        if (requestCode == 65547) {
-            if (resultCode == Activity.RESULT_OK) {
-                if (data != null) {
-                    try {
-                        Bitmap bmp = MediaStore.Images.Media.getBitmap(getContentResolver(), data.getData());
-//                        String bmpStr =
-                        ByteArrayOutputStream baos = new ByteArrayOutputStream();
-                        bmp.compress(Bitmap.CompressFormat.PNG, 100, baos);
-                        byte[] ba = baos.toByteArray();
-                        String encoded = Base64.encodeToString(ba, Base64.DEFAULT);
-                        onInfoEnter(UserInfoFragment.WHICH_FRAGMENT_AVATAR, encoded);
-                    } catch (FileNotFoundException e) {
-                        e.printStackTrace();
-                    } catch (IOException e) {
-                        e.printStackTrace();
+    private void sendUpdatedUserInfoToApi() {
+        WebApiHelper.editUserInfo(User.getInstance(), TAG_REQUEST_EDIT_USER_INFO, new WebApiRequest.WebApiListener<Boolean>() {
+            @Override
+            public void onResponse(Boolean response, final ScoresContainer scoresContainer) {
+
+                new KhandevanehDialog(ProfileCompletionActivity.this, "مرسی که پروفایلت رو کامل کردی.", new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        if (scoresContainer != null) {
+                            updateScores(scoresContainer.getMelonScore(), scoresContainer.getExperienceScore(), new OnShakingFinishedListener() {
+                                @Override
+                                public void onShakingFinish() {
+                                    finish();
+                                }
+                            });
+                        } else {
+                            finish();
+                        }
+
+                        User.getInstance().setAvatarEncodedBitmap(null);
                     }
-                }
-            }
-        }
+                }).show();
 
+                User.getInstance().setIsProfileComplete(true);
+            }
+
+            @Override
+            public void onErrorResponse(String errorMessage) {
+                LogHelper.logError(TAG_DEBUG, "editUserInfo request failed: " + errorMessage);
+                new KhandevanehDialog(ProfileCompletionActivity.this, "یه مشکلی در ارتباط با سرور وجود داره :(", null).show();
+            }
+        }, null).send();
     }
 }

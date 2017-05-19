@@ -1,16 +1,16 @@
 package ir.tvnasim.khandevaneh.account.profile;
 
-import android.content.Context;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v4.content.ContextCompat;
+import android.text.InputType;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import ir.tvnasim.khandevaneh.R;
+import ir.tvnasim.khandevaneh.helper.HelperFunctions;
+import ir.tvnasim.khandevaneh.view.KhandevanehDialog;
 import ir.tvnasim.khandevaneh.view.XeiButton;
 import ir.tvnasim.khandevaneh.view.XeiEditText;
 import ir.tvnasim.khandevaneh.view.XeiTextView;
@@ -62,14 +62,25 @@ public class UserInfoFragment extends Fragment {
         mLabelTextView.setText(selectLabel());
         mNextButton.setText(selectButtonText());
 
+        if (mWhichFragment == WHICH_FRAGMENT_EMAIL_ADDRESS) {
+            changeEditTextAttributesForEmailAddress();
+        } else if (mWhichFragment == WHICH_FRAGMENT_POSTAL_ADDRESS) {
+            changeEditTextAttributesForPostalAddress();
+        }
+
         mNextButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
                 String value = mValueEditText.getText().toString();
-                if (value != null && !value.isEmpty()) {
-                    ((ProfileCompletionActivity)getActivity()).onInfoEnter(mWhichFragment, value);
+                if (isMandatory()) {
+                    if (!value.isEmpty()) {
+                        ((ProfileCompletionActivity)getActivity()).onInfoEnter(mWhichFragment, value);
+                    } else {
+                        new KhandevanehDialog(getContext(), "پر کردن این فیلد الزامیه رفیق!", null).show();
+                    }
                 } else {
-                    Toast.makeText(getContext(), "پر کردن فیلد بالا الزامی است", Toast.LENGTH_SHORT).show();
+                    ((ProfileCompletionActivity)getActivity()).onInfoEnter(mWhichFragment, value);
                 }
                 
             }
@@ -78,22 +89,32 @@ public class UserInfoFragment extends Fragment {
         return view;
     }
 
+    private void changeEditTextAttributesForEmailAddress() {
+        mValueEditText.setInputType(InputType.TYPE_TEXT_VARIATION_EMAIL_ADDRESS);
+    }
+
+    private void changeEditTextAttributesForPostalAddress() {
+        mValueEditText.getLayoutParams().height = HelperFunctions.dpToPx(getContext(), 300);
+        int padding = HelperFunctions.dpToPx(getContext(), 16);
+        mValueEditText.setPadding(padding, padding, padding, padding);
+        mValueEditText.setSingleLine(false);
+        mValueEditText.setLines(10);
+        mValueEditText.setGravity(Gravity.RIGHT | Gravity.TOP);
+    }
+
     private String selectLabel() {
         switch (mWhichFragment) {
             case WHICH_FRAGMENT_FIRST_NAME:
-                return "نام";
+                return "نام خود را وارد کنید (الزامی)";
 
             case WHICH_FRAGMENT_LAST_NAME:
-                return "نام خانوادگی";
-
-            case WHICH_FRAGMENT_AVATAR:
-                return "آواتار";
+                return "نام خانوادگی خود را وارد کنید (الزامی)";
 
             case WHICH_FRAGMENT_EMAIL_ADDRESS:
-                return "آدرس ایمیل";
+                return "آدرس ایمیل خود را وارد کنید (اختیاری)";
 
             case WHICH_FRAGMENT_POSTAL_ADDRESS:
-                return "آدرس پستی";
+                return "آدرس پستی خود را وارد کنید (اختیاری)";
 
             default:
                 return "";
@@ -108,8 +129,6 @@ public class UserInfoFragment extends Fragment {
             case WHICH_FRAGMENT_LAST_NAME:
                 return "بعدی";
 
-            case WHICH_FRAGMENT_AVATAR:
-                return "بعدی";
             case WHICH_FRAGMENT_EMAIL_ADDRESS:
                 return "بعدی";
 
@@ -118,6 +137,24 @@ public class UserInfoFragment extends Fragment {
 
             default:
                 return "";
+        }
+    }
+
+    private boolean isMandatory() {
+        switch (mWhichFragment) {
+            case WHICH_FRAGMENT_FIRST_NAME:
+                return true;
+
+            case WHICH_FRAGMENT_LAST_NAME:
+                return true;
+
+            case WHICH_FRAGMENT_EMAIL_ADDRESS:
+            case WHICH_FRAGMENT_POSTAL_ADDRESS:
+                return false;
+
+            default:
+                // Trap
+                return true;
         }
     }
 

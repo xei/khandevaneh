@@ -179,7 +179,7 @@ public final class WebApiHelper {
         params.put("lastName", user.getLastName());
         params.put("email", user.getEmailAddress());
         params.put("address", user.getPostalAddress());
-        params.put("profilePicFile", user.getAvatar());
+        params.put("profilePicFile", user.getAvatarEncodedBitmap());
         params.put("profilePicType", "1");
 
         return new WebApiRequest<>(

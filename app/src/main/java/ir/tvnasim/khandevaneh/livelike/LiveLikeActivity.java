@@ -3,6 +3,7 @@ package ir.tvnasim.khandevaneh.livelike;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
@@ -253,6 +254,8 @@ public class LiveLikeActivity extends BaseActivity {
             case R.id.activityLiveLike_simpleDraweeView_banner:
                 try {
                     LaunchActivity.goTo(this, LaunchActivity.DESTINATION_BROWSER, clickedView.getTag().toString());
+                } catch (NullPointerException npe) {
+                    Log.e(TAG_DEBUG, "destination param is null: " + npe);
                 } catch (InValidDestinationException ignored) {}
                 break;
         }

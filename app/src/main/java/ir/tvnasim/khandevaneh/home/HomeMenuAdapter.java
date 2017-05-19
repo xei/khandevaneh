@@ -2,16 +2,13 @@ package ir.tvnasim.khandevaneh.home;
 
 import android.content.Context;
 import android.os.Bundle;
-import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.Toast;
 
 import com.rd.PageIndicatorView;
-import com.rd.RtlMode;
 import com.rd.animation.AnimationType;
 
 import java.util.ArrayList;
@@ -19,6 +16,7 @@ import java.util.ArrayList;
 import ir.tvnasim.khandevaneh.R;
 import ir.tvnasim.khandevaneh.account.User;
 import ir.tvnasim.khandevaneh.account.login.LoginActivity;
+import ir.tvnasim.khandevaneh.archive.ArchiveCategoriesActivity;
 import ir.tvnasim.khandevaneh.helper.LogHelper;
 import ir.tvnasim.khandevaneh.leaderboard.LeaderBoardActivity;
 import ir.tvnasim.khandevaneh.livelike.LiveLikeActivity;
@@ -84,7 +82,6 @@ public class HomeMenuAdapter extends RecyclerView.Adapter implements View.OnClic
         //Archive
         HomeMenuItem archive = new HomeMenuItem();
         archive.setId(HomeMenuItem.ID_ARCHIVE);
-//        archive.setBackgroundImageResourceId(R.drawable.ic_menu_home_archive);
         archive.setBackgroundImageResourceId(R.drawable.ic_menu_home_archive);
         menuItems.add(archive);
 
@@ -170,8 +167,7 @@ public class HomeMenuAdapter extends RecyclerView.Adapter implements View.OnClic
                             StoreActivity.start(context);
                             break;
                         case HomeMenuItem.ID_ARCHIVE:
-                            new KhandevanehDialog(context, context.getString(R.string.inform_notImplemented), null).show();
-//                ArchiveActivity.start(context);
+                            ArchiveCategoriesActivity.start(context);
                             break;
                         case HomeMenuItem.ID_POLLING:
                             PollingListActivity.start(context, PollingListActivity.TYPE_POLLING);

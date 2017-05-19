@@ -8,6 +8,9 @@ import java.util.HashMap;
 
 import ir.tvnasim.khandevaneh.account.User;
 import ir.tvnasim.khandevaneh.app.App;
+import ir.tvnasim.khandevaneh.archive.ArchiveCategory;
+import ir.tvnasim.khandevaneh.archive.ArchiveItem;
+import ir.tvnasim.khandevaneh.archive.ArchiveListItem;
 import ir.tvnasim.khandevaneh.helper.HelperFunctions;
 import ir.tvnasim.khandevaneh.polling.PoleResult;
 import ir.tvnasim.khandevaneh.app.Banner;
@@ -53,6 +56,13 @@ public final class WebApiHelper {
     private static final String ENDPOINT_GET_POLLING_ITEM = "poll/getItem";
     private static final String ENDPOINT_POLL = "poll/like";
     private static final String ENDPOINT_GET_POLLING_STATISTICS = "poll/getStatistics";
+
+    private static final String ENDPOINT_GET_ARCHIVE_FILTERS_AND_SORTINGS = "archive/getSortAndFilter";
+    private static final String ENDPOINT_GET_ARCHIVE_CATEGORIES = "archive/getCategory";
+    private static final String ENDPOINT_GET_ARCHIVE_LIST = "archive/getList";
+    private static final String ENDPOINT_GET_ARCHIVE_ITEM = "archive/getItem";
+    private static final String ENDPOINT_LIKE_ARCHIVE = "archive/like";
+    private static final String ENDPOINT_COMMENT_ARCHIVE = "archive/comment";
 
     private static final String ENDPOINT_GET_STORE_LIST = "store/getList";
 
@@ -282,6 +292,51 @@ public final class WebApiHelper {
                 ENDPOINT_GET_POLLING_STATISTICS + "?id=" + pollingId,
                 null,
                 new TypeToken<WebApiRequest.WebApiResponse<ArrayList<PollingStatisticsItem>>>() {
+                }.getType(),
+                requestTag,
+                webApiListener,
+                fragment
+        );
+    }
+
+    public static WebApiRequest<ArrayList<ArchiveCategory>> getArchiveCategories(String requestTag, WebApiRequest.WebApiListener<ArrayList<ArchiveCategory>> webApiListener, WebApiRequest.LoadRequests fragment) {
+
+        return new WebApiRequest<>(
+                Request.Method.GET,
+                ENDPOINT_GET_ARCHIVE_CATEGORIES,
+                null,
+                new TypeToken<WebApiRequest.WebApiResponse<ArrayList<ArchiveCategory>>>() {
+                }.getType(),
+                requestTag,
+                webApiListener,
+                fragment
+        );
+    }
+
+    public static WebApiRequest<ArrayList<ArchiveListItem>> getArchiveList(String categoryId, String requestTag, WebApiRequest.WebApiListener<ArrayList<ArchiveListItem>> webApiListener, WebApiRequest.LoadRequests fragment) {
+
+        HashMap<String, String> params = new HashMap<>();
+        params.put("categoryId", categoryId);
+
+        return new WebApiRequest<>(
+                Request.Method.GET,
+                ENDPOINT_GET_ARCHIVE_LIST,
+                params,
+                new TypeToken<WebApiRequest.WebApiResponse<ArrayList<ArchiveListItem>>>() {
+                }.getType(),
+                requestTag,
+                webApiListener,
+                fragment
+        );
+    }
+
+    public static WebApiRequest<ArchiveItem> getArchiveItem(String id, String requestTag, WebApiRequest.WebApiListener<ArchiveItem> webApiListener, WebApiRequest.LoadRequests fragment) {
+
+        return new WebApiRequest<>(
+                Request.Method.GET,
+                ENDPOINT_GET_ARCHIVE_ITEM + "?id=" + id,
+                null,
+                new TypeToken<WebApiRequest.WebApiResponse<ArchiveItem>>() {
                 }.getType(),
                 requestTag,
                 webApiListener,

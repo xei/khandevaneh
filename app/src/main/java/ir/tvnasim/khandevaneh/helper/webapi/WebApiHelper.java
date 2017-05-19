@@ -319,7 +319,7 @@ public final class WebApiHelper {
         params.put("categoryId", categoryId);
 
         return new WebApiRequest<>(
-                Request.Method.GET,
+                Request.Method.POST,
                 ENDPOINT_GET_ARCHIVE_LIST,
                 params,
                 new TypeToken<WebApiRequest.WebApiResponse<ArrayList<ArchiveListItem>>>() {

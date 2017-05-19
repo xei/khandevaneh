@@ -20,6 +20,7 @@ import ir.tvnasim.khandevaneh.app.ScoresContainer;
 public class PollingListActivity extends BaseActivity {
 
     private static final String KEY_EXTRA_TYPE = "KEY_EXTRA_TYPE";
+
     private static final String TAG_REQUEST_GET_POLLING_LIST = "requestTag_pollingListActivity_getPollingList";
     private static final String TAG_REQUEST_GET_ADS_BANNER = "requestTag_pollingListActivity_getAdsBanner";
 

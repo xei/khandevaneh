@@ -84,8 +84,6 @@ public class PollingListActivity extends BaseActivity {
                 for (Banner banner : banners) {
                     if(banner.getLocation().equals(Banner.LOCATION_COMPETITION_LIST)) {
                         return banner;
-                    } else {
-                        return null;
                     }
                 }
             }

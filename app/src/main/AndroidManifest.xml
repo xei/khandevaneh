@@ -13,6 +13,25 @@
         android:roundIcon="@mipmap/ic_launcher"
         android:supportsRtl="true"
         android:theme="@style/KhandevanehTheme">
+
+        <service android:name=".helper.firebase.notification.KhandevanehFirebaseInstanceIDService">
+            <intent-filter>
+                <action android:name="com.google.firebase.INSTANCE_ID_EVENT" />
+            </intent-filter>
+        </service>
+        <service
+            android:name=".helper.firebase.notification.KhandevanehFirebaseMessagingService">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT"/>
+            </intent-filter>
+        </service>
+        <meta-data
+            android:name="com.google.firebase.messaging.default_notification_color"
+            android:resource="@color/polling_background" />
+        <meta-data
+            android:name="com.google.firebase.messaging.default_notification_icon"
+            android:resource="@drawable/ic_stat_notification" />
+
         <activity
             android:name=".app.LaunchActivity"
             android:screenOrientation="portrait" >
@@ -22,7 +41,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".app.NoNetworkActivity"
+        <activity
+            android:name=".app.NoNetworkActivity"
             android:screenOrientation="portrait" />
         <activity
             android:name=".app.UpdateActivity"
@@ -60,6 +80,7 @@
         <activity
             android:name=".polling.PollingStatisticsActivity"
             android:screenOrientation="portrait" />
+
     </application>
 
 </manifest>

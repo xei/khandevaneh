@@ -10,9 +10,9 @@ import com.google.firebase.iid.FirebaseInstanceIdService;
  * Created by hamidreza on 11/13/16.
  */
 
-public class DigikalaFirebaseInstanceIDService extends FirebaseInstanceIdService {
+public class KhandevanehFirebaseInstanceIDService extends FirebaseInstanceIdService {
 
-    private static final String TAG_DEBUG = DigikalaFirebaseInstanceIDService.class.getSimpleName();
+    private static final String TAG_DEBUG = KhandevanehFirebaseInstanceIDService.class.getSimpleName();
 
     /**
      * Called if InstanceID token is updated. This may occur if the security of

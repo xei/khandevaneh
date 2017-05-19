@@ -29,6 +29,9 @@ public class LaunchActivity extends AppCompatActivity {
 
     protected static final String TAG_DEBUG = LaunchActivity.class.getSimpleName();
 
+    public static final String KEY_DESTINATION = "KEY_DESTINATION";
+    public static final String KEY_PARAM = "KEY_PARAM";
+
     protected static final String TAG_REQUEST_GET_STARTUP_CONFIG = "requestTag_launchActivity_getStartupConfig";
 
     public static final String DESTINATION_NO_NETWORK = "NoNetworkActivity";
@@ -57,6 +60,8 @@ public class LaunchActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_launch);
 
+        handleFcmIntent();
+
         if (HelperFunctions.isNetworkConnected()) {
             WebApiHelper.getStartupConfig(TAG_REQUEST_GET_STARTUP_CONFIG, new WebApiRequest.WebApiListener<StartupConfig>() {
                 @Override
@@ -74,6 +79,17 @@ public class LaunchActivity extends AppCompatActivity {
             finish();
         }
 
+    }
+
+    protected void handleFcmIntent() {
+
+        String destination = getIntent().getStringExtra(KEY_DESTINATION);
+        String param = getIntent().getStringExtra(KEY_PARAM);
+        try {
+            goTo(this, destination, param);
+        } catch (InValidDestinationException ivde) {
+            LogHelper.logError(TAG_DEBUG, ivde.getMessage());
+        }
     }
 
     private void openAppropriateActivity(StartupConfig startupConfig) {

@@ -79,6 +79,7 @@ dependencies {
     compile 'com.facebook.fresco:animated-gif:1.2.0'
 
     compile 'com.romandanylyk:pageindicatorview:0.1.2@aar'
+    compile 'com.github.PhilJay:MPAndroidChart:v3.0.2'
 
     testCompile 'junit:junit:4.12'
 }

@@ -178,7 +178,9 @@ public class BaseActivity extends AppCompatActivity implements View.OnClickListe
             });
 
             if (newMelonScore == oldMelonScore && newExperienceScore == oldExperienceScore) {
-                onShakingFinishedListener.onShakingFinish();
+                if (onShakingFinishedListener != null) {
+                    onShakingFinishedListener.onShakingFinish();
+                }
             } else {
                 if (newMelonScore != oldMelonScore) {
                     User.getInstance().setMelonScore(newMelonScore);

@@ -16,15 +16,14 @@ import com.facebook.drawee.view.SimpleDraweeView;
 import java.util.ArrayList;
 
 import ir.tvnasim.khandevaneh.R;
-import ir.tvnasim.khandevaneh.account.User;
 import ir.tvnasim.khandevaneh.app.Banner;
 import ir.tvnasim.khandevaneh.app.BaseActivity;
+import ir.tvnasim.khandevaneh.app.ScoresContainer;
 import ir.tvnasim.khandevaneh.helper.HelperFunctions;
 import ir.tvnasim.khandevaneh.helper.LogHelper;
 import ir.tvnasim.khandevaneh.helper.imageloading.FrescoHelper;
 import ir.tvnasim.khandevaneh.helper.webapi.WebApiHelper;
 import ir.tvnasim.khandevaneh.helper.webapi.WebApiRequest;
-import ir.tvnasim.khandevaneh.app.ScoresContainer;
 import ir.tvnasim.khandevaneh.view.KhandevanehDialog;
 import ir.tvnasim.khandevaneh.view.XeiButton;
 import ir.tvnasim.khandevaneh.view.XeiTextView;

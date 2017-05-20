@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<com.facebook.drawee.view.SimpleDraweeView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/activityArchive_viewStub_archiveContext"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/polling_background"
+    app:actualImageScaleType="centerInside"
+    app:failureImage="@drawable/placeloder"
+    app:failureImageScaleType="centerInside"
+    app:placeholderImage="@drawable/placeloder"
+    app:placeholderImageScaleType="centerInside"
+    app:backgroundImage="@color/polling_background" />

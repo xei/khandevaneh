@@ -345,6 +345,23 @@ public final class WebApiHelper {
         );
     }
 
+    public static WebApiRequest<Object> likeArchive(String archiveId, String requestTag, WebApiRequest.WebApiListener<Object> webApiListener, WebApiRequest.LoadRequests fragment) {
+
+        HashMap<String, String> params = new HashMap<>();
+        params.put("id", archiveId);
+
+        return new WebApiRequest<>(
+                Request.Method.POST,
+                ENDPOINT_LIKE_ARCHIVE,
+                params,
+                new TypeToken<WebApiRequest.WebApiResponse<Object>>() {
+                }.getType(),
+                requestTag,
+                webApiListener,
+                fragment
+        );
+    }
+
     public static WebApiRequest<SectionContainer> getLiveLike(String requestTag, WebApiRequest.WebApiListener<SectionContainer> webApiListener, WebApiRequest.LoadRequests fragment) {
 
         return new WebApiRequest<>(

@@ -1,9 +1,7 @@
 package ir.tvnasim.khandevaneh.leaderboard;
 
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
+import android.graphics.drawable.GradientDrawable;
 import android.support.v7.widget.RecyclerView;
-import android.util.Base64;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,12 +20,17 @@ import ir.tvnasim.khandevaneh.helper.imageloading.FrescoHelper;
  * Created by hamidreza on 4/15/17.
  */
 
-public class LeaderBoardAdapter extends RecyclerView.Adapter<LeaderBoardAdapter.LeaderBoardViewHolder> {
+class LeaderBoardAdapter extends RecyclerView.Adapter<LeaderBoardAdapter.LeaderBoardViewHolder> {
 
     private ArrayList<LeaderViewModel> mLeaders;
+    private int mUserRank;
 
-    public LeaderBoardAdapter(ArrayList<LeaderViewModel> leaders) {
+    LeaderBoardAdapter(ArrayList<LeaderViewModel> leaders) {
         mLeaders = leaders;
+    }
+
+    void setUserRank(int userRank) {
+        this.mUserRank = userRank;
     }
 
     @Override
@@ -40,14 +43,31 @@ public class LeaderBoardAdapter extends RecyclerView.Adapter<LeaderBoardAdapter.
     public void onBindViewHolder(LeaderBoardViewHolder holder, int position) {
         LeaderViewModel leader = mLeaders.get(position);
         holder.userRank.setText(String.format(holder.rowView.getContext().getString(R.string.leaderBoard_row_rank), HelperFunctions.convertNumberStringToPersian(String.valueOf(position + 1))));
-        holder.userName.setText(leader.getFirstName());
+        holder.userName.setText(leader.getFirstName() + ' ' + leader.getLastName());
         FrescoHelper.setImageUrl(holder.userAvatar, leader.getAvatar());
-
-//        byte[] decodedString = Base64.decode(leader.getAvatar(), Base64.DEFAULT);
-//        Bitmap bmp = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
-//        holder.userAvatar.setImageBitmap(bmp);
-
         holder.experienceLevel.setText(HelperFunctions.convertNumberStringToPersian(leader.getExperience()));
+
+        if (position == mUserRank - 1) {
+            holder.rowView.getLayoutParams().height = HelperFunctions.dpToPx(holder.rowView.getContext(), 80);
+            LinearLayout.LayoutParams lp = (LinearLayout.LayoutParams) holder.rowView.getLayoutParams();
+            int sideMargin = HelperFunctions.dpToPx(holder.rowView.getContext(), 8);
+            int topMargin = HelperFunctions.dpToPx(holder.rowView.getContext(), 10);
+            lp.setMargins(sideMargin, topMargin, sideMargin, 0);
+            GradientDrawable background = (GradientDrawable) holder.rowView.getBackground();
+            background.setCornerRadius(HelperFunctions.dpToPx(holder.rowView.getContext(), 80));
+            holder.userAvatar.getLayoutParams().width = HelperFunctions.dpToPx(holder.rowView.getContext(), 80);
+            holder.userAvatar.getLayoutParams().height = HelperFunctions.dpToPx(holder.rowView.getContext(), 80);
+        } else {
+            holder.rowView.getLayoutParams().height = HelperFunctions.dpToPx(holder.rowView.getContext(), 48);
+            LinearLayout.LayoutParams lp = (LinearLayout.LayoutParams) holder.rowView.getLayoutParams();
+            int sideMargin = HelperFunctions.dpToPx(holder.rowView.getContext(), 24);
+            int topMargin = HelperFunctions.dpToPx(holder.rowView.getContext(), 10);
+            lp.setMargins(sideMargin, topMargin, sideMargin, 0);
+            GradientDrawable background = (GradientDrawable) holder.rowView.getBackground();
+            background.setCornerRadius(HelperFunctions.dpToPx(holder.rowView.getContext(), 48));
+            holder.userAvatar.getLayoutParams().width = HelperFunctions.dpToPx(holder.rowView.getContext(), 48);
+            holder.userAvatar.getLayoutParams().height = HelperFunctions.dpToPx(holder.rowView.getContext(), 48);
+        }
     }
 
     @Override
@@ -66,7 +86,7 @@ public class LeaderBoardAdapter extends RecyclerView.Adapter<LeaderBoardAdapter.
         LeaderBoardViewHolder(View itemView) {
             super(itemView);
 
-            rowView = (LinearLayout) itemView;
+            rowView = (LinearLayout) itemView.findViewById(R.id.rowLeaderBoard_linearLayout_itemView);
             userName = (TextView) itemView.findViewById(R.id.rowLeaderBoard_textView_userName);
             userRank = (TextView) itemView.findViewById(R.id.rowLeaderBoard_textView_userRank);
             userAvatar = (SimpleDraweeView) itemView.findViewById(R.id.rowLeaderBoard_simpleDraweeView_userAvatar);

@@ -4,14 +4,19 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="@dimen/height_row_leaderBoard"
-    android:orientation="horizontal"
-    android:layout_marginTop="@dimen/marginBottom_row_leaderBoard"
-    android:layout_marginLeft="@dimen/marginSide_row_leaderBoard"
-    android:layout_marginRight="@dimen/marginSide_row_leaderBoard"
-    android:gravity="center"
-    android:weightSum="1"
-    android:background="@drawable/background_row_leaderboard" >
+    android:layout_height="wrap_content" >
+
+    <LinearLayout
+        android:id="@+id/rowLeaderBoard_linearLayout_itemView"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/height_row_leaderBoard"
+        android:orientation="horizontal"
+        android:layout_marginTop="@dimen/marginBottom_row_leaderBoard"
+        android:layout_marginLeft="@dimen/marginSide_row_leaderBoard"
+        android:layout_marginRight="@dimen/marginSide_row_leaderBoard"
+        android:gravity="center"
+        android:weightSum="1"
+        android:background="@drawable/background_row_leaderboard" >
 
     <LinearLayout
         android:layout_width="wrap_content"
@@ -84,5 +89,7 @@
         app:roundAsCircle="true"
         app:roundingBorderWidth="@dimen/width_rounding_border_userRankSection_avatar"
         app:roundingBorderColor="@color/border_avatar" />
+
+    </LinearLayout>
 
 </LinearLayout>

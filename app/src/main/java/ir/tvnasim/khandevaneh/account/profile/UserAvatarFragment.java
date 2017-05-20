@@ -34,6 +34,7 @@ public class UserAvatarFragment extends Fragment implements View.OnClickListener
     private XeiButton mNextButton;
 
     private String mAvatarEncodedBitmap;
+    private String mBackupEncodedBitmap;
 
     public UserAvatarFragment() {
         // Required empty public constructor
@@ -49,6 +50,7 @@ public class UserAvatarFragment extends Fragment implements View.OnClickListener
 
         Bitmap defaultBitmap = BitmapFactory.decodeResource(getResources(), R.drawable.avatar_default);
         mAvatarEncodedBitmap = encodeBitmap(defaultBitmap);
+        mBackupEncodedBitmap = mAvatarEncodedBitmap;
 
     }
 
@@ -98,6 +100,7 @@ public class UserAvatarFragment extends Fragment implements View.OnClickListener
                             @Override
                             public void run() {
                                 mAvatarEncodedBitmap = encodeBitmap(bmp);
+                                mBackupEncodedBitmap = mAvatarEncodedBitmap;
                             }
                         }).start();
                     } catch (IOException ioe) {
@@ -105,6 +108,8 @@ public class UserAvatarFragment extends Fragment implements View.OnClickListener
                     }
 
                 }
+            } else {
+                mAvatarEncodedBitmap = mBackupEncodedBitmap;
             }
         }
     }

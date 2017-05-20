@@ -22,6 +22,7 @@ import ir.tvnasim.khandevaneh.view.KhandevanehDialog;
 public class StoreActivity extends BaseActivity {
 
     private static final String TAG_REQUEST_GET_STORE_LIST = "requestTag_storeActivity_getStoreList";
+    public static final String TAG_REQUEST_BUY_ITEM = "requestTag_storeActivity_buyItem";
     private static final int COUNT_SPAN_RECYCLER_VIEW = 2;
 
     private TextView mMelonTextView;
@@ -39,6 +40,7 @@ public class StoreActivity extends BaseActivity {
     protected ArrayList<String> getRequestTags() {
         ArrayList<String> tags = super.getRequestTags();
         tags.add(TAG_REQUEST_GET_STORE_LIST);
+        tags.add(TAG_REQUEST_BUY_ITEM);
         return tags;
     }
 
@@ -59,7 +61,7 @@ public class StoreActivity extends BaseActivity {
     private void initRecyclerView() {
         mItemsRecyclerView.setHasFixedSize(true);
         mItemsRecyclerView.setLayoutManager(new GridLayoutManager(this, COUNT_SPAN_RECYCLER_VIEW));
-        mStoreAdapter = new StoreAdapter(mItems);
+        mStoreAdapter = new StoreAdapter(this, mItems);
         mItemsRecyclerView.setAdapter(mStoreAdapter);
     }
 

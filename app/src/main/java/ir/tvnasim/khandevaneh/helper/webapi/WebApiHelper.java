@@ -65,6 +65,7 @@ public final class WebApiHelper {
     private static final String ENDPOINT_COMMENT_ARCHIVE = "archive/comment";
 
     private static final String ENDPOINT_GET_STORE_LIST = "store/getList";
+    private static final String ENDPOINT_BUY_ITEM = "store/buyItem";
 
 
     public static WebApiRequest<StartupConfig> getStartupConfig(String requestTag, WebApiRequest.WebApiListener<StartupConfig> webApiListener, WebApiRequest.LoadRequests fragment) {
@@ -400,6 +401,23 @@ public final class WebApiHelper {
                 ENDPOINT_GET_STORE_LIST,
                 null,
                 new TypeToken<WebApiRequest.WebApiResponse<ArrayList<StoreItem>>>() {
+                }.getType(),
+                requestTag,
+                webApiListener,
+                fragment
+        );
+    }
+
+    public static WebApiRequest<Object> buyItem(String id, String requestTag, WebApiRequest.WebApiListener<Object> webApiListener, WebApiRequest.LoadRequests fragment) {
+
+        HashMap<String, String> params = new HashMap<>();
+        params.put("id", id);
+
+        return new WebApiRequest<>(
+                Request.Method.POST,
+                ENDPOINT_BUY_ITEM,
+                params,
+                new TypeToken<WebApiRequest.WebApiResponse<Object>>() {
                 }.getType(),
                 requestTag,
                 webApiListener,

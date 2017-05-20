@@ -1,5 +1,7 @@
 package ir.tvnasim.khandevaneh.store;
 
+import android.app.Activity;
+import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,8 +12,13 @@ import com.facebook.drawee.view.SimpleDraweeView;
 import java.util.ArrayList;
 
 import ir.tvnasim.khandevaneh.R;
+import ir.tvnasim.khandevaneh.app.BaseActivity;
+import ir.tvnasim.khandevaneh.app.ScoresContainer;
 import ir.tvnasim.khandevaneh.helper.HelperFunctions;
+import ir.tvnasim.khandevaneh.helper.LogHelper;
 import ir.tvnasim.khandevaneh.helper.imageloading.FrescoHelper;
+import ir.tvnasim.khandevaneh.helper.webapi.WebApiHelper;
+import ir.tvnasim.khandevaneh.helper.webapi.WebApiRequest;
 import ir.tvnasim.khandevaneh.view.KhandevanehDialog;
 
 /**
@@ -20,9 +27,14 @@ import ir.tvnasim.khandevaneh.view.KhandevanehDialog;
 
 public class StoreAdapter extends RecyclerView.Adapter<StoreAdapter.ItemViewHolder> {
 
+    private static final String TAG_DEBUG = StoreAdapter.class.getSimpleName();
+
+    private BaseActivity mActivity;
+
     private ArrayList<StoreItem> mItems;
 
-    public StoreAdapter(ArrayList<StoreItem> items) {
+    StoreAdapter(BaseActivity activity, ArrayList<StoreItem> items) {
+        mActivity = activity;
         mItems = items;
     }
 
@@ -33,13 +45,18 @@ public class StoreAdapter extends RecyclerView.Adapter<StoreAdapter.ItemViewHold
     }
 
     @Override
-    public void onBindViewHolder(ItemViewHolder holder, int position) {
+    public void onBindViewHolder(final ItemViewHolder holder, int position) {
         final StoreItem item = mItems.get(position);
         FrescoHelper.setImageUrl(holder.image, item.getImage());
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                new KhandevanehDialog(view.getContext(), "قیمت این بسته " + HelperFunctions.convertNumberStringToPersian(item.getPrice()) + " تومنه", null).show();
+                new KhandevanehDialog(mActivity, "قیمت این بسته " + HelperFunctions.persianizeDigitsInString(item.getPrice()) + " تومنه ها", new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        buyItem(item.getId(), mActivity);
+                    }
+                }).show();
             }
         });
     }
@@ -47,6 +64,28 @@ public class StoreAdapter extends RecyclerView.Adapter<StoreAdapter.ItemViewHold
     @Override
     public int getItemCount() {
         return mItems.size();
+    }
+
+    private void buyItem(String itemId, final Context context) {
+        WebApiHelper.buyItem(itemId, StoreActivity.TAG_REQUEST_BUY_ITEM, new WebApiRequest.WebApiListener<Object>() {
+            @Override
+            public void onResponse(Object response, final ScoresContainer scoresContainer) {
+                new KhandevanehDialog(context, "مرسی که خریدی :)", new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        if (scoresContainer != null) {
+                            mActivity.updateScores(scoresContainer.getMelonScore(), scoresContainer.getExperienceScore(), null);
+                        }
+                    }
+                }).show();
+            }
+
+            @Override
+            public void onErrorResponse(String errorMessage) {
+                LogHelper.logError(TAG_DEBUG, "buyItem request failed: " + errorMessage);
+                new KhandevanehDialog(context, errorMessage, null).show();
+            }
+        }, null).send();
     }
 
     class ItemViewHolder extends RecyclerView.ViewHolder{

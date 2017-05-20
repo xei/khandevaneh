@@ -235,6 +235,8 @@ public class PollingActivity extends BaseActivity {
                 @Override
                 public void onResponse(PoleResult response, final ScoresContainer scoresContainer) {
 
+                    mPolledBefore = PollingItem.POLLED_BEFORE_YES;
+
                     new KhandevanehDialog(PollingActivity.this, "مرسی رفیق", new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
@@ -277,7 +279,6 @@ public class PollingActivity extends BaseActivity {
                 } else if (mPolledBefore == PollingItem.POLLED_BEFORE_NO){
                     poll();
                 }
-
                 break;
 
             case R.id.activityPolling_xeiButton_showStatistics:

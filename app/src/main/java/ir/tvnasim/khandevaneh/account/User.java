@@ -31,7 +31,6 @@ public class User {
     private boolean mIsProfileComplete;
 
 
-
     private User() {
 
     }
@@ -62,6 +61,20 @@ public class User {
             }, null).send();
         } else {
             listener.isLoggedIn(false);
+        }
+    }
+
+    public void setUserInfo(UserInfo userInfo) {
+        if (userInfo != null) {
+            mFirstName = userInfo.getFirstName();
+            mLastName = userInfo.getLastName();
+            mPhoneNo = userInfo.getPhoneNo();
+            mAvatar = userInfo.getAvatar();
+            mEmailAddress = userInfo.getEmailAddress();
+            mPostalAddress = userInfo.getPostalAddress();
+            mMelonScore = userInfo.getMelonScore();
+            mExperienceScore = userInfo.getExperienceScore();
+            mIsProfileComplete = userInfo.isProfileCompleted();
         }
     }
 

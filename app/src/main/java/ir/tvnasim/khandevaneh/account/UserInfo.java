@@ -17,6 +17,9 @@ public class UserInfo {
     @SerializedName("lastName")
     private String lastName;
 
+    @SerializedName("phoneNo")
+    private String phoneNo;
+
     @SerializedName("email")
     private String emailAddress;
 
@@ -41,6 +44,9 @@ public class UserInfo {
     @SerializedName("isInClub")
     private String isInClub;
 
+    @SerializedName("profileComplete")
+    private String profileIsCompleted;
+
     public String getId() {
         return id;
     }
@@ -63,6 +69,14 @@ public class UserInfo {
 
     public void setLastName(String lastName) {
         this.lastName = lastName;
+    }
+
+    public String getPhoneNo() {
+        return phoneNo;
+    }
+
+    public void setPhoneNo(String phoneNo) {
+        this.phoneNo = phoneNo;
     }
 
     public String getEmailAddress() {
@@ -127,5 +141,17 @@ public class UserInfo {
 
     public void setIsInClub(String isInClub) {
         this.isInClub = isInClub;
+    }
+
+    public String getProfileIsCompleted() {
+        return profileIsCompleted;
+    }
+
+    public void setProfileIsCompleted(String profileIsCompleted) {
+        this.profileIsCompleted = profileIsCompleted;
+    }
+
+    public boolean isProfileCompleted() {
+        return !profileIsCompleted.equals("0");
     }
 }

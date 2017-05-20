@@ -12,6 +12,7 @@ import java.util.ArrayList;
 import ir.tvnasim.khandevaneh.R;
 import ir.tvnasim.khandevaneh.account.User;
 import ir.tvnasim.khandevaneh.app.BaseActivity;
+import ir.tvnasim.khandevaneh.helper.LogHelper;
 import ir.tvnasim.khandevaneh.helper.SharedPreferencesHelper;
 import ir.tvnasim.khandevaneh.helper.webapi.WebApiHelper;
 import ir.tvnasim.khandevaneh.helper.webapi.WebApiRequest;
@@ -81,26 +82,13 @@ public class LoginActivity extends BaseActivity implements PhoneNoFragment.OnSen
                         WebApiHelper.getUserInfo("TAG_REQUEST_GET_USER_INFO", new WebApiRequest.WebApiListener<UserInfo>() {
                             @Override
                             public void onResponse(UserInfo userInfo, ScoresContainer scoresContainer) {
-                                User.getInstance().setFirstName(userInfo.getFirstName());
-                                User.getInstance().setLastName(userInfo.getLastName());
-                                User.getInstance().setAvatar(userInfo.getAvatar());
-                                User.getInstance().setEmailAddress(userInfo.getEmailAddress());
-                                User.getInstance().setPostalAddress(userInfo.getPostalAddress());
-                                User.getInstance().setMelonScore(userInfo.getMelonScore());
-                                User.getInstance().setExperienceScore(userInfo.getExperienceScore());
-                                // TODO: modify following after fixing api
-                                if(userInfo != null && userInfo.getFirstName() != null) {
-                                    User.getInstance().setIsProfileComplete(true);
-                                } else {
-                                    User.getInstance().setIsProfileComplete(false);
-                                }
-
+                                User.getInstance().setUserInfo(userInfo);
                                 finish();
                             }
 
                             @Override
                             public void onErrorResponse(String errorMessage) {
-
+                                LogHelper.logError(TAG_DEBUG, "getUserInfo request failed: " + errorMessage);
                             }
                         }, null).send();
                     }
@@ -109,7 +97,7 @@ public class LoginActivity extends BaseActivity implements PhoneNoFragment.OnSen
 
             @Override
             public void onErrorResponse(String errorMessage) {
-
+                LogHelper.logError(TAG_DEBUG, "authWithCredentials request failed: " + errorMessage);
             }
         }, null).send();
 

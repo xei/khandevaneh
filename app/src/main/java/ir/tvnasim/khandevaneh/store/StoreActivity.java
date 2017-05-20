@@ -13,6 +13,7 @@ import ir.tvnasim.khandevaneh.R;
 import ir.tvnasim.khandevaneh.account.User;
 import ir.tvnasim.khandevaneh.app.BaseActivity;
 import ir.tvnasim.khandevaneh.helper.HelperFunctions;
+import ir.tvnasim.khandevaneh.helper.LogHelper;
 import ir.tvnasim.khandevaneh.helper.webapi.WebApiHelper;
 import ir.tvnasim.khandevaneh.helper.webapi.WebApiRequest;
 import ir.tvnasim.khandevaneh.app.ScoresContainer;
@@ -71,8 +72,11 @@ public class StoreActivity extends BaseActivity {
     }
 
     private void renderUserData() {
-        mMelonTextView.setText(String.format(getString(R.string.melon_count),
-                HelperFunctions.convertNumberStringToPersian(String.valueOf(User.getInstance().getMelonScore()))));
+        try {
+            mMelonTextView.setText(String.format(getString(R.string.melon_count), HelperFunctions.convertNumberStringToPersian(String.valueOf(User.getInstance().getMelonScore()))));
+        } catch (NumberFormatException nfe) {
+            LogHelper.logError(TAG_DEBUG, "invalid melon count: " + String.valueOf(User.getInstance().getMelonScore())+ ", " + nfe.getMessage());
+        }
     }
 
     private void fetchDataFromApi() {

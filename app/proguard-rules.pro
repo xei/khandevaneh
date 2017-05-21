@@ -87,11 +87,8 @@
 -dontwarn okhttp3.**
 -dontwarn javax.annotation.**
 -dontwarn com.android.volley.toolbox.**
+-dontwarn com.facebook.infer.**
 
-# Works around a bug in the animated GIF module which will be fixed in 0.12.0
--keep class com.facebook.imagepipeline.animated.factory.AnimatedFactoryImpl {
-    public AnimatedFactoryImpl(com.facebook.imagepipeline.bitmaps.PlatformBitmapFactory,com.facebook.imagepipeline.core.ExecutorSupplier);
-}
 
 # MP Chart
 -keep class com.github.mikephil.charting.** { *; }

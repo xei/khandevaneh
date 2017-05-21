@@ -10,12 +10,11 @@ import java.util.ArrayList;
 
 public class PollingItem {
 
-    public static final int TYPE_POLLING_TEXT = 3;
-    public static final int TYPE_POLLING_IMAGE = 2;
-    public static final int TYPE_POLLING_VOICE = 4;
-    public static final int TYPE_POLLING_VIDEO = 1;
+    static final int TYPE_POLLING_TEXT = 3;
+    static final int TYPE_POLLING_IMAGE = 2;
+    static final int TYPE_POLLING_VOICE = 4;
+    static final int TYPE_POLLING_VIDEO = 1;
 
-    // TODO: check it with backend
     static final int POLLED_BEFORE_NOT_SET = -1;
     static final int POLLED_BEFORE_NO = 0;
     static final int POLLED_BEFORE_YES = 1;
@@ -42,7 +41,7 @@ public class PollingItem {
     private ArrayList<PollingOption> options;
 
     @SerializedName("userAnswer")
-    private int polledBefore = POLLED_BEFORE_NOT_SET;
+    private String userAnswer;
 
 
     public String getId() {
@@ -101,11 +100,24 @@ public class PollingItem {
         this.options = options;
     }
 
-    public int getPolledBefore() {
-        return polledBefore;
+    public String getUserAnswer() {
+        return userAnswer;
     }
 
-    public void setPolledBefore(int polledBefore) {
-        this.polledBefore = polledBefore;
+    public void setUserAnswer(String userAnswer) {
+        this.userAnswer = userAnswer;
     }
+
+    public int isPolledBefore() {
+        if (userAnswer != null) {
+            if (userAnswer.equals("0")) {
+                return POLLED_BEFORE_NO;
+            } else {
+                return POLLED_BEFORE_YES;
+            }
+        } else {
+            return POLLED_BEFORE_NOT_SET;
+        }
+    }
+
 }

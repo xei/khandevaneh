@@ -105,7 +105,7 @@ public class ProfileCompletionActivity extends BaseActivity {
             @Override
             public void onResponse(Boolean response, final ScoresContainer scoresContainer) {
 
-                new KhandevanehDialog(ProfileCompletionActivity.this, "مرسی که پروفایلت رو کامل کردی.", new View.OnClickListener() {
+                new KhandevanehDialog(ProfileCompletionActivity.this, "مشخصات شما ثبت شد.", new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         if (scoresContainer != null) {

@@ -59,8 +59,14 @@ public class ProfileActivity extends BaseActivity {
         setContentView(R.layout.activity_profile);
 
         findViews();
-        fillFields();
         setOnClickListeners();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        fillFields();
     }
 
     private void findViews() {
@@ -78,6 +84,7 @@ public class ProfileActivity extends BaseActivity {
 
     private void fillFields() {
         User user = User.getInstance();
+        // Bug: after editing user info, user.getAvatar() has old value and will need to get new image from api.
         FrescoHelper.setImageUrl(mAvatarSimpleDraweeView, user.getAvatar());
         mFirstNameTextView.setText(user.getFirstName());
         mLastNameTextView.setText(user.getLastName());
@@ -93,7 +100,7 @@ public class ProfileActivity extends BaseActivity {
     }
 
     private void subscribe() {
-        // TODO: call api
+        // TODO: call subscribe api
     }
 
     private void participate() {
@@ -124,7 +131,7 @@ public class ProfileActivity extends BaseActivity {
 
         switch (clickedView.getId()) {
             case R.id.toolbarHome_imageButton_edit:
-                new KhandevanehDialog(this, getString(R.string.inform_notImplemented), null).show();
+                ProfileCompletionActivity.start(this);
                 break;
 
             case R.id.activityProfile_xeiButton_subscribe:

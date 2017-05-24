@@ -8,10 +8,14 @@ import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.util.Base64;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.facebook.drawee.view.SimpleDraweeView;
 
@@ -23,14 +27,16 @@ import ir.tvnasim.khandevaneh.helper.LogHelper;
 import ir.tvnasim.khandevaneh.view.XeiButton;
 
 
-public class UserAvatarFragment extends Fragment implements View.OnClickListener {
+public class UserAvatarFragment extends Fragment implements View.OnClickListener, AvatarsAdapter.OnAvatarSelected {
 
     private static final String TAG_DEBUG = UserAvatarFragment.class.getSimpleName();
 
     private static final int QUALITY_IMAGE_COMPRESSION = 50;
     private static final int CODE_REQUEST_LOAD_IMAGE_FROM_GALLERY = 11;
 
-    private SimpleDraweeView mAvatarSimpleDraweeView;
+    private ImageView mAvatarSimpleDraweeView;
+    private RecyclerView mAvatarsRecyclerView;
+    private AvatarsAdapter mAvatarsAdapter;
     private XeiButton mNextButton;
 
     private String mAvatarEncodedBitmap;
@@ -45,29 +51,35 @@ public class UserAvatarFragment extends Fragment implements View.OnClickListener
     }
 
     @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-
-        Bitmap defaultBitmap = BitmapFactory.decodeResource(getResources(), R.drawable.avatar_default);
-        mAvatarEncodedBitmap = encodeBitmap(defaultBitmap);
-        mBackupEncodedBitmap = mAvatarEncodedBitmap;
-
-    }
-
-    @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_user_avatar, container, false);
 
-        mAvatarSimpleDraweeView = (SimpleDraweeView) view.findViewById(R.id.fragmentUserAvatar_simpleDraweeView_avatar);
-        mNextButton = (XeiButton) view.findViewById(R.id.fragmentUserAvatar_xeiButton_next);
-
+        findViews(view);
+        initRecyclerView();
         setOnClickListeners();
+
+        Bitmap defaultAvatar = BitmapFactory.decodeResource(getResources(), R.drawable.avatar_smile);
+        loadAvatar(defaultAvatar);
 
         return view;
     }
 
+    private void findViews(View rootView) {
+        mAvatarSimpleDraweeView = (ImageView) rootView.findViewById(R.id.fragmentUserAvatar_simpleDraweeView_avatar);
+        mAvatarsRecyclerView = (RecyclerView) rootView.findViewById(R.id.fragmentUserAvatar_recyclerView_avatars);
+        mNextButton = (XeiButton) rootView.findViewById(R.id.fragmentUserAvatar_xeiButton_next);
+    }
+
+    private void initRecyclerView() {
+        mAvatarsRecyclerView.setHasFixedSize(true);
+        mAvatarsAdapter = new AvatarsAdapter(this);
+        mAvatarsRecyclerView.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
+        mAvatarsRecyclerView.setAdapter(mAvatarsAdapter);
+        mAvatarsRecyclerView.scrollToPosition(8);
+    }
+
     private void setOnClickListeners() {
-        mAvatarSimpleDraweeView.setOnClickListener(this);
+        mAvatarsRecyclerView.setOnClickListener(this);
         mNextButton.setOnClickListener(this);
     }
 
@@ -85,6 +97,24 @@ public class UserAvatarFragment extends Fragment implements View.OnClickListener
         return Base64.encodeToString(ba, Base64.DEFAULT);
     }
 
+    private void loadAvatar(final Bitmap avatarBitmap) {
+
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                mAvatarEncodedBitmap = encodeBitmap(avatarBitmap);
+                mBackupEncodedBitmap = mAvatarEncodedBitmap;
+                getActivity().runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        mAvatarSimpleDraweeView.setImageBitmap(avatarBitmap);
+                    }
+                });
+            }
+        }).start();
+
+    }
+
     @Override
     public void onActivityResult(int requestCode, int resultCode, final Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -95,14 +125,7 @@ public class UserAvatarFragment extends Fragment implements View.OnClickListener
                     final Bitmap bmp;
                     try {
                         bmp = MediaStore.Images.Media.getBitmap(getContext().getContentResolver(), data.getData());
-                        mAvatarSimpleDraweeView.setImageBitmap(bmp);
-                        new Thread(new Runnable() {
-                            @Override
-                            public void run() {
-                                mAvatarEncodedBitmap = encodeBitmap(bmp);
-                                mBackupEncodedBitmap = mAvatarEncodedBitmap;
-                            }
-                        }).start();
+                        loadAvatar(bmp);
                     } catch (IOException ioe) {
                         LogHelper.logError(TAG_DEBUG, ioe.getMessage());
                     }
@@ -117,18 +140,25 @@ public class UserAvatarFragment extends Fragment implements View.OnClickListener
     @Override
     public void onClick(View clickedView) {
         switch (clickedView.getId()) {
-            case R.id.fragmentUserAvatar_simpleDraweeView_avatar:
-                // set null value to mAvatarEncodedBitmap means that the user has changed the avatar.
-                // changing the avatar may be time consuming and this null value has prevent to send default avatar.
-                mAvatarEncodedBitmap = null;
-                getImageFromGallery();
-                break;
-
             case R.id.fragmentUserAvatar_xeiButton_next:
                 if (mAvatarEncodedBitmap != null) {
                     ((ProfileCompletionActivity)getActivity()).onInfoEnter(UserInfoFragment.WHICH_FRAGMENT_AVATAR, mAvatarEncodedBitmap);
                 }
                 break;
         }
+    }
+
+    @Override
+    public void onSelected(int resId) {
+        if (resId == android.R.drawable.ic_input_add) {
+            // set null value to mAvatarEncodedBitmap means that the user has changed the avatar.
+            // changing the avatar may be time consuming and this null value has prevent to send default avatar.
+            mAvatarEncodedBitmap = null;
+            getImageFromGallery();
+        } else {
+            Bitmap defaultAvatar = BitmapFactory.decodeResource(getResources(), resId);
+            loadAvatar(defaultAvatar);
+        }
+
     }
 }

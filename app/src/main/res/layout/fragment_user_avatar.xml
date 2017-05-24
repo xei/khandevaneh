@@ -22,27 +22,25 @@
             android:paddingLeft="24dp"
             android:layout_gravity="right"
             android:gravity="right|center_vertical"
-            android:text="اگه این عکسو دوس نداری روش بزن و عوضش کن!"
+            android:text="یه آواتار واسه خودت انتخاب کن"
             android:textColor="@color/textColor_light"
             android:textSize="17sp"
             app:locale="fa_IR"
             app:style="bold" />
 
-        <com.facebook.drawee.view.SimpleDraweeView
+        <ImageView
             android:id="@+id/fragmentUserAvatar_simpleDraweeView_avatar"
             android:layout_width="150dp"
             android:layout_height="150dp"
             android:layout_margin="32dp"
             android:layout_gravity="center"
-            app:actualImageScaleType="centerInside"
-            app:backgroundImage="@color/placeholder_fresco"
-            app:failureImage="@drawable/logo"
-            app:failureImageScaleType="centerInside"
-            app:placeholderImage="@drawable/avatar_default"
-            app:placeholderImageScaleType="centerInside"
-            app:roundAsCircle="true"
-            app:roundingBorderColor="@color/border_avatar"
-            app:roundingBorderWidth="@dimen/width_rounding_border_userRankSection_avatar" />
+            android:scaleType="fitXY"/>
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/fragmentUserAvatar_recyclerView_avatars"
+            android:layout_width="match_parent"
+            android:layout_height="64dp"
+            android:layout_marginBottom="32dp"/>
 
         <ir.tvnasim.khandevaneh.view.XeiButton
             android:id="@+id/fragmentUserAvatar_xeiButton_next"

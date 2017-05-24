@@ -66,7 +66,6 @@ public class LaunchActivity extends AppCompatActivity {
             WebApiHelper.getStartupConfig(TAG_REQUEST_GET_STARTUP_CONFIG, new WebApiRequest.WebApiListener<StartupConfig>() {
                 @Override
                 public void onResponse(StartupConfig startupConfig, ScoresContainer scoresContainer) {
-                    startupConfig.setVersionState(StartupConfig.VERSION_STATE_DEPRECATED);
                     openAppropriateActivity(startupConfig);
                 }
 

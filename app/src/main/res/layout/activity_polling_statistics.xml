@@ -51,4 +51,11 @@
         android:listSelector="@android:color/transparent"
         />
 
+    <!--<com.github.mikephil.charting.charts.CombinedChart-->
+        <!--android:id="@+id/activityPollingStatistics_combinedChart_chart"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:layout_below="@+id/activityPollingStatistics_xeiTextView_description"-->
+        <!--android:layout_marginTop="1dp"/>-->
+
 </RelativeLayout>

@@ -2,8 +2,11 @@ package ir.tvnasim.khandevaneh.polling;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.widget.ListView;
+
+import com.github.mikephil.charting.charts.CombinedChart;
 
 import java.util.ArrayList;
 
@@ -23,6 +26,7 @@ public class PollingStatisticsActivity extends BaseActivity {
 
     private XeiTextView mTitleTextView;
     private XeiTextView mDescriptionTextView;
+    private CombinedChart mCombinedChart;
     private ListView mStatisticsListView;
     private PollingStatisticsListAdapter mStatisticsListAdapter;
 
@@ -53,6 +57,7 @@ public class PollingStatisticsActivity extends BaseActivity {
 
         findViews();
         renderTitleView();
+//        initChart();
         initOptionsListView();
 
         fetchStatisticsFromApi();
@@ -66,6 +71,7 @@ public class PollingStatisticsActivity extends BaseActivity {
     private void findViews() {
         mTitleTextView = (XeiTextView) findViewById(R.id.activityPollingStatistics_xeiTextView_title);
         mDescriptionTextView = (XeiTextView) findViewById(R.id.activityPollingStatistics_xeiTextView_description);
+//        mCombinedChart = (CombinedChart) findViewById(R.id.activityPollingStatistics_combinedChart_chart);
         mStatisticsListView = (ListView) findViewById(R.id.activityPollingStatistics_listView_statistics);
     }
 
@@ -76,6 +82,13 @@ public class PollingStatisticsActivity extends BaseActivity {
     private void initOptionsListView() {
         mStatisticsListAdapter = new PollingStatisticsListAdapter(mStatistics);
         mStatisticsListView.setAdapter(mStatisticsListAdapter);
+    }
+
+    private void initChart() {
+        mCombinedChart.getDescription().setEnabled(false);
+        mCombinedChart.setBackgroundColor(Color.WHITE);
+//        mCombinedChart.setDrawG
+        mCombinedChart.setDrawBarShadow(false);
     }
 
     private void fetchStatisticsFromApi() {

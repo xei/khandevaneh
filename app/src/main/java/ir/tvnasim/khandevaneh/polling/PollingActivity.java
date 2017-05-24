@@ -202,7 +202,7 @@ public class PollingActivity extends BaseActivity {
                     mOptionsType.setType(pollingItem.getOptionType());
                     mOptionsListAdapter.notifyDataSetChanged();
 
-                    mPolledBefore = pollingItem.getPolledBefore();
+                    mPolledBefore = pollingItem.isPolledBefore();
                     mFooterRelativeLayout.setVisibility(View.VISIBLE);
                 }
             }

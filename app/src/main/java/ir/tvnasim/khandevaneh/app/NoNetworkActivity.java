@@ -9,14 +9,14 @@ import android.view.View;
 
 import ir.tvnasim.khandevaneh.R;
 import ir.tvnasim.khandevaneh.helper.HelperFunctions;
-import ir.tvnasim.khandevaneh.view.XeiTextView;
+import ir.tvnasim.khandevaneh.view.XeiButton;
 
 public class NoNetworkActivity extends AppCompatActivity implements View.OnClickListener {
 
     private static final String KEY_EXTRA_STARTER_NAME = "KEY_EXTRA_STARTER_NAME";
 
-    private XeiTextView mRetryBtnTextView;
-    private XeiTextView mCheckSettingsBtnTextView;
+    private XeiButton mRetryBtnButton;
+    private XeiButton mCheckSettingsButton;
 
     private String mStarterName;
 
@@ -38,13 +38,13 @@ public class NoNetworkActivity extends AppCompatActivity implements View.OnClick
     }
 
     private void findViews() {
-        mRetryBtnTextView = (XeiTextView) findViewById(R.id.activityNoNetwork_xeiTextView_retry);
-        mCheckSettingsBtnTextView = (XeiTextView) findViewById(R.id.activityNoNetwork_xeiTextView_checkSettings);
+        mRetryBtnButton = (XeiButton) findViewById(R.id.activityNoNetwork_xeiButton_retry);
+        mCheckSettingsButton = (XeiButton) findViewById(R.id.activityNoNetwork_xeiButton_checkSettings);
     }
 
     private void setOnClickListeners() {
-        mRetryBtnTextView.setOnClickListener(this);
-        mCheckSettingsBtnTextView.setOnClickListener(this);
+        mRetryBtnButton.setOnClickListener(this);
+        mCheckSettingsButton.setOnClickListener(this);
     }
 
     private void retry() {
@@ -85,11 +85,11 @@ public class NoNetworkActivity extends AppCompatActivity implements View.OnClick
     @Override
     public void onClick(View clickedView) {
         switch (clickedView.getId()) {
-            case R.id.activityNoNetwork_xeiTextView_retry:
+            case R.id.activityNoNetwork_xeiButton_retry:
                 retry();
                 break;
 
-            case R.id.activityNoNetwork_xeiTextView_checkSettings:
+            case R.id.activityNoNetwork_xeiButton_checkSettings:
                 openNetworkSettings();
                 break;
         }

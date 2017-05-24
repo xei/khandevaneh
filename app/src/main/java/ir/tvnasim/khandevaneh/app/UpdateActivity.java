@@ -9,6 +9,7 @@ import android.view.View;
 
 import ir.tvnasim.khandevaneh.R;
 import ir.tvnasim.khandevaneh.helper.LogHelper;
+import ir.tvnasim.khandevaneh.view.XeiButton;
 import ir.tvnasim.khandevaneh.view.XeiTextView;
 
 public class UpdateActivity extends AppCompatActivity implements View.OnClickListener {
@@ -17,7 +18,7 @@ public class UpdateActivity extends AppCompatActivity implements View.OnClickLis
 
     private static final String KEY_EXTRA_URL_APK = "KEY_EXTRA_URL_APK";
 
-    private XeiTextView mDownloadTextView;
+    private XeiButton mDownloadButton;
 
     private String mApkUrl;
 
@@ -45,11 +46,11 @@ public class UpdateActivity extends AppCompatActivity implements View.OnClickLis
     }
 
     private void findViews() {
-        mDownloadTextView = (XeiTextView) findViewById(R.id.activityUpdate_xeiTextView_download);
+        mDownloadButton = (XeiButton) findViewById(R.id.activityUpdate_xeiButton_download);
     }
 
     private void setOnClickListeners() {
-        mDownloadTextView.setOnClickListener(this);
+        mDownloadButton.setOnClickListener(this);
     }
 
     private void download(String apkUrl) throws Exception{
@@ -61,11 +62,11 @@ public class UpdateActivity extends AppCompatActivity implements View.OnClickLis
     @Override
     public void onClick(View clickedView) {
         switch (clickedView.getId()) {
-            case R.id.activityUpdate_xeiTextView_download:
+            case R.id.activityUpdate_xeiButton_download:
                 try {
                     download(mApkUrl);
                 } catch (Exception e) {
-                    LogHelper.logError(TAG_DEBUG, e.getMessage());
+                    LogHelper.logError(TAG_DEBUG, "invalid APK URL: " + mApkUrl + '\n' + e.getMessage());
                 }
                 break;
         }

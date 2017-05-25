@@ -6,6 +6,7 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 
@@ -20,6 +21,7 @@ import ir.tvnasim.khandevaneh.view.XeiTextView;
 class PollingStatisticsListAdapter extends BaseAdapter{
 
     private ArrayList<PollingStatisticsItem> mPollingStatisticsItems;
+    private long mMaxFrequency;
 
     public PollingStatisticsListAdapter(ArrayList<PollingStatisticsItem> mPollingStatisticsItems) {
         this.mPollingStatisticsItems = mPollingStatisticsItems;
@@ -49,6 +51,7 @@ class PollingStatisticsListAdapter extends BaseAdapter{
 
         XeiTextView frequencyTextView = (XeiTextView) itemView.findViewById(R.id.rowPollingStatistics_xeiTextView_frequency);
         frequencyTextView.setText(HelperFunctions.persianizeDigitsInString(String.valueOf(mPollingStatisticsItems.get(position).getFrequency())));
+        setupBarChart(frequencyTextView, mPollingStatisticsItems.get(position).getFrequency());
 
         if (position == 0) {
             LinearLayout ll = (LinearLayout) itemView.findViewById(R.id.rowPollingStatistics_linearLayout_itemView);
@@ -63,5 +66,27 @@ class PollingStatisticsListAdapter extends BaseAdapter{
         }
 
         return itemView;
+    }
+
+    private void setupBarChart(TextView frequencyTextView, double frequency) {
+        float weight = (float) (frequency / mMaxFrequency);
+        LinearLayout.LayoutParams param = new LinearLayout.LayoutParams(
+                0,
+                LinearLayout.LayoutParams.MATCH_PARENT,
+                weight
+        );
+        frequencyTextView.setLayoutParams(param);
+    }
+
+    @Override
+    public void notifyDataSetChanged() {
+        mMaxFrequency = 0;
+        for (PollingStatisticsItem item : mPollingStatisticsItems) {
+            if (item.getFrequency() > mMaxFrequency) {
+                mMaxFrequency = item.getFrequency();
+            }
+        }
+
+        super.notifyDataSetChanged();
     }
 }

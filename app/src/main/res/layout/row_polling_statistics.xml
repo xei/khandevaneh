@@ -13,20 +13,26 @@
         android:orientation="horizontal"
         android:layoutDirection="ltr" >
 
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:layout_height="match_parent"
+        android:weightSum="1"
+        >
         <ir.tvnasim.khandevaneh.view.XeiTextView
             android:id="@+id/rowPollingStatistics_xeiTextView_frequency"
             android:layout_width="0dp"
-            android:layout_weight="1"
             android:layout_height="match_parent"
             android:layout_gravity="center_vertical"
             android:gravity="right|center_vertical"
-            android:paddingRight="32dp"
+            android:paddingRight="8dp"
             android:background="@drawable/background_left_section_row_statistics"
             android:textColor="#000"
-            android:textSize="17sp"
+            android:textSize="16sp"
             android:textStyle="bold"
             app:locale="fa_IR"
             app:style="bold"/>
+    </LinearLayout>
 
         <View
             android:layout_width="24dp"

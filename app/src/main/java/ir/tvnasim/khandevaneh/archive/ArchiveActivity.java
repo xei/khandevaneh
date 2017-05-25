@@ -6,6 +6,8 @@ import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.view.View;
 import android.view.ViewStub;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.MediaController;
 import android.widget.RelativeLayout;
 import android.widget.VideoView;
@@ -24,6 +26,7 @@ import ir.tvnasim.khandevaneh.helper.webapi.WebApiHelper;
 import ir.tvnasim.khandevaneh.helper.webapi.WebApiRequest;
 import ir.tvnasim.khandevaneh.view.KhandevanehDialog;
 import ir.tvnasim.khandevaneh.view.XeiButton;
+import ir.tvnasim.khandevaneh.view.XeiEditText;
 import ir.tvnasim.khandevaneh.view.XeiTextView;
 
 public class ArchiveActivity extends BaseActivity {
@@ -31,16 +34,19 @@ public class ArchiveActivity extends BaseActivity {
     private static final String KEY_EXTRA_ARCHIVE_ID = "KEY_EXTRA_ARCHIVE_ID";
     private static final String TAG_REQUEST_GET_ARCHIVE_ITEM = "requestTag_pollingActivity_getArchiveItem";
     private static final String TAG_REQUEST_LIKE_ARCHIVE = "requestTag_pollingActivity_likeArchive";
+    private static final String TAG_REQUEST_COMMENT_ARCHIVE = "requestTag_pollingActivity_commentArchive";
 
     private static final String TYPE_IMAGE = "2";
     private static final String TYPE_VIDEO = "1";
 
     private XeiTextView mTitleTextView;
     private ViewStub mContextViewStub;
-    private RelativeLayout mFooterRelativeLayout;
+    private LinearLayout mLikeSectionLinearLayout;
+    private XeiTextView mLikeCountTextView;
     private XeiButton mLikeButton;
-    private XeiButton mCommentButton;
-
+    private RelativeLayout mCommentSection;
+    private XeiEditText mCommentEditText;
+    private ImageView mCommentButton;
     private String mArchiveId;
 
     public static void start(Context starter, String archiveId) {
@@ -54,6 +60,7 @@ public class ArchiveActivity extends BaseActivity {
         ArrayList<String> tags = super.getRequestTags();
         tags.add(TAG_REQUEST_GET_ARCHIVE_ITEM);
         tags.add(TAG_REQUEST_LIKE_ARCHIVE);
+        tags.add(TAG_REQUEST_COMMENT_ARCHIVE);
         return tags;
     }
 
@@ -73,9 +80,12 @@ public class ArchiveActivity extends BaseActivity {
     private void findViews() {
         mTitleTextView = (XeiTextView) findViewById(R.id.activityArchive_xeiTextView_title);
         mContextViewStub = (ViewStub) findViewById(R.id.activityArchive_viewStub_archiveContext);
-        mFooterRelativeLayout = (RelativeLayout) findViewById(R.id.activityArchive_relativeLayout_footer);
+        mLikeSectionLinearLayout = (LinearLayout) findViewById(R.id.activityArchive_linearLayout_likeSection);
+        mLikeCountTextView = (XeiTextView) findViewById(R.id.activityArchive_xeiTextView_likeCount);
         mLikeButton = (XeiButton) findViewById(R.id.activityArchive_xeiButton_like);
-        mCommentButton = (XeiButton) findViewById(R.id.activityArchive_xeiButton_comment);
+        mCommentSection = (RelativeLayout) findViewById(R.id.activityArchive_relativeLayout_commentSection);
+        mCommentEditText = (XeiEditText) findViewById(R.id.activityArchive_xeiEditText_comment);
+        mCommentButton = (ImageView) findViewById(R.id.activityArchive_imageView_sendBtn);
     }
 
     private void setOnClickListeners() {
@@ -125,7 +135,9 @@ public class ArchiveActivity extends BaseActivity {
                 break;
         }
 
-        mFooterRelativeLayout.setVisibility(View.VISIBLE);
+        mLikeCountTextView.setText(String.format(getString(R.string.archive_text_likeCount), HelperFunctions.convertNumberStringToPersian(String.valueOf(archiveItem.getLikeCount()))));
+
+        mLikeSectionLinearLayout.setVisibility(View.VISIBLE);
     }
 
     private void fetchArchiveFromApi() {
@@ -166,8 +178,36 @@ public class ArchiveActivity extends BaseActivity {
         }, null).send();
     }
 
-    private void comment() {
-        new KhandevanehDialog(this, getString(R.string.inform_notImplemented), null).show();
+    private void sendComment(String comment) {
+        if (comment != null && mArchiveId != null) {
+            if (comment.isEmpty()) {
+                new KhandevanehDialog(this, "بخش نظر خالیه!", null).show();
+            } else {
+                WebApiHelper.commentOnArchive(mArchiveId, comment, TAG_REQUEST_COMMENT_ARCHIVE, new WebApiRequest.WebApiListener<Object>() {
+                    @Override
+                    public void onResponse(Object response, final ScoresContainer scoresContainer) {
+
+                        new KhandevanehDialog(ArchiveActivity.this, "نظرت ثبت شد رفیق!", new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                if (scoresContainer != null) {
+                                    updateScores(scoresContainer.getMelonScore(), scoresContainer.getExperienceScore(), null);
+                                }
+                            }
+                        }).show();
+                        mCommentEditText.setText("");
+                        mCommentSection.setVisibility(View.GONE);
+
+                    }
+
+                    @Override
+                    public void onErrorResponse(String errorMessage) {
+                        LogHelper.logError(TAG_DEBUG, "comment request failed: " + errorMessage);
+                        new KhandevanehDialog(ArchiveActivity.this, errorMessage, null).show();
+                    }
+                }, null).send();
+            }
+        }
     }
 
     @Override
@@ -179,8 +219,8 @@ public class ArchiveActivity extends BaseActivity {
                 like();
                 break;
 
-            case R.id.activityArchive_xeiButton_comment:
-                comment();
+            case R.id.activityArchive_imageView_sendBtn:
+                sendComment(mCommentEditText.getText().toString());
                 break;
 
             default:

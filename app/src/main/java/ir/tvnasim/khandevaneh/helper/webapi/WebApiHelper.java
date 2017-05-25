@@ -362,6 +362,24 @@ public final class WebApiHelper {
         );
     }
 
+    public static WebApiRequest<Object> commentOnArchive(String archiveId, String msg, String requestTag, WebApiRequest.WebApiListener<Object> webApiListener, WebApiRequest.LoadRequests fragment) {
+
+        HashMap<String, String> params = new HashMap<>();
+        params.put("id", archiveId);
+        params.put("comment", msg);
+
+        return new WebApiRequest<>(
+                Request.Method.POST,
+                ENDPOINT_COMMENT_ARCHIVE,
+                params,
+                new TypeToken<WebApiRequest.WebApiResponse<Object>>() {
+                }.getType(),
+                requestTag,
+                webApiListener,
+                fragment
+        );
+    }
+
     public static WebApiRequest<SectionContainer> getLiveLike(String requestTag, WebApiRequest.WebApiListener<SectionContainer> webApiListener, WebApiRequest.LoadRequests fragment) {
 
         return new WebApiRequest<>(

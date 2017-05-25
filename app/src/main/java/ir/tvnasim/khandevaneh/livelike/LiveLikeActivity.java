@@ -213,6 +213,11 @@ public class LiveLikeActivity extends BaseActivity {
             return;
         }
 
+        if (msg.isEmpty()) {
+            new KhandevanehDialog(this, "بخش نظر خالیه!", null).show();
+            return;
+        }
+
         WebApiHelper.commentOnSection(mSection.getId(), msg, TAG_REQUEST_COMMENT, new WebApiRequest.WebApiListener<LikeResult>() {
             @Override
             public void onResponse(LikeResult response, final ScoresContainer scoresContainer) {

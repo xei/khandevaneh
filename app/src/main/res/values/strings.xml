@@ -10,5 +10,8 @@
     <string name="label_user_melon">هندوانه شما:</string>
     <string name="melon_count">x %s</string>
     <string name="title_activity_live_like">LiveLikeActivity</string>
+    
+    <!-- ArchiveActivity -->
+    <string name="archive_text_likeCount">%s بار لایک شده</string>
 
 </resources>

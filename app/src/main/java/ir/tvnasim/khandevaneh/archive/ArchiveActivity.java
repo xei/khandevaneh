@@ -9,6 +9,7 @@ import android.view.ViewStub;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.MediaController;
+import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.VideoView;
 
@@ -105,7 +106,9 @@ public class ArchiveActivity extends BaseActivity {
 
             case TYPE_VIDEO:
                 mContextViewStub.setLayoutResource(R.layout.layout_archive_context_video);
-                final VideoView archiveContextVideoView = (VideoView) mContextViewStub.inflate();
+                View videoContextView = mContextViewStub.inflate();
+                final VideoView archiveContextVideoView = (VideoView) videoContextView.findViewById(R.id.activityArchive_viewStub_archiveContext);
+                final ProgressBar loadingProgreeBar = (ProgressBar) videoContextView.findViewById(R.id.layoutArchiveContextVideo_progressBar_loading);
                 archiveContextVideoView.setVideoPath(archiveItem.getContent());
                 archiveContextVideoView.setKeepScreenOn(true);
 
@@ -121,6 +124,7 @@ public class ArchiveActivity extends BaseActivity {
                     @Override
                     public void onPrepared(MediaPlayer mediaPlayer) {
                         mediaPlayer.start();
+                        loadingProgreeBar.setVisibility(View.GONE);
 
                         mediaController.setAnchorView(archiveContextVideoView);
                         mediaController.setMediaPlayer(archiveContextVideoView);

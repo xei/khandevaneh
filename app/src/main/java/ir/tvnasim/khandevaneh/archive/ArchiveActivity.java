@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.media.MediaPlayer;
 import android.os.Bundle;
+import android.util.DisplayMetrics;
 import android.view.View;
 import android.view.ViewStub;
 import android.widget.ImageView;
@@ -130,6 +131,8 @@ public class ArchiveActivity extends BaseActivity {
                         mediaController.setMediaPlayer(archiveContextVideoView);
                         mediaController.show(0);
                         mediaController.requestFocus();
+
+                        maximizeVideoView(archiveContextVideoView);
                     }
                 });
                 break;
@@ -143,6 +146,26 @@ public class ArchiveActivity extends BaseActivity {
 
         mLikeSectionLinearLayout.setVisibility(View.VISIBLE);
         mCommentSection.setVisibility(View.VISIBLE);
+    }
+
+    private void maximizeVideoView(VideoView videoView) {
+        DisplayMetrics metrics = new DisplayMetrics();
+        getWindowManager().getDefaultDisplay().getMetrics(metrics);
+        RelativeLayout.LayoutParams params = (RelativeLayout.LayoutParams) videoView.getLayoutParams();
+        params.width =  metrics.widthPixels;
+        params.height = metrics.heightPixels;
+        params.leftMargin = 0;
+        videoView.setLayoutParams(params);
+    }
+
+    private void minimizeVideoView(VideoView videoView) {
+        DisplayMetrics metrics = new DisplayMetrics();
+        getWindowManager().getDefaultDisplay().getMetrics(metrics);
+        RelativeLayout.LayoutParams params = (RelativeLayout.LayoutParams) videoView.getLayoutParams();
+        params.width =  (int) (300*metrics.density);
+        params.height = (int) (250*metrics.density);
+        params.leftMargin = 30;
+        videoView.setLayoutParams(params);
     }
 
     private void fetchArchiveFromApi() {

@@ -115,7 +115,7 @@ public class ArchiveActivity extends BaseActivity {
                         super.show(0);
                     }
                 };
-                mediaController.getLayoutParams().height = HelperFunctions.dpToPx(this, 42);
+                mediaController.getLayoutParams().height = HelperFunctions.dpToPx(this, 80);
 
                 archiveContextVideoView.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
                     @Override

@@ -62,7 +62,7 @@
                 android:gravity="right|center_vertical"
                 android:paddingRight="8dp"
                 android:background="@android:color/transparent"
-                android:hint="نظرات شما" />
+                android:hint="دیدگاه شما..."  />
 
             <ImageView
                 android:id="@+id/activityLiveLike_imageView_sendBtn"

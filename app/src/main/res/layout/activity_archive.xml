@@ -51,7 +51,7 @@
             android:paddingLeft="8dp"
             android:paddingRight="8dp"
             android:gravity="center"
-            android:text="لایک"
+            android:text="می‌پسندم"
             android:background="@drawable/background_button_participate"
             android:textColor="#000"
             android:textSize="17sp"
@@ -67,7 +67,6 @@
             android:layout_gravity="center"
             android:gravity="center"
             android:background="@color/polling_background"
-            android:text="%i بار لایک شده"
             android:textColor="#F2CF0D"
             android:textSize="17sp"
             android:textStyle="bold"
@@ -92,7 +91,7 @@
             android:gravity="right|center_vertical"
             android:paddingRight="8dp"
             android:background="@android:color/transparent"
-            android:hint="نظرات شما" />
+            android:hint="دیدگاه شما..." />
 
         <ImageView
             android:id="@+id/activityArchive_imageView_sendBtn"

@@ -2,21 +2,20 @@ package ir.tvnasim.khandevaneh.polling;
 
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.widget.ListView;
-
-import com.github.mikephil.charting.charts.CombinedChart;
 
 import java.util.ArrayList;
 
 import ir.tvnasim.khandevaneh.R;
 import ir.tvnasim.khandevaneh.app.BaseActivity;
+import ir.tvnasim.khandevaneh.app.ScoresContainer;
 import ir.tvnasim.khandevaneh.helper.LogHelper;
 import ir.tvnasim.khandevaneh.helper.webapi.WebApiHelper;
 import ir.tvnasim.khandevaneh.helper.webapi.WebApiRequest;
-import ir.tvnasim.khandevaneh.app.ScoresContainer;
 import ir.tvnasim.khandevaneh.view.XeiTextView;
+
+//import com.github.mikephil.charting.charts.CombinedChart;
 
 public class PollingStatisticsActivity extends BaseActivity {
 
@@ -26,7 +25,7 @@ public class PollingStatisticsActivity extends BaseActivity {
 
     private XeiTextView mTitleTextView;
     private XeiTextView mDescriptionTextView;
-    private CombinedChart mCombinedChart;
+//    private CombinedChart mCombinedChart;
     private ListView mStatisticsListView;
     private PollingStatisticsListAdapter mStatisticsListAdapter;
 
@@ -84,12 +83,12 @@ public class PollingStatisticsActivity extends BaseActivity {
         mStatisticsListView.setAdapter(mStatisticsListAdapter);
     }
 
-    private void initChart() {
-        mCombinedChart.getDescription().setEnabled(false);
-        mCombinedChart.setBackgroundColor(Color.WHITE);
-//        mCombinedChart.setDrawG
-        mCombinedChart.setDrawBarShadow(false);
-    }
+//    private void initChart() {
+//        mCombinedChart.getDescription().setEnabled(false);
+//        mCombinedChart.setBackgroundColor(Color.WHITE);
+////        mCombinedChart.setDrawG
+//        mCombinedChart.setDrawBarShadow(false);
+//    }
 
     private void fetchStatisticsFromApi() {
 

@@ -12,6 +12,6 @@
     <string name="title_activity_live_like">LiveLikeActivity</string>
     
     <!-- ArchiveActivity -->
-    <string name="archive_text_likeCount">%s بار لایک شده</string>
+    <string name="archive_text_likeCount">%s بار پسندیده شده</string>
 
 </resources>

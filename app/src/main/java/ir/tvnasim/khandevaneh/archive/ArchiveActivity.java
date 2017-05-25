@@ -138,6 +138,7 @@ public class ArchiveActivity extends BaseActivity {
         mLikeCountTextView.setText(String.format(getString(R.string.archive_text_likeCount), HelperFunctions.convertNumberStringToPersian(String.valueOf(archiveItem.getLikeCount()))));
 
         mLikeSectionLinearLayout.setVisibility(View.VISIBLE);
+        mCommentSection.setVisibility(View.VISIBLE);
     }
 
     private void fetchArchiveFromApi() {

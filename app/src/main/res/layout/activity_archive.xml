@@ -57,8 +57,7 @@
             android:textSize="17sp"
             android:textStyle="bold"
             app:locale="fa_IR"
-            app:style="bold"
-            />
+            app:style="bold" />
 
         <ir.tvnasim.khandevaneh.view.XeiTextView
             android:id="@+id/activityArchive_xeiTextView_likeCount"
@@ -83,7 +82,7 @@
         android:layout_height="56dp"
         android:layout_alignParentBottom="true"
         android:background="#fff"
-        >
+        android:visibility="gone" >
 
         <ir.tvnasim.khandevaneh.view.XeiEditText
             android:id="@+id/activityArchive_xeiEditText_comment"

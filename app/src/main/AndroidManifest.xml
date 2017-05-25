@@ -74,6 +74,8 @@
             android:screenOrientation="portrait" />
         <activity android:name=".archive.ArchiveActivity"
             android:screenOrientation="portrait" />
+        <activity android:name=".archive.FullScreenVideoActivity"
+            android:screenOrientation="landscape" />
         <activity
             android:name=".polling.PollingListActivity"
             android:screenOrientation="portrait" />

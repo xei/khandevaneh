@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.view.View;
 import android.view.ViewStub;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.MediaController;
@@ -95,7 +96,7 @@ public class ArchiveActivity extends BaseActivity {
         mCommentButton.setOnClickListener(this);
     }
 
-    private void renderArchive(ArchiveItem archiveItem) {
+    private void renderArchive(final ArchiveItem archiveItem) {
         mTitleTextView.setText(archiveItem.getTitle());
 
         switch (archiveItem.getType()) {
@@ -110,6 +111,7 @@ public class ArchiveActivity extends BaseActivity {
                 View videoContextView = mContextViewStub.inflate();
                 final VideoView archiveContextVideoView = (VideoView) videoContextView.findViewById(R.id.activityArchive_viewStub_archiveContext);
                 final ProgressBar loadingProgreeBar = (ProgressBar) videoContextView.findViewById(R.id.layoutArchiveContextVideo_progressBar_loading);
+                final ImageView fullScreenBtn = (ImageView) videoContextView.findViewById(R.id.layoutArchiveContextVideo_imageButton_fullScreen);
                 archiveContextVideoView.setVideoPath(archiveItem.getContent());
                 archiveContextVideoView.setKeepScreenOn(true);
 
@@ -135,6 +137,14 @@ public class ArchiveActivity extends BaseActivity {
                         maximizeVideoView(archiveContextVideoView);
                     }
                 });
+
+                fullScreenBtn.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        FullScreenVideoActivity.start(ArchiveActivity.this, archiveItem.getContent(), archiveContextVideoView.getCurrentPosition());
+                    }
+                });
+
                 break;
 
             default:

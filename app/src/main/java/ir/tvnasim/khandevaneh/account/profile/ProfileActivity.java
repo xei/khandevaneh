@@ -32,7 +32,6 @@ public class ProfileActivity extends BaseActivity {
     private XeiTextView mPhoneNoTextView;
     private XeiTextView mEmailAddressTextView;
     private XeiTextView mPostalAddressTextView;
-    private XeiButton mSubscribeButton;
     private XeiButton mParticipateButton;
 
 
@@ -77,7 +76,6 @@ public class ProfileActivity extends BaseActivity {
         mPhoneNoTextView = (XeiTextView) findViewById(R.id.activityProfile_xeiTextView_phoneNo);
         mEmailAddressTextView = (XeiTextView) findViewById(R.id.activityProfile_xeiTextView_emailAddress);
         mPostalAddressTextView = (XeiTextView) findViewById(R.id.activityProfile_xeiTextView_postalAddress);
-        mSubscribeButton = (XeiButton) findViewById(R.id.activityProfile_xeiButton_subscribe);
         mParticipateButton = (XeiButton) findViewById(R.id.activityProfile_xeiButton_participate);
 
     }
@@ -95,12 +93,7 @@ public class ProfileActivity extends BaseActivity {
 
     private void setOnClickListeners() {
         mEditProfileImageButton.setOnClickListener(this);
-        mSubscribeButton.setOnClickListener(this);
         mParticipateButton.setOnClickListener(this);
-    }
-
-    private void subscribe() {
-        // TODO: call subscribe api
     }
 
     private void participate() {
@@ -132,10 +125,6 @@ public class ProfileActivity extends BaseActivity {
         switch (clickedView.getId()) {
             case R.id.toolbarHome_imageButton_edit:
                 ProfileCompletionActivity.start(this);
-                break;
-
-            case R.id.activityProfile_xeiButton_subscribe:
-                subscribe();
                 break;
 
             case R.id.activityProfile_xeiButton_participate:

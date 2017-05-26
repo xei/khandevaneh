@@ -217,26 +217,11 @@
             android:background="#fff"/>
 
         <ir.tvnasim.khandevaneh.view.XeiButton
-            android:id="@+id/activityProfile_xeiButton_subscribe"
-            android:layout_width="200dp"
-            android:layout_height="48dp"
-            android:layout_margin="8dp"
-            android:layout_gravity="center"
-            android:padding="8dp"
-            android:text="عضویت در سرویس خندوانه"
-            android:background="@drawable/background_button_participate"
-            android:textColor="#000"
-            android:textSize="17sp"
-            android:textStyle="bold"
-            app:locale="fa_IR"
-            app:style="bold"/>
-
-        <ir.tvnasim.khandevaneh.view.XeiButton
             android:id="@+id/activityProfile_xeiButton_participate"
             android:layout_width="200dp"
             android:layout_height="48dp"
             android:layout_margin="8dp"
-            android:layout_marginBottom="16dp"
+            android:layout_marginBottom="32dp"
             android:layout_gravity="center"
             android:padding="8dp"
             android:text="شرکت در برنامه تلویزیونی"

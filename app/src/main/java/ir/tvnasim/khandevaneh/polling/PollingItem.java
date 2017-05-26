@@ -116,7 +116,7 @@ public class PollingItem {
                 return POLLED_BEFORE_YES;
             }
         } else {
-            return POLLED_BEFORE_NOT_SET;
+            return POLLED_BEFORE_NO;
         }
     }
 

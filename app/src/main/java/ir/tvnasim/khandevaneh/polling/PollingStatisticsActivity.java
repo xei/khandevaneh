@@ -15,7 +15,6 @@ import ir.tvnasim.khandevaneh.helper.webapi.WebApiHelper;
 import ir.tvnasim.khandevaneh.helper.webapi.WebApiRequest;
 import ir.tvnasim.khandevaneh.view.XeiTextView;
 
-//import com.github.mikephil.charting.charts.CombinedChart;
 
 public class PollingStatisticsActivity extends BaseActivity {
 
@@ -24,8 +23,6 @@ public class PollingStatisticsActivity extends BaseActivity {
     private static final String TAG_REQUEST_GET_POLLING_STATISTICS = "requestTag_pollingStatisticsActivity_getPollingStatistics";
 
     private XeiTextView mTitleTextView;
-    private XeiTextView mDescriptionTextView;
-//    private CombinedChart mCombinedChart;
     private ListView mStatisticsListView;
     private PollingStatisticsListAdapter mStatisticsListAdapter;
 
@@ -56,7 +53,6 @@ public class PollingStatisticsActivity extends BaseActivity {
 
         findViews();
         renderTitleView();
-//        initChart();
         initOptionsListView();
 
         fetchStatisticsFromApi();
@@ -69,8 +65,6 @@ public class PollingStatisticsActivity extends BaseActivity {
 
     private void findViews() {
         mTitleTextView = (XeiTextView) findViewById(R.id.activityPollingStatistics_xeiTextView_title);
-        mDescriptionTextView = (XeiTextView) findViewById(R.id.activityPollingStatistics_xeiTextView_description);
-//        mCombinedChart = (CombinedChart) findViewById(R.id.activityPollingStatistics_combinedChart_chart);
         mStatisticsListView = (ListView) findViewById(R.id.activityPollingStatistics_listView_statistics);
     }
 
@@ -82,13 +76,6 @@ public class PollingStatisticsActivity extends BaseActivity {
         mStatisticsListAdapter = new PollingStatisticsListAdapter(mStatistics);
         mStatisticsListView.setAdapter(mStatisticsListAdapter);
     }
-
-//    private void initChart() {
-//        mCombinedChart.getDescription().setEnabled(false);
-//        mCombinedChart.setBackgroundColor(Color.WHITE);
-////        mCombinedChart.setDrawG
-//        mCombinedChart.setDrawBarShadow(false);
-//    }
 
     private void fetchStatisticsFromApi() {
 

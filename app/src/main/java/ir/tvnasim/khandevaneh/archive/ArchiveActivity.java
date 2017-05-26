@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewStub;
 import android.widget.ImageView;
@@ -144,6 +145,22 @@ public class ArchiveActivity extends BaseActivity {
                     @Override
                     public void onClick(View v) {
                         FullScreenVideoActivity.start(ArchiveActivity.this, mArchiveItem.getContent(), archiveContextVideoView.getCurrentPosition());
+                    }
+                });
+
+                mCommentEditText.setOnTouchListener(new View.OnTouchListener() {
+                    @Override
+                    public boolean onTouch(View v, MotionEvent event) {
+                        mediaController.hide();
+                        mCommentEditText.requestFocus();
+                        return false;
+                    }
+                });
+                mCommentEditText.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        mediaController.hide();
+                        mCommentEditText.requestFocus();
                     }
                 });
 

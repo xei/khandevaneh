@@ -183,7 +183,7 @@ public final class WebApiHelper {
         );
     }
 
-    public static WebApiRequest<Boolean> editUserInfo(User user, String requestTag, WebApiRequest.WebApiListener<Boolean> webApiListener, WebApiRequest.LoadRequests fragment) {
+    public static WebApiRequest<UserInfo> editUserInfo(User user, String requestTag, WebApiRequest.WebApiListener<UserInfo> webApiListener, WebApiRequest.LoadRequests fragment) {
 
         HashMap<String, String> params = new HashMap<>();
         params.put("firstName", user.getFirstName());
@@ -197,7 +197,7 @@ public final class WebApiHelper {
                 Request.Method.POST,
                 ENDPOINT_EDIT_USER_INFO,
                 params,
-                new TypeToken<WebApiRequest.WebApiResponse<Boolean>>() {
+                new TypeToken<WebApiRequest.WebApiResponse<UserInfo>>() {
                 }.getType(),
                 requestTag,
                 webApiListener,

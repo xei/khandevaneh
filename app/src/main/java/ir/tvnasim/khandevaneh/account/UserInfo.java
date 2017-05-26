@@ -17,7 +17,7 @@ public class UserInfo {
     @SerializedName("lastName")
     private String lastName;
 
-    @SerializedName("phoneNo")
+    @SerializedName("mobile")
     private String phoneNo;
 
     @SerializedName("email")

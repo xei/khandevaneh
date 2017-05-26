@@ -12,6 +12,7 @@ import java.util.ArrayList;
 
 import ir.tvnasim.khandevaneh.R;
 import ir.tvnasim.khandevaneh.account.User;
+import ir.tvnasim.khandevaneh.account.UserInfo;
 import ir.tvnasim.khandevaneh.app.BaseActivity;
 import ir.tvnasim.khandevaneh.app.ScoresContainer;
 import ir.tvnasim.khandevaneh.helper.LogHelper;
@@ -101,29 +102,30 @@ public class ProfileCompletionActivity extends BaseActivity {
     }
 
     private void sendUpdatedUserInfoToApi() {
-        WebApiHelper.editUserInfo(User.getInstance(), TAG_REQUEST_EDIT_USER_INFO, new WebApiRequest.WebApiListener<Boolean>() {
+        WebApiHelper.editUserInfo(User.getInstance(), TAG_REQUEST_EDIT_USER_INFO, new WebApiRequest.WebApiListener<UserInfo>() {
             @Override
-            public void onResponse(Boolean response, final ScoresContainer scoresContainer) {
+            public void onResponse(UserInfo userInfo, final ScoresContainer scoresContainer) {
 
-                new KhandevanehDialog(ProfileCompletionActivity.this, "مشخصات شما ثبت شد.", new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        if (scoresContainer != null) {
-                            updateScores(scoresContainer.getMelonScore(), scoresContainer.getExperienceScore(), new OnShakingFinishedListener() {
-                                @Override
-                                public void onShakingFinish() {
-                                    finish();
-                                }
-                            });
-                        } else {
-                            finish();
+                if (userInfo != null) {
+                    User.getInstance().setUserInfo(userInfo);
+                    User.getInstance().setAvatarEncodedBitmap(null);
+
+                    new KhandevanehDialog(ProfileCompletionActivity.this, "مشخصات شما ثبت شد.", new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            if (scoresContainer != null) {
+                                updateScores(scoresContainer.getMelonScore(), scoresContainer.getExperienceScore(), new OnShakingFinishedListener() {
+                                    @Override
+                                    public void onShakingFinish() {
+                                        finish();
+                                    }
+                                });
+                            } else {
+                                finish();
+                            }
                         }
-
-                        User.getInstance().setAvatarEncodedBitmap(null);
-                    }
-                }).show();
-
-                User.getInstance().setIsProfileComplete(true);
+                    }).show();
+                }
             }
 
             @Override

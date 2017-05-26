@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="280dp"
+    android:layout_height="wrap_content"
+    android:padding="16dp"
+    android:background="@drawable/background_dialog" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical" >
+
+        <ir.tvnasim.khandevaneh.view.XeiTextView
+            android:id="@+id/dialogBuyConfirmation_xeiTextView_alert"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:textColor="#fff"
+            android:textSize="17sp"
+            android:text="کد تاییدی که برات فرستادیمو اینجا بزن:"
+            app:locale="fa_IR"
+            app:style="bold" />
+
+        <ir.tvnasim.khandevaneh.view.XeiEditText
+            android:id="@+id/dialogBuyConfirmation_xeiEditText_confirmationCode"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_margin="16dp"
+            android:gravity="left|center_vertical"
+            android:paddingRight="16dp"
+            android:paddingLeft="16dp"
+            android:textColor="@color/textColor_dark"
+            android:background="@drawable/background_row_leaderboard"
+            android:inputType="numberDecimal"
+            android:lines="1"
+            android:singleLine="true"
+            app:locale="fa_IR" />
+
+        <ir.tvnasim.khandevaneh.view.XeiButton
+            android:id="@+id/dialogBuyConfirmation_xeiButton_ok"
+            android:layout_width="120dp"
+            android:layout_height="48dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="32dp"
+            android:background="@drawable/background_button_participate"
+            android:textColor="#000"
+            android:textSize="17sp"
+            android:text="باشه"
+            app:locale="fa_IR"
+            app:style="bold"/>
+
+    </LinearLayout>
+
+
+</RelativeLayout>

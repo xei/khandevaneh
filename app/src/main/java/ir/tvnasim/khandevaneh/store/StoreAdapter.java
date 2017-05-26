@@ -6,6 +6,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.facebook.drawee.view.SimpleDraweeView;
 
@@ -66,16 +67,33 @@ public class StoreAdapter extends RecyclerView.Adapter<StoreAdapter.ItemViewHold
         return mItems.size();
     }
 
-    private void buyItem(String itemId, final Context context) {
+    private void buyItem(final String itemId, final Context context) {
         WebApiHelper.buyItem(itemId, StoreActivity.TAG_REQUEST_BUY_ITEM, new WebApiRequest.WebApiListener<Object>() {
             @Override
             public void onResponse(Object response, final ScoresContainer scoresContainer) {
-                new KhandevanehDialog(context, "مرسی که خریدی :)", new View.OnClickListener() {
+                new BuyConfirmationDialog(context, new View.OnClickListener() {
                     @Override
-                    public void onClick(View view) {
-                        if (scoresContainer != null) {
-                            mActivity.updateScores(scoresContainer.getMelonScore(), scoresContainer.getExperienceScore(), null);
-                        }
+                    public void onClick(View v) {
+                        String confirmationCode = (String) v.getTag();
+                        WebApiHelper.confirmBuy(itemId, confirmationCode, StoreActivity.TAG_REQUEST_CONFIRM_BUY, new WebApiRequest.WebApiListener<Object>() {
+                            @Override
+                            public void onResponse(Object response, final ScoresContainer scoresContainer) {
+                                new KhandevanehDialog(context, "مرسی که خریدی :)", new View.OnClickListener() {
+                                    @Override
+                                    public void onClick(View view) {
+                                        if (scoresContainer != null) {
+                                            mActivity.updateScores(scoresContainer.getMelonScore(), scoresContainer.getExperienceScore(), null);
+                                        }
+                                    }
+                                }).show();
+                            }
+
+                            @Override
+                            public void onErrorResponse(String errorMessage) {
+                                LogHelper.logError(TAG_DEBUG, "confirmBuy request failed: " + errorMessage);
+                                new KhandevanehDialog(context, errorMessage, null).show();
+                            }
+                        }, null).send();
                     }
                 }).show();
             }

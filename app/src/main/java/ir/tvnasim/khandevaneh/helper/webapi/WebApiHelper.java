@@ -66,6 +66,7 @@ public final class WebApiHelper {
 
     private static final String ENDPOINT_GET_STORE_LIST = "store/getList";
     private static final String ENDPOINT_BUY_ITEM = "store/buyItem";
+    private static final String ENDPOINT_CONFIRM_BUY = "store/verifyCharge";
 
 
     public static WebApiRequest<StartupConfig> getStartupConfig(String requestTag, WebApiRequest.WebApiListener<StartupConfig> webApiListener, WebApiRequest.LoadRequests fragment) {
@@ -451,6 +452,24 @@ public final class WebApiHelper {
         return new WebApiRequest<>(
                 Request.Method.POST,
                 ENDPOINT_BUY_ITEM,
+                params,
+                new TypeToken<WebApiRequest.WebApiResponse<Object>>() {
+                }.getType(),
+                requestTag,
+                webApiListener,
+                fragment
+        );
+    }
+
+    public static WebApiRequest<Object> confirmBuy(String id, String confirmationCode, String requestTag, WebApiRequest.WebApiListener<Object> webApiListener, WebApiRequest.LoadRequests fragment) {
+
+        HashMap<String, String> params = new HashMap<>();
+        params.put("id", id);
+        params.put("code", confirmationCode);
+
+        return new WebApiRequest<>(
+                Request.Method.POST,
+                ENDPOINT_CONFIRM_BUY,
                 params,
                 new TypeToken<WebApiRequest.WebApiResponse<Object>>() {
                 }.getType(),

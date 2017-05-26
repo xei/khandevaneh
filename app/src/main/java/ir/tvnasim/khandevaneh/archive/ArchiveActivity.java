@@ -7,7 +7,6 @@ import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.view.View;
 import android.view.ViewStub;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.MediaController;
@@ -50,7 +49,10 @@ public class ArchiveActivity extends BaseActivity {
     private RelativeLayout mCommentSection;
     private XeiEditText mCommentEditText;
     private ImageView mCommentButton;
+
+    private ArchiveItem mArchiveItem;
     private String mArchiveId;
+
 
     public static void start(Context starter, String archiveId) {
         Intent intent = new Intent(starter, ArchiveActivity.class);
@@ -96,14 +98,14 @@ public class ArchiveActivity extends BaseActivity {
         mCommentButton.setOnClickListener(this);
     }
 
-    private void renderArchive(final ArchiveItem archiveItem) {
-        mTitleTextView.setText(archiveItem.getTitle());
+    private void renderArchive() {
+        mTitleTextView.setText(mArchiveItem.getTitle());
 
-        switch (archiveItem.getType()) {
+        switch (mArchiveItem.getType()) {
             case TYPE_IMAGE:
                 mContextViewStub.setLayoutResource(R.layout.layout_archive_context_image);
                 SimpleDraweeView archiveContextSimpleDraweeView = (SimpleDraweeView) mContextViewStub.inflate();
-                FrescoHelper.setImageUrl(archiveContextSimpleDraweeView, archiveItem.getContent());
+                FrescoHelper.setImageUrl(archiveContextSimpleDraweeView, mArchiveItem.getContent());
                 break;
 
             case TYPE_VIDEO:
@@ -112,7 +114,7 @@ public class ArchiveActivity extends BaseActivity {
                 final VideoView archiveContextVideoView = (VideoView) videoContextView.findViewById(R.id.activityArchive_viewStub_archiveContext);
                 final ProgressBar loadingProgreeBar = (ProgressBar) videoContextView.findViewById(R.id.layoutArchiveContextVideo_progressBar_loading);
                 final ImageView fullScreenBtn = (ImageView) videoContextView.findViewById(R.id.layoutArchiveContextVideo_imageButton_fullScreen);
-                archiveContextVideoView.setVideoPath(archiveItem.getContent());
+                archiveContextVideoView.setVideoPath(mArchiveItem.getContent());
                 archiveContextVideoView.setKeepScreenOn(true);
 
                 final MediaController mediaController = new MediaController(this) {
@@ -141,7 +143,7 @@ public class ArchiveActivity extends BaseActivity {
                 fullScreenBtn.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        FullScreenVideoActivity.start(ArchiveActivity.this, archiveItem.getContent(), archiveContextVideoView.getCurrentPosition());
+                        FullScreenVideoActivity.start(ArchiveActivity.this, mArchiveItem.getContent(), archiveContextVideoView.getCurrentPosition());
                     }
                 });
 
@@ -152,7 +154,7 @@ public class ArchiveActivity extends BaseActivity {
                 break;
         }
 
-        mLikeCountTextView.setText(String.format(getString(R.string.archive_text_likeCount), HelperFunctions.convertNumberStringToPersian(String.valueOf(archiveItem.getLikeCount()))));
+        mLikeCountTextView.setText(String.format(getString(R.string.archive_text_likeCount), HelperFunctions.convertNumberStringToPersian(String.valueOf(mArchiveItem.getLikeCount()))));
 
         mLikeSectionLinearLayout.setVisibility(View.VISIBLE);
         mCommentSection.setVisibility(View.VISIBLE);
@@ -183,7 +185,8 @@ public class ArchiveActivity extends BaseActivity {
             @Override
             public void onResponse(ArchiveItem archiveItem, ScoresContainer scoresContainer) {
                 if (archiveItem != null) {
-                    renderArchive(archiveItem);
+                    mArchiveItem = archiveItem;
+                    renderArchive();
                 }
             }
 
@@ -198,6 +201,11 @@ public class ArchiveActivity extends BaseActivity {
         WebApiHelper.likeArchive(mArchiveId, TAG_REQUEST_LIKE_ARCHIVE, new WebApiRequest.WebApiListener<Object>() {
             @Override
             public void onResponse(Object response, final ScoresContainer scoresContainer) {
+
+                int likeCount = Integer.parseInt(mArchiveItem.getLikeCount());
+                likeCount++;
+                mLikeCountTextView.setText(String.format(getString(R.string.archive_text_likeCount), HelperFunctions.convertNumberStringToPersian(String.valueOf(likeCount))));
+
                 new KhandevanehDialog(ArchiveActivity.this, "مرسی :)", new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
@@ -234,7 +242,7 @@ public class ArchiveActivity extends BaseActivity {
                             }
                         }).show();
                         mCommentEditText.setText("");
-                        mCommentSection.setVisibility(View.GONE);
+                        mCommentSection.setVisibility(View.INVISIBLE);
 
                     }
 

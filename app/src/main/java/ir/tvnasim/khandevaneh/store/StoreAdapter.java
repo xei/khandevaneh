@@ -52,12 +52,16 @@ public class StoreAdapter extends RecyclerView.Adapter<StoreAdapter.ItemViewHold
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                new KhandevanehDialog(mActivity, "قیمت این بسته " + HelperFunctions.persianizeDigitsInString(item.getPrice()) + " تومنه ها", new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        buyItem(item.getId(), mActivity);
-                    }
-                }).show();
+                if (item.getPrice() != null) {
+                    new KhandevanehDialog(mActivity, "قیمت این بسته " + HelperFunctions.persianizeDigitsInString(item.getPrice()) + " تومنه ها", new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            buyItem(item.getId(), mActivity);
+                        }
+                    }).show();
+                } else {
+                    new KhandevanehDialog(mActivity, mActivity.getString(R.string.inform_notImplemented), null).show();
+                }
             }
         });
     }

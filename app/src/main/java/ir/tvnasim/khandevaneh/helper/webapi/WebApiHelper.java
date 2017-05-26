@@ -315,10 +315,13 @@ public final class WebApiHelper {
         );
     }
 
-    public static WebApiRequest<ArrayList<ArchiveListItem>> getArchiveList(String categoryId, String requestTag, WebApiRequest.WebApiListener<ArrayList<ArchiveListItem>> webApiListener, WebApiRequest.LoadRequests fragment) {
+    public static WebApiRequest<ArrayList<ArchiveListItem>> getArchiveList(String categoryId, int pageNo, String requestTag, WebApiRequest.WebApiListener<ArrayList<ArchiveListItem>> webApiListener, WebApiRequest.LoadRequests fragment) {
 
         HashMap<String, String> params = new HashMap<>();
         params.put("categoryId", categoryId);
+
+        params.put("limit", "20");
+        params.put("offset", String.valueOf(pageNo * 20));
 
         return new WebApiRequest<>(
                 Request.Method.POST,

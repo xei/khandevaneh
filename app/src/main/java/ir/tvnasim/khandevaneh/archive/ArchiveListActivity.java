@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.view.View;
 
 import java.util.ArrayList;
 
@@ -15,6 +16,8 @@ import ir.tvnasim.khandevaneh.app.ScoresContainer;
 import ir.tvnasim.khandevaneh.helper.LogHelper;
 import ir.tvnasim.khandevaneh.helper.webapi.WebApiHelper;
 import ir.tvnasim.khandevaneh.helper.webapi.WebApiRequest;
+
+import static android.nfc.tech.MifareUltralight.PAGE_SIZE;
 
 public class ArchiveListActivity extends BaseActivity {
 
@@ -27,6 +30,9 @@ public class ArchiveListActivity extends BaseActivity {
 
     private String mCategoryId;
     private ArrayList<ArchiveListItem> mList = new ArrayList<>();
+
+    private boolean isLoading = false;
+    private int pageNo;
 
     public static void start(Context starter, String categoryId) {
         Intent intent = new Intent(starter, ArchiveListActivity.class);
@@ -51,7 +57,7 @@ public class ArchiveListActivity extends BaseActivity {
         findViews();
         initRecyclerView();
 
-        fetchArchiveListFromApi();
+        fetchArchiveListFromApi(pageNo);
 
     }
 
@@ -64,25 +70,52 @@ public class ArchiveListActivity extends BaseActivity {
         mListAdapter = new ArchiveListAdapter(mList);
         mListRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         mListRecyclerView.setAdapter(mListAdapter);
+
+        mListRecyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
+            @Override
+            public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
+                super.onScrollStateChanged(recyclerView, newState);
+            }
+
+            @Override
+            public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
+                super.onScrolled(recyclerView, dx, dy);
+
+                int visibleItemCount = recyclerView.getLayoutManager().getChildCount();
+                int totalItemCount = recyclerView.getLayoutManager().getItemCount();
+                int firstVisibleItemPosition = ((LinearLayoutManager)recyclerView.getLayoutManager()).findFirstVisibleItemPosition();
+
+                if (!isLoading) {
+                    if ((visibleItemCount + firstVisibleItemPosition) >= totalItemCount
+                            && firstVisibleItemPosition >= 0
+                            && totalItemCount >= PAGE_SIZE) {
+                        fetchArchiveListFromApi(++pageNo);
+                    }
+                }
+            }
+        });
     }
 
-    private void fetchArchiveListFromApi() {
+    private void fetchArchiveListFromApi(int pageNo) {
 
-        WebApiHelper.getArchiveList(mCategoryId, TAG_REQUEST_GET_ARCHIVE_LIST, new WebApiRequest.WebApiListener<ArrayList<ArchiveListItem>>() {
+        isLoading = true;
+
+        WebApiHelper.getArchiveList(mCategoryId, pageNo, TAG_REQUEST_GET_ARCHIVE_LIST, new WebApiRequest.WebApiListener<ArrayList<ArchiveListItem>>() {
             @Override
             public void onResponse(ArrayList<ArchiveListItem> archiveListItems, ScoresContainer scoresContainer) {
                 if (archiveListItems != null) {
-                    mList.clear();
                     mList.addAll(archiveListItems);
                     mListAdapter.notifyDataSetChanged();
                 } else {
                     Log.e(TAG_DEBUG, "archiveListItems is null!");
                 }
+                isLoading = false;
             }
 
             @Override
             public void onErrorResponse(String errorMessage) {
                 LogHelper.logError(TAG_DEBUG, "getArchiveList request failed:" + errorMessage);
+                isLoading = false;
             }
         }, null).send();
 

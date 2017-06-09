@@ -70,11 +70,14 @@
         <activity
             android:name=".archive.ArchiveCategoriesActivity"
             android:screenOrientation="portrait" />
-        <activity android:name=".archive.ArchiveListActivity"
+        <activity
+            android:name=".archive.ArchiveListActivity"
             android:screenOrientation="portrait" />
-        <activity android:name=".archive.ArchiveActivity"
+        <activity
+            android:name=".archive.ArchiveActivity"
             android:screenOrientation="portrait" />
-        <activity android:name=".archive.FullScreenVideoActivity"
+        <activity
+            android:name=".archive.FullScreenVideoActivity"
             android:screenOrientation="landscape" />
         <activity
             android:name=".polling.PollingListActivity"
@@ -85,7 +88,9 @@
         <activity
             android:name=".polling.PollingStatisticsActivity"
             android:screenOrientation="portrait" />
-
+        <activity
+            android:name=".app.AboutAppActivity"
+            android:screenOrientation="portrait" />
     </application>
 
 </manifest>

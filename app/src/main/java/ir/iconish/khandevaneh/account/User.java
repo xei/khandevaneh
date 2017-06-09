@@ -1,5 +1,6 @@
 package ir.iconish.khandevaneh.account;
 
+import ir.iconish.khandevaneh.helper.SharedPreferencesHelper;
 import ir.iconish.khandevaneh.helper.webapi.WebApiHelper;
 import ir.iconish.khandevaneh.helper.webapi.WebApiRequest;
 import ir.iconish.khandevaneh.app.ScoresContainer;
@@ -62,6 +63,12 @@ public class User {
         } else {
             listener.isLoggedIn(false);
         }
+    }
+
+    public void logout() {
+        sUser = new User();
+        SharedPreferencesHelper.storeAccessToken(null);
+        SharedPreferencesHelper.storeRefreshToken(null);
     }
 
     public void setUserInfo(UserInfo userInfo) {

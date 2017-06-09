@@ -18,6 +18,9 @@ public class StartupConfig {
     @SerializedName("latestApk")
     private String latestApk;
 
+    @SerializedName("guide")
+    private String aboutApp;
+
     public int getVersionState() {
         return versionState;
     }
@@ -33,4 +36,13 @@ public class StartupConfig {
     public void setLatestApk(String latestApk) {
         this.latestApk = latestApk;
     }
+
+    public String getAboutApp() {
+        return aboutApp;
+    }
+
+    public void setAboutApp(String aboutApp) {
+        this.aboutApp = aboutApp;
+    }
+
 }

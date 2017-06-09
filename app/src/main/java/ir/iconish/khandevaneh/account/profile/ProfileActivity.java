@@ -12,6 +12,7 @@ import java.util.ArrayList;
 
 import ir.iconish.khandevaneh.R;
 import ir.iconish.khandevaneh.account.User;
+import ir.iconish.khandevaneh.app.AboutAppActivity;
 import ir.iconish.khandevaneh.app.BaseActivity;
 import ir.iconish.khandevaneh.helper.imageloading.FrescoHelper;
 import ir.iconish.khandevaneh.helper.webapi.WebApiHelper;
@@ -33,6 +34,8 @@ public class ProfileActivity extends BaseActivity {
     private XeiTextView mEmailAddressTextView;
     private XeiTextView mPostalAddressTextView;
     private XeiButton mParticipateButton;
+    private XeiButton mAboutAppButton;
+    private XeiButton mLogoutButton;
 
 
     public static void start(Context starter) {
@@ -77,12 +80,13 @@ public class ProfileActivity extends BaseActivity {
         mEmailAddressTextView = (XeiTextView) findViewById(R.id.activityProfile_xeiTextView_emailAddress);
         mPostalAddressTextView = (XeiTextView) findViewById(R.id.activityProfile_xeiTextView_postalAddress);
         mParticipateButton = (XeiButton) findViewById(R.id.activityProfile_xeiButton_participate);
+        mAboutAppButton = (XeiButton) findViewById(R.id.activityProfile_xeiButton_aboutApp);
+        mLogoutButton = (XeiButton) findViewById(R.id.activityProfile_xeiButton_logout);
 
     }
 
     private void fillFields() {
         User user = User.getInstance();
-        // Bug: after editing user info, user.getAvatar() has old value and will need to get new image from api.
         FrescoHelper.setImageUrl(mAvatarSimpleDraweeView, user.getAvatar());
         mFirstNameTextView.setText(user.getFirstName());
         mLastNameTextView.setText(user.getLastName());
@@ -94,6 +98,8 @@ public class ProfileActivity extends BaseActivity {
     private void setOnClickListeners() {
         mEditProfileImageButton.setOnClickListener(this);
         mParticipateButton.setOnClickListener(this);
+        mAboutAppButton.setOnClickListener(this);
+        mLogoutButton.setOnClickListener(this);
     }
 
     private void participate() {
@@ -129,6 +135,15 @@ public class ProfileActivity extends BaseActivity {
 
             case R.id.activityProfile_xeiButton_participate:
                 participate();
+                break;
+
+            case R.id.activityProfile_xeiButton_aboutApp:
+                AboutAppActivity.start(this);
+                break;
+
+            case R.id.activityProfile_xeiButton_logout:
+                User.getInstance().logout();
+                finish();
                 break;
 
             default:

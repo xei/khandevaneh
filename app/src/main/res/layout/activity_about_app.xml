@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ir.iconish.khandevaneh.view.XeiTextView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activityAboutApp_xeiTextView_aboutApp"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingRight="16dp"
+    android:paddingLeft="16dp"
+    android:background="@color/background_about_app"
+    android:textColor="@color/textColor_about_app"
+    android:textSize="17sp"
+    app:locale="fa_IR"
+    tools:context="ir.iconish.khandevaneh.app.AboutAppActivity"
+    tools:text="توضیحاتی درباره اپلیکیشن خندوانه" />

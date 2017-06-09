@@ -49,7 +49,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="48dp"
                 android:gravity="right|center_vertical"
-                android:text="کد فعالسازی برای شما پیامک شد..."
+                tools:text="نام کاربری"
                 android:textColor="@color/textColor_dark"
                 app:locale="fa_IR"
                 />
@@ -84,7 +84,7 @@
                 android:layout_height="48dp"
 
                 android:gravity="right|center_vertical"
-                android:text="کد فعالسازی برای شما پیامک شد..."
+                tools:text="نام خانوادگی"
                 android:textColor="@color/textColor_dark"
                 app:locale="fa_IR"
                 />
@@ -117,9 +117,8 @@
                 android:id="@+id/activityProfile_xeiTextView_phoneNo"
                 android:layout_width="wrap_content"
                 android:layout_height="48dp"
-
                 android:gravity="right|center_vertical"
-                android:text="کد فعالسازی برای شما پیامک شد..."
+                tools:text="شماره تماس"
                 android:textColor="@color/textColor_dark"
                 app:locale="fa_IR"
                 />
@@ -152,9 +151,8 @@
                 android:id="@+id/activityProfile_xeiTextView_emailAddress"
                 android:layout_width="wrap_content"
                 android:layout_height="48dp"
-
                 android:gravity="right|center_vertical"
-                android:text="کد فعالسازی برای شما پیامک شد..."
+                tools:text="آدرس ایمیل"
                 android:textColor="@color/textColor_dark"
                 app:locale="fa_IR"
                 />
@@ -187,9 +185,8 @@
                 android:id="@+id/activityProfile_xeiTextView_postalAddress"
                 android:layout_width="wrap_content"
                 android:layout_height="48dp"
-
                 android:gravity="right|center_vertical"
-                android:text="کد فعالسازی برای شما پیامک خیابان فرمانیه غربی کوچه ابکوه فرمانیه غربی کوچه ابکوه فرمانیه غربی کوچه ابکوه فرمانیه غربی کوچه ابکوه یکم  شد..."
+                tools:text="آدرس منزل"
                 android:maxLines="3"
                 android:ellipsize="end"
                 android:textColor="@color/textColor_dark"
@@ -225,6 +222,38 @@
             android:layout_gravity="center"
             android:padding="8dp"
             android:text="شرکت در برنامه تلویزیونی"
+            android:background="@drawable/background_button_participate"
+            android:textColor="#000"
+            android:textSize="17sp"
+            android:textStyle="bold"
+            app:locale="fa_IR"
+            app:style="bold"/>
+
+        <ir.iconish.khandevaneh.view.XeiButton
+            android:id="@+id/activityProfile_xeiButton_aboutApp"
+            android:layout_width="200dp"
+            android:layout_height="48dp"
+            android:layout_margin="8dp"
+            android:layout_marginBottom="32dp"
+            android:layout_gravity="center"
+            android:padding="8dp"
+            android:text="راهنمای اپلیکیشن"
+            android:background="@drawable/background_button_participate"
+            android:textColor="#000"
+            android:textSize="17sp"
+            android:textStyle="bold"
+            app:locale="fa_IR"
+            app:style="bold"/>
+
+        <ir.iconish.khandevaneh.view.XeiButton
+            android:id="@+id/activityProfile_xeiButton_logout"
+            android:layout_width="200dp"
+            android:layout_height="48dp"
+            android:layout_margin="8dp"
+            android:layout_marginBottom="32dp"
+            android:layout_gravity="center"
+            android:padding="8dp"
+            android:text="خروج از حساب کاربری"
             android:background="@drawable/background_button_participate"
             android:textColor="#000"
             android:textSize="17sp"

@@ -10,10 +10,14 @@ import com.facebook.drawee.view.SimpleDraweeView;
 import java.util.ArrayList;
 
 import ir.iconish.khandevaneh.R;
+import ir.iconish.khandevaneh.account.User;
 import ir.iconish.khandevaneh.app.Banner;
+import ir.iconish.khandevaneh.helper.HelperFunctions;
 import ir.iconish.khandevaneh.helper.imageloading.FrescoHelper;
 import ir.iconish.khandevaneh.polling.PollingActivity;
 import ir.iconish.khandevaneh.polling.PollingListItem;
+import ir.iconish.khandevaneh.store.StoreActivity;
+import ir.iconish.khandevaneh.view.KhandevanehDialog;
 import ir.iconish.khandevaneh.view.XeiTextView;
 
 /**
@@ -59,7 +63,7 @@ class ArchiveListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     }
 
     @Override
-    public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
+    public void onBindViewHolder(final RecyclerView.ViewHolder holder, int position) {
 
         if (holder instanceof AdsBannerViewHolder) {
             AdsBannerViewHolder adsBannerViewHolder = (AdsBannerViewHolder) holder;
@@ -78,8 +82,38 @@ class ArchiveListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
             holder.itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
-                public void onClick(View clickedView) {
-                    ArchiveActivity.start(clickedView.getContext(), item.getId());
+                public void onClick(final View clickedView) {
+                    if (item.isAccessible()) {
+                        // Archive item is free or bought.
+                        ArchiveActivity.start(clickedView.getContext(), item.getId());
+                    } else {
+                        // Archive item is not accessible or not bought.
+                        if (item.getPayableMelon() > 0) {
+                            // The user must buy archive item.
+                            if (item.getPayableMelon() <= User.getInstance().getMelonScore()) {
+                                // The user has required credit to buy the item
+                                new KhandevanehDialog(((ListItemViewHolder) holder).itemView.getContext(), "برای دسترسی به این آیتم باید " + HelperFunctions.convertNumberStringToPersian(String.valueOf(item.getPayableMelon())) + " تا هندونه خرج کنی.", new View.OnClickListener() {
+                                    @Override
+                                    public void onClick(View v) {
+                                        // The required credit will pay automatically.
+                                        ArchiveActivity.start(clickedView.getContext(), item.getId());
+                                    }
+                                }).show();
+                            } else {
+                                // The user has not required credit to buy this item.
+                                // So, refer him/her to store screen.
+                                new KhandevanehDialog(((ListItemViewHolder) holder).itemView.getContext(), "برای دسترسی به این آیتم باید " + HelperFunctions.convertNumberStringToPersian(String.valueOf(item.getPayableMelon())) + " تا هندونه خرج کنی، که نداری!" + "\n" + "یه سر به فروشگاه بزن و اگه خواستی هندونه بخر.", new View.OnClickListener() {
+                                    @Override
+                                    public void onClick(View v) {
+                                        StoreActivity.start(((ListItemViewHolder) holder).itemView.getContext());
+                                    }
+                                }).show();
+                            }
+                        } else {
+                            // Archive item is not accessible!
+                            new KhandevanehDialog(((ListItemViewHolder) holder).itemView.getContext(), "این مورد در دسترس نیست!", null).show();
+                        }
+                    }
                 }
             });
         }

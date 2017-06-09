@@ -154,8 +154,7 @@
                 android:gravity="right|center_vertical"
                 tools:text="آدرس ایمیل"
                 android:textColor="@color/textColor_dark"
-                app:locale="fa_IR"
-                />
+                app:locale="fa_IR" />
 
             <ir.iconish.khandevaneh.view.XeiTextView
                 android:layout_width="wrap_content"
@@ -166,8 +165,7 @@
                 android:text="آدرس ایمیل:"
                 android:textColor="@color/textColor_dark"
                 app:locale="fa_IR"
-                app:style="bold"
-                />
+                app:style="bold" />
 
         </LinearLayout>
 

@@ -27,10 +27,10 @@ public class ArchiveListItem {
     private String likeCount;
 
     @SerializedName("isOpen")
-    private String inOpen;
+    private String isAccessible;
 
     @SerializedName("needCredit")
-    private String needCredit;
+    private String payableMelon;
 
 
     public String getId() {
@@ -81,19 +81,19 @@ public class ArchiveListItem {
         this.likeCount = likeCount;
     }
 
-    public String getInOpen() {
-        return inOpen;
+    public boolean isAccessible() {
+        return isAccessible.equals("1");
     }
 
-    public void setInOpen(String inOpen) {
-        this.inOpen = inOpen;
+    public void setIsAccessible(String isAccessible) {
+        this.isAccessible = isAccessible;
     }
 
-    public String getNeedCredit() {
-        return needCredit;
+    public long getPayableMelon() {
+        return Long.parseLong(payableMelon);
     }
 
-    public void setNeedCredit(String needCredit) {
-        this.needCredit = needCredit;
+    public void setPayableMelon(String payableMelon) {
+        this.payableMelon = payableMelon;
     }
 }

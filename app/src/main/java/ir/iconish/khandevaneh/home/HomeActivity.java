@@ -10,19 +10,19 @@ import java.util.ArrayList;
 
 import ir.iconish.khandevaneh.R;
 import ir.iconish.khandevaneh.account.AuthHelper;
+import ir.iconish.khandevaneh.account.Token;
 import ir.iconish.khandevaneh.account.User;
+import ir.iconish.khandevaneh.account.UserInfo;
 import ir.iconish.khandevaneh.account.login.LoginActivity;
+import ir.iconish.khandevaneh.app.Banner;
 import ir.iconish.khandevaneh.app.BaseActivity;
 import ir.iconish.khandevaneh.app.LaunchActivity;
+import ir.iconish.khandevaneh.app.ScoresContainer;
 import ir.iconish.khandevaneh.exception.InValidDestinationException;
 import ir.iconish.khandevaneh.helper.LogHelper;
 import ir.iconish.khandevaneh.helper.SharedPreferencesHelper;
 import ir.iconish.khandevaneh.helper.webapi.WebApiHelper;
 import ir.iconish.khandevaneh.helper.webapi.WebApiRequest;
-import ir.iconish.khandevaneh.app.Banner;
-import ir.iconish.khandevaneh.app.ScoresContainer;
-import ir.iconish.khandevaneh.account.Token;
-import ir.iconish.khandevaneh.account.UserInfo;
 import ir.iconish.khandevaneh.view.bannerslider.BannerFragment;
 import ir.iconish.khandevaneh.view.bannerslider.OnBannerClickedListener;
 

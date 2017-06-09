@@ -204,6 +204,11 @@ public class ArchiveActivity extends BaseActivity {
                 if (archiveItem != null) {
                     mArchiveItem = archiveItem;
                     renderArchive();
+
+                    // The melon count may reduce when the user buy this archive item.
+                    if (scoresContainer != null) {
+                        updateScores(scoresContainer.getMelonScore(), scoresContainer.getExperienceScore(), null);
+                    }
                 }
             }
 

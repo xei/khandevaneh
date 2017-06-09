@@ -28,7 +28,7 @@
             app:roundingBorderWidth="@dimen/width_rounding_border_userRankSection_avatar"
             app:roundingBorderColor="@color/border_avatar" />
 
-        <ir.tvnasim.khandevaneh.view.XeiTextView
+        <ir.iconish.khandevaneh.view.XeiTextView
             android:id="@+id/rowPollingOptions_xeiTextView_title"
             android:layout_width="match_parent"
             android:layout_height="match_parent"

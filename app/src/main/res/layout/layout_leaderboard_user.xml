@@ -32,7 +32,7 @@
                 android:gravity="center_vertical"
                 android:background="#fff" >
 
-                <ir.tvnasim.khandevaneh.view.XeiTextView
+                <ir.iconish.khandevaneh.view.XeiTextView
                     android:id="@+id/layoutLeaderboardUser_textView_userName"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -69,7 +69,7 @@
                     android:padding="@dimen/padding_toolbar_score"
                     android:src="@drawable/ic_toolbar_home_experience" />
 
-                <ir.tvnasim.khandevaneh.view.XeiTextView
+                <ir.iconish.khandevaneh.view.XeiTextView
                     android:id="@+id/activityLeaderboard_textView_userExperience"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"

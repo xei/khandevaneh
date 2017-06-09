@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#E70D0D"
-    tools:context="ir.tvnasim.khandevaneh.account.profile.ProfileActivity" >
+    tools:context="ir.iconish.khandevaneh.account.profile.ProfileActivity" >
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -44,7 +44,7 @@
             android:gravity="center"
             android:background="@drawable/background_row_leaderboard" >
 
-            <ir.tvnasim.khandevaneh.view.XeiTextView
+            <ir.iconish.khandevaneh.view.XeiTextView
                 android:id="@+id/activityProfile_xeiTextView_firstName"
                 android:layout_width="wrap_content"
                 android:layout_height="48dp"
@@ -54,7 +54,7 @@
                 app:locale="fa_IR"
                 />
 
-            <ir.tvnasim.khandevaneh.view.XeiTextView
+            <ir.iconish.khandevaneh.view.XeiTextView
                 android:layout_width="wrap_content"
                 android:layout_height="48dp"
                 android:paddingRight="16dp"
@@ -78,7 +78,7 @@
             android:gravity="center"
             android:background="@drawable/background_row_leaderboard" >
 
-            <ir.tvnasim.khandevaneh.view.XeiTextView
+            <ir.iconish.khandevaneh.view.XeiTextView
                 android:id="@+id/activityProfile_xeiTextView_lastName"
                 android:layout_width="wrap_content"
                 android:layout_height="48dp"
@@ -89,7 +89,7 @@
                 app:locale="fa_IR"
                 />
 
-            <ir.tvnasim.khandevaneh.view.XeiTextView
+            <ir.iconish.khandevaneh.view.XeiTextView
                 android:layout_width="wrap_content"
                 android:layout_height="48dp"
                 android:paddingRight="16dp"
@@ -113,7 +113,7 @@
             android:gravity="center"
             android:background="@drawable/background_row_leaderboard" >
 
-            <ir.tvnasim.khandevaneh.view.XeiTextView
+            <ir.iconish.khandevaneh.view.XeiTextView
                 android:id="@+id/activityProfile_xeiTextView_phoneNo"
                 android:layout_width="wrap_content"
                 android:layout_height="48dp"
@@ -124,7 +124,7 @@
                 app:locale="fa_IR"
                 />
 
-            <ir.tvnasim.khandevaneh.view.XeiTextView
+            <ir.iconish.khandevaneh.view.XeiTextView
                 android:layout_width="wrap_content"
                 android:layout_height="48dp"
                 android:paddingRight="16dp"
@@ -148,7 +148,7 @@
             android:gravity="center"
             android:background="@drawable/background_row_leaderboard" >
 
-            <ir.tvnasim.khandevaneh.view.XeiTextView
+            <ir.iconish.khandevaneh.view.XeiTextView
                 android:id="@+id/activityProfile_xeiTextView_emailAddress"
                 android:layout_width="wrap_content"
                 android:layout_height="48dp"
@@ -159,7 +159,7 @@
                 app:locale="fa_IR"
                 />
 
-            <ir.tvnasim.khandevaneh.view.XeiTextView
+            <ir.iconish.khandevaneh.view.XeiTextView
                 android:layout_width="wrap_content"
                 android:layout_height="48dp"
                 android:paddingRight="16dp"
@@ -183,7 +183,7 @@
             android:gravity="center"
             android:background="@drawable/background_row_leaderboard" >
 
-            <ir.tvnasim.khandevaneh.view.XeiTextView
+            <ir.iconish.khandevaneh.view.XeiTextView
                 android:id="@+id/activityProfile_xeiTextView_postalAddress"
                 android:layout_width="wrap_content"
                 android:layout_height="48dp"
@@ -196,7 +196,7 @@
                 app:locale="fa_IR"
                 />
 
-            <ir.tvnasim.khandevaneh.view.XeiTextView
+            <ir.iconish.khandevaneh.view.XeiTextView
                 android:layout_width="wrap_content"
                 android:layout_height="48dp"
                 android:paddingRight="16dp"
@@ -216,7 +216,7 @@
             android:layout_marginBottom="8dp"
             android:background="#fff"/>
 
-        <ir.tvnasim.khandevaneh.view.XeiButton
+        <ir.iconish.khandevaneh.view.XeiButton
             android:id="@+id/activityProfile_xeiButton_participate"
             android:layout_width="200dp"
             android:layout_height="48dp"

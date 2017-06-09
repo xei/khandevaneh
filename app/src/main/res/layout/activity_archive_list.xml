@@ -7,5 +7,5 @@
     android:id="@+id/activityArchiveList_recyclerView_list"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="ir.tvnasim.khandevaneh.polling.PollingListActivity"
+    tools:context="ir.iconish.khandevaneh.polling.PollingListActivity"
     android:background="@color/pollingList_background"/>

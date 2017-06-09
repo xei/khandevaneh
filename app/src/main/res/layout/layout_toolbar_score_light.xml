@@ -14,7 +14,7 @@
         android:layout_height="@dimen/dimen_toolbar_score"
         android:padding="@dimen/padding_toolbar_score"/>
 
-    <ir.tvnasim.khandevaneh.view.XeiTextView
+    <ir.iconish.khandevaneh.view.XeiTextView
         android:id="@+id/layoutToolbarScore_textView_score"
         android:layout_width="wrap_content"
         android:layout_height="@dimen/dimen_toolbar_score"

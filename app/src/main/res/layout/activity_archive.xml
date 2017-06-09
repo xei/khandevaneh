@@ -7,9 +7,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/polling_background"
-    tools:context="ir.tvnasim.khandevaneh.archive.ArchiveActivity" >
+    tools:context="ir.iconish.khandevaneh.archive.ArchiveActivity" >
 
-    <ir.tvnasim.khandevaneh.view.XeiTextView
+    <ir.iconish.khandevaneh.view.XeiTextView
         android:id="@+id/activityArchive_xeiTextView_title"
         android:layout_width="match_parent"
         android:layout_height="100dp"
@@ -42,7 +42,7 @@
         android:background="@color/polling_background"
         android:visibility="gone" >
 
-        <ir.tvnasim.khandevaneh.view.XeiButton
+        <ir.iconish.khandevaneh.view.XeiButton
             android:id="@+id/activityArchive_xeiButton_like"
             android:layout_width="150dp"
             android:layout_height="48dp"
@@ -59,7 +59,7 @@
             app:locale="fa_IR"
             app:style="bold" />
 
-        <ir.tvnasim.khandevaneh.view.XeiTextView
+        <ir.iconish.khandevaneh.view.XeiTextView
             android:id="@+id/activityArchive_xeiTextView_likeCount"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
@@ -83,7 +83,7 @@
         android:background="#fff"
         android:visibility="gone" >
 
-        <ir.tvnasim.khandevaneh.view.XeiEditText
+        <ir.iconish.khandevaneh.view.XeiEditText
             android:id="@+id/activityArchive_xeiEditText_comment"
             android:layout_width="match_parent"
             android:layout_height="match_parent"

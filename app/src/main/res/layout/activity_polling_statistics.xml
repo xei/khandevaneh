@@ -7,9 +7,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#fff"
-    tools:context="ir.tvnasim.khandevaneh.polling.PollingStatisticsActivity" >
+    tools:context="ir.iconish.khandevaneh.polling.PollingStatisticsActivity" >
 
-    <ir.tvnasim.khandevaneh.view.XeiTextView
+    <ir.iconish.khandevaneh.view.XeiTextView
         android:id="@+id/activityPollingStatistics_xeiTextView_title"
         android:layout_width="match_parent"
         android:layout_height="100dp"

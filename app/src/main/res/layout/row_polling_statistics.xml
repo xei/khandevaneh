@@ -19,7 +19,7 @@
         android:layout_height="match_parent"
         android:weightSum="1"
         >
-        <ir.tvnasim.khandevaneh.view.XeiTextView
+        <ir.iconish.khandevaneh.view.XeiTextView
             android:id="@+id/rowPollingStatistics_xeiTextView_frequency"
             android:layout_width="0dp"
             android:layout_height="match_parent"
@@ -38,7 +38,7 @@
             android:layout_width="24dp"
             android:layout_height="match_parent" />
 
-        <ir.tvnasim.khandevaneh.view.XeiTextView
+        <ir.iconish.khandevaneh.view.XeiTextView
             android:id="@+id/rowPollingStatistics_xeiTextView_value"
             android:layout_width="0dp"
             android:layout_weight="1"

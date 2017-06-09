@@ -7,7 +7,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/update_background"
-    tools:context="ir.tvnasim.khandevaneh.app.UpdateActivity">
+    tools:context="ir.iconish.khandevaneh.app.UpdateActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -20,7 +20,7 @@
             android:layout_height="wrap_content"
             android:src="@drawable/ic_no_network"/>
 
-        <ir.tvnasim.khandevaneh.view.XeiTextView
+        <ir.iconish.khandevaneh.view.XeiTextView
             android:layout_width="match_parent"
             android:layout_height="200dp"
             android:gravity="center"
@@ -31,7 +31,7 @@
             app:style="bold"
             />
 
-        <ir.tvnasim.khandevaneh.view.XeiButton
+        <ir.iconish.khandevaneh.view.XeiButton
             android:id="@+id/activityUpdate_xeiButton_download"
             android:layout_width="wrap_content"
             android:layout_height="48dp"

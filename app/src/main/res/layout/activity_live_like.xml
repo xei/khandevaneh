@@ -7,7 +7,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/liveLikeList_background_screen"
-    tools:context="ir.tvnasim.khandevaneh.livelike.LiveLikeActivity" >
+    tools:context="ir.iconish.khandevaneh.livelike.LiveLikeActivity" >
 
     <RelativeLayout
         android:id="@+id/activityLiveLike_relativeLayout_liveLikeSection"
@@ -15,7 +15,7 @@
         android:layout_height="match_parent"
         android:visibility="gone" >
 
-        <ir.tvnasim.khandevaneh.view.XeiTextView
+        <ir.iconish.khandevaneh.view.XeiTextView
             android:id="@+id/activityLiveLike_xeiTextView_title"
             android:layout_width="match_parent"
             android:layout_height="56dp"
@@ -54,7 +54,7 @@
             android:background="#fff"
             android:visibility="gone" >
 
-            <ir.tvnasim.khandevaneh.view.XeiEditText
+            <ir.iconish.khandevaneh.view.XeiEditText
                 android:id="@+id/activityLiveLike_xeiEditText_comment"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"

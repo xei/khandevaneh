@@ -8,7 +8,7 @@
     android:layoutDirection="ltr"
     android:orientation="horizontal" >
 
-    <ir.tvnasim.khandevaneh.view.XeiTextView
+    <ir.iconish.khandevaneh.view.XeiTextView
         android:id="@+id/rowProfile_xeiTextView_value"
         app:locale="fa_IR"
         android:layout_width="300dp"
@@ -19,7 +19,7 @@
         android:textColor="@color/textColor_light"
         />
 
-    <ir.tvnasim.khandevaneh.view.XeiTextView
+    <ir.iconish.khandevaneh.view.XeiTextView
         android:id="@+id/rowProfile_xeiTextView_label"
         app:locale="fa_IR"
         app:style="bold"

@@ -4,14 +4,14 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="ir.tvnasim.khandevaneh.account.login.VerificationCodeFragment" >
+    tools:context="ir.iconish.khandevaneh.account.login.VerificationCodeFragment" >
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical" >
 
-        <ir.tvnasim.khandevaneh.view.XeiTextView
+        <ir.iconish.khandevaneh.view.XeiTextView
             android:layout_width="match_parent"
             android:layout_height="48dp"
             android:gravity="center"
@@ -21,7 +21,7 @@
             app:style="bold"
             />
 
-        <ir.tvnasim.khandevaneh.view.XeiEditText
+        <ir.iconish.khandevaneh.view.XeiEditText
             android:id="@+id/fragmentVerificationCode_xeiEditText_verificationCode"
             android:layout_width="match_parent"
             android:layout_height="48dp"
@@ -35,7 +35,7 @@
             android:textColor="@color/textColor_light"
             android:textColorHint="@color/textColor_light" />
 
-        <ir.tvnasim.khandevaneh.view.XeiButton
+        <ir.iconish.khandevaneh.view.XeiButton
             android:id="@+id/fragmentVerificationCode_xeiButton_send"
             android:layout_width="100dp"
             android:layout_height="wrap_content"

@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="@dimen/height_slider" >
 
-    <ir.tvnasim.khandevaneh.view.bannerslider.SliderView
+    <ir.iconish.khandevaneh.view.bannerslider.SliderView
         android:id="@+id/rowMenuHomeSlider_sliderView_slider"
         android:layout_width="match_parent"
         android:layout_height="match_parent"

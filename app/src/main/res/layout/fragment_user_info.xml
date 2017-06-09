@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/profileCompletion_background"
-    tools:context="ir.tvnasim.khandevaneh.account.profile.UserInfoFragment">
+    tools:context="ir.iconish.khandevaneh.account.profile.UserInfoFragment">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -13,7 +13,7 @@
         android:orientation="vertical"
         android:layout_centerInParent="true">
 
-        <ir.tvnasim.khandevaneh.view.XeiTextView
+        <ir.iconish.khandevaneh.view.XeiTextView
             android:id="@+id/fragmentUserInfo_xeiTextView_label"
             android:layout_width="wrap_content"
             android:layout_height="48dp"
@@ -28,7 +28,7 @@
             app:style="bold"
             />
 
-        <ir.tvnasim.khandevaneh.view.XeiEditText
+        <ir.iconish.khandevaneh.view.XeiEditText
             android:id="@+id/fragmentUserInfo_xeiTextView_value"
             android:layout_width="match_parent"
             android:layout_height="48dp"
@@ -42,7 +42,7 @@
             android:singleLine="true"
             app:locale="fa_IR" />
 
-        <ir.tvnasim.khandevaneh.view.XeiButton
+        <ir.iconish.khandevaneh.view.XeiButton
             android:id="@+id/fragmentUserInfo_xeiButton_next"
             android:layout_width="200dp"
             android:layout_height="48dp"
